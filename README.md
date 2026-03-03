@@ -4,7 +4,7 @@ An accessibility mod for **Yu-Gi-Oh! Master Duel** that makes the game fully pla
 
 Built by a blind developer using AI assistance (Claude Code).
 
-Based on [**BlindMode**](https://github.com/radsi/blindmode) by **Radsi** — the original BepInEx accessibility mod for Master Duel. This project ports and significantly extends that work to MelonLoader.
+Based on [**BlindMode**](https://github.com/radsi/blindmode) by **Radsi** — the original BepInEx accessibility mod for Master Duel. This project extends that work with a significantly larger feature set.
 
 ---
 
@@ -40,34 +40,33 @@ Based on [**BlindMode**](https://github.com/radsi/blindmode) by **Radsi** — th
 ## Requirements
 
 - **Yu-Gi-Oh! Master Duel** (Steam)
-- **MelonLoader v0.7.1** — [melonwiki.xyz](https://melonwiki.xyz)
+- **BepInEx 6.0.0-be.xxx (IL2CPP)** — [github.com/BepInEx/BepInEx](https://github.com/BepInEx/BepInEx/releases)
 - A screen reader: **NVDA**, **JAWS**, or **Windows SAPI** (built-in)
 
 ---
 
 ## Installation
 
-1. Install MelonLoader v0.7.1 into your Master Duel game folder (follow the MelonLoader guide)
-2. Download the latest release from the [Releases](../../releases) page
-3. Copy `MasterDuelAccessibility.dll` into the `Mods/` folder of your game
-4. Copy the `MasterDuelAccessibility/` folder (containing the `lib/` subfolder) into `Mods/` as well
-5. Copy `TolkDotNet.dll` into `UserLibs/`
-6. Launch the game — your screen reader should announce events automatically
+1. Install BepInEx 6 (IL2CPP) into your Master Duel game folder (follow the BepInEx guide)
+2. Launch the game once so BepInEx generates its folder structure, then close it
+3. Download the latest release from the [Releases](../../releases) page
+4. Extract the zip — copy the `BepInEx/` folder into your Master Duel game folder
+5. Launch the game — your screen reader should announce events automatically
 
-Your `Mods/` folder should look like this:
+Your `BepInEx/plugins/` folder should look like this:
 
 ```
-Mods/
-├── MasterDuelAccessibility.dll
-└── MasterDuelAccessibility/
-    └── lib/
-        └── screen-reader-libs/
-            └── windows/
-                ├── Tolk.dll
-                ├── nvdaControllerClient64.dll
-                └── SAAPI64.dll
-UserLibs/
-└── TolkDotNet.dll
+BepInEx/
+└── plugins/
+    ├── MasterDuelAccessibility.dll
+    ├── TolkDotNet.dll
+    └── MasterDuelAccessibility/
+        └── lib/
+            └── screen-reader-libs/
+                └── windows/
+                    ├── Tolk.dll
+                    ├── nvdaControllerClient64.dll
+                    └── SAAPI64.dll
 ```
 
 ---
@@ -81,7 +80,7 @@ dotnet build -c Release
 
 **Output:** `bin/Release/net6.0/MasterDuelAccessibility.dll`
 
-You will need the game installed so that MelonLoader has already generated the interop assemblies in `MelonLoader/Il2CppAssemblies/`.
+You will need BepInEx installed and the game launched at least once so that BepInEx has generated the interop assemblies in `BepInEx/interop/`.
 
 ---
 
@@ -89,7 +88,7 @@ You will need the game installed so that MelonLoader has already generated the i
 
 ```
 mod/MasterDuelAccessibility/   # The mod source code
-├── Plugin.cs                  # Entry point (MelonMod)
+├── Plugin.cs                  # Entry point (BepInEx BasePlugin)
 ├── TtsService.cs              # Tolk TTS wrapper
 ├── KeyboardShortcuts.cs       # F1–F12, Space, Alt handlers
 ├── ShortcutRegistry.cs        # Central shortcut registry
