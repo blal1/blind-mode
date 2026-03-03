@@ -30,6 +30,11 @@ Thumbs.db
 # Claude Code local settings
 .claude/
 
+# Decompiled third-party source (not game stubs)
+decompiled/BlindMode/
+decompiled/CrossSpeak/
+decompiled/TolkDotNet/
+
 # Local working files (not for distribution)
 forum-post.txt
 *.local.*
