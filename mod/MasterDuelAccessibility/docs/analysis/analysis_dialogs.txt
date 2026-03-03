@@ -1,0 +1,607 @@
+Master Duel Assembly Analysis — Duel Dialog Classes
+Generated: 2026-03-01 17:05:58
+Source: decompiled/interop/Assembly-CSharp
+============================================================
+
+============================================================
+DUEL DIALOGS
+Count: 3
+============================================================
+
+── DuelConfirmDialog ─────────────────────────────────
+using System;
+using Il2CppDummyDll;
+using UnityEngine;
+using UnityEngine.UI;
+using YgomSystem.UI;
+using YgomSystem.Utility;
+using YgomSystem.YGomTMPro;
+
+namespace YgomGame.Duel;
+
+[Token(Token = "0x2001885")]
+public class DuelConfirmDialog : DuelDialogBase, IGameObjectPool
+{
+	[Token(Token = "0x2001886")]
+	public enum Result
+	{
+		[Token(Token = "0x400E61D")]
+		Left,
+		[Token(Token = "0x400E61E")]
+		Right
+	}
+
+	[Token(Token = "0x400E611")]
+	[FieldOffset(Offset = "0xB0")]
+	private Result result;
+
+	[Token(Token = "0x400E612")]
+	[FieldOffset(Offset = "0xB8")]
+	private Action<Result, bool> resultCallback;
+
+	[Token(Token = "0x400E613")]
+	[FieldOffset(Offset = "0xC0")]
+	private ExtendedTextMeshProUGUI textMessage;
+
+	[Token(Token = "0x400E614")]
+	[FieldOffset(Offset = "0xC8")]
+	private ExtendedTextMeshProUGUI textLeftButton;
+
+	[Token(Token = "0x400E615")]
+	[FieldOffset(Offset = "0xD0")]
+	private ExtendedTextMeshProUGUI textRightButton;
+
+	[Token(Token = "0x400E616")]
+	[FieldOffset(Offset = "0xD8")]
+	private ContentSizeFitter dialogFitter;
+
+	[Token(Token = "0x400E617")]
+	[FieldOffset(Offset = "0xE0")]
+	private RectTransform rightButtonRectTransform;
+
+	[Token(Token = "0x400E618")]
+	[FieldOffset(Offset = "0xE8")]
+	private SelectionButton rightButton;
+
+	[Token(Token = "0x400E619")]
+	private const string key = "DuelConmfirmDialog";
+
+	[Token(Token = "0x400E61A")]
+	[FieldOffset(Offset = "0xF0")]
+	private bool useFieldViewFlag;
+
+	[Token(Token = "0x400E61B")]
+	private const string prefabPath = "Prefabs/Duel/DuelConfirmDialog";
+
+	[Token(Token = "0x170017EB")]
+	protected override bool useFieldView
+	{
+		[Token(Token = "0x6009CF9")]
+		[Address(RVA = "0xDCD750", Offset = "0xDCC950", VA = "0x180DCD750", Slot = "17")]
+		get
+		{
+			return default(bool);
+		}
+	}
+
+	[Token(Token = "0x170017EC")]
+	public string poolKey
+	{
+		[Token(Token = "0x6009CFA")]
+		[Address(RVA = "0xEA3B90", Offset = "0xEA2D90", VA = "0x180EA3B90", Slot = "22")]
+		get
+		{
+			return null;
+		}
+	}
+
+	[Token(Token = "0x170017ED")]
+	public GameObject pooledTarget
+	{
+		[Token(Token = "0x6009CFB")]
+		[Address(RVA = "0x4A1C50", Offset = "0x4A0E50", VA = "0x1804A1C50", Slot = "23")]
+		get
+		{
+			return null;
+		}
+	}
+
+	[Token(Token = "0x6009CFC")]
+	[Address(RVA = "0xEA3330", Offset = "0xEA2530", VA = "0x180EA3330")]
+	public static void Create(RunEffectWorker effectWorker, Transform parent, Action<DuelConfirmDialog> finishCallback)
+	{
+	}
+
+	[Token(Token = "0x6009CFD")]
+	[Address(RVA = "0xEA3060", Offset = "0xEA2260", VA = "0x180EA3060", Slot = "6")]
+	protected override void CreateUI()
+	{
+	}
+
+	[Token(Token = "0x6009CFE")]
+	[Address(RVA = "0xEA3550", Offset = "0xEA2750", VA = "0x180EA3550")]
+	private void OnDecide(Result result)
+	{
+	}
+
+	[Token(Token = "0x6009CFF")]
+	[Address(RVA = "0xEA34F0", Offset = "0xEA26F0", VA = "0x180EA34F0", Slot = "10")]
+	protected override void OnClosed()
+	{
+	}
+
+	[Token(Token = "0x6009D00")]
+	[Address(RVA = "0xEA2C00", Offset = "0xEA1E00", VA = "0x180EA2C00", Slot = "11")]
+	protected override void ShowUI()
+	{
+	}
+
+	[Token(Token = "0x6009D01")]
+	[Address(RVA = "0xEA2690", Offset = "0xEA1890", VA = "0x180EA2690", Slot = "12")]
+	protected override void HideUI()
+	{
+	}
+
+	[Token(Token = "0x6009D02")]
+	[Address(RVA = "0xEA2F50", Offset = "0xEA2150", VA = "0x180EA2F50", Slot = "20")]
+	public override void Abort()
+	{
+	}
+
+	[Token(Token = "0x6009D03")]
+	[Address(RVA = "0xEA34E0", Offset = "0xEA26E0", VA = "0x180EA34E0", Slot = "21")]
+	public override void OnCancel()
+	{
+	}
+
+	[Token(Token = "0x6009D04")]
+	[Address(RVA = "0xEA3700", Offset = "0xEA2900", VA = "0x180EA3700")]
+	public void Open(string message, string rightButtonText, string leftButtonText, Action<Result, bool> resultCallback, Action openCallback, bool useFieldView = true)
+	{
+	}
+
+	[Token(Token = "0x6009D05")]
+	[Address(RVA = "0xEA39B0", Offset = "0xEA2BB0", VA = "0x180EA39B0")]
+	public void Open(string message, Action<Result, bool> resultCallback, Action openCallback, bool useFieldView = true)
+	{
+	}
+
+	[Token(Token = "0x6009D06")]
+	[Address(RVA = "0xEA2750", Offset = "0xEA1950", VA = "0x180EA2750", Slot = "24")]
+	public void OnReturned()
+	{
+	}
+
+	[Token(Token = "0x6009D07")]
+	[Address(RVA = "0xEA3B80", Offset = "0xEA2D80", VA = "0x180EA3B80")]
+	public DuelConfirmDialog()
+	{
+	}
+}
+
+── DuelDialogBase ────────────────────────────────────
+using System;
+using System.Collections.Generic;
+using System.Runtime.InteropServices;
+using Il2CppDummyDll;
+using UnityEngine;
+using YgomSystem.ElementSystem;
+using YgomSystem.UI;
+using YgomSystem.Utility;
+
+namespace YgomGame.Duel;
+
+[Token(Token = "0x200188E")]
+public abstract class DuelDialogBase : DuelUIBase
+{
+	[Token(Token = "0x400E654")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x38")]
+	[SerializeField]
+	protected GameObject prefabDialogBase;
+
+	[Token(Token = "0x400E655")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x40")]
+	private ElementObjectManager dialogBaseUI;
+
+	[Token(Token = "0x400E656")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x48")]
+	private Selector baseSelector;
+
+	[Token(Token = "0x400E657")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x50")]
+	private SelectionItem screenItem;
+
+	[Token(Token = "0x400E658")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x58")]
+	protected bool fieldViewing;
+
+	[Token(Token = "0x400E659")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x60")]
+	private Transform fieldViewRoot;
+
+	[Token(Token = "0x400E65A")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x68")]
+	private GameObject fieldViewIconOn;
+
+	[Token(Token = "0x400E65B")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x70")]
+	private GameObject fieldViewIconOff;
+
+	[Token(Token = "0x400E65C")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x78")]
+	private TweenPositionTo tweenStartFieldView;
+
+	[Token(Token = "0x400E65D")]
+	private const float fieldViewToPosOffset = 18f;
+
+	[Token(Token = "0x400E65E")]
+	private const string tweenLabelStartFieldView = "StartFieldView";
+
+	[Token(Token = "0x400E65F")]
+	private const string tweenLabelFinishFieldView = "FinishFieldView";
+
+	[Token(Token = "0x400E660")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x80")]
+	private bool useCardInfo;
+
+	[Token(Token = "0x400E661")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x88")]
+	[SerializeField]
+	private GameObject prefabUI;
+
+	[Token(Token = "0x400E662")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x90")]
+	protected ElementObjectManager ui;
+
+	[Token(Token = "0x400E663")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x98")]
+	protected Selector selector;
+
+	[Token(Token = "0x400E664")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0xA0")]
+	protected RectTransform dialog;
+
+	[Token(Token = "0x400E665")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0xA8")]
+	protected List<Selector> selectors;
+
+	[Token(Token = "0x170017F1")]
+	protected abstract bool useFieldView
+	{
+		[Token(Token = "0x6009D4B")]
+		get;
+	}
+
+	[Token(Token = "0x170017F2")]
+	protected override UITransitionUtil.BlockType openCloseBlockType
+	{
+		[Token(Token = "0x6009D4C")]
+		[Address(RVA = "0x4B8E10", Offset = "0x4B8010", VA = "0x1804B8E10", Slot = "4")]
+		get
+		{
+			return default(UITransitionUtil.BlockType);
+		}
+	}
+
+	[Token(Token = "0x6009D4D")]
+	[Address(RVA = "0xEA7900", Offset = "0xEA6B00", VA = "0x180EA7900", Slot = "5")]
+	public override void Initialize(RunEffectWorker effectWorker, bool createUI = true)
+	{
+	}
+
+	[Token(Token = "0x6009D4E")]
+	[Address(RVA = "0xEA7280", Offset = "0xEA6480", VA = "0x180EA7280", Slot = "6")]
+	protected override void CreateUI()
+	{
+	}
+
+	[Token(Token = "0x6009D4F")]
+	[Address(RVA = "0xEA8160", Offset = "0xEA7360", VA = "0x180EA8160")]
+	private void SetSelectorPriority()
+	{
+	}
+
+	[Token(Token = "0x6009D50")]
+	[Address(RVA = "0xEA6EC0", Offset = "0xEA60C0", VA = "0x180EA6EC0")]
+	private void CreateBaseUI()
+	{
+	}
+
+	[Token(Token = "0x6009D51")]
+	[Address(RVA = "0xEA8210", Offset = "0xEA7410", VA = "0x180EA8210")]
+	protected void SetupFieldViewButton(ElementObjectManager eom, string buttonLabel, string shortcutLabel, string iconOnLabel, string iconOffLabel)
+	{
+	}
+
+	[Token(Token = "0x6009D52")]
+	[Address(RVA = "0xEA8080", Offset = "0xEA7280", VA = "0x180EA8080")]
+	protected void SetDialogSize(Vector2 size)
+	{
+	}
+
+	[Token(Token = "0x6009D53")]
+	[Address(RVA = "0xEA7A40", Offset = "0xEA6C40", VA = "0x180EA7A40")]
+	private void OnChangeFieldView(bool fieldViewing, bool isAbort)
+	{
+	}
+
+	[Token(Token = "0x6009D54")]
+	[Address(RVA = "0xEA8530", Offset = "0xEA7730", VA = "0x180EA8530", Slot = "18")]
+	protected virtual void StartFieldView()
+	{
+	}
+
+	[Token(Token = "0x6009D55")]
+	[Address(RVA = "0xEA74D0", Offset = "0xEA66D0", VA = "0x180EA74D0", Slot = "19")]
+	protected virtual void FinishFieldView(bool isAbort)
+	{
+	}
+
+	[Token(Token = "0x6009D56")]
+	[Address(RVA = "0xEA6D30", Offset = "0xEA5F30", VA = "0x180EA6D30", Slot = "20")]
+	public virtual void Abort()
+	{
+	}
+
+	[Token(Token = "0x6009D57")]
+	public abstract void OnCancel();
+
+	[Token(Token = "0x6009D58")]
+	[Address(RVA = "0xEA7EA0", Offset = "0xEA70A0", VA = "0x180EA7EA0", Slot = "7")]
+	protected override void Open([Optional] Action openedCallback)
+	{
+	}
+
+	[Token(Token = "0x6009D59")]
+	[Address(RVA = "0xEA6D50", Offset = "0xEA5F50", VA = "0x180EA6D50", Slot = "8")]
+	protected override void Close([Optional] Action closedCallback)
+	{
+	}
+
+	[Token(Token = "0x6009D5A")]
+	[Address(RVA = "0xEA84A0", Offset = "0xEA76A0", VA = "0x180EA84A0", Slot = "11")]
+	protected override void ShowUI()
+	{
+	}
+
+	[Token(Token = "0x6009D5B")]
+	[Address(RVA = "0xEA7870", Offset = "0xEA6A70", VA = "0x180EA7870", Slot = "12")]
+	protected override void HideUI()
+	{
+	}
+
+	[Token(Token = "0x6009D5C")]
+	[Address(RVA = "0xEA7B30", Offset = "0xEA6D30", VA = "0x180EA7B30")]
+	public void OpenCardInfo(int mixid, int efx, bool effectidflag)
+	{
+	}
+
+	[Token(Token = "0x6009D5D")]
+	[Address(RVA = "0xEA7DB0", Offset = "0xEA6FB0", VA = "0x180EA7DB0")]
+	public void OpenCardInfobyCardID(int cardID)
+	{
+	}
+
+	[Token(Token = "0x6009D5E")]
+	[Address(RVA = "0xEA79C0", Offset = "0xEA6BC0", VA = "0x180EA79C0")]
+	private void OnChangeDuelLogOpenClose(bool isOpen)
+	{
+	}
+
+	[Token(Token = "0x6009D5F")]
+	[Address(RVA = "0xEA8B40", Offset = "0xEA7D40", VA = "0x180EA8B40")]
+	protected DuelDialogBase()
+	{
+	}
+}
+
+── DuelSelectDialog ──────────────────────────────────
+using System;
+using System.Collections.Generic;
+using Il2CppDummyDll;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+using YgomSystem.ElementSystem;
+using YgomSystem.UI;
+using YgomSystem.Utility;
+
+namespace YgomGame.Duel;
+
+[Token(Token = "0x20018D1")]
+public class DuelSelectDialog : DuelDialogBase, IGameObjectPool
+{
+	[Token(Token = "0x20018D2")]
+	public struct Info
+	{
+		[Token(Token = "0x400E8A9")]
+		[FieldOffset(Offset = "0x0")]
+		public string message;
+
+		[Token(Token = "0x400E8AA")]
+		[FieldOffset(Offset = "0x8")]
+		public bool isEnable;
+	}
+
+	[Token(Token = "0x400E89A")]
+	[FieldOffset(Offset = "0xB0")]
+	private int result;
+
+	[Token(Token = "0x400E89B")]
+	[FieldOffset(Offset = "0xB8")]
+	private Action<int, bool> resultCallback;
+
+	[Token(Token = "0x400E89C")]
+	[FieldOffset(Offset = "0xC0")]
+	private TMP_Text textMessage;
+
+	[Token(Token = "0x400E89D")]
+	[FieldOffset(Offset = "0xC8")]
+	private TMP_Text textEffectMessage;
+
+	[Token(Token = "0x400E89E")]
+	[FieldOffset(Offset = "0xD0")]
+	private ExtendedScrollRect textScroll;
+
+	[Token(Token = "0x400E89F")]
+	[FieldOffset(Offset = "0xD8")]
+	private ContentSizeFitter contentFitter;
+
+	[Token(Token = "0x400E8A0")]
+	[FieldOffset(Offset = "0xE0")]
+	private ElementObjectManager tabTemplate;
+
+	[Token(Token = "0x400E8A1")]
+	[FieldOffset(Offset = "0xE8")]
+	private RectTransform tabParent;
+
+	[Token(Token = "0x400E8A2")]
+	[FieldOffset(Offset = "0xF0")]
+	private SelectionButton decideButton;
+
+	[Token(Token = "0x400E8A3")]
+	[FieldOffset(Offset = "0xF8")]
+	private Image disableScreen;
+
+	[Token(Token = "0x400E8A4")]
+	[FieldOffset(Offset = "0x100")]
+	private int cancelTabIndex;
+
+	[Token(Token = "0x400E8A5")]
+	[FieldOffset(Offset = "0x108")]
+	private List<ElementObjectManager> tabList;
+
+	[Token(Token = "0x400E8A6")]
+	[FieldOffset(Offset = "0x110")]
+	private List<Info> infoList;
+
+	[Token(Token = "0x400E8A7")]
+	private const string key = "DuelSelectDialog";
+
+	[Token(Token = "0x400E8A8")]
+	private const string prefabPath = "Prefabs/Duel/DuelSelectDialog";
+
+	[Token(Token = "0x17001848")]
+	protected override bool useFieldView
+	{
+		[Token(Token = "0x6009FE4")]
+		[Address(RVA = "0x404830", Offset = "0x403A30", VA = "0x180404830", Slot = "17")]
+		get
+		{
+			return default(bool);
+		}
+	}
+
+	[Token(Token = "0x17001849")]
+	public string poolKey
+	{
+		[Token(Token = "0x6009FE5")]
+		[Address(RVA = "0xED8890", Offset = "0xED7A90", VA = "0x180ED8890", Slot = "22")]
+		get
+		{
+			return null;
+		}
+	}
+
+	[Token(Token = "0x1700184A")]
+	public GameObject pooledTarget
+	{
+		[Token(Token = "0x6009FE6")]
+		[Address(RVA = "0x4A1C50", Offset = "0x4A0E50", VA = "0x1804A1C50", Slot = "23")]
+		get
+		{
+			return null;
+		}
+	}
+
+	[Token(Token = "0x6009FE7")]
+	[Address(RVA = "0xED72E0", Offset = "0xED64E0", VA = "0x180ED72E0")]
+	public static void Create(RunEffectWorker effectWorker, Transform parent, Action<DuelSelectDialog> finishCallback)
+	{
+	}
+
+	[Token(Token = "0x6009FE8")]
+	[Address(RVA = "0xED6E40", Offset = "0xED6040", VA = "0x180ED6E40", Slot = "6")]
+	protected override void CreateUI()
+	{
+	}
+
+	[Token(Token = "0x6009FE9")]
+	[Address(RVA = "0xED7D50", Offset = "0xED6F50", VA = "0x180ED7D50")]
+	private void SetupTab(int tabNum)
+	{
+	}
+
+	[Token(Token = "0x6009FEA")]
+	[Address(RVA = "0xED7490", Offset = "0xED6690", VA = "0x180ED7490")]
+	private bool DecideEffect(int index)
+	{
+		return default(bool);
+	}
+
+	[Token(Token = "0x6009FEB")]
+	[Address(RVA = "0xED7BA0", Offset = "0xED6DA0", VA = "0x180ED7BA0")]
+	private void SetResult(int index)
+	{
+	}
+
+	[Token(Token = "0x6009FEC")]
+	[Address(RVA = "0xED86E0", Offset = "0xED78E0", VA = "0x180ED86E0")]
+	private void UpdateTab()
+	{
+	}
+
+	[Token(Token = "0x6009FED")]
+	[Address(RVA = "0xED8570", Offset = "0xED7770", VA = "0x180ED8570")]
+	private void UpdateMessage(int effectIndex)
+	{
+	}
+
+	[Token(Token = "0x6009FEE")]
+	[Address(RVA = "0xED7660", Offset = "0xED6860", VA = "0x180ED7660", Slot = "10")]
+	protected override void OnClosed()
+	{
+	}
+
+	[Token(Token = "0x6009FEF")]
+	[Address(RVA = "0xEA2C00", Offset = "0xEA1E00", VA = "0x180EA2C00", Slot = "11")]
+	protected override void ShowUI()
+	{
+	}
+
+	[Token(Token = "0x6009FF0")]
+	[Address(RVA = "0xEA2690", Offset = "0xEA1890", VA = "0x180EA2690", Slot = "12")]
+	protected override void HideUI()
+	{
+	}
+
+	[Token(Token = "0x6009FF1")]
+	[Address(RVA = "0xED6DD0", Offset = "0xED5FD0", VA = "0x180ED6DD0", Slot = "20")]
+	public override void Abort()
+	{
+	}
+
+	[Token(Token = "0x6009FF2")]
+	[Address(RVA = "0xED7580", Offset = "0xED6780", VA = "0x180ED7580", Slot = "21")]
+	public override void OnCancel()
+	{
+	}
+
+	[Token(Token = "0x6009FF3")]
+	[Address(RVA = "0xED7800", Offset = "0xED6A00", VA = "0x180ED7800")]
+	public void Open(string message, List<Info> infoList, int defaultIndex, Action<int, bool> resultCallback, Action openCallback)
+	{
+	}
+
+	[Token(Token = "0x6009FF4")]
+	[Address(RVA = "0xED76D0", Offset = "0xED68D0", VA = "0x180ED76D0", Slot = "24")]
+	public void OnReturned()
+	{
+	}
+
+	[Token(Token = "0x6009FF5")]
+	[Address(RVA = "0xED8800", Offset = "0xED7A00", VA = "0x180ED8800")]
+	public DuelSelectDialog()
+	{
+	}
+}

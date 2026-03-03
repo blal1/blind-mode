@@ -1,0 +1,46 @@
+# Build outputs
+bin/
+obj/
+*.dll
+*.exe
+*.pdb
+
+# Visual Studio / Rider
+.vs/
+.idea/
+*.user
+*.suo
+*.userprefs
+.vscode/
+
+# NuGet
+packages/
+*.nupkg
+
+# Decompiled game files (too large for git)
+decompiled/
+
+# Game engine files (too large for git — not needed to build the mod)
+dump/
+BepInEx/
+dotnet/
+
+# External dev tools (separate git repo — HearthstoneAccess/DevTools)
+DevTools/
+
+# OS files
+.DS_Store
+Thumbs.db
+*.log
+
+# Temporary files
+*.tmp
+*.temp
+
+# Claude Code local settings
+.claude/
+
+# Local working files (not for distribution)
+forum-post.txt
+*.local.*
+AGENTS.md

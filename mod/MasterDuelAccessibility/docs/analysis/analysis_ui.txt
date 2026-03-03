@@ -1,0 +1,2124 @@
+Master Duel Assembly Analysis — UI Navigation Classes
+Generated: 2026-03-01 17:05:58
+Source: decompiled/interop/Assembly-CSharp
+============================================================
+
+============================================================
+NAVIGATION (SelectionButton / ViewController)
+Count: 2
+============================================================
+
+── SelectionButton ───────────────────────────────────
+using System;
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using Il2CppDummyDll;
+using UnityEngine;
+using UnityEngine.Events;
+
+namespace YgomSystem.UI;
+
+[Token(Token = "0x200047D")]
+public class SelectionButton : RectSelectionItem
+{
+	[Serializable]
+	[Token(Token = "0x200047E")]
+	public class OnClickEvent : UnityEvent
+	{
+		[Token(Token = "0x6001D4D")]
+		[Address(RVA = "0x600F90", Offset = "0x600190", VA = "0x180600F90")]
+		public OnClickEvent()
+		{
+		}
+	}
+
+	[Token(Token = "0x200047F")]
+	public delegate void PointerCallback(SelectionItem this_item);
+
+	[Token(Token = "0x40015F9")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x190")]
+	private Dictionary<GameObject, List<ColorContainer>> colorContainers;
+
+	[Token(Token = "0x40015FB")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x1A0")]
+	[SerializeField]
+	private string tweenLabelInitialize;
+
+	[Token(Token = "0x40015FC")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x1A8")]
+	[SerializeField]
+	private string tweenLabelEnter;
+
+	[Token(Token = "0x40015FD")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x1B0")]
+	[SerializeField]
+	private string tweenLabelDown;
+
+	[Token(Token = "0x40015FE")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x1B8")]
+	[SerializeField]
+	private string tweenLabelClick;
+
+	[Token(Token = "0x40015FF")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x1C0")]
+	[SerializeField]
+	private string tweenLabelExit;
+
+	[Token(Token = "0x4001600")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x1C8")]
+	[SerializeField]
+	private string tweenLabelSelected;
+
+	[Token(Token = "0x4001601")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x1D0")]
+	[SerializeField]
+	private string tweenLabelDeselected;
+
+	[Token(Token = "0x4001602")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x1D8")]
+	[SerializeField]
+	public bool playTweenInitialize;
+
+	[Token(Token = "0x4001603")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x1D9")]
+	[SerializeField]
+	public bool playTweenEnter;
+
+	[Token(Token = "0x4001604")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x1DA")]
+	[SerializeField]
+	public bool playTweenDown;
+
+	[Token(Token = "0x4001605")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x1DB")]
+	[SerializeField]
+	public bool playTweenClick;
+
+	[Token(Token = "0x4001606")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x1DC")]
+	[SerializeField]
+	public bool playTweenExit;
+
+	[Token(Token = "0x4001607")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x1DD")]
+	[SerializeField]
+	public bool playTweenSelected;
+
+	[Token(Token = "0x4001608")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x1DE")]
+	[SerializeField]
+	public bool playTweenDeselected;
+
+	[Token(Token = "0x4001609")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x1DF")]
+	[SerializeField]
+	public bool playSound;
+
+	[Token(Token = "0x400160A")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x1E0")]
+	[SerializeField]
+	private string _soundLabelClick;
+
+	[Token(Token = "0x400160B")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x1E8")]
+	public bool muteSoundLabelClick;
+
+	[Token(Token = "0x400160C")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x1F0")]
+	[SerializeField]
+	private string _soundLabelClickInactive;
+
+	[Token(Token = "0x400160D")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x1F8")]
+	[SerializeField]
+	private string _soundLabelPointerEnter;
+
+	[Token(Token = "0x400160E")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x200")]
+	[SerializeField]
+	private string _soundLabelSelectedGamePad;
+
+	[Token(Token = "0x400160F")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x208")]
+	private ColorContainer.SelectMode currentSelectMode;
+
+	[Token(Token = "0x4001610")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x20C")]
+	private ColorContainer.StatusMode currentStatusMode;
+
+	[Token(Token = "0x4001611")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x210")]
+	public OnClickEvent onClick;
+
+	[Token(Token = "0x4001612")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x218")]
+	public OnClickEvent onDoubleClick;
+
+	[Token(Token = "0x170002D7")]
+	public int colorContainerIndex
+	{
+		[Token(Token = "0x6001D0A")]
+		[Address(RVA = "0x608CB0", Offset = "0x607EB0", VA = "0x180608CB0")]
+		[CompilerGenerated]
+		get
+		{
+			return default(int);
+		}
+		[Token(Token = "0x6001D0B")]
+		[Address(RVA = "0x608FA0", Offset = "0x6081A0", VA = "0x180608FA0")]
+		[CompilerGenerated]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x170002D8")]
+	public string soundLabelClick
+	{
+		[Token(Token = "0x6001D0C")]
+		[Address(RVA = "0x3F2280", Offset = "0x3F1480", VA = "0x1803F2280")]
+		get
+		{
+			return null;
+		}
+		[Token(Token = "0x6001D0D")]
+		[Address(RVA = "0x3F2450", Offset = "0x3F1650", VA = "0x1803F2450")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x170002D9")]
+	public string soundLabelClickInactive
+	{
+		[Token(Token = "0x6001D0E")]
+		[Address(RVA = "0x49BF40", Offset = "0x49B140", VA = "0x18049BF40")]
+		get
+		{
+			return null;
+		}
+		[Token(Token = "0x6001D0F")]
+		[Address(RVA = "0x49C690", Offset = "0x49B890", VA = "0x18049C690")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x170002DA")]
+	public string soundLabelPointerEnter
+	{
+		[Token(Token = "0x6001D10")]
+		[Address(RVA = "0x49BCD0", Offset = "0x49AED0", VA = "0x18049BCD0")]
+		get
+		{
+			return null;
+		}
+		[Token(Token = "0x6001D11")]
+		[Address(RVA = "0x49C390", Offset = "0x49B590", VA = "0x18049C390")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x170002DB")]
+	public string soundLabelSelectedGamePad
+	{
+		[Token(Token = "0x6001D12")]
+		[Address(RVA = "0x49BF10", Offset = "0x49B110", VA = "0x18049BF10")]
+		get
+		{
+			return null;
+		}
+		[Token(Token = "0x6001D13")]
+		[Address(RVA = "0x49C640", Offset = "0x49B840", VA = "0x18049C640")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x170002DC")]
+	public override bool interactable
+	{
+		[Token(Token = "0x6001D14")]
+		[Address(RVA = "0x608CC0", Offset = "0x607EC0", VA = "0x180608CC0", Slot = "4")]
+		get
+		{
+			return default(bool);
+		}
+		[Token(Token = "0x6001D15")]
+		[Address(RVA = "0x608FB0", Offset = "0x6081B0", VA = "0x180608FB0", Slot = "5")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x170002DD")]
+	public bool isClickExclusive
+	{
+		[Token(Token = "0x6001D16")]
+		[Address(RVA = "0x608CD0", Offset = "0x607ED0", VA = "0x180608CD0")]
+		[CompilerGenerated]
+		get
+		{
+			return default(bool);
+		}
+		[Token(Token = "0x6001D17")]
+		[Address(RVA = "0x609020", Offset = "0x608220", VA = "0x180609020")]
+		[CompilerGenerated]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x1400001A")]
+	public event PointerCallback onEnter
+	{
+		[Token(Token = "0x6001D18")]
+		[Address(RVA = "0x608AA0", Offset = "0x607CA0", VA = "0x180608AA0")]
+		[CompilerGenerated]
+		add
+		{
+		}
+		[Token(Token = "0x6001D19")]
+		[Address(RVA = "0x608D90", Offset = "0x607F90", VA = "0x180608D90")]
+		[CompilerGenerated]
+		remove
+		{
+		}
+	}
+
+	[Token(Token = "0x1400001B")]
+	public event PointerCallback onExit
+	{
+		[Token(Token = "0x6001D1A")]
+		[Address(RVA = "0x608B50", Offset = "0x607D50", VA = "0x180608B50")]
+		[CompilerGenerated]
+		add
+		{
+		}
+		[Token(Token = "0x6001D1B")]
+		[Address(RVA = "0x608E40", Offset = "0x608040", VA = "0x180608E40")]
+		[CompilerGenerated]
+		remove
+		{
+		}
+	}
+
+	[Token(Token = "0x1400001C")]
+	public event PointerCallback onDown
+	{
+		[Token(Token = "0x6001D1C")]
+		[Address(RVA = "0x6089F0", Offset = "0x607BF0", VA = "0x1806089F0")]
+		[CompilerGenerated]
+		add
+		{
+		}
+		[Token(Token = "0x6001D1D")]
+		[Address(RVA = "0x608CE0", Offset = "0x607EE0", VA = "0x180608CE0")]
+		[CompilerGenerated]
+		remove
+		{
+		}
+	}
+
+	[Token(Token = "0x1400001D")]
+	public event PointerCallback onUp
+	{
+		[Token(Token = "0x6001D1E")]
+		[Address(RVA = "0x608C00", Offset = "0x607E00", VA = "0x180608C00")]
+		[CompilerGenerated]
+		add
+		{
+		}
+		[Token(Token = "0x6001D1F")]
+		[Address(RVA = "0x608EF0", Offset = "0x6080F0", VA = "0x180608EF0")]
+		[CompilerGenerated]
+		remove
+		{
+		}
+	}
+
+	[Token(Token = "0x6001D20")]
+	[Address(RVA = "0x605FB0", Offset = "0x6051B0", VA = "0x180605FB0", Slot = "6")]
+	protected override void Awaked()
+	{
+	}
+
+	[Token(Token = "0x6001D21")]
+	[Address(RVA = "0x6063F0", Offset = "0x6055F0", VA = "0x1806063F0", Slot = "7")]
+	protected override void Enabled()
+	{
+	}
+
+	[Token(Token = "0x6001D22")]
+	[Address(RVA = "0x606340", Offset = "0x605540", VA = "0x180606340", Slot = "8")]
+	protected override void Disabled()
+	{
+	}
+
+	[Token(Token = "0x6001D23")]
+	[Address(RVA = "0x606260", Offset = "0x605460", VA = "0x180606260", Slot = "9")]
+	protected override void Destroyed()
+	{
+	}
+
+	[Token(Token = "0x6001D24")]
+	[Address(RVA = "0x608640", Offset = "0x607840", VA = "0x180608640", Slot = "10")]
+	public override UpdateItemStatus UpdateItem()
+	{
+		return default(UpdateItemStatus);
+	}
+
+	[Token(Token = "0x6001D25")]
+	[Address(RVA = "0x6086B0", Offset = "0x6078B0", VA = "0x1806086B0", Slot = "11")]
+	public override UpdateItemStatus UpdateSelectedItem()
+	{
+		return default(UpdateItemStatus);
+	}
+
+	[Token(Token = "0x6001D26")]
+	[Address(RVA = "0x608420", Offset = "0x607620", VA = "0x180608420")]
+	public void SetupColorContainer()
+	{
+	}
+
+	[Token(Token = "0x6001D27")]
+	[Address(RVA = "0x605D80", Offset = "0x604F80", VA = "0x180605D80")]
+	public void AddColorContainer(ColorContainer colorContainer, bool withApplyCurrentColor = true)
+	{
+	}
+
+	[Token(Token = "0x6001D28")]
+	[Address(RVA = "0x605F90", Offset = "0x605190", VA = "0x180605F90")]
+	public void ApplyCurrentColor()
+	{
+	}
+
+	[Token(Token = "0x6001D29")]
+	[Address(RVA = "0x608140", Offset = "0x607340", VA = "0x180608140")]
+	private void SetColorContainerColor(ColorContainer.SelectMode select_mode, ColorContainer.StatusMode status_mode)
+	{
+	}
+
+	[Token(Token = "0x6001D2A")]
+	[Address(RVA = "0x6083F0", Offset = "0x6075F0", VA = "0x1806083F0")]
+	public void SetColorContainerIndex(int index)
+	{
+	}
+
+	[Token(Token = "0x6001D2B")]
+	[Address(RVA = "0x606770", Offset = "0x605970", VA = "0x180606770", Slot = "21")]
+	public override bool OnPointerClick()
+	{
+		return default(bool);
+	}
+
+	[Token(Token = "0x6001D2C")]
+	[Address(RVA = "0x6067F0", Offset = "0x6059F0", VA = "0x1806067F0", Slot = "22")]
+	public override bool OnPointerDoubleClick()
+	{
+		return default(bool);
+	}
+
+	[Token(Token = "0x6001D2D")]
+	[Address(RVA = "0x606890", Offset = "0x605A90", VA = "0x180606890", Slot = "20")]
+	public override bool OnPointerDown()
+	{
+		return default(bool);
+	}
+
+	[Token(Token = "0x6001D2E")]
+	[Address(RVA = "0x607000", Offset = "0x606200", VA = "0x180607000")]
+	public void PointerDownEffect()
+	{
+	}
+
+	[Token(Token = "0x6001D2F")]
+	[Address(RVA = "0x606960", Offset = "0x605B60", VA = "0x180606960", Slot = "18")]
+	public override bool OnPointerEnter()
+	{
+		return default(bool);
+	}
+
+	[Token(Token = "0x6001D30")]
+	[Address(RVA = "0x607040", Offset = "0x606240", VA = "0x180607040")]
+	public void PointerEnterEffect(bool pointerDown)
+	{
+	}
+
+	[Token(Token = "0x6001D31")]
+	[Address(RVA = "0x606AD0", Offset = "0x605CD0", VA = "0x180606AD0", Slot = "19")]
+	public override bool OnPointerExit()
+	{
+		return default(bool);
+	}
+
+	[Token(Token = "0x6001D32")]
+	[Address(RVA = "0x607140", Offset = "0x606340", VA = "0x180607140")]
+	public void PointerExitEffect(bool pointerDown)
+	{
+	}
+
+	[Token(Token = "0x6001D33")]
+	[Address(RVA = "0x606C10", Offset = "0x605E10", VA = "0x180606C10", Slot = "23")]
+	public override bool OnPointerUp()
+	{
+		return default(bool);
+	}
+
+	[Token(Token = "0x6001D34")]
+	[Address(RVA = "0x607220", Offset = "0x606420", VA = "0x180607220")]
+	public void PointerUpEffect()
+	{
+	}
+
+	[Token(Token = "0x6001D35")]
+	[Address(RVA = "0x606CC0", Offset = "0x605EC0", VA = "0x180606CC0", Slot = "16")]
+	public override bool OnSelected(bool initializeSelection = false)
+	{
+		return default(bool);
+	}
+
+	[Token(Token = "0x6001D36")]
+	[Address(RVA = "0x607740", Offset = "0x606940", VA = "0x180607740")]
+	public void SelectEffect(bool initializeSelection = false)
+	{
+	}
+
+	[Token(Token = "0x6001D37")]
+	[Address(RVA = "0x6065D0", Offset = "0x6057D0", VA = "0x1806065D0", Slot = "17")]
+	public override bool OnDeselected()
+	{
+		return default(bool);
+	}
+
+	[Token(Token = "0x6001D38")]
+	[Address(RVA = "0x6061A0", Offset = "0x6053A0", VA = "0x1806061A0")]
+	public void DeselectEffect()
+	{
+	}
+
+	[Token(Token = "0x6001D39")]
+	[Address(RVA = "0x6064D0", Offset = "0x6056D0", VA = "0x1806064D0")]
+	private void OnClick()
+	{
+	}
+
+	[Token(Token = "0x6001D3A")]
+	[Address(RVA = "0x606730", Offset = "0x605930", VA = "0x180606730")]
+	private void OnDoubleClick()
+	{
+	}
+
+	[Token(Token = "0x6001D3B")]
+	[Address(RVA = "0x606190", Offset = "0x605390", VA = "0x180606190")]
+	public void Click()
+	{
+	}
+
+	[Token(Token = "0x6001D3C")]
+	[Address(RVA = "0x606170", Offset = "0x605370", VA = "0x180606170")]
+	private bool ClickFunc()
+	{
+		return default(bool);
+	}
+
+	[Token(Token = "0x6001D3D")]
+	[Address(RVA = "0x606F10", Offset = "0x606110", VA = "0x180606F10")]
+	private void PlayTween(string play_label, [Optional] string stop_label)
+	{
+	}
+
+	[Token(Token = "0x6001D3E")]
+	[Address(RVA = "0x606E80", Offset = "0x606080", VA = "0x180606E80")]
+	private void PlaySound(string label)
+	{
+	}
+
+	[Token(Token = "0x6001D3F")]
+	[Address(RVA = "0x607AC0", Offset = "0x606CC0", VA = "0x180607AC0")]
+	public void SetClickShortCutKeyDown(int gamepad_key_type)
+	{
+	}
+
+	[Token(Token = "0x6001D40")]
+	[Address(RVA = "0x607840", Offset = "0x606A40", VA = "0x180607840")]
+	public void SetClickShortCutKeyDown(SelectorManager.KeyType key_type)
+	{
+	}
+
+	[Token(Token = "0x6001D41")]
+	[Address(RVA = "0x607980", Offset = "0x606B80", VA = "0x180607980")]
+	public void SetClickShortCutKeyDown(SelectorManager.KeyType key_type_main, SelectorManager.KeyType key_type_sub)
+	{
+	}
+
+	[Token(Token = "0x6001D42")]
+	[Address(RVA = "0x6072A0", Offset = "0x6064A0", VA = "0x1806072A0")]
+	public void RemoveClickShortCutKeyDown(SelectorManager.KeyType key_type)
+	{
+	}
+
+	[Token(Token = "0x6001D43")]
+	[Address(RVA = "0x607360", Offset = "0x606560", VA = "0x180607360")]
+	public void RemoveClickShortCutKeyDown(SelectorManager.KeyType key_type_main, SelectorManager.KeyType key_type_sub)
+	{
+	}
+
+	[Token(Token = "0x6001D44")]
+	[Address(RVA = "0x607D80", Offset = "0x606F80", VA = "0x180607D80")]
+	public void SetClickShortCutKeyRelease(SelectorManager.KeyType key_type)
+	{
+	}
+
+	[Token(Token = "0x6001D45")]
+	[Address(RVA = "0x607C40", Offset = "0x606E40", VA = "0x180607C40")]
+	public void SetClickShortCutKeyRelease(SelectorManager.KeyType key_type_main, SelectorManager.KeyType key_type_sub)
+	{
+	}
+
+	[Token(Token = "0x6001D46")]
+	[Address(RVA = "0x607500", Offset = "0x606700", VA = "0x180607500")]
+	public void RemoveClickShortCutKeyRelease(SelectorManager.KeyType key_type)
+	{
+	}
+
+	[Token(Token = "0x6001D47")]
+	[Address(RVA = "0x607430", Offset = "0x606630", VA = "0x180607430")]
+	public void RemoveClickShortCutKeyRelease(SelectorManager.KeyType key_type_main, SelectorManager.KeyType key_type_sub)
+	{
+	}
+
+	[Token(Token = "0x6001D48")]
+	[Address(RVA = "0x608000", Offset = "0x607200", VA = "0x180608000")]
+	public void SetClickShortCutMouseRelease(SelectorManager.MouseType mouse_type)
+	{
+	}
+
+	[Token(Token = "0x6001D49")]
+	[Address(RVA = "0x607680", Offset = "0x606880", VA = "0x180607680")]
+	public void RemoveClickShortCutMouseRelease(SelectorManager.MouseType mouse_type)
+	{
+	}
+
+	[Token(Token = "0x6001D4A")]
+	[Address(RVA = "0x607EC0", Offset = "0x6070C0", VA = "0x180607EC0")]
+	public void SetClickShortCutMouseDown(SelectorManager.MouseType mouse_type)
+	{
+	}
+
+	[Token(Token = "0x6001D4B")]
+	[Address(RVA = "0x6075C0", Offset = "0x6067C0", VA = "0x1806075C0")]
+	public void RemoveClickShortCutMouseDown(SelectorManager.MouseType mouse_type)
+	{
+	}
+
+	[Token(Token = "0x6001D4C")]
+	[Address(RVA = "0x608720", Offset = "0x607920", VA = "0x180608720")]
+	public SelectionButton()
+	{
+	}
+}
+
+── ViewController ────────────────────────────────────
+using System.Collections.Generic;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using Il2CppDummyDll;
+using UnityEngine;
+
+namespace YgomSystem.UI;
+
+[Token(Token = "0x200056F")]
+[AddComponentMenu("Ygom/UI/View Controller/View Controller")]
+public class ViewController : MonoBehaviour
+{
+	[Token(Token = "0x2000570")]
+	public enum TransitionType
+	{
+		[Token(Token = "0x4001A80")]
+		Push,
+		[Token(Token = "0x4001A81")]
+		Pop,
+		[Token(Token = "0x4001A82")]
+		Cover,
+		[Token(Token = "0x4001A83")]
+		Uncover,
+		[Token(Token = "0x4001A84")]
+		SwapIn,
+		[Token(Token = "0x4001A85")]
+		SwapOut,
+		[Token(Token = "0x4001A86")]
+		Max
+	}
+
+	[Token(Token = "0x2000571")]
+	public enum ViewStyle
+	{
+		[Token(Token = "0x4001A88")]
+		Part,
+		[Token(Token = "0x4001A89")]
+		Full
+	}
+
+	[Token(Token = "0x4001A75")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x20")]
+	public ViewStyle viewStyle;
+
+	[Token(Token = "0x4001A76")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x24")]
+	public bool acceptBack;
+
+	[Token(Token = "0x4001A77")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x25")]
+	public bool securitySingle031;
+
+	[Token(Token = "0x4001A78")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x26")]
+	public bool parallelTransition;
+
+	[Token(Token = "0x4001A79")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x27")]
+	public bool uniqueView;
+
+	[Token(Token = "0x4001A7A")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x28")]
+	private Dictionary<string, object> args;
+
+	[Token(Token = "0x4001A7B")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x30")]
+	[HideInInspector]
+	public ViewControllerManager manager;
+
+	[Token(Token = "0x4001A7C")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x38")]
+	private List<MonoBehaviour> unSleepArray;
+
+	[Token(Token = "0x4001A7E")]
+	[Il2CppDummyDll.FieldOffset(Offset = "0x0")]
+	protected static readonly string ParameterArgKey;
+
+	[Token(Token = "0x170003CC")]
+	[HideInInspector]
+	public Dictionary<string, object> Args
+	{
+		[Token(Token = "0x600232F")]
+		[Address(RVA = "0x4030F0", Offset = "0x4022F0", VA = "0x1804030F0")]
+		get
+		{
+			return null;
+		}
+		[Token(Token = "0x600232E")]
+		[Address(RVA = "0x402FB0", Offset = "0x4021B0", VA = "0x180402FB0")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x170003CD")]
+	protected virtual int selectorPriorityAddRange
+	{
+		[Token(Token = "0x6002330")]
+		[Address(RVA = "0x3EF020", Offset = "0x3EE220", VA = "0x1803EF020", Slot = "4")]
+		get
+		{
+			return default(int);
+		}
+	}
+
+	[Token(Token = "0x170003CE")]
+	protected int selectorPriorityBase
+	{
+		[Token(Token = "0x6002331")]
+		[Address(RVA = "0x5FA7B0", Offset = "0x5F99B0", VA = "0x1805FA7B0")]
+		[CompilerGenerated]
+		get
+		{
+			return default(int);
+		}
+		[Token(Token = "0x6002332")]
+		[Address(RVA = "0x409CD0", Offset = "0x408ED0", VA = "0x180409CD0")]
+		[CompilerGenerated]
+		private set
+		{
+		}
+	}
+
+	[Token(Token = "0x170003CF")]
+	protected int selectorPriorityMax
+	{
+		[Token(Token = "0x6002333")]
+		[Address(RVA = "0x65AF50", Offset = "0x65A150", VA = "0x18065AF50")]
+		get
+		{
+			return default(int);
+		}
+	}
+
+	[Token(Token = "0x6002334")]
+	[Address(RVA = "0x65A500", Offset = "0x659700", VA = "0x18065A500")]
+	public int GetSelectorPriorityAdditional(int addPos)
+	{
+		return default(int);
+	}
+
+	[Token(Token = "0x6002335")]
+	[Address(RVA = "0x65AB60", Offset = "0x659D60", VA = "0x18065AB60")]
+	public void PrepareStackEntry()
+	{
+	}
+
+	[Token(Token = "0x6002336")]
+	[Address(RVA = "0x44E9B0", Offset = "0x44DBB0", VA = "0x18044E9B0", Slot = "5")]
+	public virtual void SetVisibleOnInitialize(bool visible)
+	{
+	}
+
+	[Token(Token = "0x6002337")]
+	[Address(RVA = "0x3C7A60", Offset = "0x3C6C60", VA = "0x1803C7A60", Slot = "6")]
+	public virtual void NotificationStackEntry()
+	{
+	}
+
+	[Token(Token = "0x6002338")]
+	[Address(RVA = "0x3C7A60", Offset = "0x3C6C60", VA = "0x1803C7A60", Slot = "7")]
+	public virtual void NotificationStackRemove()
+	{
+	}
+
+	[Token(Token = "0x6002339")]
+	[Address(RVA = "0x3C7A60", Offset = "0x3C6C60", VA = "0x1803C7A60", Slot = "8")]
+	public virtual void NotificationStack(ViewControllerManager vcm, ViewController vc, bool isEntry)
+	{
+	}
+
+	[Token(Token = "0x600233A")]
+	[Address(RVA = "0x65ACB0", Offset = "0x659EB0", VA = "0x18065ACB0", Slot = "9")]
+	public virtual float Progress()
+	{
+		return default(float);
+	}
+
+	[Token(Token = "0x600233B")]
+	[Address(RVA = "0x3C7A60", Offset = "0x3C6C60", VA = "0x1803C7A60", Slot = "10")]
+	public virtual void ProgressUpdate()
+	{
+	}
+
+	[Token(Token = "0x600233C")]
+	[Address(RVA = "0x3C7A60", Offset = "0x3C6C60", VA = "0x1803C7A60", Slot = "11")]
+	public virtual void TransitionStart(TransitionType type)
+	{
+	}
+
+	[Token(Token = "0x600233D")]
+	[Address(RVA = "0x404830", Offset = "0x403A30", VA = "0x180404830", Slot = "12")]
+	public virtual bool TransitionUpdate(TransitionType type)
+	{
+		return default(bool);
+	}
+
+	[Token(Token = "0x600233E")]
+	[Address(RVA = "0x65A460", Offset = "0x659660", VA = "0x18065A460")]
+	protected ViewControllerManager GetRootManager()
+	{
+		return null;
+	}
+
+	[Token(Token = "0x600233F")]
+	[Address(RVA = "0x65AA50", Offset = "0x659C50", VA = "0x18065AA50", Slot = "13")]
+	public virtual bool OnBack()
+	{
+		return default(bool);
+	}
+
+	[Token(Token = "0x6002340")]
+	[Address(RVA = "0x3C7A70", Offset = "0x3C6C70", VA = "0x1803C7A70", Slot = "14")]
+	public virtual bool OnResult(ViewController from, object value)
+	{
+		return default(bool);
+	}
+
+	[Token(Token = "0x6002341")]
+	[Address(RVA = "0x3C7A60", Offset = "0x3C6C60", VA = "0x1803C7A60", Slot = "15")]
+	public virtual void OnFocusChanged(bool setfocus)
+	{
+	}
+
+	[Token(Token = "0x6002342")]
+	[Address(RVA = "0x65AE00", Offset = "0x65A000", VA = "0x18065AE00")]
+	public ViewController SendResult(object value)
+	{
+		return null;
+	}
+
+	[Token(Token = "0x6002343")]
+	[Address(RVA = "0x65AD00", Offset = "0x659F00", VA = "0x18065AD00")]
+	public void SendBack()
+	{
+	}
+
+	[Token(Token = "0x6002344")]
+	[Address(RVA = "0x65AAE0", Offset = "0x659CE0", VA = "0x18065AAE0")]
+	public void PopViewController()
+	{
+	}
+
+	[Token(Token = "0x6002345")]
+	[Address(RVA = "0x65ACE0", Offset = "0x659EE0", VA = "0x18065ACE0")]
+	public void PushViewController(string prefabname, [Optional] Dictionary<string, object> args)
+	{
+	}
+
+	[Token(Token = "0x6002346")]
+	[Address(RVA = "0x65ACC0", Offset = "0x659EC0", VA = "0x18065ACC0")]
+	public void PushViewController(GameObject prefab)
+	{
+	}
+
+	[Token(Token = "0x6002347")]
+	[Address(RVA = "0x65AE80", Offset = "0x65A080", VA = "0x18065AE80")]
+	public void SwapViewController(string prefabname, [Optional] Dictionary<string, object> args)
+	{
+	}
+
+	[Token(Token = "0x6002348")]
+	[Address(RVA = "0x65AE40", Offset = "0x65A040", VA = "0x18065AE40")]
+	public void SwapViewController(GameObject prefab)
+	{
+	}
+
+	[Token(Token = "0x6002349")]
+	[Address(RVA = "0x65A550", Offset = "0x659750", VA = "0x18065A550")]
+	public bool IsDoneBindingUnSleep()
+	{
+		return default(bool);
+	}
+
+	[Token(Token = "0x600234A")]
+	[Address(RVA = "0x65A0F0", Offset = "0x6592F0", VA = "0x18065A0F0")]
+	public void CallUnSleepStart()
+	{
+	}
+
+	[Token(Token = "0x600234B")]
+	[Address(RVA = "0x65A290", Offset = "0x659490", VA = "0x18065A290")]
+	public void CallUnSleepUpdate()
+	{
+	}
+
+	[Token(Token = "0x600234C")]
+	[Address(RVA = "0x65A8E0", Offset = "0x659AE0", VA = "0x18065A8E0")]
+	private void MakeUnSleepArray()
+	{
+	}
+
+	[Token(Token = "0x600234D")]
+	public static Dictionary<string, object> CreateParameterArg<T>(T parameter) where T : class
+	{
+		return null;
+	}
+
+	[Token(Token = "0x600234E")]
+	protected T GetParameterArg<T>() where T : class
+	{
+		return null;
+	}
+
+	[Token(Token = "0x600234F")]
+	[Address(RVA = "0x65AF30", Offset = "0x65A130", VA = "0x18065AF30")]
+	public ViewController()
+	{
+	}
+}
+
+============================================================
+COLOR CONTAINER (icon button triggers)
+Count: 3
+============================================================
+
+── ColorContainer ────────────────────────────────────
+using Il2CppDummyDll;
+using UnityEngine;
+
+namespace YgomSystem.UI;
+
+[Token(Token = "0x2000470")]
+public abstract class ColorContainer : MonoBehaviour
+{
+	[Token(Token = "0x2000471")]
+	public enum SelectMode
+	{
+		[Token(Token = "0x40015CA")]
+		Unselected,
+		[Token(Token = "0x40015CB")]
+		Selected
+	}
+
+	[Token(Token = "0x2000472")]
+	public enum StatusMode
+	{
+		[Token(Token = "0x40015CD")]
+		Normal,
+		[Token(Token = "0x40015CE")]
+		Down,
+		[Token(Token = "0x40015CF")]
+		Enter
+	}
+
+	[Token(Token = "0x2000473")]
+	public enum ColorMode
+	{
+		[Token(Token = "0x40015D1")]
+		Multiple,
+		[Token(Token = "0x40015D2")]
+		Override
+	}
+
+	[Token(Token = "0x40015AF")]
+	[FieldOffset(Offset = "0x20")]
+	public Color baseColor;
+
+	[Token(Token = "0x40015B0")]
+	[FieldOffset(Offset = "0x30")]
+	[SerializeField]
+	[Tooltip("親オブジェクトのColorContainerの設定を受け継ぐか")]
+	protected bool inheritParentColorSetting;
+
+	[Token(Token = "0x40015B1")]
+	[FieldOffset(Offset = "0x34")]
+	[SerializeField]
+	[Tooltip("非選択状態で乗算する色")]
+	private Color colorUnselected;
+
+	[Token(Token = "0x40015B2")]
+	[FieldOffset(Offset = "0x44")]
+	[SerializeField]
+	[Tooltip("選択状態で乗算する色")]
+	private Color colorSelected;
+
+	[Token(Token = "0x40015B3")]
+	[FieldOffset(Offset = "0x54")]
+	[SerializeField]
+	[Tooltip("押下時に乗算する色")]
+	private Color colorButtonDown;
+
+	[Token(Token = "0x40015B4")]
+	[FieldOffset(Offset = "0x64")]
+	[SerializeField]
+	[Tooltip("ハイライト時に乗算する色")]
+	private Color colorButtonEnter;
+
+	[Token(Token = "0x40015B5")]
+	[FieldOffset(Offset = "0x74")]
+	[SerializeField]
+	[Tooltip("無効時に乗算する色")]
+	private Color colorButtonInactive;
+
+	[Token(Token = "0x40015B6")]
+	[FieldOffset(Offset = "0x88")]
+	[SerializeField]
+	[ColorLabelString]
+	private string colorLabelUnselected;
+
+	[Token(Token = "0x40015B7")]
+	[FieldOffset(Offset = "0x90")]
+	[SerializeField]
+	[ColorLabelString]
+	private string colorLabelSelected;
+
+	[Token(Token = "0x40015B8")]
+	[FieldOffset(Offset = "0x98")]
+	[SerializeField]
+	[ColorLabelString]
+	private string colorLabelButtonDown;
+
+	[Token(Token = "0x40015B9")]
+	[FieldOffset(Offset = "0xA0")]
+	[SerializeField]
+	[ColorLabelString]
+	private string colorLabelButtonEnter;
+
+	[Token(Token = "0x40015BA")]
+	[FieldOffset(Offset = "0xA8")]
+	[SerializeField]
+	[ColorLabelString]
+	private string colorLabelButtonInactive;
+
+	[Token(Token = "0x40015BB")]
+	[FieldOffset(Offset = "0xB0")]
+	public int index;
+
+	[Token(Token = "0x40015BC")]
+	[FieldOffset(Offset = "0xB4")]
+	[SerializeField]
+	protected ColorMode colorModeUnselected;
+
+	[Token(Token = "0x40015BD")]
+	[FieldOffset(Offset = "0xB8")]
+	[SerializeField]
+	protected ColorMode colorModeSelected;
+
+	[Token(Token = "0x40015BE")]
+	[FieldOffset(Offset = "0xBC")]
+	[SerializeField]
+	protected ColorMode colorModeButtonDown;
+
+	[Token(Token = "0x40015BF")]
+	[FieldOffset(Offset = "0xC0")]
+	[SerializeField]
+	protected ColorMode colorModeButtonEnter;
+
+	[Token(Token = "0x40015C0")]
+	[FieldOffset(Offset = "0xC4")]
+	[SerializeField]
+	protected ColorMode colorModeButtonInactive;
+
+	[Token(Token = "0x40015C1")]
+	[FieldOffset(Offset = "0xC8")]
+	[SerializeField]
+	protected float intensityUnselected;
+
+	[Token(Token = "0x40015C2")]
+	[FieldOffset(Offset = "0xCC")]
+	[SerializeField]
+	protected float intensitySelected;
+
+	[Token(Token = "0x40015C3")]
+	[FieldOffset(Offset = "0xD0")]
+	[SerializeField]
+	protected float intensityButtonDown;
+
+	[Token(Token = "0x40015C4")]
+	[FieldOffset(Offset = "0xD4")]
+	[SerializeField]
+	protected float intensityButtonEnter;
+
+	[Token(Token = "0x40015C5")]
+	[FieldOffset(Offset = "0xD8")]
+	[SerializeField]
+	protected float intensityButtonInactive;
+
+	[Token(Token = "0x40015C6")]
+	[FieldOffset(Offset = "0xDC")]
+	private SelectMode currentSelectMode;
+
+	[Token(Token = "0x40015C7")]
+	[FieldOffset(Offset = "0xE0")]
+	private StatusMode currentStatusMode;
+
+	[Token(Token = "0x40015C8")]
+	[FieldOffset(Offset = "0xE4")]
+	private bool currentIsActive;
+
+	[Token(Token = "0x6001CAB")]
+	[Address(RVA = "0x5FD710", Offset = "0x5FC910", VA = "0x1805FD710")]
+	protected Color GetColorUnselected()
+	{
+		return default(Color);
+	}
+
+	[Token(Token = "0x6001CAC")]
+	[Address(RVA = "0x5FD690", Offset = "0x5FC890", VA = "0x1805FD690")]
+	protected Color GetColorSelected()
+	{
+		return default(Color);
+	}
+
+	[Token(Token = "0x6001CAD")]
+	[Address(RVA = "0x5FD510", Offset = "0x5FC710", VA = "0x1805FD510")]
+	protected Color GetColorButtonDown()
+	{
+		return default(Color);
+	}
+
+	[Token(Token = "0x6001CAE")]
+	[Address(RVA = "0x5FD590", Offset = "0x5FC790", VA = "0x1805FD590")]
+	protected Color GetColorButtonEnter()
+	{
+		return default(Color);
+	}
+
+	[Token(Token = "0x6001CAF")]
+	[Address(RVA = "0x5FD610", Offset = "0x5FC810", VA = "0x1805FD610")]
+	protected Color GetColorButtonInactive()
+	{
+		return default(Color);
+	}
+
+	[Token(Token = "0x6001CB0")]
+	[Address(RVA = "0x5FD3B0", Offset = "0x5FC5B0", VA = "0x1805FD3B0")]
+	public void CopyToSettings(ColorContainer dst)
+	{
+	}
+
+	[Token(Token = "0x6001CB1")]
+	[Address(RVA = "0x5FD7D0", Offset = "0x5FC9D0", VA = "0x1805FD7D0", Slot = "4")]
+	public virtual void SetColor(SelectMode select_mode, StatusMode status_mode, bool is_active = true)
+	{
+	}
+
+	[Token(Token = "0x6001CB2")]
+	[Address(RVA = "0x5FD790", Offset = "0x5FC990", VA = "0x1805FD790")]
+	public void Reapply()
+	{
+	}
+
+	[Token(Token = "0x6001CB3")]
+	[Address(RVA = "0x5FD7F0", Offset = "0x5FC9F0", VA = "0x1805FD7F0")]
+	protected ColorContainer()
+	{
+	}
+}
+
+── ColorContainerGraphic ─────────────────────────────
+using Il2CppDummyDll;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace YgomSystem.UI;
+
+[Token(Token = "0x2000474")]
+public class ColorContainerGraphic : ColorContainer
+{
+	[Token(Token = "0x40015D3")]
+	[FieldOffset(Offset = "0xE8")]
+	private Graphic _targetGraphic;
+
+	[Token(Token = "0x170002C8")]
+	public Graphic targetGraphic
+	{
+		[Token(Token = "0x6001CB4")]
+		[Address(RVA = "0x5FC420", Offset = "0x5FB620", VA = "0x1805FC420")]
+		get
+		{
+			return null;
+		}
+	}
+
+	[Token(Token = "0x6001CB5")]
+	[Address(RVA = "0x5FBC30", Offset = "0x5FAE30", VA = "0x1805FBC30", Slot = "4")]
+	public override void SetColor(SelectMode select_mode, StatusMode status_mode, bool is_active = true)
+	{
+	}
+
+	[Token(Token = "0x6001CB6")]
+	[Address(RVA = "0x5FBEE0", Offset = "0x5FB0E0", VA = "0x1805FBEE0")]
+	private void SetTargetGraphicColor(SelectMode select_mode, StatusMode status_mode, bool is_active)
+	{
+	}
+
+	[Token(Token = "0x6001CB7")]
+	[Address(RVA = "0x5FBC60", Offset = "0x5FAE60", VA = "0x1805FBC60")]
+	private void SetTargetGraphicColor(Color select_color, ColorMode select_color_mode, Color status_color, ColorMode status_color_mode, Color active_color, ColorMode active_color_mode)
+	{
+	}
+
+	[Token(Token = "0x6001CB8")]
+	[Address(RVA = "0x5FBA70", Offset = "0x5FAC70", VA = "0x1805FBA70")]
+	protected void GetSelectColorInfo(SelectMode selectMode, out Color color, out ColorMode colorMode)
+	{
+	}
+
+	[Token(Token = "0x6001CB9")]
+	[Address(RVA = "0x5FB890", Offset = "0x5FAA90", VA = "0x1805FB890")]
+	protected void GetButtonStatusColorInfo(StatusMode status_mode, out Color outColor, out ColorMode outColorMode)
+	{
+	}
+
+	[Token(Token = "0x6001CBA")]
+	[Address(RVA = "0x5FB780", Offset = "0x5FA980", VA = "0x1805FB780")]
+	protected void GetActiveColorInfo(bool is_active, out Color color, out ColorMode colorMode)
+	{
+	}
+
+	[Token(Token = "0x6001CBB")]
+	[Address(RVA = "0x5FB770", Offset = "0x5FA970", VA = "0x1805FB770")]
+	public ColorContainerGraphic()
+	{
+	}
+}
+
+── ColorContainerImage ───────────────────────────────
+using Il2CppDummyDll;
+using UnityEngine;
+using UnityEngine.UI;
+
+namespace YgomSystem.UI;
+
+[Token(Token = "0x2000476")]
+public class ColorContainerImage : ColorContainerGraphic
+{
+	[Token(Token = "0x40015DB")]
+	[FieldOffset(Offset = "0xF0")]
+	[SerializeField]
+	private Sprite _spriteUnselected;
+
+	[Token(Token = "0x40015DC")]
+	[FieldOffset(Offset = "0xF8")]
+	[SerializeField]
+	private Sprite _spriteSelected;
+
+	[Token(Token = "0x40015DD")]
+	[FieldOffset(Offset = "0x100")]
+	[SerializeField]
+	private Sprite _spriteButtonDown;
+
+	[Token(Token = "0x40015DE")]
+	[FieldOffset(Offset = "0x108")]
+	[SerializeField]
+	private Sprite _spriteButtonEnter;
+
+	[Token(Token = "0x40015DF")]
+	[FieldOffset(Offset = "0x110")]
+	[SerializeField]
+	private Sprite _spriteInactive;
+
+	[Token(Token = "0x40015E0")]
+	[FieldOffset(Offset = "0x118")]
+	private Image _targetImage;
+
+	[Token(Token = "0x170002C9")]
+	public Sprite spriteUnselected
+	{
+		[Token(Token = "0x6001CC4")]
+		[Address(RVA = "0x5961D0", Offset = "0x5953D0", VA = "0x1805961D0")]
+		get
+		{
+			return null;
+		}
+		[Token(Token = "0x6001CC5")]
+		[Address(RVA = "0x5FC6E0", Offset = "0x5FB8E0", VA = "0x1805FC6E0")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x170002CA")]
+	public Sprite spriteSelected
+	{
+		[Token(Token = "0x6001CC6")]
+		[Address(RVA = "0x596200", Offset = "0x595400", VA = "0x180596200")]
+		get
+		{
+			return null;
+		}
+		[Token(Token = "0x6001CC7")]
+		[Address(RVA = "0x5FC6C0", Offset = "0x5FB8C0", VA = "0x1805FC6C0")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x170002CB")]
+	public Sprite spriteButtonDown
+	{
+		[Token(Token = "0x6001CC8")]
+		[Address(RVA = "0x5FC5E0", Offset = "0x5FB7E0", VA = "0x1805FC5E0")]
+		get
+		{
+			return null;
+		}
+		[Token(Token = "0x6001CC9")]
+		[Address(RVA = "0x5968C0", Offset = "0x595AC0", VA = "0x1805968C0")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x170002CC")]
+	public Sprite spriteButtonEnter
+	{
+		[Token(Token = "0x6001CCA")]
+		[Address(RVA = "0x5FC5F0", Offset = "0x5FB7F0", VA = "0x1805FC5F0")]
+		get
+		{
+			return null;
+		}
+		[Token(Token = "0x6001CCB")]
+		[Address(RVA = "0x5FC6A0", Offset = "0x5FB8A0", VA = "0x1805FC6A0")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x170002CD")]
+	public Sprite spriteInactive
+	{
+		[Token(Token = "0x6001CCC")]
+		[Address(RVA = "0x3DA790", Offset = "0x3D9990", VA = "0x1803DA790")]
+		get
+		{
+			return null;
+		}
+		[Token(Token = "0x6001CCD")]
+		[Address(RVA = "0x3DA7A0", Offset = "0x3D99A0", VA = "0x1803DA7A0")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x170002CE")]
+	public Image targetImage
+	{
+		[Token(Token = "0x6001CCE")]
+		[Address(RVA = "0x5FC600", Offset = "0x5FB800", VA = "0x1805FC600")]
+		get
+		{
+			return null;
+		}
+	}
+
+	[Token(Token = "0x6001CCF")]
+	[Address(RVA = "0x5FC4C0", Offset = "0x5FB6C0", VA = "0x1805FC4C0", Slot = "4")]
+	public override void SetColor(SelectMode select_mode, StatusMode status_mode, bool is_active = true)
+	{
+	}
+
+	[Token(Token = "0x6001CD0")]
+	[Address(RVA = "0x5FB770", Offset = "0x5FA970", VA = "0x1805FB770")]
+	public ColorContainerImage()
+	{
+	}
+}
+
+============================================================
+MISCELLANEOUS UI HELPERS
+Count: 3
+============================================================
+
+── ExtendedTextMeshProUGUI ───────────────────────────
+using Il2CppDummyDll;
+using TMPro;
+using UnityEngine;
+using YgomSystem.LocalizedFont;
+
+namespace YgomSystem.YGomTMPro;
+
+[Token(Token = "0x200022F")]
+public class ExtendedTextMeshProUGUI : TextMeshProUGUI, ILocalizedFontOwner
+{
+	[Token(Token = "0x4000B4B")]
+	[FieldOffset(Offset = "0x7C8")]
+	private TMP_FontAsset m_CachedFontAsset;
+
+	[Token(Token = "0x4000B4C")]
+	[FieldOffset(Offset = "0x7D0")]
+	private bool m_ReadyLocalized;
+
+	[Token(Token = "0x4000B4D")]
+	[FieldOffset(Offset = "0x7D4")]
+	[SerializeField]
+	private LocalizedFontSettingsBase.FontType m_localizedFontType;
+
+	[Token(Token = "0x4000B4E")]
+	[FieldOffset(Offset = "0x7D8")]
+	[SerializeField]
+	private int m_localizedFontMaterialIndex;
+
+	[Token(Token = "0x17000162")]
+	public LocalizedFontSettingsBase.FontType localizedFontType
+	{
+		[Token(Token = "0x6000CF9")]
+		[Address(RVA = "0xD376B0", Offset = "0xD368B0", VA = "0x180D376B0", Slot = "143")]
+		get
+		{
+			return default(LocalizedFontSettingsBase.FontType);
+		}
+		[Token(Token = "0x6000CFA")]
+		[Address(RVA = "0xD376D0", Offset = "0xD368D0", VA = "0x180D376D0", Slot = "144")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x17000163")]
+	public int localizedFontMaterialIndex
+	{
+		[Token(Token = "0x6000CFB")]
+		[Address(RVA = "0xD376A0", Offset = "0xD368A0", VA = "0x180D376A0", Slot = "145")]
+		get
+		{
+			return default(int);
+		}
+		[Token(Token = "0x6000CFC")]
+		[Address(RVA = "0xD376C0", Offset = "0xD368C0", VA = "0x180D376C0", Slot = "146")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x6000CFD")]
+	[Address(RVA = "0xD374F0", Offset = "0xD366F0", VA = "0x180D374F0", Slot = "4")]
+	protected override void Awake()
+	{
+	}
+
+	[Token(Token = "0x6000CFE")]
+	[Address(RVA = "0xD37620", Offset = "0xD36820", VA = "0x180D37620", Slot = "6")]
+	protected override void Start()
+	{
+	}
+
+	[Token(Token = "0x6000CFF")]
+	[Address(RVA = "0xD37390", Offset = "0xD36590", VA = "0x180D37390")]
+	public void ApplyLocalize()
+	{
+	}
+
+	[Token(Token = "0x6000D00")]
+	[Address(RVA = "0xD37520", Offset = "0xD36720", VA = "0x180D37520", Slot = "8")]
+	protected override void OnDestroy()
+	{
+	}
+
+	[Token(Token = "0x6000D01")]
+	[Address(RVA = "0xD37640", Offset = "0xD36840", VA = "0x180D37640")]
+	public ExtendedTextMeshProUGUI()
+	{
+	}
+}
+
+── RubyTextGX ────────────────────────────────────────
+using System.Collections.Generic;
+using Il2CppDummyDll;
+using TMPro;
+using UnityEngine;
+using UnityEngine.UI;
+using YgomSystem.LocalizedFont;
+using YgomSystem.YGomTMPro;
+
+namespace YgomSystem.UI;
+
+[Token(Token = "0x200054E")]
+[AddComponentMenu("UI/RubyTextGX", 10)]
+[RequireComponent(typeof(ContentSizeFitter))]
+public class RubyTextGX : ExtendedTextMeshProUGUI, ILocalizedFontOwner
+{
+	[Token(Token = "0x200054F")]
+	private struct RubyInfo
+	{
+		[Token(Token = "0x40019C9")]
+		[FieldOffset(Offset = "0x0")]
+		public string rubyText;
+
+		[Token(Token = "0x40019CA")]
+		[FieldOffset(Offset = "0x8")]
+		public int noRubyIndex;
+
+		[Token(Token = "0x40019CB")]
+		[FieldOffset(Offset = "0xC")]
+		public int baseTextLen;
+	}
+
+	[Token(Token = "0x2000550")]
+	private struct RubyTextInfo
+	{
+		[Token(Token = "0x40019CC")]
+		[FieldOffset(Offset = "0x0")]
+		public List<RubyInfo> rubyInfoList;
+
+		[Token(Token = "0x40019CD")]
+		[FieldOffset(Offset = "0x8")]
+		public string parsedText;
+
+		[Token(Token = "0x40019CE")]
+		[FieldOffset(Offset = "0x10")]
+		public string parsedTextWithRuby;
+	}
+
+	[Token(Token = "0x40019BA")]
+	private const string tagRuby = "$R";
+
+	[Token(Token = "0x40019BB")]
+	private const string tagRubyBegin = "(";
+
+	[Token(Token = "0x40019BC")]
+	private const string tagRubyEnd = ")";
+
+	[Token(Token = "0x40019BD")]
+	[FieldOffset(Offset = "0x7E0")]
+	[SerializeField]
+	private float rubyScaleFactor;
+
+	[Token(Token = "0x40019BE")]
+	[FieldOffset(Offset = "0x7E8")]
+	private RubyTextInfo m_RubyTextInfo;
+
+	[Token(Token = "0x40019BF")]
+	[FieldOffset(Offset = "0x800")]
+	private List<(int, TMP_TextInfoExtended.VERTEXINDEX, Vector3)> m_MeshModifyInfoList;
+
+	[Token(Token = "0x40019C0")]
+	[FieldOffset(Offset = "0x808")]
+	private bool m_ReCalculated;
+
+	[Token(Token = "0x40019C1")]
+	[FieldOffset(Offset = "0x809")]
+	private bool m_RubyFit;
+
+	[Token(Token = "0x40019C2")]
+	[FieldOffset(Offset = "0x80C")]
+	private float m_MeshRectMinX;
+
+	[Token(Token = "0x40019C3")]
+	[FieldOffset(Offset = "0x810")]
+	private float m_MeshRectMaxX;
+
+	[Token(Token = "0x40019C4")]
+	[FieldOffset(Offset = "0x814")]
+	private float m_MeshRectMinY;
+
+	[Token(Token = "0x40019C5")]
+	[FieldOffset(Offset = "0x818")]
+	private float m_MeshRectMaxY;
+
+	[Token(Token = "0x40019C6")]
+	[FieldOffset(Offset = "0x820")]
+	private ContentSizeFitter m_ContentSizeFilter;
+
+	[Token(Token = "0x40019C7")]
+	[FieldOffset(Offset = "0x828")]
+	private float m_PreferredWidthWithRuby;
+
+	[Token(Token = "0x40019C8")]
+	[FieldOffset(Offset = "0x82C")]
+	private float m_PreferredHeightWithRuby;
+
+	[Token(Token = "0x170003A3")]
+	public float rubyScale
+	{
+		[Token(Token = "0x6002268")]
+		[Address(RVA = "0x64F550", Offset = "0x64E750", VA = "0x18064F550")]
+		get
+		{
+			return default(float);
+		}
+		[Token(Token = "0x6002269")]
+		[Address(RVA = "0x64F9D0", Offset = "0x64EBD0", VA = "0x18064F9D0")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x170003A4")]
+	public bool rubyFitWidth
+	{
+		[Token(Token = "0x600226A")]
+		[Address(RVA = "0x64F540", Offset = "0x64E740", VA = "0x18064F540")]
+		get
+		{
+			return default(bool);
+		}
+		[Token(Token = "0x600226B")]
+		[Address(RVA = "0x64F990", Offset = "0x64EB90", VA = "0x18064F990")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x170003A5")]
+	private List<RubyInfo> m_RubyInfoList
+	{
+		[Token(Token = "0x600226C")]
+		[Address(RVA = "0x64F4F0", Offset = "0x64E6F0", VA = "0x18064F4F0")]
+		get
+		{
+			return null;
+		}
+	}
+
+	[Token(Token = "0x170003A6")]
+	private string m_ParsedText
+	{
+		[Token(Token = "0x600226D")]
+		[Address(RVA = "0x64F4E0", Offset = "0x64E6E0", VA = "0x18064F4E0")]
+		get
+		{
+			return null;
+		}
+	}
+
+	[Token(Token = "0x170003A7")]
+	private string m_ParsedTextWithRuby
+	{
+		[Token(Token = "0x600226E")]
+		[Address(RVA = "0x64F4D0", Offset = "0x64E6D0", VA = "0x18064F4D0")]
+		get
+		{
+			return null;
+		}
+	}
+
+	[Token(Token = "0x170003A8")]
+	public override float preferredWidth
+	{
+		[Token(Token = "0x600226F")]
+		[Address(RVA = "0x64F520", Offset = "0x64E720", VA = "0x18064F520", Slot = "84")]
+		get
+		{
+			return default(float);
+		}
+	}
+
+	[Token(Token = "0x170003A9")]
+	public override float preferredHeight
+	{
+		[Token(Token = "0x6002270")]
+		[Address(RVA = "0x64F500", Offset = "0x64E700", VA = "0x18064F500", Slot = "85")]
+		get
+		{
+			return default(float);
+		}
+	}
+
+	[Token(Token = "0x170003AA")]
+	public override string text
+	{
+		[Token(Token = "0x6002271")]
+		[Address(RVA = "0x64F560", Offset = "0x64E760", VA = "0x18064F560", Slot = "65")]
+		get
+		{
+			return null;
+		}
+		[Token(Token = "0x6002272")]
+		[Address(RVA = "0x64FA10", Offset = "0x64EC10", VA = "0x18064FA10", Slot = "66")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x6002273")]
+	[Address(RVA = "0x64DD50", Offset = "0x64CF50", VA = "0x18064DD50", Slot = "4")]
+	protected override void Awake()
+	{
+	}
+
+	[Token(Token = "0x6002274")]
+	[Address(RVA = "0x64EF40", Offset = "0x64E140", VA = "0x18064EF40", Slot = "6")]
+	protected override void Start()
+	{
+	}
+
+	[Token(Token = "0x6002275")]
+	[Address(RVA = "0x64EC60", Offset = "0x64DE60", VA = "0x18064EC60")]
+	protected void OnPopulateRubyText(TMP_TextInfo tmpinfo)
+	{
+	}
+
+	[Token(Token = "0x6002276")]
+	[Address(RVA = "0x64DE10", Offset = "0x64D010", VA = "0x18064DE10")]
+	private void GenerateMeshModifyInfoData(TMP_TextInfo tmpinfo)
+	{
+	}
+
+	[Token(Token = "0x6002277")]
+	[Address(RVA = "0x64F310", Offset = "0x64E510", VA = "0x18064F310")]
+	private void UpdateTmpInfo(TMP_TextInfo tmpinfo, float baseY, float ofs, float word_ofs, float px, float pw, float ph, float cy, float rubyScale, int index, int idx, float d, TMP_TextInfoExtended.VERTEXINDEX pos)
+	{
+	}
+
+	[Token(Token = "0x6002278")]
+	[Address(RVA = "0x64F220", Offset = "0x64E420", VA = "0x18064F220")]
+	private void UpdateTmpInfo2(TMP_TextInfo tmpinfo, float baseY, float ofs, float px, float pw, float ph, float cy, float rubyScale, int index, float d, TMP_TextInfoExtended.VERTEXINDEX pos)
+	{
+	}
+
+	[Token(Token = "0x6002279")]
+	[Address(RVA = "0x64DBB0", Offset = "0x64CDB0", VA = "0x18064DBB0")]
+	private void AddUpdateData(int index, TMP_TextInfoExtended.VERTEXINDEX pos, Vector3 uiv)
+	{
+	}
+
+	[Token(Token = "0x600227A")]
+	[Address(RVA = "0x64F010", Offset = "0x64E210", VA = "0x18064F010")]
+	private void UpdateRubyTextInfo(string rawstr)
+	{
+	}
+
+	[Token(Token = "0x600227B")]
+	[Address(RVA = "0x64F570", Offset = "0x64E770", VA = "0x18064F570")]
+	private string parseRubyTag(string sourceText, string rubyTag, string rtTag, string endTag, List<RubyInfo> infos)
+	{
+		return null;
+	}
+
+	[Token(Token = "0x600227C")]
+	[Address(RVA = "0x64F440", Offset = "0x64E640", VA = "0x18064F440")]
+	public RubyTextGX()
+	{
+	}
+}
+
+── ScrollRectPageSnap ────────────────────────────────
+using System;
+using System.Collections.Generic;
+using Il2CppDummyDll;
+using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.Events;
+using UnityEngine.UI;
+
+namespace YgomSystem.UI;
+
+[Token(Token = "0x2000552")]
+[AddComponentMenu("Ygom/UI/uGUI/Scroll Rect Page Snap")]
+[RequireComponent(typeof(ScrollRect))]
+public class ScrollRectPageSnap : MonoBehaviour, IInitializePotentialDragHandler, IEventSystemHandler, IBeginDragHandler, IEndDragHandler, IDragHandler
+{
+	[Token(Token = "0x40019D0")]
+	[FieldOffset(Offset = "0x20")]
+	[SerializeField]
+	public int m_HorizontalPages;
+
+	[Token(Token = "0x40019D1")]
+	[FieldOffset(Offset = "0x24")]
+	[SerializeField]
+	public int m_VerticalPages;
+
+	[Token(Token = "0x40019D2")]
+	[FieldOffset(Offset = "0x28")]
+	public bool wheelScrollEnable;
+
+	[Token(Token = "0x40019D3")]
+	[FieldOffset(Offset = "0x2C")]
+	[SerializeField]
+	public Tween.Easing easing;
+
+	[Token(Token = "0x40019D4")]
+	[FieldOffset(Offset = "0x30")]
+	[SerializeField]
+	[SecField]
+	public float duration;
+
+	[Token(Token = "0x40019D5")]
+	[FieldOffset(Offset = "0x34")]
+	[SerializeField]
+	public float sensitivity;
+
+	[Token(Token = "0x40019D6")]
+	[FieldOffset(Offset = "0x38")]
+	[SerializeField]
+	public float backlash;
+
+	[Token(Token = "0x40019D7")]
+	[FieldOffset(Offset = "0x40")]
+	[SerializeField]
+	public UnityEvent onPageChanged;
+
+	[Token(Token = "0x40019D8")]
+	[FieldOffset(Offset = "0x48")]
+	[SerializeField]
+	public UnityEvent onPageTotalChanged;
+
+	[Token(Token = "0x40019D9")]
+	[FieldOffset(Offset = "0x50")]
+	public Action<int> onReleaseDragCallback;
+
+	[Token(Token = "0x40019DA")]
+	[FieldOffset(Offset = "0x58")]
+	private int draggingId;
+
+	[Token(Token = "0x40019DB")]
+	[FieldOffset(Offset = "0x60")]
+	private ScrollRect scrollrect;
+
+	[Token(Token = "0x40019DC")]
+	[FieldOffset(Offset = "0x68")]
+	private float tweenTime;
+
+	[Token(Token = "0x40019DD")]
+	[FieldOffset(Offset = "0x6C")]
+	private float tweenMaxTime;
+
+	[Token(Token = "0x40019DE")]
+	[FieldOffset(Offset = "0x70")]
+	private Vector2 startNormalized;
+
+	[Token(Token = "0x40019DF")]
+	[FieldOffset(Offset = "0x78")]
+	private Vector2 endNormalized;
+
+	[Token(Token = "0x40019E0")]
+	[FieldOffset(Offset = "0x80")]
+	private int vpage;
+
+	[Token(Token = "0x40019E1")]
+	[FieldOffset(Offset = "0x84")]
+	private int hpage;
+
+	[Token(Token = "0x40019E2")]
+	[FieldOffset(Offset = "0x88")]
+	private int vspage;
+
+	[Token(Token = "0x40019E3")]
+	[FieldOffset(Offset = "0x8C")]
+	private int hspage;
+
+	[Token(Token = "0x40019E4")]
+	[FieldOffset(Offset = "0x90")]
+	private List<bool> hpageEnableList;
+
+	[Token(Token = "0x40019E5")]
+	[FieldOffset(Offset = "0x98")]
+	private List<bool> vpageEnableList;
+
+	[Token(Token = "0x40019E6")]
+	[FieldOffset(Offset = "0xA0")]
+	private bool isBarDragging;
+
+	[Token(Token = "0x40019E7")]
+	[FieldOffset(Offset = "0xA1")]
+	public bool dragScrollEnabled;
+
+	[Token(Token = "0x40019E8")]
+	[FieldOffset(Offset = "0xA8")]
+	private SelectionItem m_BodySelectionItemCache;
+
+	[Token(Token = "0x40019E9")]
+	[FieldOffset(Offset = "0xB0")]
+	private List<SelectionItem> m_SelectionItemSearch;
+
+	[Token(Token = "0x170003AB")]
+	public int horizontalPages
+	{
+		[Token(Token = "0x6002285")]
+		[Address(RVA = "0x4BDC30", Offset = "0x4BCE30", VA = "0x1804BDC30")]
+		get
+		{
+			return default(int);
+		}
+		[Token(Token = "0x6002286")]
+		[Address(RVA = "0x6522D0", Offset = "0x6514D0", VA = "0x1806522D0")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x170003AC")]
+	public int verticalPages
+	{
+		[Token(Token = "0x6002287")]
+		[Address(RVA = "0x416290", Offset = "0x415490", VA = "0x180416290")]
+		get
+		{
+			return default(int);
+		}
+		[Token(Token = "0x6002288")]
+		[Address(RVA = "0x6524D0", Offset = "0x6516D0", VA = "0x1806524D0")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x170003AD")]
+	public int hPage
+	{
+		[Token(Token = "0x6002289")]
+		[Address(RVA = "0x4497E0", Offset = "0x4489E0", VA = "0x1804497E0")]
+		get
+		{
+			return default(int);
+		}
+		[Token(Token = "0x600228A")]
+		[Address(RVA = "0x652080", Offset = "0x651280", VA = "0x180652080")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x170003AE")]
+	public int vPage
+	{
+		[Token(Token = "0x600228B")]
+		[Address(RVA = "0x5889C0", Offset = "0x587BC0", VA = "0x1805889C0")]
+		get
+		{
+			return default(int);
+		}
+		[Token(Token = "0x600228C")]
+		[Address(RVA = "0x6522F0", Offset = "0x6514F0", VA = "0x1806522F0")]
+		set
+		{
+		}
+	}
+
+	[Token(Token = "0x170003AF")]
+	public bool isDragging
+	{
+		[Token(Token = "0x600228D")]
+		[Address(RVA = "0x652060", Offset = "0x651260", VA = "0x180652060")]
+		get
+		{
+			return default(bool);
+		}
+	}
+
+	[Token(Token = "0x170003B0")]
+	public bool isTweening
+	{
+		[Token(Token = "0x600228E")]
+		[Address(RVA = "0x652070", Offset = "0x651270", VA = "0x180652070")]
+		get
+		{
+			return default(bool);
+		}
+	}
+
+	[Token(Token = "0x170003B1")]
+	public ScrollRect target
+	{
+		[Token(Token = "0x600228F")]
+		[Address(RVA = "0x589E50", Offset = "0x589050", VA = "0x180589E50")]
+		get
+		{
+			return null;
+		}
+	}
+
+	[Token(Token = "0x170003B2")]
+	private SelectionItem bodySelectionItem
+	{
+		[Token(Token = "0x6002290")]
+		[Address(RVA = "0x651FF0", Offset = "0x6511F0", VA = "0x180651FF0")]
+		get
+		{
+			return null;
+		}
+	}
+
+	[Token(Token = "0x6002291")]
+	[Address(RVA = "0x651A40", Offset = "0x650C40", VA = "0x180651A40")]
+	private void SetupBodySelectionItem()
+	{
+	}
+
+	[Token(Token = "0x6002292")]
+	[Address(RVA = "0x651B70", Offset = "0x650D70", VA = "0x180651B70")]
+	private void Start()
+	{
+	}
+
+	[Token(Token = "0x6002293")]
+	[Address(RVA = "0x650F10", Offset = "0x650110", VA = "0x180650F10")]
+	public bool OnScroll(Vector2 vec)
+	{
+		return default(bool);
+	}
+
+	[Token(Token = "0x6002294")]
+	[Address(RVA = "0x3C7A60", Offset = "0x3C6C60", VA = "0x1803C7A60", Slot = "4")]
+	public void OnInitializePotentialDrag(PointerEventData eventData)
+	{
+	}
+
+	[Token(Token = "0x6002295")]
+	[Address(RVA = "0x650CF0", Offset = "0x64FEF0", VA = "0x180650CF0", Slot = "7")]
+	public void OnDrag(PointerEventData eventData)
+	{
+	}
+
+	[Token(Token = "0x6002296")]
+	[Address(RVA = "0x650C80", Offset = "0x64FE80", VA = "0x180650C80", Slot = "5")]
+	public void OnBeginDrag(PointerEventData eventData)
+	{
+	}
+
+	[Token(Token = "0x6002297")]
+	[Address(RVA = "0x651F70", Offset = "0x651170", VA = "0x180651F70")]
+	public int calcPageIndex(float norm, int pages, int startpage)
+	{
+		return default(int);
+	}
+
+	[Token(Token = "0x6002298")]
+	[Address(RVA = "0x650E90", Offset = "0x650090", VA = "0x180650E90", Slot = "6")]
+	public void OnEndDrag(PointerEventData eventData)
+	{
+	}
+
+	[Token(Token = "0x6002299")]
+	[Address(RVA = "0x6515D0", Offset = "0x6507D0", VA = "0x1806515D0")]
+	public void ReleaseDrag(Vector2 delta)
+	{
+	}
+
+	[Token(Token = "0x600229A")]
+	[Address(RVA = "0x650460", Offset = "0x64F660", VA = "0x180650460")]
+	private void Awake()
+	{
+	}
+
+	[Token(Token = "0x600229B")]
+	[Address(RVA = "0x6514B0", Offset = "0x6506B0", VA = "0x1806514B0")]
+	private void OnStartBarDrag()
+	{
+	}
+
+	[Token(Token = "0x600229C")]
+	[Address(RVA = "0x650C70", Offset = "0x64FE70", VA = "0x180650C70")]
+	private void OnBarDragging()
+	{
+	}
+
+	[Token(Token = "0x600229D")]
+	[Address(RVA = "0x650E80", Offset = "0x650080", VA = "0x180650E80")]
+	private void OnEndBarDrag()
+	{
+	}
+
+	[Token(Token = "0x600229E")]
+	[Address(RVA = "0x6508F0", Offset = "0x64FAF0", VA = "0x1806508F0")]
+	private void CalcPositionToPage()
+	{
+	}
+
+	[Token(Token = "0x600229F")]
+	[Address(RVA = "0x651BD0", Offset = "0x650DD0", VA = "0x180651BD0")]
+	private void Update()
+	{
+	}
+
+	[Token(Token = "0x60022A0")]
+	[Address(RVA = "0x6509F0", Offset = "0x64FBF0", VA = "0x1806509F0")]
+	private void ChangeNormalized(float ex, float ey)
+	{
+	}
+
+	[Token(Token = "0x60022A1")]
+	[Address(RVA = "0x6518D0", Offset = "0x650AD0", VA = "0x1806518D0")]
+	public void SetVPageEnable(bool enable, int page = -1)
+	{
+	}
+
+	[Token(Token = "0x60022A2")]
+	[Address(RVA = "0x651760", Offset = "0x650960", VA = "0x180651760")]
+	public void SetHPageEnable(bool enable, int page = -1)
+	{
+	}
+
+	[Token(Token = "0x60022A3")]
+	[Address(RVA = "0x650A70", Offset = "0x64FC70", VA = "0x180650A70")]
+	public void ForceSnap()
+	{
+	}
+
+	[Token(Token = "0x60022A4")]
+	[Address(RVA = "0x650B60", Offset = "0x64FD60", VA = "0x180650B60")]
+	public void LoopHorizontal()
+	{
+	}
+
+	[Token(Token = "0x60022A5")]
+	[Address(RVA = "0x6514C0", Offset = "0x6506C0", VA = "0x1806514C0")]
+	public void PseudoLoopHorizontalView()
+	{
+	}
+
+	[Token(Token = "0x60022A6")]
+	[Address(RVA = "0x651F20", Offset = "0x651120", VA = "0x180651F20")]
+	public ScrollRectPageSnap()
+	{
+	}
+}

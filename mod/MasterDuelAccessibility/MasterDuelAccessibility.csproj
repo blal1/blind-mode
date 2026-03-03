@@ -1,0 +1,118 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net6.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <AllowUnsafeBlocks>true</AllowUnsafeBlocks>
+    <AssemblyName>MasterDuelAccessibility</AssemblyName>
+    <RootNamespace>MasterDuelAccessibility</RootNamespace>
+    <Platforms>x64</Platforms>
+
+    <!--
+      BepInExCore  : assemblies BepInEx (framework + HarmonyX + Il2CppInterop)
+      BepInExInterop : stubs interop IL2CPP (générés par Cpp2IL)
+      GamePath : dossier du jeu (déploiement Windows uniquement)
+      Chemins conditionnels : Windows natif ou WSL (Linux dotnet SDK).
+    -->
+    <BepInExCore Condition="'$(OS)' == 'Windows_NT'">c:\Users\bilal\Downloads\blind mode\BepInEx\core</BepInExCore>
+    <BepInExCore Condition="'$(OS)' != 'Windows_NT'">/mnt/c/Users/bilal/Downloads/blind mode/BepInEx/core</BepInExCore>
+    <BepInExInterop Condition="'$(OS)' == 'Windows_NT'">c:\Users\bilal\Downloads\blind mode\BepInEx\interop</BepInExInterop>
+    <BepInExInterop Condition="'$(OS)' != 'Windows_NT'">/mnt/c/Users/bilal/Downloads/blind mode/BepInEx/interop</BepInExInterop>
+    <TolkPath Condition="'$(OS)' == 'Windows_NT'">c:\Users\bilal\Downloads\blind mode\BepInEx\plugins\dependencies\TolkDotNet.dll</TolkPath>
+    <TolkPath Condition="'$(OS)' != 'Windows_NT'">/mnt/c/Users/bilal/Downloads/blind mode/BepInEx/plugins/dependencies/TolkDotNet.dll</TolkPath>
+    <GamePath>C:\Program Files (x86)\Steam\steamapps\common\Yu-Gi-Oh!  Master Duel</GamePath>
+  </PropertyGroup>
+
+  <!-- Exclut les fichiers de référence BlindMode (code source décompilé, non compilé) -->
+  <ItemGroup>
+    <Compile Remove="BlindMode/**" />
+    <Compile Remove="BlindMod/**" />
+    <Compile Remove="BaseClass.cs" />
+    <Compile Remove="PatchBrowserViewControllerStart.cs" />
+    <Compile Remove="PatchCardInfoSetCard.cs" />
+    <Compile Remove="PatchCardRoot.cs" />
+    <Compile Remove="PatchChangeLP.cs" />
+    <Compile Remove="PatchColorContainerGraphic.cs" />
+    <Compile Remove="PatchColorContainerImage.cs" />
+    <Compile Remove="PatchDuelClientSetupPvp.cs" />
+    <Compile Remove="PatchOnClick.cs" />
+    <Compile Remove="PatchOnDeselected.cs" />
+    <Compile Remove="PatchOnSelected.cs" />
+    <Compile Remove="PatchViewController.cs" />
+    <Compile Remove="Resource1.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <!-- ── BepInEx framework ──────────────────────────────────────────────── -->
+    <Reference Include="BepInEx.Core">
+      <HintPath>$(BepInExCore)/BepInEx.Core.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="BepInEx.Unity.IL2CPP">
+      <HintPath>$(BepInExCore)/BepInEx.Unity.IL2CPP.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- ── Harmony (HarmonyX, bundlé avec BepInEx) ─────────────────────── -->
+    <Reference Include="0Harmony">
+      <HintPath>$(BepInExCore)/0Harmony.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- ── Il2CppInterop ─────────────────────────────────────────────────── -->
+    <Reference Include="Il2CppInterop.Runtime">
+      <HintPath>$(BepInExCore)/Il2CppInterop.Runtime.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- ── Il2Cpp mscorlib (requis par MonoBehaviour + types de base) ───── -->
+    <Reference Include="Il2Cppmscorlib">
+      <HintPath>$(BepInExInterop)/Il2Cppmscorlib.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- ── Unity assemblies (stubs interop Cpp2IL) ───────────────────────── -->
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>$(BepInExInterop)/UnityEngine.CoreModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>$(BepInExInterop)/UnityEngine.InputLegacyModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- EventSystem, StandaloneInputModule (used by EventSystemPatch) -->
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>$(BepInExInterop)/UnityEngine.UIModule.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- UnityEngine.UI.InputField (used by EventSystemPatch) -->
+    <Reference Include="UnityEngine.UI">
+      <HintPath>$(BepInExInterop)/UnityEngine.UI.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+    <!-- TMPro.TMP_InputField (used by EventSystemPatch) -->
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>$(BepInExInterop)/Unity.TextMeshPro.dll</HintPath>
+      <Private>false</Private>
+    </Reference>
+
+    <!-- ── Tolk TTS ──────────────────────────────────────────────────────── -->
+    <!--
+      Déploiement BepInEx :
+        BepInEx/plugins/MasterDuelAccessibility.dll
+        BepInEx/plugins/MasterDuelAccessibility/lib/screen-reader-libs/windows/
+          Tolk.dll, nvdaControllerClient64.dll, SAAPI64.dll
+        BepInEx/plugins/TolkDotNet.dll
+    -->
+    <Reference Include="TolkDotNet">
+      <HintPath>$(TolkPath)</HintPath>
+      <Private>false</Private>
+    </Reference>
+  </ItemGroup>
+
+  <!-- Copie vers le jeu après build (Windows uniquement) -->
+  <Target Name="CopyToGame" AfterTargets="Build" Condition="'$(OS)' == 'Windows_NT'">
+    <MakeDir Directories="$(GamePath)/BepInEx/plugins" />
+    <Copy SourceFiles="$(OutputPath)$(AssemblyName).dll"
+          DestinationFolder="$(GamePath)/BepInEx/plugins" />
+  </Target>
+</Project>
