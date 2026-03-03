@@ -4,7 +4,7 @@ An accessibility mod for **Yu-Gi-Oh! Master Duel** that makes the game fully pla
 
 Built by a blind developer using AI assistance (Claude Code).
 
-Based on [**BlindMode**](https://github.com/radsi/blindmode) by **Radsi** — the original BepInEx accessibility mod for Master Duel. This project extends that work with a significantly larger feature set.
+Based on [**BlindMode**](https://github.com/radsi/Master-Duels-BlindMode) by **Radsi** — the original BepInEx accessibility mod for Master Duel. This project extends that work with a significantly larger feature set.
 
 ---
 
@@ -111,7 +111,7 @@ See [CONTRIBUTING](CONTRIBUTING).
 
 ## Credits
 
-- **Radsi** — [BlindMode](https://github.com/radsi/blindmode), the original BepInEx accessibility mod this project is based on
+- **Radsi** — [BlindMode](https://github.com/radsi/Master-Duels-BlindMode), the original BepInEx accessibility mod this project is based on
 - **Davey Kager** — [Tolk](https://github.com/dkager/tolk) screen reader bridge library
 - **HappyStarfish** — [Accessibility Mod Template](https://github.com/HappyStarfish/Accessibility-mod-template) used as reference framework
 
