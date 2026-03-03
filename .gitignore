@@ -17,8 +17,6 @@ obj/
 packages/
 *.nupkg
 
-# Decompiled game files (too large for git)
-decompiled/
 
 # OS files
 .DS_Store

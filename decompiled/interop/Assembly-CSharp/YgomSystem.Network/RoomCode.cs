@@ -1,0 +1,68 @@
+using Il2CppDummyDll;
+
+namespace YgomSystem.Network;
+
+[Token(Token = "0x200025D")]
+public enum RoomCode
+{
+	[Token(Token = "0x4000CC9")]
+	NONE = 0,
+	[Token(Token = "0x4000CCA")]
+	ERROR = 1,
+	[Token(Token = "0x4000CCB")]
+	FATAL = 2,
+	[Token(Token = "0x4000CCC")]
+	CRITICAL = 3,
+	[Token(Token = "0x4000CCD")]
+	ERR_INVALID_ROOM = 3101,
+	[Token(Token = "0x4000CCE")]
+	ERR_ENTRY_FAILED = 3102,
+	[Token(Token = "0x4000CCF")]
+	ERR_INVALID_NEW_ROOM_ID = 3103,
+	[Token(Token = "0x4000CD0")]
+	ERR_NO_VACANT_TABLES = 3104,
+	[Token(Token = "0x4000CD1")]
+	ERR_INVALID_DECKSET = 3105,
+	[Token(Token = "0x4000CD2")]
+	ERR_ROOM_CREATE_FAILED = 3106,
+	[Token(Token = "0x4000CD3")]
+	ERR_USER_BLOCK = 3107,
+	[Token(Token = "0x4000CD4")]
+	ERR_INVALID_DATA = 3108,
+	[Token(Token = "0x4000CD5")]
+	ERR_PLATFORM_AUTH_EXPIRED = 3109,
+	[Token(Token = "0x4000CD6")]
+	ERR_ALREADY_ENTRY_ROOM = 3110,
+	[Token(Token = "0x4000CD7")]
+	ERR_ROOM_MEMBER_MAX = 3111,
+	[Token(Token = "0x4000CD8")]
+	ERR_RIVAL_LEAVE_TABLE = 3112,
+	[Token(Token = "0x4000CD9")]
+	ERR_ENTRY_ROOM_CROSS_INVALID = 3113,
+	[Token(Token = "0x4000CDA")]
+	ERR_ENTRY_ROOM_CROSS_PF_INVALID = 3114,
+	[Token(Token = "0x4000CDB")]
+	ERR_ENTRY_ROOM_CROSS_XB_BOTH_INVALID = 3115,
+	[Token(Token = "0x4000CDC")]
+	ERR_ENTRY_ROOM_CROSS_XB_DEVICE_INVALID = 3116,
+	[Token(Token = "0x4000CDD")]
+	ERR_ENTRY_ROOM_CROSS_XB_APP_INVALID = 3117,
+	[Token(Token = "0x4000CDE")]
+	ERR_ENTRY_ROOM_CROSS_PF_APP_INVALID = 3118,
+	[Token(Token = "0x4000CDF")]
+	ERR_ENTRY_ROOM_VALID_CROSS_XB_BOTH_INVALID = 3119,
+	[Token(Token = "0x4000CE0")]
+	ERR_ENTRY_ROOM_VALID_CROSS_XB_DEVICE_INVALID = 3120,
+	[Token(Token = "0x4000CE1")]
+	ERR_ENTRY_ROOM_VALID_CROSS_XB_APP_INVALID = 3121,
+	[Token(Token = "0x4000CE2")]
+	ERR_ENTRY_ROOM_VALID_CROSS_PF_APP_INVALID = 3122,
+	[Token(Token = "0x4000CE3")]
+	ERR_DECK_EMPTY = 3123,
+	[Token(Token = "0x4000CE4")]
+	ERR_DECK_REG = 3124,
+	[Token(Token = "0x4000CE5")]
+	ERR_LIMIT_REGULATION_PERIOD = 3125,
+	[Token(Token = "0x4000CE6")]
+	ERR_HOST_CLIENT_VERSION = 3126
+}

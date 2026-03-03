@@ -1,0 +1,51 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <AssemblyName>UnityEngine.UI</AssemblyName>
+    <GenerateAssemblyInfo>False</GenerateAssemblyInfo>
+    <OutputType>Exe</OutputType>
+    <TargetFramework>netcoreapp6.0</TargetFramework>
+  </PropertyGroup>
+  <PropertyGroup>
+    <LangVersion>11.0</LangVersion>
+    <AllowUnsafeBlocks>True</AllowUnsafeBlocks>
+  </PropertyGroup>
+  <PropertyGroup />
+  <ItemGroup />
+  <ItemGroup>
+    <Reference Include="Il2Cppmscorlib">
+      <HintPath>../../../DevTools/MasterDuel/MelonLoader/Il2CppAssemblies/Il2Cppmscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>../../../DevTools/MasterDuel/MelonLoader/Il2CppAssemblies/UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppInterop.Runtime" />
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>../../../DevTools/MasterDuel/MelonLoader/Il2CppAssemblies/UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>../../../DevTools/MasterDuel/MelonLoader/Il2CppAssemblies/UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Core">
+      <HintPath>../../../DevTools/MasterDuel/MelonLoader/Il2CppAssemblies/Il2CppSystem.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>../../../DevTools/MasterDuel/MelonLoader/Il2CppAssemblies/UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>../../../DevTools/MasterDuel/MelonLoader/Il2CppAssemblies/UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>../../../DevTools/MasterDuel/MelonLoader/Il2CppAssemblies/UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>../../../DevTools/MasterDuel/MelonLoader/Il2CppAssemblies/UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>../../../DevTools/MasterDuel/MelonLoader/Il2CppAssemblies/UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>../../../DevTools/MasterDuel/MelonLoader/Il2CppAssemblies/UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppInterop.Common" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,14 @@
+using Il2CppInterop.Common.Attributes;
+
+namespace Il2CppTMPro;
+
+[OriginalName("Unity.TextMeshPro.dll", "TMPro", "HorizontalAlignmentOptions")]
+public enum HorizontalAlignmentOptions
+{
+	Left = 1,
+	Center = 2,
+	Right = 4,
+	Justified = 8,
+	Flush = 0x10,
+	Geometry = 0x20
+}

@@ -1,0 +1,93 @@
+using System;
+using System.Runtime.CompilerServices;
+using Il2CppInterop.Runtime;
+using Il2CppInterop.Runtime.InteropTypes;
+using Il2CppInterop.Runtime.Runtime;
+
+namespace Il2CppSystem.Net;
+
+public class HttpVersion : Object
+{
+	private static readonly System.IntPtr NativeFieldInfoPtr_Unknown;
+
+	private static readonly System.IntPtr NativeFieldInfoPtr_Version10;
+
+	private static readonly System.IntPtr NativeFieldInfoPtr_Version11;
+
+	private static readonly System.IntPtr NativeFieldInfoPtr_Version20;
+
+	public unsafe static Version Unknown
+	{
+		get
+		{
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			IL2CPP.il2cpp_field_static_get_value(NativeFieldInfoPtr_Unknown, (void*)(&intPtr));
+			System.IntPtr intPtr2 = intPtr;
+			return (intPtr2 != (System.IntPtr)0) ? Il2CppObjectPool.Get<Version>(intPtr2) : null;
+		}
+		set
+		{
+			IL2CPP.il2cpp_field_static_set_value(NativeFieldInfoPtr_Unknown, (void*)IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)value));
+		}
+	}
+
+	public unsafe static Version Version10
+	{
+		get
+		{
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			IL2CPP.il2cpp_field_static_get_value(NativeFieldInfoPtr_Version10, (void*)(&intPtr));
+			System.IntPtr intPtr2 = intPtr;
+			return (intPtr2 != (System.IntPtr)0) ? Il2CppObjectPool.Get<Version>(intPtr2) : null;
+		}
+		set
+		{
+			IL2CPP.il2cpp_field_static_set_value(NativeFieldInfoPtr_Version10, (void*)IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)value));
+		}
+	}
+
+	public unsafe static Version Version11
+	{
+		get
+		{
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			IL2CPP.il2cpp_field_static_get_value(NativeFieldInfoPtr_Version11, (void*)(&intPtr));
+			System.IntPtr intPtr2 = intPtr;
+			return (intPtr2 != (System.IntPtr)0) ? Il2CppObjectPool.Get<Version>(intPtr2) : null;
+		}
+		set
+		{
+			IL2CPP.il2cpp_field_static_set_value(NativeFieldInfoPtr_Version11, (void*)IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)value));
+		}
+	}
+
+	public unsafe static Version Version20
+	{
+		get
+		{
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			IL2CPP.il2cpp_field_static_get_value(NativeFieldInfoPtr_Version20, (void*)(&intPtr));
+			System.IntPtr intPtr2 = intPtr;
+			return (intPtr2 != (System.IntPtr)0) ? Il2CppObjectPool.Get<Version>(intPtr2) : null;
+		}
+		set
+		{
+			IL2CPP.il2cpp_field_static_set_value(NativeFieldInfoPtr_Version20, (void*)IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)value));
+		}
+	}
+
+	static HttpVersion()
+	{
+		Il2CppClassPointerStore<HttpVersion>.NativeClassPtr = IL2CPP.GetIl2CppClass("System.dll", "System.Net", "HttpVersion");
+		IL2CPP.il2cpp_runtime_class_init(Il2CppClassPointerStore<HttpVersion>.NativeClassPtr);
+		NativeFieldInfoPtr_Unknown = IL2CPP.GetIl2CppField(Il2CppClassPointerStore<HttpVersion>.NativeClassPtr, "Unknown");
+		NativeFieldInfoPtr_Version10 = IL2CPP.GetIl2CppField(Il2CppClassPointerStore<HttpVersion>.NativeClassPtr, "Version10");
+		NativeFieldInfoPtr_Version11 = IL2CPP.GetIl2CppField(Il2CppClassPointerStore<HttpVersion>.NativeClassPtr, "Version11");
+		NativeFieldInfoPtr_Version20 = IL2CPP.GetIl2CppField(Il2CppClassPointerStore<HttpVersion>.NativeClassPtr, "Version20");
+	}
+
+	public HttpVersion(System.IntPtr pointer)
+		: base(pointer)
+	{
+	}
+}

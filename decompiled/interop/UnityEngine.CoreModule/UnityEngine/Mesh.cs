@@ -1,0 +1,5156 @@
+using System;
+using System.Runtime.CompilerServices;
+using System.Runtime.InteropServices;
+using Il2CppInterop.Common.Attributes;
+using Il2CppInterop.Runtime;
+using Il2CppInterop.Runtime.InteropTypes;
+using Il2CppInterop.Runtime.InteropTypes.Arrays;
+using Il2CppInterop.Runtime.Runtime;
+using Il2CppSystem;
+using Il2CppSystem.Collections.Generic;
+using Il2CppSystem.Reflection;
+using Unity.Collections;
+using Unity.Collections.LowLevel.Unsafe;
+using UnityEngine.Bindings;
+using UnityEngine.Rendering;
+
+namespace UnityEngine;
+
+public sealed class Mesh : Object
+{
+	[StructLayout(LayoutKind.Explicit)]
+	public struct MeshData
+	{
+		private static readonly System.IntPtr NativeFieldInfoPtr_m_Ptr;
+
+		[FieldOffset(0)]
+		public System.IntPtr m_Ptr;
+
+		static MeshData()
+		{
+			Il2CppClassPointerStore<MeshData>.NativeClassPtr = IL2CPP.GetIl2CppNestedType(Il2CppClassPointerStore<Mesh>.NativeClassPtr, "MeshData");
+			IL2CPP.il2cpp_runtime_class_init(Il2CppClassPointerStore<MeshData>.NativeClassPtr);
+			NativeFieldInfoPtr_m_Ptr = IL2CPP.GetIl2CppField(Il2CppClassPointerStore<MeshData>.NativeClassPtr, "m_Ptr");
+		}
+
+		public unsafe Il2CppSystem.Object BoxIl2CppObject()
+		{
+			return new Il2CppSystem.Object(IL2CPP.il2cpp_value_box(Il2CppClassPointerStore<MeshData>.NativeClassPtr, (System.IntPtr)(nint)Unsafe.AsPointer(ref this)));
+		}
+	}
+
+	private sealed class MethodInfoStoreGeneric_GetAllocArrayFromChannel_Private_Il2CppArrayBase_1_T_VertexAttribute_VertexAttributeFormat_Int32_0<T>
+	{
+		internal static System.IntPtr Pointer = IL2CPP.il2cpp_method_get_from_reflection(IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)new MethodInfo(IL2CPP.il2cpp_method_get_object(NativeMethodInfoPtr_GetAllocArrayFromChannel_Private_Il2CppArrayBase_1_T_VertexAttribute_VertexAttributeFormat_Int32_0, Il2CppClassPointerStore<Mesh>.NativeClassPtr)).MakeGenericMethod(new Il2CppReferenceArray<Il2CppSystem.Type>(new Il2CppSystem.Type[1] { Il2CppSystem.Type.internal_from_handle(IL2CPP.il2cpp_class_get_type(Il2CppClassPointerStore<T>.NativeClassPtr)) }))));
+	}
+
+	private sealed class MethodInfoStoreGeneric_GetAllocArrayFromChannel_Private_Il2CppArrayBase_1_T_VertexAttribute_0<T>
+	{
+		internal static System.IntPtr Pointer = IL2CPP.il2cpp_method_get_from_reflection(IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)new MethodInfo(IL2CPP.il2cpp_method_get_object(NativeMethodInfoPtr_GetAllocArrayFromChannel_Private_Il2CppArrayBase_1_T_VertexAttribute_0, Il2CppClassPointerStore<Mesh>.NativeClassPtr)).MakeGenericMethod(new Il2CppReferenceArray<Il2CppSystem.Type>(new Il2CppSystem.Type[1] { Il2CppSystem.Type.internal_from_handle(IL2CPP.il2cpp_class_get_type(Il2CppClassPointerStore<T>.NativeClassPtr)) }))));
+	}
+
+	private sealed class MethodInfoStoreGeneric_SetArrayForChannel_Private_Void_VertexAttribute_VertexAttributeFormat_Int32_Il2CppArrayBase_1_T_MeshUpdateFlags_0<T>
+	{
+		internal static System.IntPtr Pointer = IL2CPP.il2cpp_method_get_from_reflection(IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)new MethodInfo(IL2CPP.il2cpp_method_get_object(NativeMethodInfoPtr_SetArrayForChannel_Private_Void_VertexAttribute_VertexAttributeFormat_Int32_Il2CppArrayBase_1_T_MeshUpdateFlags_0, Il2CppClassPointerStore<Mesh>.NativeClassPtr)).MakeGenericMethod(new Il2CppReferenceArray<Il2CppSystem.Type>(new Il2CppSystem.Type[1] { Il2CppSystem.Type.internal_from_handle(IL2CPP.il2cpp_class_get_type(Il2CppClassPointerStore<T>.NativeClassPtr)) }))));
+	}
+
+	private sealed class MethodInfoStoreGeneric_SetArrayForChannel_Private_Void_VertexAttribute_Il2CppArrayBase_1_T_MeshUpdateFlags_0<T>
+	{
+		internal static System.IntPtr Pointer = IL2CPP.il2cpp_method_get_from_reflection(IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)new MethodInfo(IL2CPP.il2cpp_method_get_object(NativeMethodInfoPtr_SetArrayForChannel_Private_Void_VertexAttribute_Il2CppArrayBase_1_T_MeshUpdateFlags_0, Il2CppClassPointerStore<Mesh>.NativeClassPtr)).MakeGenericMethod(new Il2CppReferenceArray<Il2CppSystem.Type>(new Il2CppSystem.Type[1] { Il2CppSystem.Type.internal_from_handle(IL2CPP.il2cpp_class_get_type(Il2CppClassPointerStore<T>.NativeClassPtr)) }))));
+	}
+
+	private sealed class MethodInfoStoreGeneric_SetListForChannel_Private_Void_VertexAttribute_VertexAttributeFormat_Int32_List_1_T_Int32_Int32_MeshUpdateFlags_0<T>
+	{
+		internal static System.IntPtr Pointer = IL2CPP.il2cpp_method_get_from_reflection(IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)new MethodInfo(IL2CPP.il2cpp_method_get_object(NativeMethodInfoPtr_SetListForChannel_Private_Void_VertexAttribute_VertexAttributeFormat_Int32_List_1_T_Int32_Int32_MeshUpdateFlags_0, Il2CppClassPointerStore<Mesh>.NativeClassPtr)).MakeGenericMethod(new Il2CppReferenceArray<Il2CppSystem.Type>(new Il2CppSystem.Type[1] { Il2CppSystem.Type.internal_from_handle(IL2CPP.il2cpp_class_get_type(Il2CppClassPointerStore<T>.NativeClassPtr)) }))));
+	}
+
+	private sealed class MethodInfoStoreGeneric_SetListForChannel_Private_Void_VertexAttribute_List_1_T_Int32_Int32_MeshUpdateFlags_0<T>
+	{
+		internal static System.IntPtr Pointer = IL2CPP.il2cpp_method_get_from_reflection(IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)new MethodInfo(IL2CPP.il2cpp_method_get_object(NativeMethodInfoPtr_SetListForChannel_Private_Void_VertexAttribute_List_1_T_Int32_Int32_MeshUpdateFlags_0, Il2CppClassPointerStore<Mesh>.NativeClassPtr)).MakeGenericMethod(new Il2CppReferenceArray<Il2CppSystem.Type>(new Il2CppSystem.Type[1] { Il2CppSystem.Type.internal_from_handle(IL2CPP.il2cpp_class_get_type(Il2CppClassPointerStore<T>.NativeClassPtr)) }))));
+	}
+
+	private sealed class MethodInfoStoreGeneric_GetListForChannel_Private_Void_List_1_T_Int32_VertexAttribute_Int32_0<T>
+	{
+		internal static System.IntPtr Pointer = IL2CPP.il2cpp_method_get_from_reflection(IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)new MethodInfo(IL2CPP.il2cpp_method_get_object(NativeMethodInfoPtr_GetListForChannel_Private_Void_List_1_T_Int32_VertexAttribute_Int32_0, Il2CppClassPointerStore<Mesh>.NativeClassPtr)).MakeGenericMethod(new Il2CppReferenceArray<Il2CppSystem.Type>(new Il2CppSystem.Type[1] { Il2CppSystem.Type.internal_from_handle(IL2CPP.il2cpp_class_get_type(Il2CppClassPointerStore<T>.NativeClassPtr)) }))));
+	}
+
+	private sealed class MethodInfoStoreGeneric_GetListForChannel_Private_Void_List_1_T_Int32_VertexAttribute_Int32_VertexAttributeFormat_0<T>
+	{
+		internal static System.IntPtr Pointer = IL2CPP.il2cpp_method_get_from_reflection(IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)new MethodInfo(IL2CPP.il2cpp_method_get_object(NativeMethodInfoPtr_GetListForChannel_Private_Void_List_1_T_Int32_VertexAttribute_Int32_VertexAttributeFormat_0, Il2CppClassPointerStore<Mesh>.NativeClassPtr)).MakeGenericMethod(new Il2CppReferenceArray<Il2CppSystem.Type>(new Il2CppSystem.Type[1] { Il2CppSystem.Type.internal_from_handle(IL2CPP.il2cpp_class_get_type(Il2CppClassPointerStore<T>.NativeClassPtr)) }))));
+	}
+
+	private sealed class MethodInfoStoreGeneric_SetUvsImpl_Private_Void_Int32_Int32_List_1_T_Int32_Int32_MeshUpdateFlags_0<T>
+	{
+		internal static System.IntPtr Pointer = IL2CPP.il2cpp_method_get_from_reflection(IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)new MethodInfo(IL2CPP.il2cpp_method_get_object(NativeMethodInfoPtr_SetUvsImpl_Private_Void_Int32_Int32_List_1_T_Int32_Int32_MeshUpdateFlags_0, Il2CppClassPointerStore<Mesh>.NativeClassPtr)).MakeGenericMethod(new Il2CppReferenceArray<Il2CppSystem.Type>(new Il2CppSystem.Type[1] { Il2CppSystem.Type.internal_from_handle(IL2CPP.il2cpp_class_get_type(Il2CppClassPointerStore<T>.NativeClassPtr)) }))));
+	}
+
+	private sealed class MethodInfoStoreGeneric_GetUVsImpl_Private_Void_Int32_List_1_T_Int32_0<T>
+	{
+		internal static System.IntPtr Pointer = IL2CPP.il2cpp_method_get_from_reflection(IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)new MethodInfo(IL2CPP.il2cpp_method_get_object(NativeMethodInfoPtr_GetUVsImpl_Private_Void_Int32_List_1_T_Int32_0, Il2CppClassPointerStore<Mesh>.NativeClassPtr)).MakeGenericMethod(new Il2CppReferenceArray<Il2CppSystem.Type>(new Il2CppSystem.Type[1] { Il2CppSystem.Type.internal_from_handle(IL2CPP.il2cpp_class_get_type(Il2CppClassPointerStore<T>.NativeClassPtr)) }))));
+	}
+
+	private delegate System.IntPtr FromInstanceID_InjectedDelegate(int id);
+
+	private delegate IndexFormat get_indexFormat_InjectedDelegate(System.IntPtr _unity_self);
+
+	private delegate uint GetTotalIndexCount_InjectedDelegate(System.IntPtr _unity_self);
+
+	private delegate void SetIndexBufferParams_InjectedDelegate(System.IntPtr _unity_self, int indexCount, IndexFormat format);
+
+	private delegate void InternalSetIndexBufferData_InjectedDelegate(System.IntPtr _unity_self, System.IntPtr data, int dataStart, int meshBufferStart, int count, int elemSize, MeshUpdateFlags flags);
+
+	private delegate void InternalSetIndexBufferDataFromArray_InjectedDelegate(System.IntPtr _unity_self, System.IntPtr data, int dataStart, int meshBufferStart, int count, int elemSize, MeshUpdateFlags flags);
+
+	private delegate void SetVertexBufferParamsFromPtr_InjectedDelegate(System.IntPtr _unity_self, int vertexCount, System.IntPtr attributesPtr, int attributesCount);
+
+	private delegate void SetVertexBufferParamsFromArray_InjectedDelegate(System.IntPtr _unity_self, int vertexCount, System.IntPtr attributes);
+
+	private delegate void InternalSetVertexBufferData_InjectedDelegate(System.IntPtr _unity_self, int stream, System.IntPtr data, int dataStart, int meshBufferStart, int count, int elemSize, MeshUpdateFlags flags);
+
+	private delegate void InternalSetVertexBufferDataFromArray_InjectedDelegate(System.IntPtr _unity_self, int stream, System.IntPtr data, int dataStart, int meshBufferStart, int count, int elemSize, MeshUpdateFlags flags);
+
+	private delegate System.IntPtr GetVertexAttributesAlloc_InjectedDelegate(System.IntPtr _unity_self);
+
+	private delegate int GetVertexAttributesArray_InjectedDelegate(System.IntPtr _unity_self, System.IntPtr attributes);
+
+	private delegate int GetVertexAttributesList_InjectedDelegate(System.IntPtr _unity_self, System.IntPtr attributes);
+
+	private delegate int GetVertexAttributeCountImpl_InjectedDelegate(System.IntPtr _unity_self);
+
+	private delegate void GetVertexAttribute_InjectedDelegate(System.IntPtr _unity_self, int index, [Out] System.IntPtr ret);
+
+	private delegate uint GetIndexStartImpl_InjectedDelegate(System.IntPtr _unity_self, int submesh);
+
+	private delegate uint GetBaseVertexImpl_InjectedDelegate(System.IntPtr _unity_self, int submesh);
+
+	private delegate void GetTrianglesImpl_InjectedDelegate(System.IntPtr _unity_self, int submesh, bool applyBaseVertex, [Out] System.IntPtr ret);
+
+	private delegate void SetIndicesNativeArrayImpl_InjectedDelegate(System.IntPtr _unity_self, int submesh, MeshTopology topology, IndexFormat indicesFormat, System.IntPtr indices, int arrayStart, int arraySize, bool calculateBounds, int baseVertex);
+
+	private delegate void GetTrianglesNonAllocImpl16_InjectedDelegate(System.IntPtr _unity_self, [Out] System.IntPtr values, int submesh, bool applyBaseVertex);
+
+	private delegate void GetIndicesNonAllocImpl_InjectedDelegate(System.IntPtr _unity_self, [Out] System.IntPtr values, int submesh, bool applyBaseVertex);
+
+	private delegate void GetIndicesNonAllocImpl16_InjectedDelegate(System.IntPtr _unity_self, [Out] System.IntPtr values, int submesh, bool applyBaseVertex);
+
+	private delegate int GetVertexAttributeDimension_InjectedDelegate(System.IntPtr _unity_self, VertexAttribute attr);
+
+	private delegate void SetNativeArrayForChannelImpl_InjectedDelegate(System.IntPtr _unity_self, VertexAttribute channel, VertexAttributeFormat format, int dim, System.IntPtr values, int arraySize, int valuesStart, int valuesCount, MeshUpdateFlags flags);
+
+	private delegate int get_vertexBufferCount_InjectedDelegate(System.IntPtr _unity_self);
+
+	private delegate int GetVertexBufferStride_InjectedDelegate(System.IntPtr _unity_self, int stream);
+
+	private delegate System.IntPtr GetNativeVertexBufferPtr_InjectedDelegate(System.IntPtr _unity_self, int index);
+
+	private delegate System.IntPtr GetNativeIndexBufferPtr_InjectedDelegate(System.IntPtr _unity_self);
+
+	private delegate System.IntPtr GetBoneWeightBufferImpl_InjectedDelegate(System.IntPtr _unity_self, int bonesPerVertex);
+
+	private delegate System.IntPtr GetBlendShapeBufferImpl_InjectedDelegate(System.IntPtr _unity_self, int layout);
+
+	private delegate int get_blendShapeCount_InjectedDelegate(System.IntPtr _unity_self);
+
+	private delegate void ClearBlendShapes_InjectedDelegate(System.IntPtr _unity_self);
+
+	private delegate void GetBlendShapeName_InjectedDelegate(System.IntPtr _unity_self, int shapeIndex, [Out] System.IntPtr ret);
+
+	private delegate int GetBlendShapeIndex_InjectedDelegate(System.IntPtr _unity_self, System.IntPtr blendShapeName);
+
+	private delegate int GetBlendShapeFrameCount_InjectedDelegate(System.IntPtr _unity_self, int shapeIndex);
+
+	private delegate float GetBlendShapeFrameWeight_InjectedDelegate(System.IntPtr _unity_self, int shapeIndex, int frameIndex);
+
+	private delegate void GetBlendShapeFrameVertices_InjectedDelegate(System.IntPtr _unity_self, int shapeIndex, int frameIndex, System.IntPtr deltaVertices, System.IntPtr deltaNormals, System.IntPtr deltaTangents);
+
+	private delegate void AddBlendShapeFrame_InjectedDelegate(System.IntPtr _unity_self, System.IntPtr shapeName, float frameWeight, System.IntPtr deltaVertices, System.IntPtr deltaNormals, System.IntPtr deltaTangents);
+
+	private delegate bool HasBoneWeights_InjectedDelegate(System.IntPtr _unity_self);
+
+	private delegate void GetBoneWeightsImpl_InjectedDelegate(System.IntPtr _unity_self, [Out] System.IntPtr ret);
+
+	private delegate void SetBoneWeightsImpl_InjectedDelegate(System.IntPtr _unity_self, System.IntPtr weights);
+
+	private delegate void InternalSetBoneWeights_InjectedDelegate(System.IntPtr _unity_self, System.IntPtr bonesPerVertex, int bonesPerVertexSize, System.IntPtr weights, int weightsSize);
+
+	private delegate int GetAllBoneWeightsArraySize_InjectedDelegate(System.IntPtr _unity_self);
+
+	private delegate int GetBoneWeightBufferLayoutInternal_InjectedDelegate(System.IntPtr _unity_self);
+
+	private delegate System.IntPtr GetAllBoneWeightsArray_InjectedDelegate(System.IntPtr _unity_self);
+
+	private delegate System.IntPtr GetBonesPerVertexArray_InjectedDelegate(System.IntPtr _unity_self);
+
+	private delegate int get_bindposeCount_InjectedDelegate(System.IntPtr _unity_self);
+
+	private delegate void get_bindposes_InjectedDelegate(System.IntPtr _unity_self, [Out] System.IntPtr ret);
+
+	private delegate void set_bindposes_InjectedDelegate(System.IntPtr _unity_self, System.IntPtr value);
+
+	private delegate void SetBindposesFromScript_NativeArray_InjectedDelegate(System.IntPtr _unity_self, System.IntPtr posesPtr, int posesCount);
+
+	private delegate System.IntPtr GetBindposesArray_InjectedDelegate(System.IntPtr _unity_self);
+
+	private delegate void GetBoneWeightsNonAllocImpl_InjectedDelegate(System.IntPtr _unity_self, [Out] System.IntPtr values);
+
+	private delegate void GetBindposesNonAllocImpl_InjectedDelegate(System.IntPtr _unity_self, [Out] System.IntPtr values);
+
+	private delegate bool get_isReadable_InjectedDelegate(System.IntPtr _unity_self);
+
+	private delegate void SetSubMesh_InjectedDelegate(System.IntPtr _unity_self, int index, [In] System.IntPtr desc, MeshUpdateFlags flags);
+
+	private delegate void SetAllSubMeshesAtOnceFromArray_InjectedDelegate(System.IntPtr _unity_self, System.IntPtr desc, int start, int count, MeshUpdateFlags flags);
+
+	private delegate void SetAllSubMeshesAtOnceFromNativeArray_InjectedDelegate(System.IntPtr _unity_self, System.IntPtr desc, int start, int count, MeshUpdateFlags flags);
+
+	private delegate void RecalculateTangentsImpl_InjectedDelegate(System.IntPtr _unity_self, MeshUpdateFlags flags);
+
+	private delegate void MarkModified_InjectedDelegate(System.IntPtr _unity_self);
+
+	private delegate MeshTopology GetTopologyImpl_InjectedDelegate(System.IntPtr _unity_self, int submesh);
+
+	private delegate void RecalculateUVDistributionMetricImpl_InjectedDelegate(System.IntPtr _unity_self, int uvSetIndex, float uvAreaThreshold);
+
+	private delegate void RecalculateUVDistributionMetricsImpl_InjectedDelegate(System.IntPtr _unity_self, float uvAreaThreshold);
+
+	private delegate float GetUVDistributionMetric_InjectedDelegate(System.IntPtr _unity_self, int uvSetIndex);
+
+	private delegate void OptimizeImpl_InjectedDelegate(System.IntPtr _unity_self);
+
+	private delegate void OptimizeIndexBuffersImpl_InjectedDelegate(System.IntPtr _unity_self);
+
+	private delegate void OptimizeReorderVertexBufferImpl_InjectedDelegate(System.IntPtr _unity_self);
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_Internal_Create_Private_Static_Void_Mesh_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr__ctor_Public_Void_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_set_indexFormat_Public_set_Void_IndexFormat_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetIndexCountImpl_Private_UInt32_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetTrianglesCountImpl_Private_UInt32_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetIndicesImpl_Private_Il2CppStructArray_1_Int32_Int32_Boolean_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetIndicesImpl_Private_Void_Int32_MeshTopology_IndexFormat_Array_Int32_Int32_Boolean_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetTrianglesNonAllocImpl_Private_Void_Il2CppStructArray_1_Int32_Int32_Boolean_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_PrintErrorCantAccessChannel_Private_Void_VertexAttribute_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_HasVertexAttribute_Public_Boolean_VertexAttribute_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetVertexAttributeFormat_Public_VertexAttributeFormat_VertexAttribute_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetVertexAttributeStream_Public_Int32_VertexAttribute_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetVertexAttributeOffset_Public_Int32_VertexAttribute_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetArrayForChannelImpl_Private_Void_VertexAttribute_VertexAttributeFormat_Int32_Array_Int32_Int32_Int32_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetAllocArrayFromChannelImpl_Private_Array_VertexAttribute_VertexAttributeFormat_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetArrayFromChannelImpl_Private_Void_VertexAttribute_VertexAttributeFormat_Int32_Array_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetVertexBufferImpl_Private_GraphicsBuffer_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetIndexBufferImpl_Private_GraphicsBuffer_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_get_vertexBufferTarget_Public_get_Target_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_set_vertexBufferTarget_Public_set_Void_Target_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_get_indexBufferTarget_Public_get_Target_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_set_indexBufferTarget_Public_set_Void_Target_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_get_canAccess_Internal_get_Boolean_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_get_vertexCount_Public_get_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_get_subMeshCount_Public_get_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_set_subMeshCount_Public_set_Void_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetSubMesh_Public_SubMeshDescriptor_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_get_bounds_Public_get_Bounds_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_set_bounds_Public_set_Void_Bounds_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_ClearImpl_Private_Void_Boolean_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_RecalculateBoundsImpl_Private_Void_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_RecalculateNormalsImpl_Private_Void_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_MarkDynamicImpl_Private_Void_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_UploadMeshDataImpl_Private_Void_Boolean_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_CombineMeshesImpl_Private_Void_Il2CppStructArray_1_CombineInstance_Boolean_Boolean_Boolean_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetUVChannel_Internal_Static_VertexAttribute_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_DefaultDimensionForChannel_Internal_Static_Int32_VertexAttribute_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetAllocArrayFromChannel_Private_Il2CppArrayBase_1_T_VertexAttribute_VertexAttributeFormat_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetAllocArrayFromChannel_Private_Il2CppArrayBase_1_T_VertexAttribute_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetSizedArrayForChannel_Private_Void_VertexAttribute_VertexAttributeFormat_Int32_Array_Int32_Int32_Int32_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetArrayForChannel_Private_Void_VertexAttribute_VertexAttributeFormat_Int32_Il2CppArrayBase_1_T_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetArrayForChannel_Private_Void_VertexAttribute_Il2CppArrayBase_1_T_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetListForChannel_Private_Void_VertexAttribute_VertexAttributeFormat_Int32_List_1_T_Int32_Int32_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetListForChannel_Private_Void_VertexAttribute_List_1_T_Int32_Int32_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetListForChannel_Private_Void_List_1_T_Int32_VertexAttribute_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetListForChannel_Private_Void_List_1_T_Int32_VertexAttribute_Int32_VertexAttributeFormat_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_get_vertices_Public_get_Il2CppStructArray_1_Vector3_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_set_vertices_Public_set_Void_Il2CppStructArray_1_Vector3_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_get_normals_Public_get_Il2CppStructArray_1_Vector3_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_set_normals_Public_set_Void_Il2CppStructArray_1_Vector3_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_get_tangents_Public_get_Il2CppStructArray_1_Vector4_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_set_tangents_Public_set_Void_Il2CppStructArray_1_Vector4_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_set_uv_Public_set_Void_Il2CppStructArray_1_Vector2_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_set_uv2_Public_set_Void_Il2CppStructArray_1_Vector2_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_set_uv3_Public_set_Void_Il2CppStructArray_1_Vector2_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_get_colors_Public_get_Il2CppStructArray_1_Color_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_set_colors_Public_set_Void_Il2CppStructArray_1_Color_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_get_colors32_Public_get_Il2CppStructArray_1_Color32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_set_colors32_Public_set_Void_Il2CppStructArray_1_Color32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetVertices_Public_Void_List_1_Vector3_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetVertices_Public_Void_List_1_Vector3_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetVertices_Public_Void_List_1_Vector3_Int32_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetVertices_Public_Void_List_1_Vector3_Int32_Int32_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetNormals_Public_Void_List_1_Vector3_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetNormals_Public_Void_List_1_Vector3_Int32_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetNormals_Public_Void_List_1_Vector3_Int32_Int32_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetTangents_Public_Void_List_1_Vector4_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetTangents_Public_Void_List_1_Vector4_Int32_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetTangents_Public_Void_List_1_Vector4_Int32_Int32_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetColors_Public_Void_List_1_Color_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetColors_Public_Void_List_1_Color_Int32_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetColors_Public_Void_List_1_Color_Int32_Int32_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetColors_Public_Void_List_1_Color32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetColors_Public_Void_List_1_Color32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetColors_Public_Void_List_1_Color32_Int32_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetColors_Public_Void_List_1_Color32_Int32_Int32_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetUvsImpl_Private_Void_Int32_Int32_List_1_T_Int32_Int32_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetUVs_Public_Void_Int32_List_1_Vector2_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetUVs_Public_Void_Int32_List_1_Vector4_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetUVs_Public_Void_Int32_List_1_Vector2_Int32_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetUVs_Public_Void_Int32_List_1_Vector2_Int32_Int32_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetUVs_Public_Void_Int32_List_1_Vector4_Int32_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetUVs_Public_Void_Int32_List_1_Vector4_Int32_Int32_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetUvsImpl_Private_Void_Int32_Int32_Array_Int32_Int32_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetUVs_Public_Void_Int32_Il2CppStructArray_1_Vector4_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetUVs_Public_Void_Int32_Il2CppStructArray_1_Vector4_Int32_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetUVs_Public_Void_Int32_Il2CppStructArray_1_Vector4_Int32_Int32_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetUVsImpl_Private_Void_Int32_List_1_T_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetUVs_Public_Void_Int32_List_1_Vector3_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetUVs_Public_Void_Int32_List_1_Vector4_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetVertexBuffer_Public_GraphicsBuffer_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetIndexBuffer_Public_GraphicsBuffer_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_PrintErrorCantAccessIndices_Private_Void_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_CheckCanAccessSubmesh_Private_Boolean_Int32_Boolean_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_CheckCanAccessSubmeshTriangles_Private_Boolean_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_CheckCanAccessSubmeshIndices_Private_Boolean_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_set_triangles_Public_set_Void_Il2CppStructArray_1_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetTriangles_Public_Void_List_1_Int32_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetTriangles_Public_Void_List_1_Int32_Int32_Boolean_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetIndices_Public_Il2CppStructArray_1_Int32_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetIndices_Public_Il2CppStructArray_1_Int32_Int32_Boolean_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetIndexCount_Public_UInt32_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_CheckIndicesArrayRange_Private_Void_Int32_Int32_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetTrianglesImpl_Private_Void_Int32_IndexFormat_Array_Int32_Int32_Int32_Boolean_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetTriangles_Public_Void_Il2CppStructArray_1_Int32_Int32_Int32_Int32_Boolean_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetTriangles_Public_Void_List_1_Int32_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetTriangles_Public_Void_List_1_Int32_Int32_Boolean_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetTriangles_Public_Void_List_1_Int32_Int32_Int32_Int32_Boolean_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetIndices_Public_Void_Il2CppStructArray_1_Int32_MeshTopology_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetIndices_Public_Void_Il2CppStructArray_1_Int32_MeshTopology_Int32_Boolean_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetIndices_Public_Void_Il2CppStructArray_1_Int32_MeshTopology_Int32_Boolean_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetIndices_Public_Void_Il2CppStructArray_1_Int32_Int32_Int32_MeshTopology_Int32_Boolean_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetIndices_Public_Void_Il2CppStructArray_1_UInt16_MeshTopology_Int32_Boolean_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetIndices_Public_Void_Il2CppStructArray_1_UInt16_Int32_Int32_MeshTopology_Int32_Boolean_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetIndices_Public_Void_List_1_Int32_MeshTopology_Int32_Boolean_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetIndices_Public_Void_List_1_Int32_Int32_Int32_MeshTopology_Int32_Boolean_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_Clear_Public_Void_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_RecalculateBounds_Public_Void_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_RecalculateNormals_Public_Void_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_RecalculateBounds_Public_Void_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_RecalculateNormals_Public_Void_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_MarkDynamic_Public_Void_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_UploadMeshData_Public_Void_Boolean_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_CombineMeshes_Public_Void_Il2CppStructArray_1_CombineInstance_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_set_indexFormat_Injected_Private_Static_Void_IntPtr_IndexFormat_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetIndexCountImpl_Injected_Private_Static_UInt32_IntPtr_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetTrianglesCountImpl_Injected_Private_Static_UInt32_IntPtr_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetIndicesImpl_Injected_Private_Static_Void_IntPtr_Int32_Boolean_byref_BlittableArrayWrapper_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetIndicesImpl_Injected_Private_Static_Void_IntPtr_Int32_MeshTopology_IndexFormat_Array_Int32_Int32_Boolean_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetTrianglesNonAllocImpl_Injected_Private_Static_Void_IntPtr_byref_BlittableArrayWrapper_Int32_Boolean_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_PrintErrorCantAccessChannel_Injected_Private_Static_Void_IntPtr_VertexAttribute_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_HasVertexAttribute_Injected_Private_Static_Boolean_IntPtr_VertexAttribute_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetVertexAttributeFormat_Injected_Private_Static_VertexAttributeFormat_IntPtr_VertexAttribute_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetVertexAttributeStream_Injected_Private_Static_Int32_IntPtr_VertexAttribute_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetVertexAttributeOffset_Injected_Private_Static_Int32_IntPtr_VertexAttribute_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_SetArrayForChannelImpl_Injected_Private_Static_Void_IntPtr_VertexAttribute_VertexAttributeFormat_Int32_Array_Int32_Int32_Int32_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetAllocArrayFromChannelImpl_Injected_Private_Static_Array_IntPtr_VertexAttribute_VertexAttributeFormat_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetArrayFromChannelImpl_Injected_Private_Static_Void_IntPtr_VertexAttribute_VertexAttributeFormat_Int32_Array_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetVertexBufferImpl_Injected_Private_Static_IntPtr_IntPtr_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetIndexBufferImpl_Injected_Private_Static_IntPtr_IntPtr_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_get_vertexBufferTarget_Injected_Private_Static_Target_IntPtr_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_set_vertexBufferTarget_Injected_Private_Static_Void_IntPtr_Target_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_get_indexBufferTarget_Injected_Private_Static_Target_IntPtr_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_set_indexBufferTarget_Injected_Private_Static_Void_IntPtr_Target_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_get_canAccess_Injected_Private_Static_Boolean_IntPtr_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_get_vertexCount_Injected_Private_Static_Int32_IntPtr_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_get_subMeshCount_Injected_Private_Static_Int32_IntPtr_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_set_subMeshCount_Injected_Private_Static_Void_IntPtr_Int32_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_GetSubMesh_Injected_Private_Static_Void_IntPtr_Int32_byref_SubMeshDescriptor_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_get_bounds_Injected_Private_Static_Void_IntPtr_byref_Bounds_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_set_bounds_Injected_Private_Static_Void_IntPtr_byref_Bounds_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_ClearImpl_Injected_Private_Static_Void_IntPtr_Boolean_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_RecalculateBoundsImpl_Injected_Private_Static_Void_IntPtr_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_RecalculateNormalsImpl_Injected_Private_Static_Void_IntPtr_MeshUpdateFlags_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_MarkDynamicImpl_Injected_Private_Static_Void_IntPtr_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_UploadMeshDataImpl_Injected_Private_Static_Void_IntPtr_Boolean_0;
+
+	private static readonly System.IntPtr NativeMethodInfoPtr_CombineMeshesImpl_Injected_Private_Static_Void_IntPtr_byref_ManagedSpanWrapper_Boolean_Boolean_Boolean_0;
+
+	private static readonly FromInstanceID_InjectedDelegate FromInstanceID_InjectedDelegateField;
+
+	private static readonly get_indexFormat_InjectedDelegate get_indexFormat_InjectedDelegateField;
+
+	private static readonly GetTotalIndexCount_InjectedDelegate GetTotalIndexCount_InjectedDelegateField;
+
+	private static readonly SetIndexBufferParams_InjectedDelegate SetIndexBufferParams_InjectedDelegateField;
+
+	private static readonly InternalSetIndexBufferData_InjectedDelegate InternalSetIndexBufferData_InjectedDelegateField;
+
+	private static readonly InternalSetIndexBufferDataFromArray_InjectedDelegate InternalSetIndexBufferDataFromArray_InjectedDelegateField;
+
+	private static readonly SetVertexBufferParamsFromPtr_InjectedDelegate SetVertexBufferParamsFromPtr_InjectedDelegateField;
+
+	private static readonly SetVertexBufferParamsFromArray_InjectedDelegate SetVertexBufferParamsFromArray_InjectedDelegateField;
+
+	private static readonly InternalSetVertexBufferData_InjectedDelegate InternalSetVertexBufferData_InjectedDelegateField;
+
+	private static readonly InternalSetVertexBufferDataFromArray_InjectedDelegate InternalSetVertexBufferDataFromArray_InjectedDelegateField;
+
+	private static readonly GetVertexAttributesAlloc_InjectedDelegate GetVertexAttributesAlloc_InjectedDelegateField;
+
+	private static readonly GetVertexAttributesArray_InjectedDelegate GetVertexAttributesArray_InjectedDelegateField;
+
+	private static readonly GetVertexAttributesList_InjectedDelegate GetVertexAttributesList_InjectedDelegateField;
+
+	private static readonly GetVertexAttributeCountImpl_InjectedDelegate GetVertexAttributeCountImpl_InjectedDelegateField;
+
+	private static readonly GetVertexAttribute_InjectedDelegate GetVertexAttribute_InjectedDelegateField;
+
+	private static readonly GetIndexStartImpl_InjectedDelegate GetIndexStartImpl_InjectedDelegateField;
+
+	private static readonly GetBaseVertexImpl_InjectedDelegate GetBaseVertexImpl_InjectedDelegateField;
+
+	private static readonly GetTrianglesImpl_InjectedDelegate GetTrianglesImpl_InjectedDelegateField;
+
+	private static readonly SetIndicesNativeArrayImpl_InjectedDelegate SetIndicesNativeArrayImpl_InjectedDelegateField;
+
+	private static readonly GetTrianglesNonAllocImpl16_InjectedDelegate GetTrianglesNonAllocImpl16_InjectedDelegateField;
+
+	private static readonly GetIndicesNonAllocImpl_InjectedDelegate GetIndicesNonAllocImpl_InjectedDelegateField;
+
+	private static readonly GetIndicesNonAllocImpl16_InjectedDelegate GetIndicesNonAllocImpl16_InjectedDelegateField;
+
+	private static readonly GetVertexAttributeDimension_InjectedDelegate GetVertexAttributeDimension_InjectedDelegateField;
+
+	private static readonly SetNativeArrayForChannelImpl_InjectedDelegate SetNativeArrayForChannelImpl_InjectedDelegateField;
+
+	private static readonly get_vertexBufferCount_InjectedDelegate get_vertexBufferCount_InjectedDelegateField;
+
+	private static readonly GetVertexBufferStride_InjectedDelegate GetVertexBufferStride_InjectedDelegateField;
+
+	private static readonly GetNativeVertexBufferPtr_InjectedDelegate GetNativeVertexBufferPtr_InjectedDelegateField;
+
+	private static readonly GetNativeIndexBufferPtr_InjectedDelegate GetNativeIndexBufferPtr_InjectedDelegateField;
+
+	private static readonly GetBoneWeightBufferImpl_InjectedDelegate GetBoneWeightBufferImpl_InjectedDelegateField;
+
+	private static readonly GetBlendShapeBufferImpl_InjectedDelegate GetBlendShapeBufferImpl_InjectedDelegateField;
+
+	private static readonly get_blendShapeCount_InjectedDelegate get_blendShapeCount_InjectedDelegateField;
+
+	private static readonly ClearBlendShapes_InjectedDelegate ClearBlendShapes_InjectedDelegateField;
+
+	private static readonly GetBlendShapeName_InjectedDelegate GetBlendShapeName_InjectedDelegateField;
+
+	private static readonly GetBlendShapeIndex_InjectedDelegate GetBlendShapeIndex_InjectedDelegateField;
+
+	private static readonly GetBlendShapeFrameCount_InjectedDelegate GetBlendShapeFrameCount_InjectedDelegateField;
+
+	private static readonly GetBlendShapeFrameWeight_InjectedDelegate GetBlendShapeFrameWeight_InjectedDelegateField;
+
+	private static readonly GetBlendShapeFrameVertices_InjectedDelegate GetBlendShapeFrameVertices_InjectedDelegateField;
+
+	private static readonly AddBlendShapeFrame_InjectedDelegate AddBlendShapeFrame_InjectedDelegateField;
+
+	private static readonly HasBoneWeights_InjectedDelegate HasBoneWeights_InjectedDelegateField;
+
+	private static readonly GetBoneWeightsImpl_InjectedDelegate GetBoneWeightsImpl_InjectedDelegateField;
+
+	private static readonly SetBoneWeightsImpl_InjectedDelegate SetBoneWeightsImpl_InjectedDelegateField;
+
+	private static readonly InternalSetBoneWeights_InjectedDelegate InternalSetBoneWeights_InjectedDelegateField;
+
+	private static readonly GetAllBoneWeightsArraySize_InjectedDelegate GetAllBoneWeightsArraySize_InjectedDelegateField;
+
+	private static readonly GetBoneWeightBufferLayoutInternal_InjectedDelegate GetBoneWeightBufferLayoutInternal_InjectedDelegateField;
+
+	private static readonly GetAllBoneWeightsArray_InjectedDelegate GetAllBoneWeightsArray_InjectedDelegateField;
+
+	private static readonly GetBonesPerVertexArray_InjectedDelegate GetBonesPerVertexArray_InjectedDelegateField;
+
+	private static readonly get_bindposeCount_InjectedDelegate get_bindposeCount_InjectedDelegateField;
+
+	private static readonly get_bindposes_InjectedDelegate get_bindposes_InjectedDelegateField;
+
+	private static readonly set_bindposes_InjectedDelegate set_bindposes_InjectedDelegateField;
+
+	private static readonly SetBindposesFromScript_NativeArray_InjectedDelegate SetBindposesFromScript_NativeArray_InjectedDelegateField;
+
+	private static readonly GetBindposesArray_InjectedDelegate GetBindposesArray_InjectedDelegateField;
+
+	private static readonly GetBoneWeightsNonAllocImpl_InjectedDelegate GetBoneWeightsNonAllocImpl_InjectedDelegateField;
+
+	private static readonly GetBindposesNonAllocImpl_InjectedDelegate GetBindposesNonAllocImpl_InjectedDelegateField;
+
+	private static readonly get_isReadable_InjectedDelegate get_isReadable_InjectedDelegateField;
+
+	private static readonly SetSubMesh_InjectedDelegate SetSubMesh_InjectedDelegateField;
+
+	private static readonly SetAllSubMeshesAtOnceFromArray_InjectedDelegate SetAllSubMeshesAtOnceFromArray_InjectedDelegateField;
+
+	private static readonly SetAllSubMeshesAtOnceFromNativeArray_InjectedDelegate SetAllSubMeshesAtOnceFromNativeArray_InjectedDelegateField;
+
+	private static readonly RecalculateTangentsImpl_InjectedDelegate RecalculateTangentsImpl_InjectedDelegateField;
+
+	private static readonly MarkModified_InjectedDelegate MarkModified_InjectedDelegateField;
+
+	private static readonly GetTopologyImpl_InjectedDelegate GetTopologyImpl_InjectedDelegateField;
+
+	private static readonly RecalculateUVDistributionMetricImpl_InjectedDelegate RecalculateUVDistributionMetricImpl_InjectedDelegateField;
+
+	private static readonly RecalculateUVDistributionMetricsImpl_InjectedDelegate RecalculateUVDistributionMetricsImpl_InjectedDelegateField;
+
+	private static readonly GetUVDistributionMetric_InjectedDelegate GetUVDistributionMetric_InjectedDelegateField;
+
+	private static readonly OptimizeImpl_InjectedDelegate OptimizeImpl_InjectedDelegateField;
+
+	private static readonly OptimizeIndexBuffersImpl_InjectedDelegate OptimizeIndexBuffersImpl_InjectedDelegateField;
+
+	private static readonly OptimizeReorderVertexBufferImpl_InjectedDelegate OptimizeReorderVertexBufferImpl_InjectedDelegateField;
+
+	public unsafe IndexFormat indexFormat
+	{
+		get
+		{
+			System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+			if (intPtr == (System.IntPtr)0)
+			{
+				UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+			}
+			return get_indexFormat_Injected(intPtr);
+		}
+		[CallerCount(6)]
+		[CachedScanResults(RefRangeStart = 1178164, RefRangeEnd = 1178170, XrefRangeStart = 1178159, XrefRangeEnd = 1178164, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		set
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = stackalloc System.IntPtr[1];
+			*ptr = (nint)(&value);
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_set_indexFormat_Public_set_Void_IndexFormat_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		}
+	}
+
+	public unsafe GraphicsBuffer.Target vertexBufferTarget
+	{
+		[CallerCount(1)]
+		[CachedScanResults(RefRangeStart = 1178284, RefRangeEnd = 1178285, XrefRangeStart = 1178279, XrefRangeEnd = 1178284, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		get
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = null;
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_get_vertexBufferTarget_Public_get_Target_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+			return *(GraphicsBuffer.Target*)IL2CPP.il2cpp_object_unbox(intPtr2);
+		}
+		[CallerCount(1)]
+		[CachedScanResults(RefRangeStart = 1178290, RefRangeEnd = 1178291, XrefRangeStart = 1178285, XrefRangeEnd = 1178290, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		set
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = stackalloc System.IntPtr[1];
+			*ptr = (nint)(&value);
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_set_vertexBufferTarget_Public_set_Void_Target_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		}
+	}
+
+	public unsafe GraphicsBuffer.Target indexBufferTarget
+	{
+		[CallerCount(1)]
+		[CachedScanResults(RefRangeStart = 1178296, RefRangeEnd = 1178297, XrefRangeStart = 1178291, XrefRangeEnd = 1178296, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		get
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = null;
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_get_indexBufferTarget_Public_get_Target_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+			return *(GraphicsBuffer.Target*)IL2CPP.il2cpp_object_unbox(intPtr2);
+		}
+		[CallerCount(1)]
+		[CachedScanResults(RefRangeStart = 1178302, RefRangeEnd = 1178303, XrefRangeStart = 1178297, XrefRangeEnd = 1178302, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		set
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = stackalloc System.IntPtr[1];
+			*ptr = (nint)(&value);
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_set_indexBufferTarget_Public_set_Void_Target_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		}
+	}
+
+	public unsafe bool canAccess
+	{
+		[CallerCount(5)]
+		[CachedScanResults(RefRangeStart = 1178308, RefRangeEnd = 1178313, XrefRangeStart = 1178303, XrefRangeEnd = 1178308, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		get
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = null;
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_get_canAccess_Internal_get_Boolean_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+			return *(bool*)IL2CPP.il2cpp_object_unbox(intPtr2);
+		}
+	}
+
+	public unsafe int vertexCount
+	{
+		[CallerCount(6)]
+		[CachedScanResults(RefRangeStart = 1178318, RefRangeEnd = 1178324, XrefRangeStart = 1178313, XrefRangeEnd = 1178318, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		get
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = null;
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_get_vertexCount_Public_get_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+			return *(int*)IL2CPP.il2cpp_object_unbox(intPtr2);
+		}
+	}
+
+	public unsafe int subMeshCount
+	{
+		[CallerCount(9)]
+		[CachedScanResults(RefRangeStart = 1178329, RefRangeEnd = 1178338, XrefRangeStart = 1178324, XrefRangeEnd = 1178329, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		get
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = null;
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_get_subMeshCount_Public_get_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+			return *(int*)IL2CPP.il2cpp_object_unbox(intPtr2);
+		}
+		[CallerCount(1)]
+		[CachedScanResults(RefRangeStart = 1178343, RefRangeEnd = 1178344, XrefRangeStart = 1178338, XrefRangeEnd = 1178343, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		set
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = stackalloc System.IntPtr[1];
+			*ptr = (nint)(&value);
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_set_subMeshCount_Public_set_Void_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		}
+	}
+
+	public unsafe Bounds bounds
+	{
+		[CallerCount(7)]
+		[CachedScanResults(RefRangeStart = 1178353, RefRangeEnd = 1178360, XrefRangeStart = 1178349, XrefRangeEnd = 1178353, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		get
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = null;
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_get_bounds_Public_get_Bounds_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+			return *(Bounds*)IL2CPP.il2cpp_object_unbox(intPtr2);
+		}
+		[CallerCount(7)]
+		[CachedScanResults(RefRangeStart = 1178364, RefRangeEnd = 1178371, XrefRangeStart = 1178360, XrefRangeEnd = 1178364, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		set
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = stackalloc System.IntPtr[1];
+			*ptr = (nint)(&value);
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_set_bounds_Public_set_Void_Bounds_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		}
+	}
+
+	public unsafe Il2CppStructArray<Vector3> vertices
+	{
+		[CallerCount(7)]
+		[CachedScanResults(RefRangeStart = 1178524, RefRangeEnd = 1178531, XrefRangeStart = 1178521, XrefRangeEnd = 1178524, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		get
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = null;
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_get_vertices_Public_get_Il2CppStructArray_1_Vector3_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+			return (intPtr2 != (System.IntPtr)0) ? Il2CppObjectPool.Get<Il2CppStructArray<Vector3>>(intPtr2) : null;
+		}
+		[CallerCount(31)]
+		[CachedScanResults(RefRangeStart = 1178534, RefRangeEnd = 1178565, XrefRangeStart = 1178531, XrefRangeEnd = 1178534, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		set
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = stackalloc System.IntPtr[1];
+			*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)value);
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_set_vertices_Public_set_Void_Il2CppStructArray_1_Vector3_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		}
+	}
+
+	public unsafe Il2CppStructArray<Vector3> normals
+	{
+		[CallerCount(1)]
+		[CachedScanResults(RefRangeStart = 1178568, RefRangeEnd = 1178569, XrefRangeStart = 1178565, XrefRangeEnd = 1178568, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		get
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = null;
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_get_normals_Public_get_Il2CppStructArray_1_Vector3_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+			return (intPtr2 != (System.IntPtr)0) ? Il2CppObjectPool.Get<Il2CppStructArray<Vector3>>(intPtr2) : null;
+		}
+		[CallerCount(10)]
+		[CachedScanResults(RefRangeStart = 1178572, RefRangeEnd = 1178582, XrefRangeStart = 1178569, XrefRangeEnd = 1178572, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		set
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = stackalloc System.IntPtr[1];
+			*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)value);
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_set_normals_Public_set_Void_Il2CppStructArray_1_Vector3_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		}
+	}
+
+	public unsafe Il2CppStructArray<Vector4> tangents
+	{
+		[CallerCount(1)]
+		[CachedScanResults(RefRangeStart = 1178585, RefRangeEnd = 1178586, XrefRangeStart = 1178582, XrefRangeEnd = 1178585, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		get
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = null;
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_get_tangents_Public_get_Il2CppStructArray_1_Vector4_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+			return (intPtr2 != (System.IntPtr)0) ? Il2CppObjectPool.Get<Il2CppStructArray<Vector4>>(intPtr2) : null;
+		}
+		[CallerCount(6)]
+		[CachedScanResults(RefRangeStart = 1178589, RefRangeEnd = 1178595, XrefRangeStart = 1178586, XrefRangeEnd = 1178589, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		set
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = stackalloc System.IntPtr[1];
+			*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)value);
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_set_tangents_Public_set_Void_Il2CppStructArray_1_Vector4_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		}
+	}
+
+	public unsafe Il2CppStructArray<Vector2> uv
+	{
+		get
+		{
+			return (Il2CppStructArray<Vector2>)(object)GetAllocArrayFromChannel<Vector2>(VertexAttribute.TexCoord0);
+		}
+		[CallerCount(10)]
+		[CachedScanResults(RefRangeStart = 1178598, RefRangeEnd = 1178608, XrefRangeStart = 1178595, XrefRangeEnd = 1178598, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		set
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = stackalloc System.IntPtr[1];
+			*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)value);
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_set_uv_Public_set_Void_Il2CppStructArray_1_Vector2_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		}
+	}
+
+	public unsafe Il2CppStructArray<Vector2> uv2
+	{
+		get
+		{
+			return (Il2CppStructArray<Vector2>)(object)GetAllocArrayFromChannel<Vector2>(VertexAttribute.TexCoord1);
+		}
+		[CallerCount(9)]
+		[CachedScanResults(RefRangeStart = 1178611, RefRangeEnd = 1178620, XrefRangeStart = 1178608, XrefRangeEnd = 1178611, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		set
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = stackalloc System.IntPtr[1];
+			*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)value);
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_set_uv2_Public_set_Void_Il2CppStructArray_1_Vector2_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		}
+	}
+
+	public unsafe Il2CppStructArray<Vector2> uv3
+	{
+		get
+		{
+			return (Il2CppStructArray<Vector2>)(object)GetAllocArrayFromChannel<Vector2>(VertexAttribute.TexCoord2);
+		}
+		[CallerCount(1)]
+		[CachedScanResults(RefRangeStart = 1178623, RefRangeEnd = 1178624, XrefRangeStart = 1178620, XrefRangeEnd = 1178623, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		set
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = stackalloc System.IntPtr[1];
+			*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)value);
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_set_uv3_Public_set_Void_Il2CppStructArray_1_Vector2_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		}
+	}
+
+	public unsafe Il2CppStructArray<Color> colors
+	{
+		[CallerCount(3)]
+		[CachedScanResults(RefRangeStart = 1178627, RefRangeEnd = 1178630, XrefRangeStart = 1178624, XrefRangeEnd = 1178627, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		get
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = null;
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_get_colors_Public_get_Il2CppStructArray_1_Color_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+			return (intPtr2 != (System.IntPtr)0) ? Il2CppObjectPool.Get<Il2CppStructArray<Color>>(intPtr2) : null;
+		}
+		[CallerCount(3)]
+		[CachedScanResults(RefRangeStart = 1178633, RefRangeEnd = 1178636, XrefRangeStart = 1178630, XrefRangeEnd = 1178633, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		set
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = stackalloc System.IntPtr[1];
+			*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)value);
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_set_colors_Public_set_Void_Il2CppStructArray_1_Color_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		}
+	}
+
+	public unsafe Il2CppStructArray<Color32> colors32
+	{
+		[CallerCount(1)]
+		[CachedScanResults(RefRangeStart = 1178639, RefRangeEnd = 1178640, XrefRangeStart = 1178636, XrefRangeEnd = 1178639, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		get
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = null;
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_get_colors32_Public_get_Il2CppStructArray_1_Color32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+			return (intPtr2 != (System.IntPtr)0) ? Il2CppObjectPool.Get<Il2CppStructArray<Color32>>(intPtr2) : null;
+		}
+		[CallerCount(9)]
+		[CachedScanResults(RefRangeStart = 1178643, RefRangeEnd = 1178652, XrefRangeStart = 1178640, XrefRangeEnd = 1178643, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		set
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = stackalloc System.IntPtr[1];
+			*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)value);
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_set_colors32_Public_set_Void_Il2CppStructArray_1_Color32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		}
+	}
+
+	public unsafe Il2CppStructArray<int> triangles
+	{
+		get
+		{
+			throw new System.NotSupportedException("Method unstripping failed");
+		}
+		[CallerCount(17)]
+		[CachedScanResults(RefRangeStart = 1178920, RefRangeEnd = 1178937, XrefRangeStart = 1178915, XrefRangeEnd = 1178920, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+		set
+		{
+			IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+			System.IntPtr* ptr = stackalloc System.IntPtr[1];
+			*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)value);
+			Unsafe.SkipInit(out System.IntPtr intPtr);
+			System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_set_triangles_Public_set_Void_Il2CppStructArray_1_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+			Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		}
+	}
+
+	public int vertexBufferCount
+	{
+		get
+		{
+			System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+			if (intPtr == (System.IntPtr)0)
+			{
+				UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+			}
+			return get_vertexBufferCount_Injected(intPtr);
+		}
+	}
+
+	public int blendShapeCount
+	{
+		get
+		{
+			System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+			if (intPtr == (System.IntPtr)0)
+			{
+				UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+			}
+			return get_blendShapeCount_Injected(intPtr);
+		}
+	}
+
+	public int bindposeCount
+	{
+		get
+		{
+			System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+			if (intPtr == (System.IntPtr)0)
+			{
+				UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+			}
+			return get_bindposeCount_Injected(intPtr);
+		}
+	}
+
+	public unsafe Il2CppStructArray<Matrix4x4> bindposes
+	{
+		get
+		{
+			Unsafe.SkipInit(out BlittableArrayWrapper ret);
+			Il2CppStructArray<Matrix4x4> result;
+			try
+			{
+				System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+				if (intPtr == (System.IntPtr)0)
+				{
+					UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+				}
+				get_bindposes_Injected(intPtr, out ret);
+			}
+			finally
+			{
+				Unsafe.SkipInit(out Il2CppStructArray<Matrix4x4> array);
+				ret.Unmarshal(ref *(Il2CppArrayBase<Matrix4x4>*)(&array));
+				result = array;
+			}
+			return result;
+		}
+		set
+		{
+			//IL_0018: Expected O, but got Ref
+			//IL_001f: Expected O, but got Ref
+			//IL_002b: Expected O, but got Ref
+			System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+			if (intPtr == (System.IntPtr)0)
+			{
+				UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+			}
+			Unsafe.SkipInit(out Il2CppSystem.Span<Matrix4x4> span);
+			((Il2CppSystem.Span<Matrix4x4>)(&span))._002Ector((Il2CppArrayBase<Matrix4x4>)(object)value);
+			fixed (Matrix4x4* begin = &((Il2CppSystem.Span<Matrix4x4>)(&span)).GetPinnableReference())
+			{
+				ManagedSpanWrapper value2 = new ManagedSpanWrapper(begin, ((Il2CppSystem.Span<Matrix4x4>)(&span)).Length);
+				set_bindposes_Injected(intPtr, ref value2);
+			}
+		}
+	}
+
+	public bool isReadable
+	{
+		get
+		{
+			System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+			if (intPtr == (System.IntPtr)0)
+			{
+				UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+			}
+			return get_isReadable_Injected(intPtr);
+		}
+	}
+
+	public Il2CppStructArray<Vector2> uv4
+	{
+		get
+		{
+			return (Il2CppStructArray<Vector2>)(object)GetAllocArrayFromChannel<Vector2>(VertexAttribute.TexCoord3);
+		}
+		set
+		{
+			SetArrayForChannel<Vector2>(VertexAttribute.TexCoord3, (Il2CppArrayBase<Vector2>)(object)value);
+		}
+	}
+
+	public Il2CppStructArray<Vector2> uv5
+	{
+		get
+		{
+			return (Il2CppStructArray<Vector2>)(object)GetAllocArrayFromChannel<Vector2>(VertexAttribute.TexCoord4);
+		}
+		set
+		{
+			SetArrayForChannel<Vector2>(VertexAttribute.TexCoord4, (Il2CppArrayBase<Vector2>)(object)value);
+		}
+	}
+
+	public Il2CppStructArray<Vector2> uv6
+	{
+		get
+		{
+			return (Il2CppStructArray<Vector2>)(object)GetAllocArrayFromChannel<Vector2>(VertexAttribute.TexCoord5);
+		}
+		set
+		{
+			SetArrayForChannel<Vector2>(VertexAttribute.TexCoord5, (Il2CppArrayBase<Vector2>)(object)value);
+		}
+	}
+
+	public Il2CppStructArray<Vector2> uv7
+	{
+		get
+		{
+			return (Il2CppStructArray<Vector2>)(object)GetAllocArrayFromChannel<Vector2>(VertexAttribute.TexCoord6);
+		}
+		set
+		{
+			SetArrayForChannel<Vector2>(VertexAttribute.TexCoord6, (Il2CppArrayBase<Vector2>)(object)value);
+		}
+	}
+
+	public Il2CppStructArray<Vector2> uv8
+	{
+		get
+		{
+			return (Il2CppStructArray<Vector2>)(object)GetAllocArrayFromChannel<Vector2>(VertexAttribute.TexCoord7);
+		}
+		set
+		{
+			SetArrayForChannel<Vector2>(VertexAttribute.TexCoord7, (Il2CppArrayBase<Vector2>)(object)value);
+		}
+	}
+
+	public int vertexAttributeCount => GetVertexAttributeCountImpl();
+
+	public Il2CppStructArray<BoneWeight> boneWeights
+	{
+		get
+		{
+			return GetBoneWeightsImpl();
+		}
+		set
+		{
+			SetBoneWeightsImpl(value);
+		}
+	}
+
+	public SkinWeights skinWeightBufferLayout => (SkinWeights)GetBoneWeightBufferLayoutInternal();
+
+	static Mesh()
+	{
+		Il2CppClassPointerStore<Mesh>.NativeClassPtr = IL2CPP.GetIl2CppClass("UnityEngine.CoreModule.dll", "UnityEngine", "Mesh");
+		IL2CPP.il2cpp_runtime_class_init(Il2CppClassPointerStore<Mesh>.NativeClassPtr);
+		NativeMethodInfoPtr_Internal_Create_Private_Static_Void_Mesh_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664933);
+		NativeMethodInfoPtr__ctor_Public_Void_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664934);
+		NativeMethodInfoPtr_set_indexFormat_Public_set_Void_IndexFormat_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664935);
+		NativeMethodInfoPtr_GetIndexCountImpl_Private_UInt32_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664936);
+		NativeMethodInfoPtr_GetTrianglesCountImpl_Private_UInt32_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664937);
+		NativeMethodInfoPtr_GetIndicesImpl_Private_Il2CppStructArray_1_Int32_Int32_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664938);
+		NativeMethodInfoPtr_SetIndicesImpl_Private_Void_Int32_MeshTopology_IndexFormat_Array_Int32_Int32_Boolean_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664939);
+		NativeMethodInfoPtr_GetTrianglesNonAllocImpl_Private_Void_Il2CppStructArray_1_Int32_Int32_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664940);
+		NativeMethodInfoPtr_PrintErrorCantAccessChannel_Private_Void_VertexAttribute_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664941);
+		NativeMethodInfoPtr_HasVertexAttribute_Public_Boolean_VertexAttribute_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664942);
+		NativeMethodInfoPtr_GetVertexAttributeFormat_Public_VertexAttributeFormat_VertexAttribute_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664943);
+		NativeMethodInfoPtr_GetVertexAttributeStream_Public_Int32_VertexAttribute_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664944);
+		NativeMethodInfoPtr_GetVertexAttributeOffset_Public_Int32_VertexAttribute_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664945);
+		NativeMethodInfoPtr_SetArrayForChannelImpl_Private_Void_VertexAttribute_VertexAttributeFormat_Int32_Array_Int32_Int32_Int32_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664946);
+		NativeMethodInfoPtr_GetAllocArrayFromChannelImpl_Private_Array_VertexAttribute_VertexAttributeFormat_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664947);
+		NativeMethodInfoPtr_GetArrayFromChannelImpl_Private_Void_VertexAttribute_VertexAttributeFormat_Int32_Array_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664948);
+		NativeMethodInfoPtr_GetVertexBufferImpl_Private_GraphicsBuffer_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664949);
+		NativeMethodInfoPtr_GetIndexBufferImpl_Private_GraphicsBuffer_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664950);
+		NativeMethodInfoPtr_get_vertexBufferTarget_Public_get_Target_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664951);
+		NativeMethodInfoPtr_set_vertexBufferTarget_Public_set_Void_Target_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664952);
+		NativeMethodInfoPtr_get_indexBufferTarget_Public_get_Target_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664953);
+		NativeMethodInfoPtr_set_indexBufferTarget_Public_set_Void_Target_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664954);
+		NativeMethodInfoPtr_get_canAccess_Internal_get_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664955);
+		NativeMethodInfoPtr_get_vertexCount_Public_get_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664956);
+		NativeMethodInfoPtr_get_subMeshCount_Public_get_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664957);
+		NativeMethodInfoPtr_set_subMeshCount_Public_set_Void_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664958);
+		NativeMethodInfoPtr_GetSubMesh_Public_SubMeshDescriptor_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664959);
+		NativeMethodInfoPtr_get_bounds_Public_get_Bounds_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664960);
+		NativeMethodInfoPtr_set_bounds_Public_set_Void_Bounds_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664961);
+		NativeMethodInfoPtr_ClearImpl_Private_Void_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664962);
+		NativeMethodInfoPtr_RecalculateBoundsImpl_Private_Void_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664963);
+		NativeMethodInfoPtr_RecalculateNormalsImpl_Private_Void_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664964);
+		NativeMethodInfoPtr_MarkDynamicImpl_Private_Void_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664965);
+		NativeMethodInfoPtr_UploadMeshDataImpl_Private_Void_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664966);
+		NativeMethodInfoPtr_CombineMeshesImpl_Private_Void_Il2CppStructArray_1_CombineInstance_Boolean_Boolean_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664967);
+		NativeMethodInfoPtr_GetUVChannel_Internal_Static_VertexAttribute_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664968);
+		NativeMethodInfoPtr_DefaultDimensionForChannel_Internal_Static_Int32_VertexAttribute_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664969);
+		NativeMethodInfoPtr_GetAllocArrayFromChannel_Private_Il2CppArrayBase_1_T_VertexAttribute_VertexAttributeFormat_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664970);
+		NativeMethodInfoPtr_GetAllocArrayFromChannel_Private_Il2CppArrayBase_1_T_VertexAttribute_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664971);
+		NativeMethodInfoPtr_SetSizedArrayForChannel_Private_Void_VertexAttribute_VertexAttributeFormat_Int32_Array_Int32_Int32_Int32_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664972);
+		NativeMethodInfoPtr_SetArrayForChannel_Private_Void_VertexAttribute_VertexAttributeFormat_Int32_Il2CppArrayBase_1_T_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664973);
+		NativeMethodInfoPtr_SetArrayForChannel_Private_Void_VertexAttribute_Il2CppArrayBase_1_T_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664974);
+		NativeMethodInfoPtr_SetListForChannel_Private_Void_VertexAttribute_VertexAttributeFormat_Int32_List_1_T_Int32_Int32_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664975);
+		NativeMethodInfoPtr_SetListForChannel_Private_Void_VertexAttribute_List_1_T_Int32_Int32_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664976);
+		NativeMethodInfoPtr_GetListForChannel_Private_Void_List_1_T_Int32_VertexAttribute_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664977);
+		NativeMethodInfoPtr_GetListForChannel_Private_Void_List_1_T_Int32_VertexAttribute_Int32_VertexAttributeFormat_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664978);
+		NativeMethodInfoPtr_get_vertices_Public_get_Il2CppStructArray_1_Vector3_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664979);
+		NativeMethodInfoPtr_set_vertices_Public_set_Void_Il2CppStructArray_1_Vector3_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664980);
+		NativeMethodInfoPtr_get_normals_Public_get_Il2CppStructArray_1_Vector3_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664981);
+		NativeMethodInfoPtr_set_normals_Public_set_Void_Il2CppStructArray_1_Vector3_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664982);
+		NativeMethodInfoPtr_get_tangents_Public_get_Il2CppStructArray_1_Vector4_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664983);
+		NativeMethodInfoPtr_set_tangents_Public_set_Void_Il2CppStructArray_1_Vector4_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664984);
+		NativeMethodInfoPtr_set_uv_Public_set_Void_Il2CppStructArray_1_Vector2_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664985);
+		NativeMethodInfoPtr_set_uv2_Public_set_Void_Il2CppStructArray_1_Vector2_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664986);
+		NativeMethodInfoPtr_set_uv3_Public_set_Void_Il2CppStructArray_1_Vector2_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664987);
+		NativeMethodInfoPtr_get_colors_Public_get_Il2CppStructArray_1_Color_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664988);
+		NativeMethodInfoPtr_set_colors_Public_set_Void_Il2CppStructArray_1_Color_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664989);
+		NativeMethodInfoPtr_get_colors32_Public_get_Il2CppStructArray_1_Color32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664990);
+		NativeMethodInfoPtr_set_colors32_Public_set_Void_Il2CppStructArray_1_Color32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664991);
+		NativeMethodInfoPtr_GetVertices_Public_Void_List_1_Vector3_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664992);
+		NativeMethodInfoPtr_SetVertices_Public_Void_List_1_Vector3_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664993);
+		NativeMethodInfoPtr_SetVertices_Public_Void_List_1_Vector3_Int32_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664994);
+		NativeMethodInfoPtr_SetVertices_Public_Void_List_1_Vector3_Int32_Int32_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664995);
+		NativeMethodInfoPtr_SetNormals_Public_Void_List_1_Vector3_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664996);
+		NativeMethodInfoPtr_SetNormals_Public_Void_List_1_Vector3_Int32_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664997);
+		NativeMethodInfoPtr_SetNormals_Public_Void_List_1_Vector3_Int32_Int32_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664998);
+		NativeMethodInfoPtr_SetTangents_Public_Void_List_1_Vector4_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100664999);
+		NativeMethodInfoPtr_SetTangents_Public_Void_List_1_Vector4_Int32_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665000);
+		NativeMethodInfoPtr_SetTangents_Public_Void_List_1_Vector4_Int32_Int32_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665001);
+		NativeMethodInfoPtr_SetColors_Public_Void_List_1_Color_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665002);
+		NativeMethodInfoPtr_SetColors_Public_Void_List_1_Color_Int32_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665003);
+		NativeMethodInfoPtr_SetColors_Public_Void_List_1_Color_Int32_Int32_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665004);
+		NativeMethodInfoPtr_GetColors_Public_Void_List_1_Color32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665005);
+		NativeMethodInfoPtr_SetColors_Public_Void_List_1_Color32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665006);
+		NativeMethodInfoPtr_SetColors_Public_Void_List_1_Color32_Int32_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665007);
+		NativeMethodInfoPtr_SetColors_Public_Void_List_1_Color32_Int32_Int32_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665008);
+		NativeMethodInfoPtr_SetUvsImpl_Private_Void_Int32_Int32_List_1_T_Int32_Int32_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665009);
+		NativeMethodInfoPtr_SetUVs_Public_Void_Int32_List_1_Vector2_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665010);
+		NativeMethodInfoPtr_SetUVs_Public_Void_Int32_List_1_Vector4_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665011);
+		NativeMethodInfoPtr_SetUVs_Public_Void_Int32_List_1_Vector2_Int32_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665012);
+		NativeMethodInfoPtr_SetUVs_Public_Void_Int32_List_1_Vector2_Int32_Int32_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665013);
+		NativeMethodInfoPtr_SetUVs_Public_Void_Int32_List_1_Vector4_Int32_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665014);
+		NativeMethodInfoPtr_SetUVs_Public_Void_Int32_List_1_Vector4_Int32_Int32_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665015);
+		NativeMethodInfoPtr_SetUvsImpl_Private_Void_Int32_Int32_Array_Int32_Int32_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665016);
+		NativeMethodInfoPtr_SetUVs_Public_Void_Int32_Il2CppStructArray_1_Vector4_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665017);
+		NativeMethodInfoPtr_SetUVs_Public_Void_Int32_Il2CppStructArray_1_Vector4_Int32_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665018);
+		NativeMethodInfoPtr_SetUVs_Public_Void_Int32_Il2CppStructArray_1_Vector4_Int32_Int32_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665019);
+		NativeMethodInfoPtr_GetUVsImpl_Private_Void_Int32_List_1_T_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665020);
+		NativeMethodInfoPtr_GetUVs_Public_Void_Int32_List_1_Vector3_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665021);
+		NativeMethodInfoPtr_GetUVs_Public_Void_Int32_List_1_Vector4_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665022);
+		NativeMethodInfoPtr_GetVertexBuffer_Public_GraphicsBuffer_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665023);
+		NativeMethodInfoPtr_GetIndexBuffer_Public_GraphicsBuffer_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665024);
+		NativeMethodInfoPtr_PrintErrorCantAccessIndices_Private_Void_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665025);
+		NativeMethodInfoPtr_CheckCanAccessSubmesh_Private_Boolean_Int32_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665026);
+		NativeMethodInfoPtr_CheckCanAccessSubmeshTriangles_Private_Boolean_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665027);
+		NativeMethodInfoPtr_CheckCanAccessSubmeshIndices_Private_Boolean_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665028);
+		NativeMethodInfoPtr_set_triangles_Public_set_Void_Il2CppStructArray_1_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665029);
+		NativeMethodInfoPtr_GetTriangles_Public_Void_List_1_Int32_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665030);
+		NativeMethodInfoPtr_GetTriangles_Public_Void_List_1_Int32_Int32_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665031);
+		NativeMethodInfoPtr_GetIndices_Public_Il2CppStructArray_1_Int32_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665032);
+		NativeMethodInfoPtr_GetIndices_Public_Il2CppStructArray_1_Int32_Int32_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665033);
+		NativeMethodInfoPtr_GetIndexCount_Public_UInt32_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665034);
+		NativeMethodInfoPtr_CheckIndicesArrayRange_Private_Void_Int32_Int32_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665035);
+		NativeMethodInfoPtr_SetTrianglesImpl_Private_Void_Int32_IndexFormat_Array_Int32_Int32_Int32_Boolean_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665036);
+		NativeMethodInfoPtr_SetTriangles_Public_Void_Il2CppStructArray_1_Int32_Int32_Int32_Int32_Boolean_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665037);
+		NativeMethodInfoPtr_SetTriangles_Public_Void_List_1_Int32_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665038);
+		NativeMethodInfoPtr_SetTriangles_Public_Void_List_1_Int32_Int32_Boolean_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665039);
+		NativeMethodInfoPtr_SetTriangles_Public_Void_List_1_Int32_Int32_Int32_Int32_Boolean_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665040);
+		NativeMethodInfoPtr_SetIndices_Public_Void_Il2CppStructArray_1_Int32_MeshTopology_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665041);
+		NativeMethodInfoPtr_SetIndices_Public_Void_Il2CppStructArray_1_Int32_MeshTopology_Int32_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665042);
+		NativeMethodInfoPtr_SetIndices_Public_Void_Il2CppStructArray_1_Int32_MeshTopology_Int32_Boolean_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665043);
+		NativeMethodInfoPtr_SetIndices_Public_Void_Il2CppStructArray_1_Int32_Int32_Int32_MeshTopology_Int32_Boolean_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665044);
+		NativeMethodInfoPtr_SetIndices_Public_Void_Il2CppStructArray_1_UInt16_MeshTopology_Int32_Boolean_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665045);
+		NativeMethodInfoPtr_SetIndices_Public_Void_Il2CppStructArray_1_UInt16_Int32_Int32_MeshTopology_Int32_Boolean_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665046);
+		NativeMethodInfoPtr_SetIndices_Public_Void_List_1_Int32_MeshTopology_Int32_Boolean_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665047);
+		NativeMethodInfoPtr_SetIndices_Public_Void_List_1_Int32_Int32_Int32_MeshTopology_Int32_Boolean_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665048);
+		NativeMethodInfoPtr_Clear_Public_Void_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665049);
+		NativeMethodInfoPtr_RecalculateBounds_Public_Void_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665050);
+		NativeMethodInfoPtr_RecalculateNormals_Public_Void_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665051);
+		NativeMethodInfoPtr_RecalculateBounds_Public_Void_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665052);
+		NativeMethodInfoPtr_RecalculateNormals_Public_Void_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665053);
+		NativeMethodInfoPtr_MarkDynamic_Public_Void_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665054);
+		NativeMethodInfoPtr_UploadMeshData_Public_Void_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665055);
+		NativeMethodInfoPtr_CombineMeshes_Public_Void_Il2CppStructArray_1_CombineInstance_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665056);
+		NativeMethodInfoPtr_set_indexFormat_Injected_Private_Static_Void_IntPtr_IndexFormat_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665057);
+		NativeMethodInfoPtr_GetIndexCountImpl_Injected_Private_Static_UInt32_IntPtr_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665058);
+		NativeMethodInfoPtr_GetTrianglesCountImpl_Injected_Private_Static_UInt32_IntPtr_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665059);
+		NativeMethodInfoPtr_GetIndicesImpl_Injected_Private_Static_Void_IntPtr_Int32_Boolean_byref_BlittableArrayWrapper_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665060);
+		NativeMethodInfoPtr_SetIndicesImpl_Injected_Private_Static_Void_IntPtr_Int32_MeshTopology_IndexFormat_Array_Int32_Int32_Boolean_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665061);
+		NativeMethodInfoPtr_GetTrianglesNonAllocImpl_Injected_Private_Static_Void_IntPtr_byref_BlittableArrayWrapper_Int32_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665062);
+		NativeMethodInfoPtr_PrintErrorCantAccessChannel_Injected_Private_Static_Void_IntPtr_VertexAttribute_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665063);
+		NativeMethodInfoPtr_HasVertexAttribute_Injected_Private_Static_Boolean_IntPtr_VertexAttribute_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665064);
+		NativeMethodInfoPtr_GetVertexAttributeFormat_Injected_Private_Static_VertexAttributeFormat_IntPtr_VertexAttribute_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665065);
+		NativeMethodInfoPtr_GetVertexAttributeStream_Injected_Private_Static_Int32_IntPtr_VertexAttribute_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665066);
+		NativeMethodInfoPtr_GetVertexAttributeOffset_Injected_Private_Static_Int32_IntPtr_VertexAttribute_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665067);
+		NativeMethodInfoPtr_SetArrayForChannelImpl_Injected_Private_Static_Void_IntPtr_VertexAttribute_VertexAttributeFormat_Int32_Array_Int32_Int32_Int32_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665068);
+		NativeMethodInfoPtr_GetAllocArrayFromChannelImpl_Injected_Private_Static_Array_IntPtr_VertexAttribute_VertexAttributeFormat_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665069);
+		NativeMethodInfoPtr_GetArrayFromChannelImpl_Injected_Private_Static_Void_IntPtr_VertexAttribute_VertexAttributeFormat_Int32_Array_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665070);
+		NativeMethodInfoPtr_GetVertexBufferImpl_Injected_Private_Static_IntPtr_IntPtr_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665071);
+		NativeMethodInfoPtr_GetIndexBufferImpl_Injected_Private_Static_IntPtr_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665072);
+		NativeMethodInfoPtr_get_vertexBufferTarget_Injected_Private_Static_Target_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665073);
+		NativeMethodInfoPtr_set_vertexBufferTarget_Injected_Private_Static_Void_IntPtr_Target_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665074);
+		NativeMethodInfoPtr_get_indexBufferTarget_Injected_Private_Static_Target_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665075);
+		NativeMethodInfoPtr_set_indexBufferTarget_Injected_Private_Static_Void_IntPtr_Target_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665076);
+		NativeMethodInfoPtr_get_canAccess_Injected_Private_Static_Boolean_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665077);
+		NativeMethodInfoPtr_get_vertexCount_Injected_Private_Static_Int32_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665078);
+		NativeMethodInfoPtr_get_subMeshCount_Injected_Private_Static_Int32_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665079);
+		NativeMethodInfoPtr_set_subMeshCount_Injected_Private_Static_Void_IntPtr_Int32_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665080);
+		NativeMethodInfoPtr_GetSubMesh_Injected_Private_Static_Void_IntPtr_Int32_byref_SubMeshDescriptor_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665081);
+		NativeMethodInfoPtr_get_bounds_Injected_Private_Static_Void_IntPtr_byref_Bounds_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665082);
+		NativeMethodInfoPtr_set_bounds_Injected_Private_Static_Void_IntPtr_byref_Bounds_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665083);
+		NativeMethodInfoPtr_ClearImpl_Injected_Private_Static_Void_IntPtr_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665084);
+		NativeMethodInfoPtr_RecalculateBoundsImpl_Injected_Private_Static_Void_IntPtr_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665085);
+		NativeMethodInfoPtr_RecalculateNormalsImpl_Injected_Private_Static_Void_IntPtr_MeshUpdateFlags_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665086);
+		NativeMethodInfoPtr_MarkDynamicImpl_Injected_Private_Static_Void_IntPtr_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665087);
+		NativeMethodInfoPtr_UploadMeshDataImpl_Injected_Private_Static_Void_IntPtr_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665088);
+		NativeMethodInfoPtr_CombineMeshesImpl_Injected_Private_Static_Void_IntPtr_byref_ManagedSpanWrapper_Boolean_Boolean_Boolean_0 = IL2CPP.GetIl2CppMethodByToken(Il2CppClassPointerStore<Mesh>.NativeClassPtr, 100665089);
+		FromInstanceID_InjectedDelegateField = IL2CPP.ResolveICall<FromInstanceID_InjectedDelegate>("UnityEngine.Mesh::FromInstanceID_Injected");
+		get_indexFormat_InjectedDelegateField = IL2CPP.ResolveICall<get_indexFormat_InjectedDelegate>("UnityEngine.Mesh::get_indexFormat_Injected");
+		GetTotalIndexCount_InjectedDelegateField = IL2CPP.ResolveICall<GetTotalIndexCount_InjectedDelegate>("UnityEngine.Mesh::GetTotalIndexCount_Injected");
+		SetIndexBufferParams_InjectedDelegateField = IL2CPP.ResolveICall<SetIndexBufferParams_InjectedDelegate>("UnityEngine.Mesh::SetIndexBufferParams_Injected");
+		InternalSetIndexBufferData_InjectedDelegateField = IL2CPP.ResolveICall<InternalSetIndexBufferData_InjectedDelegate>("UnityEngine.Mesh::InternalSetIndexBufferData_Injected");
+		InternalSetIndexBufferDataFromArray_InjectedDelegateField = IL2CPP.ResolveICall<InternalSetIndexBufferDataFromArray_InjectedDelegate>("UnityEngine.Mesh::InternalSetIndexBufferDataFromArray_Injected");
+		SetVertexBufferParamsFromPtr_InjectedDelegateField = IL2CPP.ResolveICall<SetVertexBufferParamsFromPtr_InjectedDelegate>("UnityEngine.Mesh::SetVertexBufferParamsFromPtr_Injected");
+		SetVertexBufferParamsFromArray_InjectedDelegateField = IL2CPP.ResolveICall<SetVertexBufferParamsFromArray_InjectedDelegate>("UnityEngine.Mesh::SetVertexBufferParamsFromArray_Injected");
+		InternalSetVertexBufferData_InjectedDelegateField = IL2CPP.ResolveICall<InternalSetVertexBufferData_InjectedDelegate>("UnityEngine.Mesh::InternalSetVertexBufferData_Injected");
+		InternalSetVertexBufferDataFromArray_InjectedDelegateField = IL2CPP.ResolveICall<InternalSetVertexBufferDataFromArray_InjectedDelegate>("UnityEngine.Mesh::InternalSetVertexBufferDataFromArray_Injected");
+		GetVertexAttributesAlloc_InjectedDelegateField = IL2CPP.ResolveICall<GetVertexAttributesAlloc_InjectedDelegate>("UnityEngine.Mesh::GetVertexAttributesAlloc_Injected");
+		GetVertexAttributesArray_InjectedDelegateField = IL2CPP.ResolveICall<GetVertexAttributesArray_InjectedDelegate>("UnityEngine.Mesh::GetVertexAttributesArray_Injected");
+		GetVertexAttributesList_InjectedDelegateField = IL2CPP.ResolveICall<GetVertexAttributesList_InjectedDelegate>("UnityEngine.Mesh::GetVertexAttributesList_Injected");
+		GetVertexAttributeCountImpl_InjectedDelegateField = IL2CPP.ResolveICall<GetVertexAttributeCountImpl_InjectedDelegate>("UnityEngine.Mesh::GetVertexAttributeCountImpl_Injected");
+		GetVertexAttribute_InjectedDelegateField = IL2CPP.ResolveICall<GetVertexAttribute_InjectedDelegate>("UnityEngine.Mesh::GetVertexAttribute_Injected");
+		GetIndexStartImpl_InjectedDelegateField = IL2CPP.ResolveICall<GetIndexStartImpl_InjectedDelegate>("UnityEngine.Mesh::GetIndexStartImpl_Injected");
+		GetBaseVertexImpl_InjectedDelegateField = IL2CPP.ResolveICall<GetBaseVertexImpl_InjectedDelegate>("UnityEngine.Mesh::GetBaseVertexImpl_Injected");
+		GetTrianglesImpl_InjectedDelegateField = IL2CPP.ResolveICall<GetTrianglesImpl_InjectedDelegate>("UnityEngine.Mesh::GetTrianglesImpl_Injected");
+		SetIndicesNativeArrayImpl_InjectedDelegateField = IL2CPP.ResolveICall<SetIndicesNativeArrayImpl_InjectedDelegate>("UnityEngine.Mesh::SetIndicesNativeArrayImpl_Injected");
+		GetTrianglesNonAllocImpl16_InjectedDelegateField = IL2CPP.ResolveICall<GetTrianglesNonAllocImpl16_InjectedDelegate>("UnityEngine.Mesh::GetTrianglesNonAllocImpl16_Injected");
+		GetIndicesNonAllocImpl_InjectedDelegateField = IL2CPP.ResolveICall<GetIndicesNonAllocImpl_InjectedDelegate>("UnityEngine.Mesh::GetIndicesNonAllocImpl_Injected");
+		GetIndicesNonAllocImpl16_InjectedDelegateField = IL2CPP.ResolveICall<GetIndicesNonAllocImpl16_InjectedDelegate>("UnityEngine.Mesh::GetIndicesNonAllocImpl16_Injected");
+		GetVertexAttributeDimension_InjectedDelegateField = IL2CPP.ResolveICall<GetVertexAttributeDimension_InjectedDelegate>("UnityEngine.Mesh::GetVertexAttributeDimension_Injected");
+		SetNativeArrayForChannelImpl_InjectedDelegateField = IL2CPP.ResolveICall<SetNativeArrayForChannelImpl_InjectedDelegate>("UnityEngine.Mesh::SetNativeArrayForChannelImpl_Injected");
+		get_vertexBufferCount_InjectedDelegateField = IL2CPP.ResolveICall<get_vertexBufferCount_InjectedDelegate>("UnityEngine.Mesh::get_vertexBufferCount_Injected");
+		GetVertexBufferStride_InjectedDelegateField = IL2CPP.ResolveICall<GetVertexBufferStride_InjectedDelegate>("UnityEngine.Mesh::GetVertexBufferStride_Injected");
+		GetNativeVertexBufferPtr_InjectedDelegateField = IL2CPP.ResolveICall<GetNativeVertexBufferPtr_InjectedDelegate>("UnityEngine.Mesh::GetNativeVertexBufferPtr_Injected");
+		GetNativeIndexBufferPtr_InjectedDelegateField = IL2CPP.ResolveICall<GetNativeIndexBufferPtr_InjectedDelegate>("UnityEngine.Mesh::GetNativeIndexBufferPtr_Injected");
+		GetBoneWeightBufferImpl_InjectedDelegateField = IL2CPP.ResolveICall<GetBoneWeightBufferImpl_InjectedDelegate>("UnityEngine.Mesh::GetBoneWeightBufferImpl_Injected");
+		GetBlendShapeBufferImpl_InjectedDelegateField = IL2CPP.ResolveICall<GetBlendShapeBufferImpl_InjectedDelegate>("UnityEngine.Mesh::GetBlendShapeBufferImpl_Injected");
+		get_blendShapeCount_InjectedDelegateField = IL2CPP.ResolveICall<get_blendShapeCount_InjectedDelegate>("UnityEngine.Mesh::get_blendShapeCount_Injected");
+		ClearBlendShapes_InjectedDelegateField = IL2CPP.ResolveICall<ClearBlendShapes_InjectedDelegate>("UnityEngine.Mesh::ClearBlendShapes_Injected");
+		GetBlendShapeName_InjectedDelegateField = IL2CPP.ResolveICall<GetBlendShapeName_InjectedDelegate>("UnityEngine.Mesh::GetBlendShapeName_Injected");
+		GetBlendShapeIndex_InjectedDelegateField = IL2CPP.ResolveICall<GetBlendShapeIndex_InjectedDelegate>("UnityEngine.Mesh::GetBlendShapeIndex_Injected");
+		GetBlendShapeFrameCount_InjectedDelegateField = IL2CPP.ResolveICall<GetBlendShapeFrameCount_InjectedDelegate>("UnityEngine.Mesh::GetBlendShapeFrameCount_Injected");
+		GetBlendShapeFrameWeight_InjectedDelegateField = IL2CPP.ResolveICall<GetBlendShapeFrameWeight_InjectedDelegate>("UnityEngine.Mesh::GetBlendShapeFrameWeight_Injected");
+		GetBlendShapeFrameVertices_InjectedDelegateField = IL2CPP.ResolveICall<GetBlendShapeFrameVertices_InjectedDelegate>("UnityEngine.Mesh::GetBlendShapeFrameVertices_Injected");
+		AddBlendShapeFrame_InjectedDelegateField = IL2CPP.ResolveICall<AddBlendShapeFrame_InjectedDelegate>("UnityEngine.Mesh::AddBlendShapeFrame_Injected");
+		HasBoneWeights_InjectedDelegateField = IL2CPP.ResolveICall<HasBoneWeights_InjectedDelegate>("UnityEngine.Mesh::HasBoneWeights_Injected");
+		GetBoneWeightsImpl_InjectedDelegateField = IL2CPP.ResolveICall<GetBoneWeightsImpl_InjectedDelegate>("UnityEngine.Mesh::GetBoneWeightsImpl_Injected");
+		SetBoneWeightsImpl_InjectedDelegateField = IL2CPP.ResolveICall<SetBoneWeightsImpl_InjectedDelegate>("UnityEngine.Mesh::SetBoneWeightsImpl_Injected");
+		InternalSetBoneWeights_InjectedDelegateField = IL2CPP.ResolveICall<InternalSetBoneWeights_InjectedDelegate>("UnityEngine.Mesh::InternalSetBoneWeights_Injected");
+		GetAllBoneWeightsArraySize_InjectedDelegateField = IL2CPP.ResolveICall<GetAllBoneWeightsArraySize_InjectedDelegate>("UnityEngine.Mesh::GetAllBoneWeightsArraySize_Injected");
+		GetBoneWeightBufferLayoutInternal_InjectedDelegateField = IL2CPP.ResolveICall<GetBoneWeightBufferLayoutInternal_InjectedDelegate>("UnityEngine.Mesh::GetBoneWeightBufferLayoutInternal_Injected");
+		GetAllBoneWeightsArray_InjectedDelegateField = IL2CPP.ResolveICall<GetAllBoneWeightsArray_InjectedDelegate>("UnityEngine.Mesh::GetAllBoneWeightsArray_Injected");
+		GetBonesPerVertexArray_InjectedDelegateField = IL2CPP.ResolveICall<GetBonesPerVertexArray_InjectedDelegate>("UnityEngine.Mesh::GetBonesPerVertexArray_Injected");
+		get_bindposeCount_InjectedDelegateField = IL2CPP.ResolveICall<get_bindposeCount_InjectedDelegate>("UnityEngine.Mesh::get_bindposeCount_Injected");
+		get_bindposes_InjectedDelegateField = IL2CPP.ResolveICall<get_bindposes_InjectedDelegate>("UnityEngine.Mesh::get_bindposes_Injected");
+		set_bindposes_InjectedDelegateField = IL2CPP.ResolveICall<set_bindposes_InjectedDelegate>("UnityEngine.Mesh::set_bindposes_Injected");
+		SetBindposesFromScript_NativeArray_InjectedDelegateField = IL2CPP.ResolveICall<SetBindposesFromScript_NativeArray_InjectedDelegate>("UnityEngine.Mesh::SetBindposesFromScript_NativeArray_Injected");
+		GetBindposesArray_InjectedDelegateField = IL2CPP.ResolveICall<GetBindposesArray_InjectedDelegate>("UnityEngine.Mesh::GetBindposesArray_Injected");
+		GetBoneWeightsNonAllocImpl_InjectedDelegateField = IL2CPP.ResolveICall<GetBoneWeightsNonAllocImpl_InjectedDelegate>("UnityEngine.Mesh::GetBoneWeightsNonAllocImpl_Injected");
+		GetBindposesNonAllocImpl_InjectedDelegateField = IL2CPP.ResolveICall<GetBindposesNonAllocImpl_InjectedDelegate>("UnityEngine.Mesh::GetBindposesNonAllocImpl_Injected");
+		get_isReadable_InjectedDelegateField = IL2CPP.ResolveICall<get_isReadable_InjectedDelegate>("UnityEngine.Mesh::get_isReadable_Injected");
+		SetSubMesh_InjectedDelegateField = IL2CPP.ResolveICall<SetSubMesh_InjectedDelegate>("UnityEngine.Mesh::SetSubMesh_Injected");
+		SetAllSubMeshesAtOnceFromArray_InjectedDelegateField = IL2CPP.ResolveICall<SetAllSubMeshesAtOnceFromArray_InjectedDelegate>("UnityEngine.Mesh::SetAllSubMeshesAtOnceFromArray_Injected");
+		SetAllSubMeshesAtOnceFromNativeArray_InjectedDelegateField = IL2CPP.ResolveICall<SetAllSubMeshesAtOnceFromNativeArray_InjectedDelegate>("UnityEngine.Mesh::SetAllSubMeshesAtOnceFromNativeArray_Injected");
+		RecalculateTangentsImpl_InjectedDelegateField = IL2CPP.ResolveICall<RecalculateTangentsImpl_InjectedDelegate>("UnityEngine.Mesh::RecalculateTangentsImpl_Injected");
+		MarkModified_InjectedDelegateField = IL2CPP.ResolveICall<MarkModified_InjectedDelegate>("UnityEngine.Mesh::MarkModified_Injected");
+		GetTopologyImpl_InjectedDelegateField = IL2CPP.ResolveICall<GetTopologyImpl_InjectedDelegate>("UnityEngine.Mesh::GetTopologyImpl_Injected");
+		RecalculateUVDistributionMetricImpl_InjectedDelegateField = IL2CPP.ResolveICall<RecalculateUVDistributionMetricImpl_InjectedDelegate>("UnityEngine.Mesh::RecalculateUVDistributionMetricImpl_Injected");
+		RecalculateUVDistributionMetricsImpl_InjectedDelegateField = IL2CPP.ResolveICall<RecalculateUVDistributionMetricsImpl_InjectedDelegate>("UnityEngine.Mesh::RecalculateUVDistributionMetricsImpl_Injected");
+		GetUVDistributionMetric_InjectedDelegateField = IL2CPP.ResolveICall<GetUVDistributionMetric_InjectedDelegate>("UnityEngine.Mesh::GetUVDistributionMetric_Injected");
+		OptimizeImpl_InjectedDelegateField = IL2CPP.ResolveICall<OptimizeImpl_InjectedDelegate>("UnityEngine.Mesh::OptimizeImpl_Injected");
+		OptimizeIndexBuffersImpl_InjectedDelegateField = IL2CPP.ResolveICall<OptimizeIndexBuffersImpl_InjectedDelegate>("UnityEngine.Mesh::OptimizeIndexBuffersImpl_Injected");
+		OptimizeReorderVertexBufferImpl_InjectedDelegateField = IL2CPP.ResolveICall<OptimizeReorderVertexBufferImpl_InjectedDelegate>("UnityEngine.Mesh::OptimizeReorderVertexBufferImpl_Injected");
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178116, XrefRangeEnd = 1178118, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void Internal_Create(Mesh mono)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)mono);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_Internal_Create_Private_Static_Void_Mesh_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(35)]
+	[CachedScanResults(RefRangeStart = 1178124, RefRangeEnd = 1178159, XrefRangeStart = 1178118, XrefRangeEnd = 1178124, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe Mesh()
+		: this(IL2CPP.il2cpp_object_new(Il2CppClassPointerStore<Mesh>.NativeClassPtr))
+	{
+		System.IntPtr* ptr = null;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr__ctor_Public_Void_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178170, XrefRangeEnd = 1178175, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe uint GetIndexCountImpl(int submesh)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&submesh);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetIndexCountImpl_Private_UInt32_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(uint*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178175, XrefRangeEnd = 1178180, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe uint GetTrianglesCountImpl(int submesh)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&submesh);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetTrianglesCountImpl_Private_UInt32_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(uint*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(2)]
+	[CachedScanResults(RefRangeStart = 1178190, RefRangeEnd = 1178192, XrefRangeStart = 1178180, XrefRangeEnd = 1178190, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe Il2CppStructArray<int> GetIndicesImpl(int submesh, bool applyBaseVertex)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&submesh);
+		*(bool**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &applyBaseVertex;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetIndicesImpl_Private_Il2CppStructArray_1_Int32_Int32_Boolean_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return (intPtr2 != (System.IntPtr)0) ? Il2CppObjectPool.Get<Il2CppStructArray<int>>(intPtr2) : null;
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178192, XrefRangeEnd = 1178197, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetIndicesImpl(int submesh, MeshTopology topology, IndexFormat indicesFormat, Il2CppSystem.Array indices, int arrayStart, int arraySize, bool calculateBounds, int baseVertex)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[8];
+		*ptr = (nint)(&submesh);
+		*(MeshTopology**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &topology;
+		*(IndexFormat**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &indicesFormat;
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)indices);
+		*(int**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &arrayStart;
+		*(int**)((byte*)ptr + checked((nuint)5u * unchecked((nuint)sizeof(System.IntPtr)))) = &arraySize;
+		*(bool**)((byte*)ptr + checked((nuint)6u * unchecked((nuint)sizeof(System.IntPtr)))) = &calculateBounds;
+		*(int**)((byte*)ptr + checked((nuint)7u * unchecked((nuint)sizeof(System.IntPtr)))) = &baseVertex;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetIndicesImpl_Private_Void_Int32_MeshTopology_IndexFormat_Array_Int32_Int32_Boolean_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1178207, RefRangeEnd = 1178208, XrefRangeStart = 1178197, XrefRangeEnd = 1178207, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void GetTrianglesNonAllocImpl([Out] Il2CppStructArray<int> values, int submesh, bool applyBaseVertex)
+	{
+		//IL_005f: Expected native int or pointer, but got O
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[3];
+		nint num = 0;
+		*ptr = (nint)(&num);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		*(bool**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &applyBaseVertex;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetTrianglesNonAllocImpl_Private_Void_Il2CppStructArray_1_Int32_Int32_Boolean_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		nint num2 = num;
+		Unsafe.Write((void*)(nint)values, (num2 == 0) ? null : new Il2CppStructArray<int>((System.IntPtr)num2));
+	}
+
+	[CallerCount(2)]
+	[CachedScanResults(RefRangeStart = 1178213, RefRangeEnd = 1178215, XrefRangeStart = 1178208, XrefRangeEnd = 1178213, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void PrintErrorCantAccessChannel(VertexAttribute ch)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&ch);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_PrintErrorCantAccessChannel_Private_Void_VertexAttribute_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(5)]
+	[CachedScanResults(RefRangeStart = 1178220, RefRangeEnd = 1178225, XrefRangeStart = 1178215, XrefRangeEnd = 1178220, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe bool HasVertexAttribute(VertexAttribute attr)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&attr);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_HasVertexAttribute_Public_Boolean_VertexAttribute_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(bool*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1178230, RefRangeEnd = 1178231, XrefRangeStart = 1178225, XrefRangeEnd = 1178230, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe VertexAttributeFormat GetVertexAttributeFormat(VertexAttribute attr)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&attr);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetVertexAttributeFormat_Public_VertexAttributeFormat_VertexAttribute_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(VertexAttributeFormat*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1178236, RefRangeEnd = 1178237, XrefRangeStart = 1178231, XrefRangeEnd = 1178236, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe int GetVertexAttributeStream(VertexAttribute attr)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&attr);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetVertexAttributeStream_Public_Int32_VertexAttribute_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(int*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1178242, RefRangeEnd = 1178243, XrefRangeStart = 1178237, XrefRangeEnd = 1178242, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe int GetVertexAttributeOffset(VertexAttribute attr)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&attr);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetVertexAttributeOffset_Public_Int32_VertexAttribute_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(int*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178243, XrefRangeEnd = 1178248, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetArrayForChannelImpl(VertexAttribute channel, VertexAttributeFormat format, int dim, Il2CppSystem.Array values, int arraySize, int valuesStart, int valuesCount, MeshUpdateFlags flags)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[8];
+		*ptr = (nint)(&channel);
+		*(VertexAttributeFormat**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &format;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &dim;
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)values);
+		*(int**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &arraySize;
+		*(int**)((byte*)ptr + checked((nuint)5u * unchecked((nuint)sizeof(System.IntPtr)))) = &valuesStart;
+		*(int**)((byte*)ptr + checked((nuint)6u * unchecked((nuint)sizeof(System.IntPtr)))) = &valuesCount;
+		*(MeshUpdateFlags**)((byte*)ptr + checked((nuint)7u * unchecked((nuint)sizeof(System.IntPtr)))) = &flags;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetArrayForChannelImpl_Private_Void_VertexAttribute_VertexAttributeFormat_Int32_Array_Int32_Int32_Int32_MeshUpdateFlags_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(2)]
+	[CachedScanResults(RefRangeStart = 1178253, RefRangeEnd = 1178255, XrefRangeStart = 1178248, XrefRangeEnd = 1178253, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe Il2CppSystem.Array GetAllocArrayFromChannelImpl(VertexAttribute channel, VertexAttributeFormat format, int dim)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[3];
+		*ptr = (nint)(&channel);
+		*(VertexAttributeFormat**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &format;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &dim;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetAllocArrayFromChannelImpl_Private_Array_VertexAttribute_VertexAttributeFormat_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return (intPtr2 != (System.IntPtr)0) ? Il2CppObjectPool.Get<Il2CppSystem.Array>(intPtr2) : null;
+	}
+
+	[CallerCount(3)]
+	[CachedScanResults(RefRangeStart = 1178260, RefRangeEnd = 1178263, XrefRangeStart = 1178255, XrefRangeEnd = 1178260, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void GetArrayFromChannelImpl(VertexAttribute channel, VertexAttributeFormat format, int dim, Il2CppSystem.Array values)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[4];
+		*ptr = (nint)(&channel);
+		*(VertexAttributeFormat**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &format;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &dim;
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)values);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetArrayFromChannelImpl_Private_Void_VertexAttribute_VertexAttributeFormat_Int32_Array_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178263, XrefRangeEnd = 1178271, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe GraphicsBuffer GetVertexBufferImpl(int index)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&index);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetVertexBufferImpl_Private_GraphicsBuffer_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return (intPtr2 != (System.IntPtr)0) ? Il2CppObjectPool.Get<GraphicsBuffer>(intPtr2) : null;
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178271, XrefRangeEnd = 1178279, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe GraphicsBuffer GetIndexBufferImpl()
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = null;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetIndexBufferImpl_Private_GraphicsBuffer_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return (intPtr2 != (System.IntPtr)0) ? Il2CppObjectPool.Get<GraphicsBuffer>(intPtr2) : null;
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1178348, RefRangeEnd = 1178349, XrefRangeStart = 1178344, XrefRangeEnd = 1178348, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe SubMeshDescriptor GetSubMesh(int index)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&index);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetSubMesh_Public_SubMeshDescriptor_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(SubMeshDescriptor*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178371, XrefRangeEnd = 1178376, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void ClearImpl(bool keepVertexLayout)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&keepVertexLayout);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_ClearImpl_Private_Void_Boolean_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178376, XrefRangeEnd = 1178381, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void RecalculateBoundsImpl(MeshUpdateFlags flags)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&flags);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_RecalculateBoundsImpl_Private_Void_MeshUpdateFlags_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178381, XrefRangeEnd = 1178386, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void RecalculateNormalsImpl(MeshUpdateFlags flags)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&flags);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_RecalculateNormalsImpl_Private_Void_MeshUpdateFlags_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178386, XrefRangeEnd = 1178391, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void MarkDynamicImpl()
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = null;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_MarkDynamicImpl_Private_Void_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178391, XrefRangeEnd = 1178396, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void UploadMeshDataImpl(bool markNoLongerReadable)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&markNoLongerReadable);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_UploadMeshDataImpl_Private_Void_Boolean_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178396, XrefRangeEnd = 1178407, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void CombineMeshesImpl(Il2CppStructArray<CombineInstance> combine, bool mergeSubMeshes, bool useMatrices, bool hasLightmapData)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[4];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)combine);
+		*(bool**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &mergeSubMeshes;
+		*(bool**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &useMatrices;
+		*(bool**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &hasLightmapData;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_CombineMeshesImpl_Private_Void_Il2CppStructArray_1_CombineInstance_Boolean_Boolean_Boolean_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(2)]
+	[CachedScanResults(RefRangeStart = 1178407, RefRangeEnd = 1178409, XrefRangeStart = 1178407, XrefRangeEnd = 1178407, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static VertexAttribute GetUVChannel(int uvIndex)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&uvIndex);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetUVChannel_Internal_Static_VertexAttribute_Int32_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(VertexAttribute*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(3)]
+	[CachedScanResults(RefRangeStart = 1178409, RefRangeEnd = 1178412, XrefRangeStart = 1178409, XrefRangeEnd = 1178409, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static int DefaultDimensionForChannel(VertexAttribute channel)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&channel);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_DefaultDimensionForChannel_Internal_Static_Int32_VertexAttribute_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(int*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1178423, RefRangeEnd = 1178424, XrefRangeStart = 1178412, XrefRangeEnd = 1178423, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe Il2CppArrayBase<T> GetAllocArrayFromChannel<T>(VertexAttribute channel, VertexAttributeFormat format, int dim)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[3];
+		*ptr = (nint)(&channel);
+		*(VertexAttributeFormat**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &format;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &dim;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(MethodInfoStoreGeneric_GetAllocArrayFromChannel_Private_Il2CppArrayBase_1_T_VertexAttribute_VertexAttributeFormat_Int32_0<T>.Pointer, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return Il2CppArrayBase<T>.WrapNativeGenericArrayPointer(intPtr2);
+	}
+
+	[CallerCount(4)]
+	[CachedScanResults(RefRangeStart = 1178437, RefRangeEnd = 1178441, XrefRangeStart = 1178424, XrefRangeEnd = 1178437, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe Il2CppArrayBase<T> GetAllocArrayFromChannel<T>(VertexAttribute channel)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&channel);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(MethodInfoStoreGeneric_GetAllocArrayFromChannel_Private_Il2CppArrayBase_1_T_VertexAttribute_0<T>.Pointer, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return Il2CppArrayBase<T>.WrapNativeGenericArrayPointer(intPtr2);
+	}
+
+	[CallerCount(9)]
+	[CachedScanResults(RefRangeStart = 1178454, RefRangeEnd = 1178463, XrefRangeStart = 1178441, XrefRangeEnd = 1178454, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetSizedArrayForChannel(VertexAttribute channel, VertexAttributeFormat format, int dim, Il2CppSystem.Array values, int valuesArrayLength, int valuesStart, int valuesCount, MeshUpdateFlags flags)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[8];
+		*ptr = (nint)(&channel);
+		*(VertexAttributeFormat**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &format;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &dim;
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)values);
+		*(int**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &valuesArrayLength;
+		*(int**)((byte*)ptr + checked((nuint)5u * unchecked((nuint)sizeof(System.IntPtr)))) = &valuesStart;
+		*(int**)((byte*)ptr + checked((nuint)6u * unchecked((nuint)sizeof(System.IntPtr)))) = &valuesCount;
+		*(MeshUpdateFlags**)((byte*)ptr + checked((nuint)7u * unchecked((nuint)sizeof(System.IntPtr)))) = &flags;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetSizedArrayForChannel_Private_Void_VertexAttribute_VertexAttributeFormat_Int32_Array_Int32_Int32_Int32_MeshUpdateFlags_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1178465, RefRangeEnd = 1178466, XrefRangeStart = 1178463, XrefRangeEnd = 1178465, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetArrayForChannel<T>(VertexAttribute channel, VertexAttributeFormat format, int dim, Il2CppArrayBase<T> values, MeshUpdateFlags flags = MeshUpdateFlags.Default)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[5];
+		*ptr = (nint)(&channel);
+		*(VertexAttributeFormat**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &format;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &dim;
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)values);
+		*(MeshUpdateFlags**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &flags;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(MethodInfoStoreGeneric_SetArrayForChannel_Private_Void_VertexAttribute_VertexAttributeFormat_Int32_Il2CppArrayBase_1_T_MeshUpdateFlags_0<T>.Pointer, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(7)]
+	[CachedScanResults(RefRangeStart = 1178469, RefRangeEnd = 1178476, XrefRangeStart = 1178466, XrefRangeEnd = 1178469, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetArrayForChannel<T>(VertexAttribute channel, Il2CppArrayBase<T> values, MeshUpdateFlags flags = MeshUpdateFlags.Default)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[3];
+		*ptr = (nint)(&channel);
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)values);
+		*(MeshUpdateFlags**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &flags;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(MethodInfoStoreGeneric_SetArrayForChannel_Private_Void_VertexAttribute_Il2CppArrayBase_1_T_MeshUpdateFlags_0<T>.Pointer, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(3)]
+	[CachedScanResults(RefRangeStart = 1178482, RefRangeEnd = 1178485, XrefRangeStart = 1178476, XrefRangeEnd = 1178482, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetListForChannel<T>(VertexAttribute channel, VertexAttributeFormat format, int dim, List<T> values, int start, int length, MeshUpdateFlags flags)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[7];
+		*ptr = (nint)(&channel);
+		*(VertexAttributeFormat**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &format;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &dim;
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)values);
+		*(int**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)5u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		*(MeshUpdateFlags**)((byte*)ptr + checked((nuint)6u * unchecked((nuint)sizeof(System.IntPtr)))) = &flags;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(MethodInfoStoreGeneric_SetListForChannel_Private_Void_VertexAttribute_VertexAttributeFormat_Int32_List_1_T_Int32_Int32_MeshUpdateFlags_0<T>.Pointer, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(12)]
+	[CachedScanResults(RefRangeStart = 1178492, RefRangeEnd = 1178504, XrefRangeStart = 1178485, XrefRangeEnd = 1178492, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetListForChannel<T>(VertexAttribute channel, List<T> values, int start, int length, MeshUpdateFlags flags)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[5];
+		*ptr = (nint)(&channel);
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)values);
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		*(MeshUpdateFlags**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &flags;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(MethodInfoStoreGeneric_SetListForChannel_Private_Void_VertexAttribute_List_1_T_Int32_Int32_MeshUpdateFlags_0<T>.Pointer, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1178512, RefRangeEnd = 1178513, XrefRangeStart = 1178504, XrefRangeEnd = 1178512, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void GetListForChannel<T>(List<T> buffer, int capacity, VertexAttribute channel, int dim)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[4];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)buffer);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &capacity;
+		*(VertexAttribute**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &channel;
+		*(int**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &dim;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(MethodInfoStoreGeneric_GetListForChannel_Private_Void_List_1_T_Int32_VertexAttribute_Int32_0<T>.Pointer, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1178520, RefRangeEnd = 1178521, XrefRangeStart = 1178513, XrefRangeEnd = 1178520, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void GetListForChannel<T>(List<T> buffer, int capacity, VertexAttribute channel, int dim, VertexAttributeFormat channelType)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[5];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)buffer);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &capacity;
+		*(VertexAttribute**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &channel;
+		*(int**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &dim;
+		*(VertexAttributeFormat**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &channelType;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(MethodInfoStoreGeneric_GetListForChannel_Private_Void_List_1_T_Int32_VertexAttribute_Int32_VertexAttributeFormat_0<T>.Pointer, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1178659, RefRangeEnd = 1178660, XrefRangeStart = 1178652, XrefRangeEnd = 1178659, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void GetVertices(List<Vector3> vertices)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)vertices);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetVertices_Public_Void_List_1_Vector3_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(7)]
+	[CachedScanResults(RefRangeStart = 1178666, RefRangeEnd = 1178673, XrefRangeStart = 1178660, XrefRangeEnd = 1178666, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetVertices(List<Vector3> inVertices)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)inVertices);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetVertices_Public_Void_List_1_Vector3_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178673, XrefRangeEnd = 1178676, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetVertices(List<Vector3> inVertices, int start, int length)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[3];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)inVertices);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetVertices_Public_Void_List_1_Vector3_Int32_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178676, XrefRangeEnd = 1178679, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetVertices(List<Vector3> inVertices, int start, int length, MeshUpdateFlags flags)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[4];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)inVertices);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		*(MeshUpdateFlags**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &flags;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetVertices_Public_Void_List_1_Vector3_Int32_Int32_MeshUpdateFlags_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(2)]
+	[CachedScanResults(RefRangeStart = 1178685, RefRangeEnd = 1178687, XrefRangeStart = 1178679, XrefRangeEnd = 1178685, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetNormals(List<Vector3> inNormals)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)inNormals);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetNormals_Public_Void_List_1_Vector3_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178687, XrefRangeEnd = 1178690, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetNormals(List<Vector3> inNormals, int start, int length)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[3];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)inNormals);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetNormals_Public_Void_List_1_Vector3_Int32_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178690, XrefRangeEnd = 1178693, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetNormals(List<Vector3> inNormals, int start, int length, MeshUpdateFlags flags)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[4];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)inNormals);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		*(MeshUpdateFlags**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &flags;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetNormals_Public_Void_List_1_Vector3_Int32_Int32_MeshUpdateFlags_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(2)]
+	[CachedScanResults(RefRangeStart = 1178699, RefRangeEnd = 1178701, XrefRangeStart = 1178693, XrefRangeEnd = 1178699, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetTangents(List<Vector4> inTangents)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)inTangents);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetTangents_Public_Void_List_1_Vector4_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178701, XrefRangeEnd = 1178704, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetTangents(List<Vector4> inTangents, int start, int length)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[3];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)inTangents);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetTangents_Public_Void_List_1_Vector4_Int32_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178704, XrefRangeEnd = 1178707, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetTangents(List<Vector4> inTangents, int start, int length, MeshUpdateFlags flags)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[4];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)inTangents);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		*(MeshUpdateFlags**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &flags;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetTangents_Public_Void_List_1_Vector4_Int32_Int32_MeshUpdateFlags_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(2)]
+	[CachedScanResults(RefRangeStart = 1178713, RefRangeEnd = 1178715, XrefRangeStart = 1178707, XrefRangeEnd = 1178713, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetColors(List<Color> inColors)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)inColors);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetColors_Public_Void_List_1_Color_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178715, XrefRangeEnd = 1178718, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetColors(List<Color> inColors, int start, int length)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[3];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)inColors);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetColors_Public_Void_List_1_Color_Int32_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178718, XrefRangeEnd = 1178721, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetColors(List<Color> inColors, int start, int length, MeshUpdateFlags flags)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[4];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)inColors);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		*(MeshUpdateFlags**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &flags;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetColors_Public_Void_List_1_Color_Int32_Int32_MeshUpdateFlags_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1178728, RefRangeEnd = 1178729, XrefRangeStart = 1178721, XrefRangeEnd = 1178728, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void GetColors(List<Color32> colors)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)colors);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetColors_Public_Void_List_1_Color32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(4)]
+	[CachedScanResults(RefRangeStart = 1178735, RefRangeEnd = 1178739, XrefRangeStart = 1178729, XrefRangeEnd = 1178735, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetColors(List<Color32> inColors)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)inColors);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetColors_Public_Void_List_1_Color32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178739, XrefRangeEnd = 1178742, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetColors(List<Color32> inColors, int start, int length)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[3];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)inColors);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetColors_Public_Void_List_1_Color32_Int32_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178742, XrefRangeEnd = 1178745, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetColors(List<Color32> inColors, int start, int length, MeshUpdateFlags flags)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[4];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)inColors);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		*(MeshUpdateFlags**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &flags;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetColors_Public_Void_List_1_Color32_Int32_Int32_MeshUpdateFlags_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(6)]
+	[CachedScanResults(RefRangeStart = 1178755, RefRangeEnd = 1178761, XrefRangeStart = 1178745, XrefRangeEnd = 1178755, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetUvsImpl<T>(int uvIndex, int dim, List<T> uvs, int start, int length, MeshUpdateFlags flags)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[6];
+		*ptr = (nint)(&uvIndex);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &dim;
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)uvs);
+		*(int**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		*(MeshUpdateFlags**)((byte*)ptr + checked((nuint)5u * unchecked((nuint)sizeof(System.IntPtr)))) = &flags;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(MethodInfoStoreGeneric_SetUvsImpl_Private_Void_Int32_Int32_List_1_T_Int32_Int32_MeshUpdateFlags_0<T>.Pointer, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(3)]
+	[CachedScanResults(RefRangeStart = 1178767, RefRangeEnd = 1178770, XrefRangeStart = 1178761, XrefRangeEnd = 1178767, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetUVs(int channel, List<Vector2> uvs)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&channel);
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)uvs);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetUVs_Public_Void_Int32_List_1_Vector2_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(8)]
+	[CachedScanResults(RefRangeStart = 1178776, RefRangeEnd = 1178784, XrefRangeStart = 1178770, XrefRangeEnd = 1178776, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetUVs(int channel, List<Vector4> uvs)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&channel);
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)uvs);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetUVs_Public_Void_Int32_List_1_Vector4_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178784, XrefRangeEnd = 1178787, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetUVs(int channel, List<Vector2> uvs, int start, int length)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[4];
+		*ptr = (nint)(&channel);
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)uvs);
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetUVs_Public_Void_Int32_List_1_Vector2_Int32_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178787, XrefRangeEnd = 1178790, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetUVs(int channel, List<Vector2> uvs, int start, int length, MeshUpdateFlags flags)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[5];
+		*ptr = (nint)(&channel);
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)uvs);
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		*(MeshUpdateFlags**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &flags;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetUVs_Public_Void_Int32_List_1_Vector2_Int32_Int32_MeshUpdateFlags_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178790, XrefRangeEnd = 1178793, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetUVs(int channel, List<Vector4> uvs, int start, int length)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[4];
+		*ptr = (nint)(&channel);
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)uvs);
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetUVs_Public_Void_Int32_List_1_Vector4_Int32_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178793, XrefRangeEnd = 1178796, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetUVs(int channel, List<Vector4> uvs, int start, int length, MeshUpdateFlags flags)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[5];
+		*ptr = (nint)(&channel);
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)uvs);
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		*(MeshUpdateFlags**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &flags;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetUVs_Public_Void_Int32_List_1_Vector4_Int32_Int32_MeshUpdateFlags_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178796, XrefRangeEnd = 1178798, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetUvsImpl(int uvIndex, int dim, Il2CppSystem.Array uvs, int arrayStart, int arraySize, MeshUpdateFlags flags)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[6];
+		*ptr = (nint)(&uvIndex);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &dim;
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)uvs);
+		*(int**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &arrayStart;
+		*(int**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &arraySize;
+		*(MeshUpdateFlags**)((byte*)ptr + checked((nuint)5u * unchecked((nuint)sizeof(System.IntPtr)))) = &flags;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetUvsImpl_Private_Void_Int32_Int32_Array_Int32_Int32_MeshUpdateFlags_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(12)]
+	[CachedScanResults(RefRangeStart = 1178801, RefRangeEnd = 1178813, XrefRangeStart = 1178798, XrefRangeEnd = 1178801, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetUVs(int channel, Il2CppStructArray<Vector4> uvs)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&channel);
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)uvs);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetUVs_Public_Void_Int32_Il2CppStructArray_1_Vector4_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178813, XrefRangeEnd = 1178815, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetUVs(int channel, Il2CppStructArray<Vector4> uvs, int start, int length)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[4];
+		*ptr = (nint)(&channel);
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)uvs);
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetUVs_Public_Void_Int32_Il2CppStructArray_1_Vector4_Int32_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178815, XrefRangeEnd = 1178817, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetUVs(int channel, Il2CppStructArray<Vector4> uvs, int start, int length, MeshUpdateFlags flags)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[5];
+		*ptr = (nint)(&channel);
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)uvs);
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		*(MeshUpdateFlags**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &flags;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetUVs_Public_Void_Int32_Il2CppStructArray_1_Vector4_Int32_Int32_MeshUpdateFlags_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(2)]
+	[CachedScanResults(RefRangeStart = 1178828, RefRangeEnd = 1178830, XrefRangeStart = 1178817, XrefRangeEnd = 1178828, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void GetUVsImpl<T>(int uvIndex, List<T> uvs, int dim)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[3];
+		*ptr = (nint)(&uvIndex);
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)uvs);
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &dim;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(MethodInfoStoreGeneric_GetUVsImpl_Private_Void_Int32_List_1_T_Int32_0<T>.Pointer, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1178833, RefRangeEnd = 1178834, XrefRangeStart = 1178830, XrefRangeEnd = 1178833, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void GetUVs(int channel, List<Vector3> uvs)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&channel);
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)uvs);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetUVs_Public_Void_Int32_List_1_Vector3_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(4)]
+	[CachedScanResults(RefRangeStart = 1178837, RefRangeEnd = 1178841, XrefRangeStart = 1178834, XrefRangeEnd = 1178837, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void GetUVs(int channel, List<Vector4> uvs)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&channel);
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)uvs);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetUVs_Public_Void_Int32_List_1_Vector4_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1178853, RefRangeEnd = 1178854, XrefRangeStart = 1178841, XrefRangeEnd = 1178853, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe GraphicsBuffer GetVertexBuffer(int index)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&index);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetVertexBuffer_Public_GraphicsBuffer_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return (intPtr2 != (System.IntPtr)0) ? Il2CppObjectPool.Get<GraphicsBuffer>(intPtr2) : null;
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1178866, RefRangeEnd = 1178867, XrefRangeStart = 1178854, XrefRangeEnd = 1178866, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe GraphicsBuffer GetIndexBuffer()
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = null;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetIndexBuffer_Public_GraphicsBuffer_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return (intPtr2 != (System.IntPtr)0) ? Il2CppObjectPool.Get<GraphicsBuffer>(intPtr2) : null;
+	}
+
+	[CallerCount(2)]
+	[CachedScanResults(RefRangeStart = 1178875, RefRangeEnd = 1178877, XrefRangeStart = 1178867, XrefRangeEnd = 1178875, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void PrintErrorCantAccessIndices()
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = null;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_PrintErrorCantAccessIndices_Private_Void_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(14)]
+	[CachedScanResults(RefRangeStart = 1178899, RefRangeEnd = 1178913, XrefRangeStart = 1178877, XrefRangeEnd = 1178899, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe bool CheckCanAccessSubmesh(int submesh, bool errorAboutTriangles)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&submesh);
+		*(bool**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &errorAboutTriangles;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_CheckCanAccessSubmesh_Private_Boolean_Int32_Boolean_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(bool*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178913, XrefRangeEnd = 1178914, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe bool CheckCanAccessSubmeshTriangles(int submesh)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&submesh);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_CheckCanAccessSubmeshTriangles_Private_Boolean_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(bool*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178914, XrefRangeEnd = 1178915, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe bool CheckCanAccessSubmeshIndices(int submesh)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&submesh);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_CheckCanAccessSubmeshIndices_Private_Boolean_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(bool*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1178938, RefRangeEnd = 1178939, XrefRangeStart = 1178937, XrefRangeEnd = 1178938, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void GetTriangles(List<int> triangles, int submesh)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)triangles);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetTriangles_Public_Void_List_1_Int32_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1178969, RefRangeEnd = 1178970, XrefRangeStart = 1178939, XrefRangeEnd = 1178969, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void GetTriangles(List<int> triangles, int submesh, bool applyBaseVertex)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[3];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)triangles);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		*(bool**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &applyBaseVertex;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetTriangles_Public_Void_List_1_Int32_Int32_Boolean_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(2)]
+	[CachedScanResults(RefRangeStart = 1178973, RefRangeEnd = 1178975, XrefRangeStart = 1178970, XrefRangeEnd = 1178973, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe Il2CppStructArray<int> GetIndices(int submesh)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&submesh);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetIndices_Public_Il2CppStructArray_1_Int32_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return (intPtr2 != (System.IntPtr)0) ? Il2CppObjectPool.Get<Il2CppStructArray<int>>(intPtr2) : null;
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1178975, XrefRangeEnd = 1178978, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe Il2CppStructArray<int> GetIndices(int submesh, bool applyBaseVertex)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&submesh);
+		*(bool**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &applyBaseVertex;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetIndices_Public_Il2CppStructArray_1_Int32_Int32_Boolean_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return (intPtr2 != (System.IntPtr)0) ? Il2CppObjectPool.Get<Il2CppStructArray<int>>(intPtr2) : null;
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1178993, RefRangeEnd = 1178994, XrefRangeStart = 1178978, XrefRangeEnd = 1178993, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe uint GetIndexCount(int submesh)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&submesh);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetIndexCount_Public_UInt32_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(uint*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(7)]
+	[CachedScanResults(RefRangeStart = 1178994, RefRangeEnd = 1179001, XrefRangeStart = 1178994, XrefRangeEnd = 1178994, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void CheckIndicesArrayRange(int valuesLength, int start, int length)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[3];
+		*ptr = (nint)(&valuesLength);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_CheckIndicesArrayRange_Private_Void_Int32_Int32_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(4)]
+	[CachedScanResults(RefRangeStart = 1179007, RefRangeEnd = 1179011, XrefRangeStart = 1179001, XrefRangeEnd = 1179007, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetTrianglesImpl(int submesh, IndexFormat indicesFormat, Il2CppSystem.Array triangles, int trianglesArrayLength, int start, int length, bool calculateBounds, int baseVertex)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[8];
+		*ptr = (nint)(&submesh);
+		*(IndexFormat**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &indicesFormat;
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)triangles);
+		*(int**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &trianglesArrayLength;
+		*(int**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &start;
+		*(int**)((byte*)ptr + checked((nuint)5u * unchecked((nuint)sizeof(System.IntPtr)))) = &length;
+		*(bool**)((byte*)ptr + checked((nuint)6u * unchecked((nuint)sizeof(System.IntPtr)))) = &calculateBounds;
+		*(int**)((byte*)ptr + checked((nuint)7u * unchecked((nuint)sizeof(System.IntPtr)))) = &baseVertex;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetTrianglesImpl_Private_Void_Int32_IndexFormat_Array_Int32_Int32_Int32_Boolean_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1179014, RefRangeEnd = 1179015, XrefRangeStart = 1179011, XrefRangeEnd = 1179014, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetTriangles(Il2CppStructArray<int> triangles, int trianglesStart, int trianglesLength, int submesh, bool calculateBounds = true, int baseVertex = 0)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[6];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)triangles);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &trianglesStart;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &trianglesLength;
+		*(int**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		*(bool**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &calculateBounds;
+		*(int**)((byte*)ptr + checked((nuint)5u * unchecked((nuint)sizeof(System.IntPtr)))) = &baseVertex;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetTriangles_Public_Void_Il2CppStructArray_1_Int32_Int32_Int32_Int32_Boolean_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(4)]
+	[CachedScanResults(RefRangeStart = 1179028, RefRangeEnd = 1179032, XrefRangeStart = 1179015, XrefRangeEnd = 1179028, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetTriangles(List<int> triangles, int submesh)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)triangles);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetTriangles_Public_Void_List_1_Int32_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179032, XrefRangeEnd = 1179045, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetTriangles(List<int> triangles, int submesh, bool calculateBounds, int baseVertex)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[4];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)triangles);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		*(bool**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &calculateBounds;
+		*(int**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &baseVertex;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetTriangles_Public_Void_List_1_Int32_Int32_Boolean_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179045, XrefRangeEnd = 1179055, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetTriangles(List<int> triangles, int trianglesStart, int trianglesLength, int submesh, bool calculateBounds = true, int baseVertex = 0)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[6];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)triangles);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &trianglesStart;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &trianglesLength;
+		*(int**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		*(bool**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &calculateBounds;
+		*(int**)((byte*)ptr + checked((nuint)5u * unchecked((nuint)sizeof(System.IntPtr)))) = &baseVertex;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetTriangles_Public_Void_List_1_Int32_Int32_Int32_Int32_Boolean_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1179056, RefRangeEnd = 1179057, XrefRangeStart = 1179055, XrefRangeEnd = 1179056, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetIndices(Il2CppStructArray<int> indices, MeshTopology topology, int submesh)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[3];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)indices);
+		*(MeshTopology**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &topology;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetIndices_Public_Void_Il2CppStructArray_1_Int32_MeshTopology_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1179058, RefRangeEnd = 1179059, XrefRangeStart = 1179057, XrefRangeEnd = 1179058, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetIndices(Il2CppStructArray<int> indices, MeshTopology topology, int submesh, bool calculateBounds)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[4];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)indices);
+		*(MeshTopology**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &topology;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		*(bool**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &calculateBounds;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetIndices_Public_Void_Il2CppStructArray_1_Int32_MeshTopology_Int32_Boolean_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(2)]
+	[CachedScanResults(RefRangeStart = 1179067, RefRangeEnd = 1179069, XrefRangeStart = 1179059, XrefRangeEnd = 1179067, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetIndices(Il2CppStructArray<int> indices, MeshTopology topology, int submesh, bool calculateBounds, int baseVertex)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[5];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)indices);
+		*(MeshTopology**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &topology;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		*(bool**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &calculateBounds;
+		*(int**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &baseVertex;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetIndices_Public_Void_Il2CppStructArray_1_Int32_MeshTopology_Int32_Boolean_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179069, XrefRangeEnd = 1179076, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetIndices(Il2CppStructArray<int> indices, int indicesStart, int indicesLength, MeshTopology topology, int submesh, bool calculateBounds = true, int baseVertex = 0)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[7];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)indices);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &indicesStart;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &indicesLength;
+		*(MeshTopology**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &topology;
+		*(int**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		*(bool**)((byte*)ptr + checked((nuint)5u * unchecked((nuint)sizeof(System.IntPtr)))) = &calculateBounds;
+		*(int**)((byte*)ptr + checked((nuint)6u * unchecked((nuint)sizeof(System.IntPtr)))) = &baseVertex;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetIndices_Public_Void_Il2CppStructArray_1_Int32_Int32_Int32_MeshTopology_Int32_Boolean_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1179084, RefRangeEnd = 1179085, XrefRangeStart = 1179076, XrefRangeEnd = 1179084, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetIndices(Il2CppStructArray<ushort> indices, MeshTopology topology, int submesh, bool calculateBounds = true, int baseVertex = 0)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[5];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)indices);
+		*(MeshTopology**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &topology;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		*(bool**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &calculateBounds;
+		*(int**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &baseVertex;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetIndices_Public_Void_Il2CppStructArray_1_UInt16_MeshTopology_Int32_Boolean_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179085, XrefRangeEnd = 1179092, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetIndices(Il2CppStructArray<ushort> indices, int indicesStart, int indicesLength, MeshTopology topology, int submesh, bool calculateBounds = true, int baseVertex = 0)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[7];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)indices);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &indicesStart;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &indicesLength;
+		*(MeshTopology**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &topology;
+		*(int**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		*(bool**)((byte*)ptr + checked((nuint)5u * unchecked((nuint)sizeof(System.IntPtr)))) = &calculateBounds;
+		*(int**)((byte*)ptr + checked((nuint)6u * unchecked((nuint)sizeof(System.IntPtr)))) = &baseVertex;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetIndices_Public_Void_Il2CppStructArray_1_UInt16_Int32_Int32_MeshTopology_Int32_Boolean_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(2)]
+	[CachedScanResults(RefRangeStart = 1179109, RefRangeEnd = 1179111, XrefRangeStart = 1179092, XrefRangeEnd = 1179109, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetIndices(List<int> indices, MeshTopology topology, int submesh, bool calculateBounds = true, int baseVertex = 0)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[5];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)indices);
+		*(MeshTopology**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &topology;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		*(bool**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &calculateBounds;
+		*(int**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &baseVertex;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetIndices_Public_Void_List_1_Int32_MeshTopology_Int32_Boolean_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179111, XrefRangeEnd = 1179125, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void SetIndices(List<int> indices, int indicesStart, int indicesLength, MeshTopology topology, int submesh, bool calculateBounds = true, int baseVertex = 0)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[7];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)indices);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &indicesStart;
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &indicesLength;
+		*(MeshTopology**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &topology;
+		*(int**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		*(bool**)((byte*)ptr + checked((nuint)5u * unchecked((nuint)sizeof(System.IntPtr)))) = &calculateBounds;
+		*(int**)((byte*)ptr + checked((nuint)6u * unchecked((nuint)sizeof(System.IntPtr)))) = &baseVertex;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetIndices_Public_Void_List_1_Int32_Int32_Int32_MeshTopology_Int32_Boolean_Int32_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(19)]
+	[CachedScanResults(RefRangeStart = 1179130, RefRangeEnd = 1179149, XrefRangeStart = 1179125, XrefRangeEnd = 1179130, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void Clear()
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = null;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_Clear_Public_Void_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(22)]
+	[CachedScanResults(RefRangeStart = 1179161, RefRangeEnd = 1179183, XrefRangeStart = 1179149, XrefRangeEnd = 1179161, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void RecalculateBounds()
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = null;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_RecalculateBounds_Public_Void_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(2)]
+	[CachedScanResults(RefRangeStart = 1179195, RefRangeEnd = 1179197, XrefRangeStart = 1179183, XrefRangeEnd = 1179195, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void RecalculateNormals()
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = null;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_RecalculateNormals_Public_Void_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179197, XrefRangeEnd = 1179209, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void RecalculateBounds(MeshUpdateFlags flags)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&flags);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_RecalculateBounds_Public_Void_MeshUpdateFlags_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179209, XrefRangeEnd = 1179221, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void RecalculateNormals(MeshUpdateFlags flags)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&flags);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_RecalculateNormals_Public_Void_MeshUpdateFlags_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(4)]
+	[CachedScanResults(RefRangeStart = 1179229, RefRangeEnd = 1179233, XrefRangeStart = 1179221, XrefRangeEnd = 1179229, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void MarkDynamic()
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = null;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_MarkDynamic_Public_Void_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1179241, RefRangeEnd = 1179242, XrefRangeStart = 1179233, XrefRangeEnd = 1179241, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void UploadMeshData(bool markNoLongerReadable)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&markNoLongerReadable);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_UploadMeshData_Public_Void_Boolean_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(1)]
+	[CachedScanResults(RefRangeStart = 1179253, RefRangeEnd = 1179254, XrefRangeStart = 1179242, XrefRangeEnd = 1179253, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe void CombineMeshes(Il2CppStructArray<CombineInstance> combine)
+	{
+		IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this);
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)combine);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_CombineMeshes_Public_Void_Il2CppStructArray_1_CombineInstance_0, IL2CPP.Il2CppObjectBaseToPtrNotNull((Il2CppObjectBase)(object)this), (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179254, XrefRangeEnd = 1179256, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void set_indexFormat_Injected(System.IntPtr _unity_self, IndexFormat value)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&_unity_self);
+		*(IndexFormat**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &value;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_set_indexFormat_Injected_Private_Static_Void_IntPtr_IndexFormat_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179256, XrefRangeEnd = 1179258, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static uint GetIndexCountImpl_Injected(System.IntPtr _unity_self, int submesh)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&_unity_self);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetIndexCountImpl_Injected_Private_Static_UInt32_IntPtr_Int32_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(uint*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179258, XrefRangeEnd = 1179260, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static uint GetTrianglesCountImpl_Injected(System.IntPtr _unity_self, int submesh)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&_unity_self);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetTrianglesCountImpl_Injected_Private_Static_UInt32_IntPtr_Int32_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(uint*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179260, XrefRangeEnd = 1179262, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void GetIndicesImpl_Injected(System.IntPtr _unity_self, int submesh, bool applyBaseVertex, out BlittableArrayWrapper ret)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[4];
+		*ptr = (nint)(&_unity_self);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		*(bool**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &applyBaseVertex;
+		*(void**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = Unsafe.AsPointer(ref ret);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetIndicesImpl_Injected_Private_Static_Void_IntPtr_Int32_Boolean_byref_BlittableArrayWrapper_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179262, XrefRangeEnd = 1179264, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void SetIndicesImpl_Injected(System.IntPtr _unity_self, int submesh, MeshTopology topology, IndexFormat indicesFormat, Il2CppSystem.Array indices, int arrayStart, int arraySize, bool calculateBounds, int baseVertex)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[9];
+		*ptr = (nint)(&_unity_self);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		*(MeshTopology**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &topology;
+		*(IndexFormat**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &indicesFormat;
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)indices);
+		*(int**)((byte*)ptr + checked((nuint)5u * unchecked((nuint)sizeof(System.IntPtr)))) = &arrayStart;
+		*(int**)((byte*)ptr + checked((nuint)6u * unchecked((nuint)sizeof(System.IntPtr)))) = &arraySize;
+		*(bool**)((byte*)ptr + checked((nuint)7u * unchecked((nuint)sizeof(System.IntPtr)))) = &calculateBounds;
+		*(int**)((byte*)ptr + checked((nuint)8u * unchecked((nuint)sizeof(System.IntPtr)))) = &baseVertex;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetIndicesImpl_Injected_Private_Static_Void_IntPtr_Int32_MeshTopology_IndexFormat_Array_Int32_Int32_Boolean_Int32_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179264, XrefRangeEnd = 1179266, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void GetTrianglesNonAllocImpl_Injected(System.IntPtr _unity_self, out BlittableArrayWrapper values, int submesh, bool applyBaseVertex)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[4];
+		*ptr = (nint)(&_unity_self);
+		*(void**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = Unsafe.AsPointer(ref values);
+		*(int**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &submesh;
+		*(bool**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &applyBaseVertex;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetTrianglesNonAllocImpl_Injected_Private_Static_Void_IntPtr_byref_BlittableArrayWrapper_Int32_Boolean_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179266, XrefRangeEnd = 1179268, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void PrintErrorCantAccessChannel_Injected(System.IntPtr _unity_self, VertexAttribute ch)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&_unity_self);
+		*(VertexAttribute**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &ch;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_PrintErrorCantAccessChannel_Injected_Private_Static_Void_IntPtr_VertexAttribute_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179268, XrefRangeEnd = 1179270, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static bool HasVertexAttribute_Injected(System.IntPtr _unity_self, VertexAttribute attr)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&_unity_self);
+		*(VertexAttribute**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &attr;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_HasVertexAttribute_Injected_Private_Static_Boolean_IntPtr_VertexAttribute_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(bool*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179270, XrefRangeEnd = 1179272, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static VertexAttributeFormat GetVertexAttributeFormat_Injected(System.IntPtr _unity_self, VertexAttribute attr)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&_unity_self);
+		*(VertexAttribute**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &attr;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetVertexAttributeFormat_Injected_Private_Static_VertexAttributeFormat_IntPtr_VertexAttribute_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(VertexAttributeFormat*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179272, XrefRangeEnd = 1179274, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static int GetVertexAttributeStream_Injected(System.IntPtr _unity_self, VertexAttribute attr)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&_unity_self);
+		*(VertexAttribute**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &attr;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetVertexAttributeStream_Injected_Private_Static_Int32_IntPtr_VertexAttribute_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(int*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179274, XrefRangeEnd = 1179276, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static int GetVertexAttributeOffset_Injected(System.IntPtr _unity_self, VertexAttribute attr)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&_unity_self);
+		*(VertexAttribute**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &attr;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetVertexAttributeOffset_Injected_Private_Static_Int32_IntPtr_VertexAttribute_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(int*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179276, XrefRangeEnd = 1179278, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void SetArrayForChannelImpl_Injected(System.IntPtr _unity_self, VertexAttribute channel, VertexAttributeFormat format, int dim, Il2CppSystem.Array values, int arraySize, int valuesStart, int valuesCount, MeshUpdateFlags flags)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[9];
+		*ptr = (nint)(&_unity_self);
+		*(VertexAttribute**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &channel;
+		*(VertexAttributeFormat**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &format;
+		*(int**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &dim;
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)values);
+		*(int**)((byte*)ptr + checked((nuint)5u * unchecked((nuint)sizeof(System.IntPtr)))) = &arraySize;
+		*(int**)((byte*)ptr + checked((nuint)6u * unchecked((nuint)sizeof(System.IntPtr)))) = &valuesStart;
+		*(int**)((byte*)ptr + checked((nuint)7u * unchecked((nuint)sizeof(System.IntPtr)))) = &valuesCount;
+		*(MeshUpdateFlags**)((byte*)ptr + checked((nuint)8u * unchecked((nuint)sizeof(System.IntPtr)))) = &flags;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_SetArrayForChannelImpl_Injected_Private_Static_Void_IntPtr_VertexAttribute_VertexAttributeFormat_Int32_Array_Int32_Int32_Int32_MeshUpdateFlags_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179278, XrefRangeEnd = 1179280, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static Il2CppSystem.Array GetAllocArrayFromChannelImpl_Injected(System.IntPtr _unity_self, VertexAttribute channel, VertexAttributeFormat format, int dim)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[4];
+		*ptr = (nint)(&_unity_self);
+		*(VertexAttribute**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &channel;
+		*(VertexAttributeFormat**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &format;
+		*(int**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &dim;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetAllocArrayFromChannelImpl_Injected_Private_Static_Array_IntPtr_VertexAttribute_VertexAttributeFormat_Int32_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return (intPtr2 != (System.IntPtr)0) ? Il2CppObjectPool.Get<Il2CppSystem.Array>(intPtr2) : null;
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179280, XrefRangeEnd = 1179282, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void GetArrayFromChannelImpl_Injected(System.IntPtr _unity_self, VertexAttribute channel, VertexAttributeFormat format, int dim, Il2CppSystem.Array values)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[5];
+		*ptr = (nint)(&_unity_self);
+		*(VertexAttribute**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &channel;
+		*(VertexAttributeFormat**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &format;
+		*(int**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &dim;
+		*(System.IntPtr*)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)values);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetArrayFromChannelImpl_Injected_Private_Static_Void_IntPtr_VertexAttribute_VertexAttributeFormat_Int32_Array_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179282, XrefRangeEnd = 1179284, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static System.IntPtr GetVertexBufferImpl_Injected(System.IntPtr _unity_self, int index)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&_unity_self);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &index;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetVertexBufferImpl_Injected_Private_Static_IntPtr_IntPtr_Int32_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(System.IntPtr*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179284, XrefRangeEnd = 1179286, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static System.IntPtr GetIndexBufferImpl_Injected(System.IntPtr _unity_self)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&_unity_self);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetIndexBufferImpl_Injected_Private_Static_IntPtr_IntPtr_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(System.IntPtr*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179286, XrefRangeEnd = 1179288, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static GraphicsBuffer.Target get_vertexBufferTarget_Injected(System.IntPtr _unity_self)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&_unity_self);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_get_vertexBufferTarget_Injected_Private_Static_Target_IntPtr_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(GraphicsBuffer.Target*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179288, XrefRangeEnd = 1179290, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void set_vertexBufferTarget_Injected(System.IntPtr _unity_self, GraphicsBuffer.Target value)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&_unity_self);
+		*(GraphicsBuffer.Target**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &value;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_set_vertexBufferTarget_Injected_Private_Static_Void_IntPtr_Target_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179290, XrefRangeEnd = 1179292, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static GraphicsBuffer.Target get_indexBufferTarget_Injected(System.IntPtr _unity_self)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&_unity_self);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_get_indexBufferTarget_Injected_Private_Static_Target_IntPtr_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(GraphicsBuffer.Target*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179292, XrefRangeEnd = 1179294, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void set_indexBufferTarget_Injected(System.IntPtr _unity_self, GraphicsBuffer.Target value)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&_unity_self);
+		*(GraphicsBuffer.Target**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &value;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_set_indexBufferTarget_Injected_Private_Static_Void_IntPtr_Target_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179294, XrefRangeEnd = 1179296, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static bool get_canAccess_Injected(System.IntPtr _unity_self)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&_unity_self);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_get_canAccess_Injected_Private_Static_Boolean_IntPtr_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(bool*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179296, XrefRangeEnd = 1179298, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static int get_vertexCount_Injected(System.IntPtr _unity_self)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&_unity_self);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_get_vertexCount_Injected_Private_Static_Int32_IntPtr_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(int*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179298, XrefRangeEnd = 1179300, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static int get_subMeshCount_Injected(System.IntPtr _unity_self)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&_unity_self);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_get_subMeshCount_Injected_Private_Static_Int32_IntPtr_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+		return *(int*)IL2CPP.il2cpp_object_unbox(intPtr2);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179300, XrefRangeEnd = 1179302, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void set_subMeshCount_Injected(System.IntPtr _unity_self, int value)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&_unity_self);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &value;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_set_subMeshCount_Injected_Private_Static_Void_IntPtr_Int32_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179302, XrefRangeEnd = 1179304, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void GetSubMesh_Injected(System.IntPtr _unity_self, int index, out SubMeshDescriptor ret)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[3];
+		*ptr = (nint)(&_unity_self);
+		*(int**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &index;
+		*(void**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = Unsafe.AsPointer(ref ret);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_GetSubMesh_Injected_Private_Static_Void_IntPtr_Int32_byref_SubMeshDescriptor_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179304, XrefRangeEnd = 1179306, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void get_bounds_Injected(System.IntPtr _unity_self, out Bounds ret)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&_unity_self);
+		*(void**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = Unsafe.AsPointer(ref ret);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_get_bounds_Injected_Private_Static_Void_IntPtr_byref_Bounds_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179306, XrefRangeEnd = 1179308, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void set_bounds_Injected(System.IntPtr _unity_self, [In] ref Bounds value)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&_unity_self);
+		*(void**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = Unsafe.AsPointer(ref value);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_set_bounds_Injected_Private_Static_Void_IntPtr_byref_Bounds_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179308, XrefRangeEnd = 1179310, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void ClearImpl_Injected(System.IntPtr _unity_self, bool keepVertexLayout)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&_unity_self);
+		*(bool**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &keepVertexLayout;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_ClearImpl_Injected_Private_Static_Void_IntPtr_Boolean_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179310, XrefRangeEnd = 1179312, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void RecalculateBoundsImpl_Injected(System.IntPtr _unity_self, MeshUpdateFlags flags)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&_unity_self);
+		*(MeshUpdateFlags**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &flags;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_RecalculateBoundsImpl_Injected_Private_Static_Void_IntPtr_MeshUpdateFlags_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179312, XrefRangeEnd = 1179314, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void RecalculateNormalsImpl_Injected(System.IntPtr _unity_self, MeshUpdateFlags flags)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&_unity_self);
+		*(MeshUpdateFlags**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &flags;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_RecalculateNormalsImpl_Injected_Private_Static_Void_IntPtr_MeshUpdateFlags_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179314, XrefRangeEnd = 1179316, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void MarkDynamicImpl_Injected(System.IntPtr _unity_self)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[1];
+		*ptr = (nint)(&_unity_self);
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_MarkDynamicImpl_Injected_Private_Static_Void_IntPtr_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179316, XrefRangeEnd = 1179318, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void UploadMeshDataImpl_Injected(System.IntPtr _unity_self, bool markNoLongerReadable)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[2];
+		*ptr = (nint)(&_unity_self);
+		*(bool**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = &markNoLongerReadable;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_UploadMeshDataImpl_Injected_Private_Static_Void_IntPtr_Boolean_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	[CallerCount(0)]
+	[CachedScanResults(RefRangeStart = 0, RefRangeEnd = 0, XrefRangeStart = 1179318, XrefRangeEnd = 1179320, MetadataInitTokenRva = 0L, MetadataInitFlagRva = 0L)]
+	public unsafe static void CombineMeshesImpl_Injected(System.IntPtr _unity_self, ref ManagedSpanWrapper combine, bool mergeSubMeshes, bool useMatrices, bool hasLightmapData)
+	{
+		System.IntPtr* ptr = stackalloc System.IntPtr[5];
+		*ptr = (nint)(&_unity_self);
+		*(void**)((byte*)ptr + checked((nuint)1u * unchecked((nuint)sizeof(System.IntPtr)))) = Unsafe.AsPointer(ref combine);
+		*(bool**)((byte*)ptr + checked((nuint)2u * unchecked((nuint)sizeof(System.IntPtr)))) = &mergeSubMeshes;
+		*(bool**)((byte*)ptr + checked((nuint)3u * unchecked((nuint)sizeof(System.IntPtr)))) = &useMatrices;
+		*(bool**)((byte*)ptr + checked((nuint)4u * unchecked((nuint)sizeof(System.IntPtr)))) = &hasLightmapData;
+		Unsafe.SkipInit(out System.IntPtr intPtr);
+		System.IntPtr intPtr2 = IL2CPP.il2cpp_runtime_invoke(NativeMethodInfoPtr_CombineMeshesImpl_Injected_Private_Static_Void_IntPtr_byref_ManagedSpanWrapper_Boolean_Boolean_Boolean_0, (System.IntPtr)0, (void**)ptr, ref intPtr);
+		Il2CppException.RaiseExceptionIfNecessary(intPtr);
+	}
+
+	public Mesh(System.IntPtr pointer)
+		: base(pointer)
+	{
+	}
+
+	public static Mesh FromInstanceID(int id)
+	{
+		return Unmarshal.UnmarshalUnityObject<Mesh>(FromInstanceID_Injected(id));
+	}
+
+	public uint GetTotalIndexCount()
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		return GetTotalIndexCount_Injected(intPtr);
+	}
+
+	public void SetIndexBufferParams(int indexCount, IndexFormat format)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		SetIndexBufferParams_Injected(intPtr, indexCount, format);
+	}
+
+	public void InternalSetIndexBufferData(System.IntPtr data, int dataStart, int meshBufferStart, int count, int elemSize, MeshUpdateFlags flags)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		InternalSetIndexBufferData_Injected(intPtr, data, dataStart, meshBufferStart, count, elemSize, flags);
+	}
+
+	public void InternalSetIndexBufferDataFromArray(Il2CppSystem.Array data, int dataStart, int meshBufferStart, int count, int elemSize, MeshUpdateFlags flags)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		InternalSetIndexBufferDataFromArray_Injected(intPtr, data, dataStart, meshBufferStart, count, elemSize, flags);
+	}
+
+	public void SetVertexBufferParamsFromPtr(int vertexCount, System.IntPtr attributesPtr, int attributesCount)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		SetVertexBufferParamsFromPtr_Injected(intPtr, vertexCount, attributesPtr, attributesCount);
+	}
+
+	public unsafe void SetVertexBufferParamsFromArray(int vertexCount, Il2CppStructArray<VertexAttributeDescriptor> attributes)
+	{
+		//IL_0019: Expected O, but got Ref
+		//IL_0020: Expected O, but got Ref
+		//IL_002c: Expected O, but got Ref
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		Unsafe.SkipInit(out Il2CppSystem.Span<VertexAttributeDescriptor> span);
+		((Il2CppSystem.Span<VertexAttributeDescriptor>)(&span))._002Ector((Il2CppArrayBase<VertexAttributeDescriptor>)(object)attributes);
+		fixed (VertexAttributeDescriptor* begin = &((Il2CppSystem.Span<VertexAttributeDescriptor>)(&span)).GetPinnableReference())
+		{
+			ManagedSpanWrapper attributes2 = new ManagedSpanWrapper(begin, ((Il2CppSystem.Span<VertexAttributeDescriptor>)(&span)).Length);
+			SetVertexBufferParamsFromArray_Injected(intPtr, vertexCount, ref attributes2);
+		}
+	}
+
+	public void SetVertexBufferParamsFromArray(int vertexCount, params VertexAttributeDescriptor[] attributes)
+	{
+		SetVertexBufferParamsFromArray(vertexCount, new Il2CppStructArray<VertexAttributeDescriptor>(attributes));
+	}
+
+	public void InternalSetVertexBufferData(int stream, System.IntPtr data, int dataStart, int meshBufferStart, int count, int elemSize, MeshUpdateFlags flags)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		InternalSetVertexBufferData_Injected(intPtr, stream, data, dataStart, meshBufferStart, count, elemSize, flags);
+	}
+
+	public void InternalSetVertexBufferDataFromArray(int stream, Il2CppSystem.Array data, int dataStart, int meshBufferStart, int count, int elemSize, MeshUpdateFlags flags)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		InternalSetVertexBufferDataFromArray_Injected(intPtr, stream, data, dataStart, meshBufferStart, count, elemSize, flags);
+	}
+
+	public Il2CppSystem.Array GetVertexAttributesAlloc()
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		return GetVertexAttributesAlloc_Injected(intPtr);
+	}
+
+	public unsafe int GetVertexAttributesArray(Il2CppStructArray<VertexAttributeDescriptor> attributes)
+	{
+		//IL_0027: Expected O, but got Ref
+		//IL_002e: Expected O, but got Ref
+		//IL_003a: Expected O, but got Ref
+		if (attributes == null)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowArgumentNullException((Il2CppSystem.Object)(object)attributes, "attributes");
+		}
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		Unsafe.SkipInit(out Il2CppSystem.Span<VertexAttributeDescriptor> span);
+		((Il2CppSystem.Span<VertexAttributeDescriptor>)(&span))._002Ector((Il2CppArrayBase<VertexAttributeDescriptor>)(object)attributes);
+		int vertexAttributesArray_Injected;
+		fixed (VertexAttributeDescriptor* begin = &((Il2CppSystem.Span<VertexAttributeDescriptor>)(&span)).GetPinnableReference())
+		{
+			ManagedSpanWrapper attributes2 = new ManagedSpanWrapper(begin, ((Il2CppSystem.Span<VertexAttributeDescriptor>)(&span)).Length);
+			vertexAttributesArray_Injected = GetVertexAttributesArray_Injected(intPtr, ref attributes2);
+		}
+		return vertexAttributesArray_Injected;
+	}
+
+	public int GetVertexAttributesList(List<VertexAttributeDescriptor> attributes)
+	{
+		throw new System.NotSupportedException("Method unstripping failed");
+	}
+
+	public int GetVertexAttributeCountImpl()
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		return GetVertexAttributeCountImpl_Injected(intPtr);
+	}
+
+	public VertexAttributeDescriptor GetVertexAttribute(int index)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		GetVertexAttribute_Injected(intPtr, index, out var ret);
+		return ret;
+	}
+
+	public uint GetIndexStartImpl(int submesh)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		return GetIndexStartImpl_Injected(intPtr, submesh);
+	}
+
+	public uint GetBaseVertexImpl(int submesh)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		return GetBaseVertexImpl_Injected(intPtr, submesh);
+	}
+
+	public unsafe Il2CppStructArray<int> GetTrianglesImpl(int submesh, bool applyBaseVertex)
+	{
+		Unsafe.SkipInit(out BlittableArrayWrapper ret);
+		Il2CppStructArray<int> result;
+		try
+		{
+			System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+			if (intPtr == (System.IntPtr)0)
+			{
+				UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+			}
+			GetTrianglesImpl_Injected(intPtr, submesh, applyBaseVertex, out ret);
+		}
+		finally
+		{
+			Unsafe.SkipInit(out Il2CppStructArray<int> array);
+			ret.Unmarshal(ref *(Il2CppArrayBase<int>*)(&array));
+			result = array;
+		}
+		return result;
+	}
+
+	public void SetIndicesNativeArrayImpl(int submesh, MeshTopology topology, IndexFormat indicesFormat, System.IntPtr indices, int arrayStart, int arraySize, bool calculateBounds, int baseVertex)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		SetIndicesNativeArrayImpl_Injected(intPtr, submesh, topology, indicesFormat, indices, arrayStart, arraySize, calculateBounds, baseVertex);
+	}
+
+	public void GetTrianglesNonAllocImpl16([Out] Il2CppStructArray<ushort> values, int submesh, bool applyBaseVertex)
+	{
+		throw new System.NotSupportedException("Method unstripping failed");
+	}
+
+	public void GetIndicesNonAllocImpl([Out] Il2CppStructArray<int> values, int submesh, bool applyBaseVertex)
+	{
+		throw new System.NotSupportedException("Method unstripping failed");
+	}
+
+	public void GetIndicesNonAllocImpl16([Out] Il2CppStructArray<ushort> values, int submesh, bool applyBaseVertex)
+	{
+		throw new System.NotSupportedException("Method unstripping failed");
+	}
+
+	public int GetVertexAttributeDimension(VertexAttribute attr)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		return GetVertexAttributeDimension_Injected(intPtr, attr);
+	}
+
+	public void SetNativeArrayForChannelImpl(VertexAttribute channel, VertexAttributeFormat format, int dim, System.IntPtr values, int arraySize, int valuesStart, int valuesCount, MeshUpdateFlags flags)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		SetNativeArrayForChannelImpl_Injected(intPtr, channel, format, dim, values, arraySize, valuesStart, valuesCount, flags);
+	}
+
+	public int GetVertexBufferStride(int stream)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		return GetVertexBufferStride_Injected(intPtr, stream);
+	}
+
+	public System.IntPtr GetNativeVertexBufferPtr(int index)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		return GetNativeVertexBufferPtr_Injected(intPtr, index);
+	}
+
+	public System.IntPtr GetNativeIndexBufferPtr()
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		return GetNativeIndexBufferPtr_Injected(intPtr);
+	}
+
+	public GraphicsBuffer GetBoneWeightBufferImpl(int bonesPerVertex)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		System.IntPtr boneWeightBufferImpl_Injected = GetBoneWeightBufferImpl_Injected(intPtr, bonesPerVertex);
+		return (boneWeightBufferImpl_Injected == (System.IntPtr)0) ? null : GraphicsBuffer.BindingsMarshaller.ConvertToManaged(boneWeightBufferImpl_Injected);
+	}
+
+	public GraphicsBuffer GetBlendShapeBufferImpl(int layout)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		System.IntPtr blendShapeBufferImpl_Injected = GetBlendShapeBufferImpl_Injected(intPtr, layout);
+		return (blendShapeBufferImpl_Injected == (System.IntPtr)0) ? null : GraphicsBuffer.BindingsMarshaller.ConvertToManaged(blendShapeBufferImpl_Injected);
+	}
+
+	public void ClearBlendShapes()
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		ClearBlendShapes_Injected(intPtr);
+	}
+
+	public string GetBlendShapeName(int shapeIndex)
+	{
+		Unsafe.SkipInit(out ManagedSpanWrapper ret);
+		string stringAndDispose;
+		try
+		{
+			System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+			if (intPtr == (System.IntPtr)0)
+			{
+				UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+			}
+			GetBlendShapeName_Injected(intPtr, shapeIndex, out ret);
+		}
+		finally
+		{
+			stringAndDispose = OutStringMarshaller.GetStringAndDispose(ret);
+		}
+		return stringAndDispose;
+	}
+
+	public unsafe int GetBlendShapeIndex(string blendShapeName)
+	{
+		//IL_0028: Expected O, but got Ref
+		//IL_0034: Expected O, but got Ref
+		//The blocks IL_0039 are reachable both inside and outside the pinned region starting at IL_0028. ILSpy has duplicated these blocks in order to place them both within and outside the `fixed` statement.
+		try
+		{
+			System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+			if (intPtr == (System.IntPtr)0)
+			{
+				UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+			}
+			Unsafe.SkipInit(out ManagedSpanWrapper managedSpanWrapper);
+			if (!StringMarshaller.TryMarshalEmptyOrNullString(blendShapeName, ref managedSpanWrapper))
+			{
+				Il2CppSystem.ReadOnlySpan<char> readOnlySpan = Il2CppSystem.MemoryExtensions.AsSpan(blendShapeName);
+				fixed (char* begin = &((Il2CppSystem.ReadOnlySpan<char>)(&readOnlySpan)).GetPinnableReference())
+				{
+					managedSpanWrapper = new ManagedSpanWrapper(begin, ((Il2CppSystem.ReadOnlySpan<char>)(&readOnlySpan)).Length);
+					return GetBlendShapeIndex_Injected(intPtr, ref managedSpanWrapper);
+				}
+			}
+			return GetBlendShapeIndex_Injected(intPtr, ref managedSpanWrapper);
+		}
+		finally
+		{
+		}
+	}
+
+	public int GetBlendShapeFrameCount(int shapeIndex)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		return GetBlendShapeFrameCount_Injected(intPtr, shapeIndex);
+	}
+
+	public float GetBlendShapeFrameWeight(int shapeIndex, int frameIndex)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		return GetBlendShapeFrameWeight_Injected(intPtr, shapeIndex, frameIndex);
+	}
+
+	public unsafe void GetBlendShapeFrameVertices(int shapeIndex, int frameIndex, Il2CppStructArray<Vector3> deltaVertices, Il2CppStructArray<Vector3> deltaNormals, Il2CppStructArray<Vector3> deltaTangents)
+	{
+		//IL_001a: Expected O, but got Ref
+		//IL_0021: Expected O, but got Ref
+		//IL_002d: Expected O, but got Ref
+		//IL_003e: Expected O, but got Ref
+		//IL_0045: Expected O, but got Ref
+		//IL_0053: Expected O, but got Ref
+		//IL_0064: Expected O, but got Ref
+		//IL_006b: Expected O, but got Ref
+		//IL_0079: Expected O, but got Ref
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		Unsafe.SkipInit(out Il2CppSystem.Span<Vector3> span);
+		((Il2CppSystem.Span<Vector3>)(&span))._002Ector((Il2CppArrayBase<Vector3>)(object)deltaVertices);
+		fixed (Vector3* begin = &((Il2CppSystem.Span<Vector3>)(&span)).GetPinnableReference())
+		{
+			ManagedSpanWrapper deltaVertices2 = new ManagedSpanWrapper(begin, ((Il2CppSystem.Span<Vector3>)(&span)).Length);
+			Unsafe.SkipInit(out Il2CppSystem.Span<Vector3> span2);
+			((Il2CppSystem.Span<Vector3>)(&span2))._002Ector((Il2CppArrayBase<Vector3>)(object)deltaNormals);
+			fixed (Vector3* begin2 = &((Il2CppSystem.Span<Vector3>)(&span2)).GetPinnableReference())
+			{
+				ManagedSpanWrapper deltaNormals2 = new ManagedSpanWrapper(begin2, ((Il2CppSystem.Span<Vector3>)(&span2)).Length);
+				Unsafe.SkipInit(out Il2CppSystem.Span<Vector3> span3);
+				((Il2CppSystem.Span<Vector3>)(&span3))._002Ector((Il2CppArrayBase<Vector3>)(object)deltaTangents);
+				fixed (Vector3* begin3 = &((Il2CppSystem.Span<Vector3>)(&span3)).GetPinnableReference())
+				{
+					ManagedSpanWrapper deltaTangents2 = new ManagedSpanWrapper(begin3, ((Il2CppSystem.Span<Vector3>)(&span3)).Length);
+					GetBlendShapeFrameVertices_Injected(intPtr, shapeIndex, frameIndex, ref deltaVertices2, ref deltaNormals2, ref deltaTangents2);
+				}
+			}
+		}
+	}
+
+	public unsafe void AddBlendShapeFrame(string shapeName, float frameWeight, Il2CppStructArray<Vector3> deltaVertices, Il2CppStructArray<Vector3> deltaNormals, Il2CppStructArray<Vector3> deltaTangents)
+	{
+		//IL_0045: Expected O, but got Ref
+		//IL_004c: Expected O, but got Ref
+		//IL_005a: Expected O, but got Ref
+		//IL_006b: Expected O, but got Ref
+		//IL_0072: Expected O, but got Ref
+		//IL_0080: Expected O, but got Ref
+		//IL_0091: Expected O, but got Ref
+		//IL_0098: Expected O, but got Ref
+		//IL_00a6: Expected O, but got Ref
+		//IL_0028: Expected O, but got Ref
+		//IL_0034: Expected O, but got Ref
+		//The blocks IL_0039, IL_004c, IL_005a, IL_0072, IL_0080, IL_0098, IL_00a6 are reachable both inside and outside the pinned region starting at IL_0028. ILSpy has duplicated these blocks in order to place them both within and outside the `fixed` statement.
+		try
+		{
+			System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+			if (intPtr == (System.IntPtr)0)
+			{
+				UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+			}
+			Unsafe.SkipInit(out ManagedSpanWrapper managedSpanWrapper);
+			ref ManagedSpanWrapper shapeName2;
+			float frameWeight2;
+			Unsafe.SkipInit(out Il2CppSystem.Span<Vector3> span);
+			ManagedSpanWrapper managedSpanWrapper2;
+			ref ManagedSpanWrapper deltaVertices2;
+			Unsafe.SkipInit(out Il2CppSystem.Span<Vector3> span2);
+			ManagedSpanWrapper managedSpanWrapper3;
+			ref ManagedSpanWrapper deltaNormals2;
+			Unsafe.SkipInit(out Il2CppSystem.Span<Vector3> span3);
+			if (!StringMarshaller.TryMarshalEmptyOrNullString(shapeName, ref managedSpanWrapper))
+			{
+				Il2CppSystem.ReadOnlySpan<char> readOnlySpan = Il2CppSystem.MemoryExtensions.AsSpan(shapeName);
+				fixed (char* begin = &((Il2CppSystem.ReadOnlySpan<char>)(&readOnlySpan)).GetPinnableReference())
+				{
+					managedSpanWrapper = new ManagedSpanWrapper(begin, ((Il2CppSystem.ReadOnlySpan<char>)(&readOnlySpan)).Length);
+					shapeName2 = ref managedSpanWrapper;
+					frameWeight2 = frameWeight;
+					((Il2CppSystem.Span<Vector3>)(&span))._002Ector((Il2CppArrayBase<Vector3>)(object)deltaVertices);
+					fixed (Vector3* begin2 = &((Il2CppSystem.Span<Vector3>)(&span)).GetPinnableReference())
+					{
+						managedSpanWrapper2 = new ManagedSpanWrapper(begin2, ((Il2CppSystem.Span<Vector3>)(&span)).Length);
+						deltaVertices2 = ref managedSpanWrapper2;
+						((Il2CppSystem.Span<Vector3>)(&span2))._002Ector((Il2CppArrayBase<Vector3>)(object)deltaNormals);
+						fixed (Vector3* begin3 = &((Il2CppSystem.Span<Vector3>)(&span2)).GetPinnableReference())
+						{
+							managedSpanWrapper3 = new ManagedSpanWrapper(begin3, ((Il2CppSystem.Span<Vector3>)(&span2)).Length);
+							deltaNormals2 = ref managedSpanWrapper3;
+							((Il2CppSystem.Span<Vector3>)(&span3))._002Ector((Il2CppArrayBase<Vector3>)(object)deltaTangents);
+							fixed (Vector3* begin4 = &((Il2CppSystem.Span<Vector3>)(&span3)).GetPinnableReference())
+							{
+								ManagedSpanWrapper deltaTangents2 = new ManagedSpanWrapper(begin4, ((Il2CppSystem.Span<Vector3>)(&span3)).Length);
+								AddBlendShapeFrame_Injected(intPtr, ref shapeName2, frameWeight2, ref deltaVertices2, ref deltaNormals2, ref deltaTangents2);
+								return;
+							}
+						}
+					}
+				}
+			}
+			shapeName2 = ref managedSpanWrapper;
+			frameWeight2 = frameWeight;
+			((Il2CppSystem.Span<Vector3>)(&span))._002Ector((Il2CppArrayBase<Vector3>)(object)deltaVertices);
+			fixed (Vector3* begin2 = &((Il2CppSystem.Span<Vector3>)(&span)).GetPinnableReference())
+			{
+				managedSpanWrapper2 = new ManagedSpanWrapper(begin2, ((Il2CppSystem.Span<Vector3>)(&span)).Length);
+				deltaVertices2 = ref managedSpanWrapper2;
+				((Il2CppSystem.Span<Vector3>)(&span2))._002Ector((Il2CppArrayBase<Vector3>)(object)deltaNormals);
+				fixed (Vector3* begin3 = &((Il2CppSystem.Span<Vector3>)(&span2)).GetPinnableReference())
+				{
+					managedSpanWrapper3 = new ManagedSpanWrapper(begin3, ((Il2CppSystem.Span<Vector3>)(&span2)).Length);
+					deltaNormals2 = ref managedSpanWrapper3;
+					((Il2CppSystem.Span<Vector3>)(&span3))._002Ector((Il2CppArrayBase<Vector3>)(object)deltaTangents);
+					fixed (Vector3* begin4 = &((Il2CppSystem.Span<Vector3>)(&span3)).GetPinnableReference())
+					{
+						ManagedSpanWrapper deltaTangents2 = new ManagedSpanWrapper(begin4, ((Il2CppSystem.Span<Vector3>)(&span3)).Length);
+						AddBlendShapeFrame_Injected(intPtr, ref shapeName2, frameWeight2, ref deltaVertices2, ref deltaNormals2, ref deltaTangents2);
+					}
+				}
+			}
+		}
+		finally
+		{
+		}
+	}
+
+	public bool HasBoneWeights()
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		return HasBoneWeights_Injected(intPtr);
+	}
+
+	public unsafe Il2CppStructArray<BoneWeight> GetBoneWeightsImpl()
+	{
+		Unsafe.SkipInit(out BlittableArrayWrapper ret);
+		Il2CppStructArray<BoneWeight> result;
+		try
+		{
+			System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+			if (intPtr == (System.IntPtr)0)
+			{
+				UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+			}
+			GetBoneWeightsImpl_Injected(intPtr, out ret);
+		}
+		finally
+		{
+			Unsafe.SkipInit(out Il2CppStructArray<BoneWeight> array);
+			ret.Unmarshal(ref *(Il2CppArrayBase<BoneWeight>*)(&array));
+			result = array;
+		}
+		return result;
+	}
+
+	public unsafe void SetBoneWeightsImpl(Il2CppStructArray<BoneWeight> weights)
+	{
+		//IL_0018: Expected O, but got Ref
+		//IL_001f: Expected O, but got Ref
+		//IL_002b: Expected O, but got Ref
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		Unsafe.SkipInit(out Il2CppSystem.Span<BoneWeight> span);
+		((Il2CppSystem.Span<BoneWeight>)(&span))._002Ector((Il2CppArrayBase<BoneWeight>)(object)weights);
+		fixed (BoneWeight* begin = &((Il2CppSystem.Span<BoneWeight>)(&span)).GetPinnableReference())
+		{
+			ManagedSpanWrapper weights2 = new ManagedSpanWrapper(begin, ((Il2CppSystem.Span<BoneWeight>)(&span)).Length);
+			SetBoneWeightsImpl_Injected(intPtr, ref weights2);
+		}
+	}
+
+	public void InternalSetBoneWeights(System.IntPtr bonesPerVertex, int bonesPerVertexSize, System.IntPtr weights, int weightsSize)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		InternalSetBoneWeights_Injected(intPtr, bonesPerVertex, bonesPerVertexSize, weights, weightsSize);
+	}
+
+	public unsafe NativeArray<byte> GetBonesPerVertex()
+	{
+		int length = (HasBoneWeights() ? vertexCount : 0);
+		return NativeArrayUnsafeUtility.ConvertExistingDataToNativeArray<byte>((void*)GetBonesPerVertexArray(), length, Allocator.None);
+	}
+
+	public int GetAllBoneWeightsArraySize()
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		return GetAllBoneWeightsArraySize_Injected(intPtr);
+	}
+
+	public int GetBoneWeightBufferLayoutInternal()
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		return GetBoneWeightBufferLayoutInternal_Injected(intPtr);
+	}
+
+	public System.IntPtr GetAllBoneWeightsArray()
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		return GetAllBoneWeightsArray_Injected(intPtr);
+	}
+
+	public System.IntPtr GetBonesPerVertexArray()
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		return GetBonesPerVertexArray_Injected(intPtr);
+	}
+
+	public unsafe NativeArray<Matrix4x4> GetBindposes()
+	{
+		return NativeArrayUnsafeUtility.ConvertExistingDataToNativeArray<Matrix4x4>((void*)GetBindposesArray(), bindposeCount, Allocator.None);
+	}
+
+	public unsafe void SetBindposes(NativeArray<Matrix4x4> poses)
+	{
+		//IL_0008: Expected O, but got Ref
+		//IL_0011: Expected O, but got Ref
+		//IL_003e: Expected O, but got Ref
+		if (!((NativeArray<Matrix4x4>)(&poses)).IsCreated || ((NativeArray<Matrix4x4>)(&poses)).Length == 0)
+		{
+			throw new Il2CppSystem.ArgumentException("Cannot set bindposes as the native poses array is empty.", "poses");
+		}
+		SetBindposesFromScript_NativeArray((System.IntPtr)poses.GetUnsafeReadOnlyPtr(), ((NativeArray<Matrix4x4>)(&poses)).Length);
+	}
+
+	public void SetBindposesFromScript_NativeArray(System.IntPtr posesPtr, int posesCount)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		SetBindposesFromScript_NativeArray_Injected(intPtr, posesPtr, posesCount);
+	}
+
+	public System.IntPtr GetBindposesArray()
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		return GetBindposesArray_Injected(intPtr);
+	}
+
+	public void GetBoneWeightsNonAllocImpl([Out] Il2CppStructArray<BoneWeight> values)
+	{
+		throw new System.NotSupportedException("Method unstripping failed");
+	}
+
+	public void GetBindposesNonAllocImpl([Out] Il2CppStructArray<Matrix4x4> values)
+	{
+		throw new System.NotSupportedException("Method unstripping failed");
+	}
+
+	public void SetSubMesh(int index, SubMeshDescriptor desc, [Optional] MeshUpdateFlags flags)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		SetSubMesh_Injected(intPtr, index, ref desc, flags);
+	}
+
+	public unsafe void SetAllSubMeshesAtOnceFromArray(Il2CppStructArray<SubMeshDescriptor> desc, int start, int count, [Optional] MeshUpdateFlags flags)
+	{
+		//IL_0018: Expected O, but got Ref
+		//IL_001f: Expected O, but got Ref
+		//IL_002b: Expected O, but got Ref
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		Unsafe.SkipInit(out Il2CppSystem.Span<SubMeshDescriptor> span);
+		((Il2CppSystem.Span<SubMeshDescriptor>)(&span))._002Ector((Il2CppArrayBase<SubMeshDescriptor>)(object)desc);
+		fixed (SubMeshDescriptor* begin = &((Il2CppSystem.Span<SubMeshDescriptor>)(&span)).GetPinnableReference())
+		{
+			ManagedSpanWrapper desc2 = new ManagedSpanWrapper(begin, ((Il2CppSystem.Span<SubMeshDescriptor>)(&span)).Length);
+			SetAllSubMeshesAtOnceFromArray_Injected(intPtr, ref desc2, start, count, flags);
+		}
+	}
+
+	public void SetAllSubMeshesAtOnceFromNativeArray(System.IntPtr desc, int start, int count, [Optional] MeshUpdateFlags flags)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		SetAllSubMeshesAtOnceFromNativeArray_Injected(intPtr, desc, start, count, flags);
+	}
+
+	public void RecalculateTangentsImpl(MeshUpdateFlags flags)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		RecalculateTangentsImpl_Injected(intPtr, flags);
+	}
+
+	public void MarkModified()
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		MarkModified_Injected(intPtr);
+	}
+
+	public MeshTopology GetTopologyImpl(int submesh)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		return GetTopologyImpl_Injected(intPtr, submesh);
+	}
+
+	public void RecalculateUVDistributionMetricImpl(int uvSetIndex, float uvAreaThreshold)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		RecalculateUVDistributionMetricImpl_Injected(intPtr, uvSetIndex, uvAreaThreshold);
+	}
+
+	public void RecalculateUVDistributionMetricsImpl(float uvAreaThreshold)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		RecalculateUVDistributionMetricsImpl_Injected(intPtr, uvAreaThreshold);
+	}
+
+	public float GetUVDistributionMetric(int uvSetIndex)
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		return GetUVDistributionMetric_Injected(intPtr, uvSetIndex);
+	}
+
+	public void OptimizeImpl()
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		OptimizeImpl_Injected(intPtr);
+	}
+
+	public void OptimizeIndexBuffersImpl()
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		OptimizeIndexBuffersImpl_Injected(intPtr);
+	}
+
+	public void OptimizeReorderVertexBufferImpl()
+	{
+		System.IntPtr intPtr = MarshalledUnityObject.MarshalNotNull(this);
+		if (intPtr == (System.IntPtr)0)
+		{
+			UnityEngine.Bindings.ThrowHelper.ThrowNullReferenceException(this);
+		}
+		OptimizeReorderVertexBufferImpl_Injected(intPtr);
+	}
+
+	public void SetSizedNativeArrayForChannel(VertexAttribute channel, VertexAttributeFormat format, int dim, System.IntPtr values, int valuesArrayLength, int valuesStart, int valuesCount, MeshUpdateFlags flags)
+	{
+		if (canAccess)
+		{
+			if (valuesStart < 0)
+			{
+				throw new Il2CppSystem.ArgumentOutOfRangeException("valuesStart", (Il2CppSystem.Object)(object)valuesStart, "Mesh data array start index can't be negative.");
+			}
+			if (valuesCount < 0)
+			{
+				throw new Il2CppSystem.ArgumentOutOfRangeException("valuesCount", (Il2CppSystem.Object)(object)valuesCount, "Mesh data array length can't be negative.");
+			}
+			if (valuesStart >= valuesArrayLength && valuesCount != 0)
+			{
+				throw new Il2CppSystem.ArgumentOutOfRangeException("valuesStart", (Il2CppSystem.Object)(object)valuesStart, "Mesh data array start is outside of array size.");
+			}
+			if (valuesStart + valuesCount > valuesArrayLength)
+			{
+				throw new Il2CppSystem.ArgumentOutOfRangeException("valuesCount", (Il2CppSystem.Object)(object)(valuesStart + valuesCount), "Mesh data array start+count is outside of array size.");
+			}
+			SetNativeArrayForChannelImpl(channel, format, dim, values, valuesArrayLength, valuesStart, valuesCount, flags);
+		}
+		else
+		{
+			PrintErrorCantAccessChannel(channel);
+		}
+	}
+
+	public void SetVertices(Il2CppStructArray<Vector3> inVertices)
+	{
+		SetVertices(inVertices, 0, NoAllocHelpers.SafeLength((Il2CppSystem.Array)(object)inVertices));
+	}
+
+	public void SetVertices(Il2CppStructArray<Vector3> inVertices, int start, int length)
+	{
+		SetVertices(inVertices, start, length, MeshUpdateFlags.Default);
+	}
+
+	public void SetVertices(Il2CppStructArray<Vector3> inVertices, int start, int length, MeshUpdateFlags flags)
+	{
+		SetSizedArrayForChannel(VertexAttribute.Position, VertexAttributeFormat.Float32, DefaultDimensionForChannel(VertexAttribute.Position), (Il2CppSystem.Array)(object)inVertices, NoAllocHelpers.SafeLength((Il2CppSystem.Array)(object)inVertices), start, length, flags);
+	}
+
+	public unsafe void SetVertices<T>(NativeArray<T> inVertices) where T : struct
+	{
+		//IL_000b: Expected O, but got Ref
+		SetVertices(inVertices, 0, ((NativeArray<T>)(&inVertices)).Length);
+	}
+
+	public void SetVertices<T>(NativeArray<T> inVertices, int start, int length) where T : struct
+	{
+		SetVertices(inVertices, start, length, MeshUpdateFlags.Default);
+	}
+
+	public unsafe void SetVertices<T>(NativeArray<T> inVertices, int start, int length, MeshUpdateFlags flags) where T : struct
+	{
+		//IL_0032: Expected O, but got Ref
+		if (UnsafeUtility.SizeOf<T>() != 12)
+		{
+			throw new Il2CppSystem.ArgumentException("SetVertices with NativeArray should use struct type that is 12 bytes (3x float) in size");
+		}
+		SetSizedNativeArrayForChannel(VertexAttribute.Position, VertexAttributeFormat.Float32, 3, (System.IntPtr)inVertices.GetUnsafeReadOnlyPtr(), ((NativeArray<T>)(&inVertices)).Length, start, length, flags);
+	}
+
+	public void GetNormals(List<Vector3> normals)
+	{
+		if (normals == null)
+		{
+			throw new Il2CppSystem.ArgumentNullException("normals", "The result normals list cannot be null.");
+		}
+		GetListForChannel(normals, vertexCount, VertexAttribute.Normal, DefaultDimensionForChannel(VertexAttribute.Normal));
+	}
+
+	public void SetNormals(Il2CppStructArray<Vector3> inNormals)
+	{
+		SetNormals(inNormals, 0, NoAllocHelpers.SafeLength((Il2CppSystem.Array)(object)inNormals));
+	}
+
+	public void SetNormals(Il2CppStructArray<Vector3> inNormals, int start, int length)
+	{
+		SetNormals(inNormals, start, length, MeshUpdateFlags.Default);
+	}
+
+	public void SetNormals(Il2CppStructArray<Vector3> inNormals, int start, int length, MeshUpdateFlags flags)
+	{
+		SetSizedArrayForChannel(VertexAttribute.Normal, VertexAttributeFormat.Float32, DefaultDimensionForChannel(VertexAttribute.Normal), (Il2CppSystem.Array)(object)inNormals, NoAllocHelpers.SafeLength((Il2CppSystem.Array)(object)inNormals), start, length, flags);
+	}
+
+	public unsafe void SetNormals<T>(NativeArray<T> inNormals) where T : struct
+	{
+		//IL_000b: Expected O, but got Ref
+		SetNormals(inNormals, 0, ((NativeArray<T>)(&inNormals)).Length);
+	}
+
+	public void SetNormals<T>(NativeArray<T> inNormals, int start, int length) where T : struct
+	{
+		SetNormals(inNormals, start, length, MeshUpdateFlags.Default);
+	}
+
+	public unsafe void SetNormals<T>(NativeArray<T> inNormals, int start, int length, MeshUpdateFlags flags) where T : struct
+	{
+		//IL_0032: Expected O, but got Ref
+		if (UnsafeUtility.SizeOf<T>() != 12)
+		{
+			throw new Il2CppSystem.ArgumentException("SetNormals with NativeArray should use struct type that is 12 bytes (3x float) in size");
+		}
+		SetSizedNativeArrayForChannel(VertexAttribute.Normal, VertexAttributeFormat.Float32, 3, (System.IntPtr)inNormals.GetUnsafeReadOnlyPtr(), ((NativeArray<T>)(&inNormals)).Length, start, length, flags);
+	}
+
+	public void GetTangents(List<Vector4> tangents)
+	{
+		if (tangents == null)
+		{
+			throw new Il2CppSystem.ArgumentNullException("tangents", "The result tangents list cannot be null.");
+		}
+		GetListForChannel(tangents, vertexCount, VertexAttribute.Tangent, DefaultDimensionForChannel(VertexAttribute.Tangent));
+	}
+
+	public void SetTangents(Il2CppStructArray<Vector4> inTangents)
+	{
+		SetTangents(inTangents, 0, NoAllocHelpers.SafeLength((Il2CppSystem.Array)(object)inTangents));
+	}
+
+	public void SetTangents(Il2CppStructArray<Vector4> inTangents, int start, int length)
+	{
+		SetTangents(inTangents, start, length, MeshUpdateFlags.Default);
+	}
+
+	public void SetTangents(Il2CppStructArray<Vector4> inTangents, int start, int length, MeshUpdateFlags flags)
+	{
+		SetSizedArrayForChannel(VertexAttribute.Tangent, VertexAttributeFormat.Float32, DefaultDimensionForChannel(VertexAttribute.Tangent), (Il2CppSystem.Array)(object)inTangents, NoAllocHelpers.SafeLength((Il2CppSystem.Array)(object)inTangents), start, length, flags);
+	}
+
+	public unsafe void SetTangents<T>(NativeArray<T> inTangents) where T : struct
+	{
+		//IL_000b: Expected O, but got Ref
+		SetTangents(inTangents, 0, ((NativeArray<T>)(&inTangents)).Length);
+	}
+
+	public void SetTangents<T>(NativeArray<T> inTangents, int start, int length) where T : struct
+	{
+		SetTangents(inTangents, start, length, MeshUpdateFlags.Default);
+	}
+
+	public unsafe void SetTangents<T>(NativeArray<T> inTangents, int start, int length, MeshUpdateFlags flags) where T : struct
+	{
+		//IL_0032: Expected O, but got Ref
+		if (UnsafeUtility.SizeOf<T>() != 16)
+		{
+			throw new Il2CppSystem.ArgumentException("SetTangents with NativeArray should use struct type that is 16 bytes (4x float) in size");
+		}
+		SetSizedNativeArrayForChannel(VertexAttribute.Tangent, VertexAttributeFormat.Float32, 4, (System.IntPtr)inTangents.GetUnsafeReadOnlyPtr(), ((NativeArray<T>)(&inTangents)).Length, start, length, flags);
+	}
+
+	public void GetColors(List<Color> colors)
+	{
+		if (colors == null)
+		{
+			throw new Il2CppSystem.ArgumentNullException("colors", "The result colors list cannot be null.");
+		}
+		GetListForChannel(colors, vertexCount, VertexAttribute.Color, DefaultDimensionForChannel(VertexAttribute.Color));
+	}
+
+	public void SetColors(Il2CppStructArray<Color> inColors)
+	{
+		SetColors(inColors, 0, NoAllocHelpers.SafeLength((Il2CppSystem.Array)(object)inColors));
+	}
+
+	public void SetColors(Il2CppStructArray<Color> inColors, int start, int length)
+	{
+		SetColors(inColors, start, length, MeshUpdateFlags.Default);
+	}
+
+	public void SetColors(Il2CppStructArray<Color> inColors, int start, int length, MeshUpdateFlags flags)
+	{
+		SetSizedArrayForChannel(VertexAttribute.Color, VertexAttributeFormat.Float32, DefaultDimensionForChannel(VertexAttribute.Color), (Il2CppSystem.Array)(object)inColors, NoAllocHelpers.SafeLength((Il2CppSystem.Array)(object)inColors), start, length, flags);
+	}
+
+	public void SetColors(Il2CppStructArray<Color32> inColors)
+	{
+		SetColors(inColors, 0, NoAllocHelpers.SafeLength((Il2CppSystem.Array)(object)inColors));
+	}
+
+	public void SetColors(Il2CppStructArray<Color32> inColors, int start, int length)
+	{
+		SetColors(inColors, start, length, MeshUpdateFlags.Default);
+	}
+
+	public void SetColors(Il2CppStructArray<Color32> inColors, int start, int length, MeshUpdateFlags flags)
+	{
+		SetSizedArrayForChannel(VertexAttribute.Color, VertexAttributeFormat.UNorm8, 4, (Il2CppSystem.Array)(object)inColors, NoAllocHelpers.SafeLength((Il2CppSystem.Array)(object)inColors), start, length, flags);
+	}
+
+	public unsafe void SetColors<T>(NativeArray<T> inColors) where T : struct
+	{
+		//IL_000b: Expected O, but got Ref
+		SetColors(inColors, 0, ((NativeArray<T>)(&inColors)).Length);
+	}
+
+	public void SetColors<T>(NativeArray<T> inColors, int start, int length) where T : struct
+	{
+		SetColors(inColors, start, length, MeshUpdateFlags.Default);
+	}
+
+	public unsafe void SetColors<T>(NativeArray<T> inColors, int start, int length, MeshUpdateFlags flags) where T : struct
+	{
+		//IL_0042: Expected O, but got Ref
+		int num = UnsafeUtility.SizeOf<T>();
+		if (num != 16 && num != 4)
+		{
+			throw new Il2CppSystem.ArgumentException("SetColors with NativeArray should use struct type that is 16 bytes (4x float) or 4 bytes (4x unorm) in size");
+		}
+		SetSizedNativeArrayForChannel(VertexAttribute.Color, (num == 4) ? VertexAttributeFormat.UNorm8 : VertexAttributeFormat.Float32, 4, (System.IntPtr)inColors.GetUnsafeReadOnlyPtr(), ((NativeArray<T>)(&inColors)).Length, start, length, flags);
+	}
+
+	public void SetUVs(int channel, List<Vector3> uvs)
+	{
+		SetUVs(channel, uvs, 0, NoAllocHelpers.SafeLength(uvs));
+	}
+
+	public void SetUVs(int channel, List<Vector3> uvs, int start, int length)
+	{
+		SetUVs(channel, uvs, start, length, MeshUpdateFlags.Default);
+	}
+
+	public void SetUVs(int channel, List<Vector3> uvs, int start, int length, MeshUpdateFlags flags)
+	{
+		SetUvsImpl(channel, 3, uvs, start, length, flags);
+	}
+
+	public void SetUVs(int channel, Il2CppStructArray<Vector2> uvs)
+	{
+		SetUVs(channel, uvs, 0, NoAllocHelpers.SafeLength((Il2CppSystem.Array)(object)uvs));
+	}
+
+	public void SetUVs(int channel, Il2CppStructArray<Vector3> uvs)
+	{
+		SetUVs(channel, uvs, 0, NoAllocHelpers.SafeLength((Il2CppSystem.Array)(object)uvs));
+	}
+
+	public void SetUVs(int channel, Il2CppStructArray<Vector2> uvs, int start, int length)
+	{
+		SetUVs(channel, uvs, start, length, MeshUpdateFlags.Default);
+	}
+
+	public void SetUVs(int channel, Il2CppStructArray<Vector2> uvs, int start, int length, MeshUpdateFlags flags)
+	{
+		SetUvsImpl(channel, 2, (Il2CppSystem.Array)(object)uvs, start, length, flags);
+	}
+
+	public void SetUVs(int channel, Il2CppStructArray<Vector3> uvs, int start, int length)
+	{
+		SetUVs(channel, uvs, start, length, MeshUpdateFlags.Default);
+	}
+
+	public void SetUVs(int channel, Il2CppStructArray<Vector3> uvs, int start, int length, MeshUpdateFlags flags)
+	{
+		SetUvsImpl(channel, 3, (Il2CppSystem.Array)(object)uvs, start, length, flags);
+	}
+
+	public unsafe void SetUVs<T>(int channel, NativeArray<T> uvs) where T : struct
+	{
+		//IL_000c: Expected O, but got Ref
+		SetUVs(channel, uvs, 0, ((NativeArray<T>)(&uvs)).Length);
+	}
+
+	public void SetUVs<T>(int channel, NativeArray<T> uvs, int start, int length) where T : struct
+	{
+		SetUVs(channel, uvs, start, length, MeshUpdateFlags.Default);
+	}
+
+	public unsafe void SetUVs<T>(int channel, NativeArray<T> uvs, int start, int length, MeshUpdateFlags flags) where T : struct
+	{
+		//IL_007c: Expected O, but got Ref
+		if (channel < 0 || channel > 7)
+		{
+			throw new Il2CppSystem.ArgumentOutOfRangeException("channel", (Il2CppSystem.Object)(object)channel, "The uv index is invalid. Must be in the range 0 to 7.");
+		}
+		int num = UnsafeUtility.SizeOf<T>();
+		if (((uint)num & 3u) != 0)
+		{
+			throw new Il2CppSystem.ArgumentException("SetUVs with NativeArray should use struct type that is multiple of 4 bytes in size");
+		}
+		int num2 = num / 4;
+		if (num2 < 1 || num2 > 4)
+		{
+			throw new Il2CppSystem.ArgumentException("SetUVs with NativeArray should use struct type that is 1..4 floats in size");
+		}
+		SetSizedNativeArrayForChannel(GetUVChannel(channel), VertexAttributeFormat.Float32, num2, (System.IntPtr)uvs.GetUnsafeReadOnlyPtr(), ((NativeArray<T>)(&uvs)).Length, start, length, flags);
+	}
+
+	public void GetUVs(int channel, List<Vector2> uvs)
+	{
+		GetUVsImpl(channel, uvs, 2);
+	}
+
+	public Il2CppStructArray<VertexAttributeDescriptor> GetVertexAttributes()
+	{
+		return ((Il2CppObjectBase)GetVertexAttributesAlloc()).Cast<Il2CppStructArray<VertexAttributeDescriptor>>();
+	}
+
+	public int GetVertexAttributes(Il2CppStructArray<VertexAttributeDescriptor> attributes)
+	{
+		return GetVertexAttributesArray(attributes);
+	}
+
+	public int GetVertexAttributes(List<VertexAttributeDescriptor> attributes)
+	{
+		return GetVertexAttributesList(attributes);
+	}
+
+	public void SetVertexBufferParams(int vertexCount, Il2CppStructArray<VertexAttributeDescriptor> attributes)
+	{
+		SetVertexBufferParamsFromArray(vertexCount, attributes);
+	}
+
+	public void SetVertexBufferParams(int vertexCount, params VertexAttributeDescriptor[] attributes)
+	{
+		SetVertexBufferParams(vertexCount, new Il2CppStructArray<VertexAttributeDescriptor>(attributes));
+	}
+
+	public unsafe void SetVertexBufferParams(int vertexCount, NativeArray<VertexAttributeDescriptor> attributes)
+	{
+		//IL_0016: Expected O, but got Ref
+		SetVertexBufferParamsFromPtr(vertexCount, (System.IntPtr)attributes.GetUnsafeReadOnlyPtr(), ((NativeArray<VertexAttributeDescriptor>)(&attributes)).Length);
+	}
+
+	public unsafe void SetVertexBufferData<T>(NativeArray<T> data, int dataStart, int meshBufferStart, int count, [Optional] int stream, [Optional] MeshUpdateFlags flags) where T : struct
+	{
+		//IL_0041: Expected O, but got Ref
+		if (!canAccess)
+		{
+			throw new Il2CppSystem.InvalidOperationException(Il2CppSystem.String.Concat("Not allowed to access vertex data on mesh '", base.name, "' (isReadable is false; Read/Write must be enabled in import settings)"));
+		}
+		if (dataStart < 0 || meshBufferStart < 0 || count < 0 || dataStart + count > ((NativeArray<T>)(&data)).Length)
+		{
+			throw new Il2CppSystem.ArgumentOutOfRangeException(Il2CppSystem.String.Format("Bad start/count arguments (dataStart:{0} meshBufferStart:{1} count:{2})", (Il2CppSystem.Object)(object)dataStart, (Il2CppSystem.Object)(object)meshBufferStart, (Il2CppSystem.Object)(object)count));
+		}
+		InternalSetVertexBufferData(stream, (System.IntPtr)data.GetUnsafeReadOnlyPtr(), dataStart, meshBufferStart, count, UnsafeUtility.SizeOf<T>(), flags);
+	}
+
+	public void SetVertexBufferData<T>(Il2CppArrayBase<T> data, int dataStart, int meshBufferStart, int count, [Optional] int stream, [Optional] MeshUpdateFlags flags) where T : struct
+	{
+		if (!canAccess)
+		{
+			throw new Il2CppSystem.InvalidOperationException(Il2CppSystem.String.Concat("Not allowed to access vertex data on mesh '", base.name, "' (isReadable is false; Read/Write must be enabled in import settings)"));
+		}
+		if (!UnsafeUtility.IsArrayBlittable((Il2CppSystem.Array)(object)data))
+		{
+			throw new Il2CppSystem.ArgumentException(Il2CppSystem.String.Concat("Array passed to SetVertexBufferData must be blittable.\n", UnsafeUtility.GetReasonForArrayNonBlittable((Il2CppSystem.Array)(object)data)));
+		}
+		if (dataStart < 0 || meshBufferStart < 0 || count < 0 || dataStart + count > ((Il2CppArrayBase)data).Length)
+		{
+			throw new Il2CppSystem.ArgumentOutOfRangeException(Il2CppSystem.String.Format("Bad start/count arguments (dataStart:{0} meshBufferStart:{1} count:{2})", (Il2CppSystem.Object)(object)dataStart, (Il2CppSystem.Object)(object)meshBufferStart, (Il2CppSystem.Object)(object)count));
+		}
+		InternalSetVertexBufferDataFromArray(stream, (Il2CppSystem.Array)(object)data, dataStart, meshBufferStart, count, UnsafeUtility.SizeOf<T>(), flags);
+	}
+
+	public void SetVertexBufferData<T>(List<T> data, int dataStart, int meshBufferStart, int count, [Optional] int stream, [Optional] MeshUpdateFlags flags) where T : struct
+	{
+		if (!canAccess)
+		{
+			throw new Il2CppSystem.InvalidOperationException(Il2CppSystem.String.Concat("Not allowed to access vertex data on mesh '", base.name, "' (isReadable is false; Read/Write must be enabled in import settings)"));
+		}
+		if (!UnsafeUtility.IsGenericListBlittable<T>())
+		{
+			throw new Il2CppSystem.ArgumentException(Il2CppSystem.String.Format("List<{0}> passed to {1} must be blittable.\n{2}", Il2CppSystem.Type.GetTypeFromHandle(RuntimeReflectionHelper.GetRuntimeTypeHandle<T>()), "SetVertexBufferData", UnsafeUtility.GetReasonForGenericListNonBlittable<T>()));
+		}
+		if (dataStart < 0 || meshBufferStart < 0 || count < 0 || dataStart + count > data.Count)
+		{
+			throw new Il2CppSystem.ArgumentOutOfRangeException(Il2CppSystem.String.Format("Bad start/count arguments (dataStart:{0} meshBufferStart:{1} count:{2})", (Il2CppSystem.Object)(object)dataStart, (Il2CppSystem.Object)(object)meshBufferStart, (Il2CppSystem.Object)(object)count));
+		}
+		InternalSetVertexBufferDataFromArray(stream, (Il2CppSystem.Array)(object)NoAllocHelpers.ExtractArrayFromList(data), dataStart, meshBufferStart, count, UnsafeUtility.SizeOf<T>(), flags);
+	}
+
+	public GraphicsBuffer GetBoneWeightBuffer(SkinWeights layout)
+	{
+		throw new System.NotSupportedException("Method unstripping failed");
+	}
+
+	public GraphicsBuffer GetBlendShapeBuffer(BlendShapeBufferLayout layout)
+	{
+		if (this == null)
+		{
+			throw new Il2CppSystem.NullReferenceException();
+		}
+		if (!SystemInfo.supportsComputeShaders)
+		{
+			Debug.LogError("Only possible to access Blend Shape buffer on platforms that supports compute shaders.");
+			return null;
+		}
+		return GetBlendShapeBufferImpl((int)layout);
+	}
+
+	public GraphicsBuffer GetBlendShapeBuffer()
+	{
+		if (this == null)
+		{
+			throw new Il2CppSystem.NullReferenceException();
+		}
+		if (!SystemInfo.supportsComputeShaders)
+		{
+			Debug.LogError("Only possible to access Blend Shape buffer on platforms that supports compute shaders.");
+			return null;
+		}
+		return GetBlendShapeBufferImpl(0);
+	}
+
+	public Il2CppStructArray<int> GetTriangles(int submesh)
+	{
+		return GetTriangles(submesh, applyBaseVertex: true);
+	}
+
+	public Il2CppStructArray<int> GetTriangles(int submesh, bool applyBaseVertex)
+	{
+		throw new System.NotSupportedException("Method unstripping failed");
+	}
+
+	public void GetTriangles(List<ushort> triangles, int submesh, [Optional] bool applyBaseVertex)
+	{
+		if (triangles == null)
+		{
+			throw new Il2CppSystem.ArgumentNullException("triangles", "The result triangles list cannot be null.");
+		}
+		if (submesh < 0 || submesh >= subMeshCount)
+		{
+			throw new Il2CppSystem.IndexOutOfRangeException("Specified sub mesh is out of range. Must be greater or equal to 0 and less than subMeshCount.");
+		}
+		NoAllocHelpers.EnsureListElemCount(triangles, (int)(3 * GetTrianglesCountImpl(submesh)));
+		GetTrianglesNonAllocImpl16((Il2CppStructArray<ushort>)(object)NoAllocHelpers.ExtractArrayFromList(triangles), submesh, applyBaseVertex);
+	}
+
+	public void GetIndices(List<int> indices, int submesh)
+	{
+		GetIndices(indices, submesh, applyBaseVertex: true);
+	}
+
+	public void GetIndices(List<int> indices, int submesh, bool applyBaseVertex)
+	{
+		if (indices == null)
+		{
+			throw new Il2CppSystem.ArgumentNullException("indices", "The result indices list cannot be null.");
+		}
+		if (submesh < 0 || submesh >= subMeshCount)
+		{
+			throw new Il2CppSystem.IndexOutOfRangeException("Specified sub mesh is out of range. Must be greater or equal to 0 and less than subMeshCount.");
+		}
+		NoAllocHelpers.EnsureListElemCount(indices, (int)GetIndexCount(submesh));
+		GetIndicesNonAllocImpl((Il2CppStructArray<int>)(object)NoAllocHelpers.ExtractArrayFromList(indices), submesh, applyBaseVertex);
+	}
+
+	public void GetIndices(List<ushort> indices, int submesh, [Optional] bool applyBaseVertex)
+	{
+		if (indices == null)
+		{
+			throw new Il2CppSystem.ArgumentNullException("indices", "The result indices list cannot be null.");
+		}
+		if (submesh < 0 || submesh >= subMeshCount)
+		{
+			throw new Il2CppSystem.IndexOutOfRangeException("Specified sub mesh is out of range. Must be greater or equal to 0 and less than subMeshCount.");
+		}
+		NoAllocHelpers.EnsureListElemCount(indices, (int)GetIndexCount(submesh));
+		GetIndicesNonAllocImpl16((Il2CppStructArray<ushort>)(object)NoAllocHelpers.ExtractArrayFromList(indices), submesh, applyBaseVertex);
+	}
+
+	public unsafe void SetIndexBufferData<T>(NativeArray<T> data, int dataStart, int meshBufferStart, int count, [Optional] MeshUpdateFlags flags) where T : struct
+	{
+		//IL_0030: Expected O, but got Ref
+		if (!canAccess)
+		{
+			PrintErrorCantAccessIndices();
+			return;
+		}
+		if (dataStart < 0 || meshBufferStart < 0 || count < 0 || dataStart + count > ((NativeArray<T>)(&data)).Length)
+		{
+			throw new Il2CppSystem.ArgumentOutOfRangeException(Il2CppSystem.String.Format("Bad start/count arguments (dataStart:{0} meshBufferStart:{1} count:{2})", (Il2CppSystem.Object)(object)dataStart, (Il2CppSystem.Object)(object)meshBufferStart, (Il2CppSystem.Object)(object)count));
+		}
+		InternalSetIndexBufferData((System.IntPtr)data.GetUnsafeReadOnlyPtr(), dataStart, meshBufferStart, count, UnsafeUtility.SizeOf<T>(), flags);
+	}
+
+	public void SetIndexBufferData<T>(Il2CppArrayBase<T> data, int dataStart, int meshBufferStart, int count, [Optional] MeshUpdateFlags flags) where T : struct
+	{
+		if (!canAccess)
+		{
+			PrintErrorCantAccessIndices();
+			return;
+		}
+		if (!UnsafeUtility.IsArrayBlittable((Il2CppSystem.Array)(object)data))
+		{
+			throw new Il2CppSystem.ArgumentException(Il2CppSystem.String.Concat("Array passed to SetIndexBufferData must be blittable.\n", UnsafeUtility.GetReasonForArrayNonBlittable((Il2CppSystem.Array)(object)data)));
+		}
+		if (dataStart < 0 || meshBufferStart < 0 || count < 0 || dataStart + count > ((Il2CppArrayBase)data).Length)
+		{
+			throw new Il2CppSystem.ArgumentOutOfRangeException(Il2CppSystem.String.Format("Bad start/count arguments (dataStart:{0} meshBufferStart:{1} count:{2})", (Il2CppSystem.Object)(object)dataStart, (Il2CppSystem.Object)(object)meshBufferStart, (Il2CppSystem.Object)(object)count));
+		}
+		InternalSetIndexBufferDataFromArray((Il2CppSystem.Array)(object)data, dataStart, meshBufferStart, count, UnsafeUtility.SizeOf<T>(), flags);
+	}
+
+	public void SetIndexBufferData<T>(List<T> data, int dataStart, int meshBufferStart, int count, [Optional] MeshUpdateFlags flags) where T : struct
+	{
+		if (!canAccess)
+		{
+			PrintErrorCantAccessIndices();
+			return;
+		}
+		if (!UnsafeUtility.IsGenericListBlittable<T>())
+		{
+			throw new Il2CppSystem.ArgumentException(Il2CppSystem.String.Format("List<{0}> passed to {1} must be blittable.\n{2}", Il2CppSystem.Type.GetTypeFromHandle(RuntimeReflectionHelper.GetRuntimeTypeHandle<T>()), "SetIndexBufferData", UnsafeUtility.GetReasonForGenericListNonBlittable<T>()));
+		}
+		if (dataStart < 0 || meshBufferStart < 0 || count < 0 || dataStart + count > data.Count)
+		{
+			throw new Il2CppSystem.ArgumentOutOfRangeException(Il2CppSystem.String.Format("Bad start/count arguments (dataStart:{0} meshBufferStart:{1} count:{2})", (Il2CppSystem.Object)(object)dataStart, (Il2CppSystem.Object)(object)meshBufferStart, (Il2CppSystem.Object)(object)count));
+		}
+		InternalSetIndexBufferDataFromArray((Il2CppSystem.Array)(object)NoAllocHelpers.ExtractArrayFromList(data), dataStart, meshBufferStart, count, UnsafeUtility.SizeOf<T>(), flags);
+	}
+
+	public uint GetIndexStart(int submesh)
+	{
+		if (submesh < 0 || submesh >= subMeshCount)
+		{
+			throw new Il2CppSystem.IndexOutOfRangeException("Specified sub mesh is out of range. Must be greater or equal to 0 and less than subMeshCount.");
+		}
+		return GetIndexStartImpl(submesh);
+	}
+
+	public uint GetBaseVertex(int submesh)
+	{
+		if (submesh < 0 || submesh >= subMeshCount)
+		{
+			throw new Il2CppSystem.IndexOutOfRangeException("Specified sub mesh is out of range. Must be greater or equal to 0 and less than subMeshCount.");
+		}
+		return GetBaseVertexImpl(submesh);
+	}
+
+	public void SetTriangles(Il2CppStructArray<int> triangles, int submesh)
+	{
+		SetTriangles(triangles, submesh, calculateBounds: true, 0);
+	}
+
+	public void SetTriangles(Il2CppStructArray<int> triangles, int submesh, bool calculateBounds)
+	{
+		SetTriangles(triangles, submesh, calculateBounds, 0);
+	}
+
+	public void SetTriangles(Il2CppStructArray<int> triangles, int submesh, bool calculateBounds, int baseVertex)
+	{
+		SetTriangles(triangles, 0, NoAllocHelpers.SafeLength((Il2CppSystem.Array)(object)triangles), submesh, calculateBounds, baseVertex);
+	}
+
+	public void SetTriangles(Il2CppStructArray<ushort> triangles, int submesh, [Optional] bool calculateBounds, [Optional] int baseVertex)
+	{
+		SetTriangles(triangles, 0, NoAllocHelpers.SafeLength((Il2CppSystem.Array)(object)triangles), submesh, calculateBounds, baseVertex);
+	}
+
+	public void SetTriangles(Il2CppStructArray<ushort> triangles, int trianglesStart, int trianglesLength, int submesh, [Optional] bool calculateBounds, [Optional] int baseVertex)
+	{
+		if (CheckCanAccessSubmeshTriangles(submesh))
+		{
+			SetTrianglesImpl(submesh, IndexFormat.UInt16, (Il2CppSystem.Array)(object)triangles, NoAllocHelpers.SafeLength((Il2CppSystem.Array)(object)triangles), trianglesStart, trianglesLength, calculateBounds, baseVertex);
+		}
+	}
+
+	public void SetTriangles(List<int> triangles, int submesh, bool calculateBounds)
+	{
+		SetTriangles(triangles, submesh, calculateBounds, 0);
+	}
+
+	public void SetTriangles(List<ushort> triangles, int submesh, [Optional] bool calculateBounds, [Optional] int baseVertex)
+	{
+		SetTriangles(triangles, 0, NoAllocHelpers.SafeLength(triangles), submesh, calculateBounds, baseVertex);
+	}
+
+	public void SetTriangles(List<ushort> triangles, int trianglesStart, int trianglesLength, int submesh, [Optional] bool calculateBounds, [Optional] int baseVertex)
+	{
+		if (CheckCanAccessSubmeshTriangles(submesh))
+		{
+			SetTrianglesImpl(submesh, IndexFormat.UInt16, (Il2CppSystem.Array)(object)NoAllocHelpers.ExtractArrayFromList(triangles), NoAllocHelpers.SafeLength(triangles), trianglesStart, trianglesLength, calculateBounds, baseVertex);
+		}
+	}
+
+	public unsafe void SetIndices<T>(NativeArray<T> indices, MeshTopology topology, int submesh, [Optional] bool calculateBounds, [Optional] int baseVertex) where T : struct
+	{
+		//IL_000b: Expected O, but got Ref
+		SetIndices(indices, 0, ((NativeArray<T>)(&indices)).Length, topology, submesh, calculateBounds, baseVertex);
+	}
+
+	public unsafe void SetIndices<T>(NativeArray<T> indices, int indicesStart, int indicesLength, MeshTopology topology, int submesh, [Optional] bool calculateBounds, [Optional] int baseVertex) where T : struct
+	{
+		//IL_0039: Expected O, but got Ref
+		if (CheckCanAccessSubmeshIndices(submesh))
+		{
+			int num = UnsafeUtility.SizeOf<T>();
+			if (num != 2 && num != 4)
+			{
+				throw new Il2CppSystem.ArgumentException("SetIndices with NativeArray should use type is 2 or 4 bytes in size");
+			}
+			CheckIndicesArrayRange(((NativeArray<T>)(&indices)).Length, indicesStart, indicesLength);
+			SetIndicesNativeArrayImpl(submesh, topology, (num != 2) ? IndexFormat.UInt32 : IndexFormat.UInt16, (System.IntPtr)indices.GetUnsafeReadOnlyPtr(), indicesStart, indicesLength, calculateBounds, baseVertex);
+		}
+	}
+
+	public void SetIndices(List<ushort> indices, MeshTopology topology, int submesh, [Optional] bool calculateBounds, [Optional] int baseVertex)
+	{
+		SetIndices(indices, 0, NoAllocHelpers.SafeLength(indices), topology, submesh, calculateBounds, baseVertex);
+	}
+
+	public void SetIndices(List<ushort> indices, int indicesStart, int indicesLength, MeshTopology topology, int submesh, [Optional] bool calculateBounds, [Optional] int baseVertex)
+	{
+		if (CheckCanAccessSubmeshIndices(submesh))
+		{
+			Il2CppStructArray<ushort> indices2 = (Il2CppStructArray<ushort>)(object)NoAllocHelpers.ExtractArrayFromList(indices);
+			CheckIndicesArrayRange(NoAllocHelpers.SafeLength(indices), indicesStart, indicesLength);
+			SetIndicesImpl(submesh, topology, IndexFormat.UInt16, (Il2CppSystem.Array)(object)indices2, indicesStart, indicesLength, calculateBounds, baseVertex);
+		}
+	}
+
+	public void SetSubMeshes(Il2CppStructArray<SubMeshDescriptor> desc, int start, int count, [Optional] MeshUpdateFlags flags)
+	{
+		throw new System.NotSupportedException("Method unstripping failed");
+	}
+
+	public void SetSubMeshes(Il2CppStructArray<SubMeshDescriptor> desc, [Optional] MeshUpdateFlags flags)
+	{
+		SetSubMeshes(desc, 0, (desc != null) ? ((Il2CppArrayBase)desc).Length : 0, flags);
+	}
+
+	public void SetSubMeshes(List<SubMeshDescriptor> desc, int start, int count, [Optional] MeshUpdateFlags flags)
+	{
+		SetSubMeshes((Il2CppStructArray<SubMeshDescriptor>)(object)NoAllocHelpers.ExtractArrayFromList(desc), start, count, flags);
+	}
+
+	public void SetSubMeshes(List<SubMeshDescriptor> desc, [Optional] MeshUpdateFlags flags)
+	{
+		SetSubMeshes((Il2CppStructArray<SubMeshDescriptor>)(object)NoAllocHelpers.ExtractArrayFromList(desc), 0, desc?.Count ?? 0, flags);
+	}
+
+	public unsafe void SetSubMeshes<T>(NativeArray<T> desc, int start, int count, [Optional] MeshUpdateFlags flags) where T : struct
+	{
+		//IL_0045: Expected O, but got Ref
+		//IL_0066: Expected O, but got Ref
+		if (UnsafeUtility.SizeOf<T>() != UnsafeUtility.SizeOf<SubMeshDescriptor>())
+		{
+			throw new Il2CppSystem.ArgumentException(Il2CppSystem.String.Format("{0} with NativeArray should use struct type that is {1} bytes in size", "SetSubMeshes", (Il2CppSystem.Object)(object)UnsafeUtility.SizeOf<SubMeshDescriptor>()));
+		}
+		if (start < 0 || count < 0 || start + count > ((NativeArray<T>)(&desc)).Length)
+		{
+			throw new Il2CppSystem.ArgumentOutOfRangeException(Il2CppSystem.String.Format("Bad start/count arguments (start:{0} count:{1} desc.Length:{2})", (Il2CppSystem.Object)(object)start, (Il2CppSystem.Object)(object)count, (Il2CppSystem.Object)(object)((NativeArray<T>)(&desc)).Length));
+		}
+		SetAllSubMeshesAtOnceFromNativeArray((System.IntPtr)desc.GetUnsafeReadOnlyPtr(), start, count, flags);
+	}
+
+	public unsafe void SetSubMeshes<T>(NativeArray<T> desc, [Optional] MeshUpdateFlags flags) where T : struct
+	{
+		//IL_000b: Expected O, but got Ref
+		SetSubMeshes(desc, 0, ((NativeArray<T>)(&desc)).Length, flags);
+	}
+
+	public void GetBindposes(List<Matrix4x4> bindposes)
+	{
+		if (bindposes == null)
+		{
+			throw new Il2CppSystem.ArgumentNullException("bindposes", "The result bindposes list cannot be null.");
+		}
+		NoAllocHelpers.EnsureListElemCount(bindposes, bindposeCount);
+		GetBindposesNonAllocImpl((Il2CppStructArray<Matrix4x4>)(object)NoAllocHelpers.ExtractArrayFromList(bindposes));
+	}
+
+	public void GetBoneWeights(List<BoneWeight> boneWeights)
+	{
+		if (boneWeights == null)
+		{
+			throw new Il2CppSystem.ArgumentNullException("boneWeights", "The result boneWeights list cannot be null.");
+		}
+		if (HasBoneWeights())
+		{
+			NoAllocHelpers.EnsureListElemCount(boneWeights, vertexCount);
+		}
+		GetBoneWeightsNonAllocImpl((Il2CppStructArray<BoneWeight>)(object)NoAllocHelpers.ExtractArrayFromList(boneWeights));
+	}
+
+	public void Clear(bool keepVertexLayout)
+	{
+		ClearImpl(keepVertexLayout);
+	}
+
+	public void RecalculateTangents()
+	{
+		RecalculateTangents(MeshUpdateFlags.Default);
+	}
+
+	public void RecalculateTangents(MeshUpdateFlags flags)
+	{
+		if (canAccess)
+		{
+			RecalculateTangentsImpl(flags);
+		}
+		else
+		{
+			Debug.LogError(Il2CppSystem.String.Format("Not allowed to call RecalculateTangents() on mesh '{0}'", (Il2CppSystem.Object)base.name));
+		}
+	}
+
+	public void RecalculateUVDistributionMetric(int uvSetIndex, [Optional] float uvAreaThreshold)
+	{
+		if (canAccess)
+		{
+			RecalculateUVDistributionMetricImpl(uvSetIndex, uvAreaThreshold);
+		}
+		else
+		{
+			Debug.LogError(Il2CppSystem.String.Format("Not allowed to call RecalculateUVDistributionMetric() on mesh '{0}'", (Il2CppSystem.Object)base.name));
+		}
+	}
+
+	public void RecalculateUVDistributionMetrics([Optional] float uvAreaThreshold)
+	{
+		if (canAccess)
+		{
+			RecalculateUVDistributionMetricsImpl(uvAreaThreshold);
+		}
+		else
+		{
+			Debug.LogError(Il2CppSystem.String.Format("Not allowed to call RecalculateUVDistributionMetrics() on mesh '{0}'", (Il2CppSystem.Object)base.name));
+		}
+	}
+
+	public void Optimize()
+	{
+		if (canAccess)
+		{
+			OptimizeImpl();
+		}
+		else
+		{
+			Debug.LogError(Il2CppSystem.String.Format("Not allowed to call Optimize() on mesh '{0}'", (Il2CppSystem.Object)base.name));
+		}
+	}
+
+	public void OptimizeIndexBuffers()
+	{
+		if (canAccess)
+		{
+			OptimizeIndexBuffersImpl();
+		}
+		else
+		{
+			Debug.LogError(Il2CppSystem.String.Format("Not allowed to call OptimizeIndexBuffers() on mesh '{0}'", (Il2CppSystem.Object)base.name));
+		}
+	}
+
+	public void OptimizeReorderVertexBuffer()
+	{
+		if (canAccess)
+		{
+			OptimizeReorderVertexBufferImpl();
+		}
+		else
+		{
+			Debug.LogError(Il2CppSystem.String.Format("Not allowed to call OptimizeReorderVertexBuffer() on mesh '{0}'", (Il2CppSystem.Object)base.name));
+		}
+	}
+
+	public MeshTopology GetTopology(int submesh)
+	{
+		if (submesh < 0 || submesh >= subMeshCount)
+		{
+			Debug.LogError("Failed getting topology. Submesh index is out of bounds.", this);
+			return MeshTopology.Triangles;
+		}
+		return GetTopologyImpl(submesh);
+	}
+
+	public void CombineMeshes(Il2CppStructArray<CombineInstance> combine, bool mergeSubMeshes, bool useMatrices, bool hasLightmapData)
+	{
+		CombineMeshesImpl(combine, mergeSubMeshes, useMatrices, hasLightmapData);
+	}
+
+	public void CombineMeshes(Il2CppStructArray<CombineInstance> combine, bool mergeSubMeshes, bool useMatrices)
+	{
+		CombineMeshesImpl(combine, mergeSubMeshes, useMatrices, hasLightmapData: false);
+	}
+
+	public void CombineMeshes(Il2CppStructArray<CombineInstance> combine, bool mergeSubMeshes)
+	{
+		CombineMeshesImpl(combine, mergeSubMeshes, useMatrices: true, hasLightmapData: false);
+	}
+
+	public static System.IntPtr FromInstanceID_Injected(int id)
+	{
+		return FromInstanceID_InjectedDelegateField(id);
+	}
+
+	public static IndexFormat get_indexFormat_Injected(System.IntPtr _unity_self)
+	{
+		return get_indexFormat_InjectedDelegateField(_unity_self);
+	}
+
+	public static uint GetTotalIndexCount_Injected(System.IntPtr _unity_self)
+	{
+		return GetTotalIndexCount_InjectedDelegateField(_unity_self);
+	}
+
+	public static void SetIndexBufferParams_Injected(System.IntPtr _unity_self, int indexCount, IndexFormat format)
+	{
+		SetIndexBufferParams_InjectedDelegateField(_unity_self, indexCount, format);
+	}
+
+	public static void InternalSetIndexBufferData_Injected(System.IntPtr _unity_self, System.IntPtr data, int dataStart, int meshBufferStart, int count, int elemSize, MeshUpdateFlags flags)
+	{
+		InternalSetIndexBufferData_InjectedDelegateField(_unity_self, data, dataStart, meshBufferStart, count, elemSize, flags);
+	}
+
+	public static void InternalSetIndexBufferDataFromArray_Injected(System.IntPtr _unity_self, Il2CppSystem.Array data, int dataStart, int meshBufferStart, int count, int elemSize, MeshUpdateFlags flags)
+	{
+		InternalSetIndexBufferDataFromArray_InjectedDelegateField(_unity_self, IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)data), dataStart, meshBufferStart, count, elemSize, flags);
+	}
+
+	public static void SetVertexBufferParamsFromPtr_Injected(System.IntPtr _unity_self, int vertexCount, System.IntPtr attributesPtr, int attributesCount)
+	{
+		SetVertexBufferParamsFromPtr_InjectedDelegateField(_unity_self, vertexCount, attributesPtr, attributesCount);
+	}
+
+	public unsafe static void SetVertexBufferParamsFromArray_Injected(System.IntPtr _unity_self, int vertexCount, ref ManagedSpanWrapper attributes)
+	{
+		SetVertexBufferParamsFromArray_InjectedDelegateField(_unity_self, vertexCount, (nint)Unsafe.AsPointer(ref attributes));
+	}
+
+	public static void InternalSetVertexBufferData_Injected(System.IntPtr _unity_self, int stream, System.IntPtr data, int dataStart, int meshBufferStart, int count, int elemSize, MeshUpdateFlags flags)
+	{
+		InternalSetVertexBufferData_InjectedDelegateField(_unity_self, stream, data, dataStart, meshBufferStart, count, elemSize, flags);
+	}
+
+	public static void InternalSetVertexBufferDataFromArray_Injected(System.IntPtr _unity_self, int stream, Il2CppSystem.Array data, int dataStart, int meshBufferStart, int count, int elemSize, MeshUpdateFlags flags)
+	{
+		InternalSetVertexBufferDataFromArray_InjectedDelegateField(_unity_self, stream, IL2CPP.Il2CppObjectBaseToPtr((Il2CppObjectBase)(object)data), dataStart, meshBufferStart, count, elemSize, flags);
+	}
+
+	public static Il2CppSystem.Array GetVertexAttributesAlloc_Injected(System.IntPtr _unity_self)
+	{
+		System.IntPtr intPtr = GetVertexAttributesAlloc_InjectedDelegateField(_unity_self);
+		return (intPtr != (System.IntPtr)0) ? Il2CppObjectPool.Get<Il2CppSystem.Array>(intPtr) : null;
+	}
+
+	public unsafe static int GetVertexAttributesArray_Injected(System.IntPtr _unity_self, ref ManagedSpanWrapper attributes)
+	{
+		return GetVertexAttributesArray_InjectedDelegateField(_unity_self, (nint)Unsafe.AsPointer(ref attributes));
+	}
+
+	public unsafe static int GetVertexAttributesList_Injected(System.IntPtr _unity_self, ref BlittableListWrapper attributes)
+	{
+		return GetVertexAttributesList_InjectedDelegateField(_unity_self, (nint)Unsafe.AsPointer(ref attributes));
+	}
+
+	public static int GetVertexAttributeCountImpl_Injected(System.IntPtr _unity_self)
+	{
+		return GetVertexAttributeCountImpl_InjectedDelegateField(_unity_self);
+	}
+
+	public unsafe static void GetVertexAttribute_Injected(System.IntPtr _unity_self, int index, out VertexAttributeDescriptor ret)
+	{
+		GetVertexAttribute_InjectedDelegateField(_unity_self, index, (nint)Unsafe.AsPointer(ref ret));
+	}
+
+	public static uint GetIndexStartImpl_Injected(System.IntPtr _unity_self, int submesh)
+	{
+		return GetIndexStartImpl_InjectedDelegateField(_unity_self, submesh);
+	}
+
+	public static uint GetBaseVertexImpl_Injected(System.IntPtr _unity_self, int submesh)
+	{
+		return GetBaseVertexImpl_InjectedDelegateField(_unity_self, submesh);
+	}
+
+	public unsafe static void GetTrianglesImpl_Injected(System.IntPtr _unity_self, int submesh, bool applyBaseVertex, out BlittableArrayWrapper ret)
+	{
+		GetTrianglesImpl_InjectedDelegateField(_unity_self, submesh, applyBaseVertex, (nint)Unsafe.AsPointer(ref ret));
+	}
+
+	public static void SetIndicesNativeArrayImpl_Injected(System.IntPtr _unity_self, int submesh, MeshTopology topology, IndexFormat indicesFormat, System.IntPtr indices, int arrayStart, int arraySize, bool calculateBounds, int baseVertex)
+	{
+		SetIndicesNativeArrayImpl_InjectedDelegateField(_unity_self, submesh, topology, indicesFormat, indices, arrayStart, arraySize, calculateBounds, baseVertex);
+	}
+
+	public unsafe static void GetTrianglesNonAllocImpl16_Injected(System.IntPtr _unity_self, out BlittableArrayWrapper values, int submesh, bool applyBaseVertex)
+	{
+		GetTrianglesNonAllocImpl16_InjectedDelegateField(_unity_self, (nint)Unsafe.AsPointer(ref values), submesh, applyBaseVertex);
+	}
+
+	public unsafe static void GetIndicesNonAllocImpl_Injected(System.IntPtr _unity_self, out BlittableArrayWrapper values, int submesh, bool applyBaseVertex)
+	{
+		GetIndicesNonAllocImpl_InjectedDelegateField(_unity_self, (nint)Unsafe.AsPointer(ref values), submesh, applyBaseVertex);
+	}
+
+	public unsafe static void GetIndicesNonAllocImpl16_Injected(System.IntPtr _unity_self, out BlittableArrayWrapper values, int submesh, bool applyBaseVertex)
+	{
+		GetIndicesNonAllocImpl16_InjectedDelegateField(_unity_self, (nint)Unsafe.AsPointer(ref values), submesh, applyBaseVertex);
+	}
+
+	public static int GetVertexAttributeDimension_Injected(System.IntPtr _unity_self, VertexAttribute attr)
+	{
+		return GetVertexAttributeDimension_InjectedDelegateField(_unity_self, attr);
+	}
+
+	public static void SetNativeArrayForChannelImpl_Injected(System.IntPtr _unity_self, VertexAttribute channel, VertexAttributeFormat format, int dim, System.IntPtr values, int arraySize, int valuesStart, int valuesCount, MeshUpdateFlags flags)
+	{
+		SetNativeArrayForChannelImpl_InjectedDelegateField(_unity_self, channel, format, dim, values, arraySize, valuesStart, valuesCount, flags);
+	}
+
+	public static int get_vertexBufferCount_Injected(System.IntPtr _unity_self)
+	{
+		return get_vertexBufferCount_InjectedDelegateField(_unity_self);
+	}
+
+	public static int GetVertexBufferStride_Injected(System.IntPtr _unity_self, int stream)
+	{
+		return GetVertexBufferStride_InjectedDelegateField(_unity_self, stream);
+	}
+
+	public static System.IntPtr GetNativeVertexBufferPtr_Injected(System.IntPtr _unity_self, int index)
+	{
+		return GetNativeVertexBufferPtr_InjectedDelegateField(_unity_self, index);
+	}
+
+	public static System.IntPtr GetNativeIndexBufferPtr_Injected(System.IntPtr _unity_self)
+	{
+		return GetNativeIndexBufferPtr_InjectedDelegateField(_unity_self);
+	}
+
+	public static System.IntPtr GetBoneWeightBufferImpl_Injected(System.IntPtr _unity_self, int bonesPerVertex)
+	{
+		return GetBoneWeightBufferImpl_InjectedDelegateField(_unity_self, bonesPerVertex);
+	}
+
+	public static System.IntPtr GetBlendShapeBufferImpl_Injected(System.IntPtr _unity_self, int layout)
+	{
+		return GetBlendShapeBufferImpl_InjectedDelegateField(_unity_self, layout);
+	}
+
+	public static int get_blendShapeCount_Injected(System.IntPtr _unity_self)
+	{
+		return get_blendShapeCount_InjectedDelegateField(_unity_self);
+	}
+
+	public static void ClearBlendShapes_Injected(System.IntPtr _unity_self)
+	{
+		ClearBlendShapes_InjectedDelegateField(_unity_self);
+	}
+
+	public unsafe static void GetBlendShapeName_Injected(System.IntPtr _unity_self, int shapeIndex, out ManagedSpanWrapper ret)
+	{
+		GetBlendShapeName_InjectedDelegateField(_unity_self, shapeIndex, (nint)Unsafe.AsPointer(ref ret));
+	}
+
+	public unsafe static int GetBlendShapeIndex_Injected(System.IntPtr _unity_self, ref ManagedSpanWrapper blendShapeName)
+	{
+		return GetBlendShapeIndex_InjectedDelegateField(_unity_self, (nint)Unsafe.AsPointer(ref blendShapeName));
+	}
+
+	public static int GetBlendShapeFrameCount_Injected(System.IntPtr _unity_self, int shapeIndex)
+	{
+		return GetBlendShapeFrameCount_InjectedDelegateField(_unity_self, shapeIndex);
+	}
+
+	public static float GetBlendShapeFrameWeight_Injected(System.IntPtr _unity_self, int shapeIndex, int frameIndex)
+	{
+		return GetBlendShapeFrameWeight_InjectedDelegateField(_unity_self, shapeIndex, frameIndex);
+	}
+
+	public unsafe static void GetBlendShapeFrameVertices_Injected(System.IntPtr _unity_self, int shapeIndex, int frameIndex, ref ManagedSpanWrapper deltaVertices, ref ManagedSpanWrapper deltaNormals, ref ManagedSpanWrapper deltaTangents)
+	{
+		GetBlendShapeFrameVertices_InjectedDelegateField(_unity_self, shapeIndex, frameIndex, (nint)Unsafe.AsPointer(ref deltaVertices), (nint)Unsafe.AsPointer(ref deltaNormals), (nint)Unsafe.AsPointer(ref deltaTangents));
+	}
+
+	public unsafe static void AddBlendShapeFrame_Injected(System.IntPtr _unity_self, ref ManagedSpanWrapper shapeName, float frameWeight, ref ManagedSpanWrapper deltaVertices, ref ManagedSpanWrapper deltaNormals, ref ManagedSpanWrapper deltaTangents)
+	{
+		AddBlendShapeFrame_InjectedDelegateField(_unity_self, (nint)Unsafe.AsPointer(ref shapeName), frameWeight, (nint)Unsafe.AsPointer(ref deltaVertices), (nint)Unsafe.AsPointer(ref deltaNormals), (nint)Unsafe.AsPointer(ref deltaTangents));
+	}
+
+	public static bool HasBoneWeights_Injected(System.IntPtr _unity_self)
+	{
+		return HasBoneWeights_InjectedDelegateField(_unity_self);
+	}
+
+	public unsafe static void GetBoneWeightsImpl_Injected(System.IntPtr _unity_self, out BlittableArrayWrapper ret)
+	{
+		GetBoneWeightsImpl_InjectedDelegateField(_unity_self, (nint)Unsafe.AsPointer(ref ret));
+	}
+
+	public unsafe static void SetBoneWeightsImpl_Injected(System.IntPtr _unity_self, ref ManagedSpanWrapper weights)
+	{
+		SetBoneWeightsImpl_InjectedDelegateField(_unity_self, (nint)Unsafe.AsPointer(ref weights));
+	}
+
+	public static void InternalSetBoneWeights_Injected(System.IntPtr _unity_self, System.IntPtr bonesPerVertex, int bonesPerVertexSize, System.IntPtr weights, int weightsSize)
+	{
+		InternalSetBoneWeights_InjectedDelegateField(_unity_self, bonesPerVertex, bonesPerVertexSize, weights, weightsSize);
+	}
+
+	public static int GetAllBoneWeightsArraySize_Injected(System.IntPtr _unity_self)
+	{
+		return GetAllBoneWeightsArraySize_InjectedDelegateField(_unity_self);
+	}
+
+	public static int GetBoneWeightBufferLayoutInternal_Injected(System.IntPtr _unity_self)
+	{
+		return GetBoneWeightBufferLayoutInternal_InjectedDelegateField(_unity_self);
+	}
+
+	public static System.IntPtr GetAllBoneWeightsArray_Injected(System.IntPtr _unity_self)
+	{
+		return GetAllBoneWeightsArray_InjectedDelegateField(_unity_self);
+	}
+
+	public static System.IntPtr GetBonesPerVertexArray_Injected(System.IntPtr _unity_self)
+	{
+		return GetBonesPerVertexArray_InjectedDelegateField(_unity_self);
+	}
+
+	public static int get_bindposeCount_Injected(System.IntPtr _unity_self)
+	{
+		return get_bindposeCount_InjectedDelegateField(_unity_self);
+	}
+
+	public unsafe static void get_bindposes_Injected(System.IntPtr _unity_self, out BlittableArrayWrapper ret)
+	{
+		get_bindposes_InjectedDelegateField(_unity_self, (nint)Unsafe.AsPointer(ref ret));
+	}
+
+	public unsafe static void set_bindposes_Injected(System.IntPtr _unity_self, ref ManagedSpanWrapper value)
+	{
+		set_bindposes_InjectedDelegateField(_unity_self, (nint)Unsafe.AsPointer(ref value));
+	}
+
+	public static void SetBindposesFromScript_NativeArray_Injected(System.IntPtr _unity_self, System.IntPtr posesPtr, int posesCount)
+	{
+		SetBindposesFromScript_NativeArray_InjectedDelegateField(_unity_self, posesPtr, posesCount);
+	}
+
+	public static System.IntPtr GetBindposesArray_Injected(System.IntPtr _unity_self)
+	{
+		return GetBindposesArray_InjectedDelegateField(_unity_self);
+	}
+
+	public unsafe static void GetBoneWeightsNonAllocImpl_Injected(System.IntPtr _unity_self, out BlittableArrayWrapper values)
+	{
+		GetBoneWeightsNonAllocImpl_InjectedDelegateField(_unity_self, (nint)Unsafe.AsPointer(ref values));
+	}
+
+	public unsafe static void GetBindposesNonAllocImpl_Injected(System.IntPtr _unity_self, out BlittableArrayWrapper values)
+	{
+		GetBindposesNonAllocImpl_InjectedDelegateField(_unity_self, (nint)Unsafe.AsPointer(ref values));
+	}
+
+	public static bool get_isReadable_Injected(System.IntPtr _unity_self)
+	{
+		return get_isReadable_InjectedDelegateField(_unity_self);
+	}
+
+	public unsafe static void SetSubMesh_Injected(System.IntPtr _unity_self, int index, [In] ref SubMeshDescriptor desc, MeshUpdateFlags flags)
+	{
+		SetSubMesh_InjectedDelegateField(_unity_self, index, (nint)Unsafe.AsPointer(ref desc), flags);
+	}
+
+	public unsafe static void SetAllSubMeshesAtOnceFromArray_Injected(System.IntPtr _unity_self, ref ManagedSpanWrapper desc, int start, int count, MeshUpdateFlags flags)
+	{
+		SetAllSubMeshesAtOnceFromArray_InjectedDelegateField(_unity_self, (nint)Unsafe.AsPointer(ref desc), start, count, flags);
+	}
+
+	public static void SetAllSubMeshesAtOnceFromNativeArray_Injected(System.IntPtr _unity_self, System.IntPtr desc, int start, int count, MeshUpdateFlags flags)
+	{
+		SetAllSubMeshesAtOnceFromNativeArray_InjectedDelegateField(_unity_self, desc, start, count, flags);
+	}
+
+	public static void RecalculateTangentsImpl_Injected(System.IntPtr _unity_self, MeshUpdateFlags flags)
+	{
+		RecalculateTangentsImpl_InjectedDelegateField(_unity_self, flags);
+	}
+
+	public static void MarkModified_Injected(System.IntPtr _unity_self)
+	{
+		MarkModified_InjectedDelegateField(_unity_self);
+	}
+
+	public static MeshTopology GetTopologyImpl_Injected(System.IntPtr _unity_self, int submesh)
+	{
+		return GetTopologyImpl_InjectedDelegateField(_unity_self, submesh);
+	}
+
+	public static void RecalculateUVDistributionMetricImpl_Injected(System.IntPtr _unity_self, int uvSetIndex, float uvAreaThreshold)
+	{
+		RecalculateUVDistributionMetricImpl_InjectedDelegateField(_unity_self, uvSetIndex, uvAreaThreshold);
+	}
+
+	public static void RecalculateUVDistributionMetricsImpl_Injected(System.IntPtr _unity_self, float uvAreaThreshold)
+	{
+		RecalculateUVDistributionMetricsImpl_InjectedDelegateField(_unity_self, uvAreaThreshold);
+	}
+
+	public static float GetUVDistributionMetric_Injected(System.IntPtr _unity_self, int uvSetIndex)
+	{
+		return GetUVDistributionMetric_InjectedDelegateField(_unity_self, uvSetIndex);
+	}
+
+	public static void OptimizeImpl_Injected(System.IntPtr _unity_self)
+	{
+		OptimizeImpl_InjectedDelegateField(_unity_self);
+	}
+
+	public static void OptimizeIndexBuffersImpl_Injected(System.IntPtr _unity_self)
+	{
+		OptimizeIndexBuffersImpl_InjectedDelegateField(_unity_self);
+	}
+
+	public static void OptimizeReorderVertexBufferImpl_Injected(System.IntPtr _unity_self)
+	{
+		OptimizeReorderVertexBufferImpl_InjectedDelegateField(_unity_self);
+	}
+}

@@ -1,0 +1,8 @@
+namespace UnityEngine.Bindings;
+
+public enum PreventExecutionSeverity
+{
+	PreventExecution_Error,
+	PreventExecution_ManagedException,
+	PreventExecution_Warning
+}
