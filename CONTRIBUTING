@@ -1,38 +1,37 @@
-# Contributing to Accessibility Mod Template
+# Contributing to Master Duel Accessibility
 
-## About This Project
+This mod was built by a blind developer using AI assistance. All contributions are welcome.
 
-For now, this merely is a **template of a template** - a foundation for starting accessibility modding projects with Claude Code. It was created by a blind screen reader user working with Claude Code, without significant coding experience.
+## Ways to Help
 
-My goal is to help newbies like myself get started with their accessibility modding projects with:
-- Strong technical foundation
-- Good coding practices from the start
-- Protection against common pitfalls
-- Clear guidance for Claude Code to follow
+### Report Bugs or Missing Announcements
 
-## How You Can Help
+If something isn't announced or is announced incorrectly:
+- Open an issue describing the situation (which menu, which action, what happened)
+- Include your screen reader (NVDA / JAWS / SAPI) and game language
 
-### 1. Share What Works
-**If you've used this template or started your own accessibility mod:**
-- What did you find useful?
-- What was missing or confusing?
-- What additional templates or documentation would help?
-- What prompts or instructions helped Claude Code produce better code?
+### Test in Game
 
-### 2. Technical Feedback (Especially from Programmers)
-**I'd love to receive honest feedback:**
-- Where does it show this was created without traditional coding knowledge?
-- What coding patterns should be improved?
-- What architectural decisions need reconsidering?
-- What common mistakes should the template help avoid?
-- Are the code templates following best practices?
+Many patches are hard to test without playing. If you test the mod, feedback on:
+- Announcements that are missing, duplicated, or wrong
+- Keyboard shortcuts that don't work as expected
+- Menu navigation that feels incomplete
 
-Don't hold back - constructive criticism helps make this better for everyone.
+### Add Announcements for New Game Areas
 
-### 4. Additional Templates
-- Handler patterns you've found useful
-- Utility classes that solve common problems
+The game has many menus not yet covered. Look at the existing patches in `mod/MasterDuelAccessibility/Patches/` for examples of how to add new ones.
+
+Before adding a patch:
+1. Search `dump/dump.cs` for the class or method you want to patch
+2. Decompile the target type: `ilspycmd "BepInEx/interop/Assembly-CSharp.dll" -t "YgomGame.ClassName"`
+3. Follow the existing patch pattern (Harmony postfix, reflection-based field access)
+
+### Improve Localization
+
+Localization strings are in `mod/MasterDuelAccessibility/Loc.cs`.
+Currently supported: **French** and **English**.
+Japanese (`ja-JP`) would be a useful addition.
 
 ## How to Contribute
 
-Just open an issue, make a pull request, or simply get in touch via the Audiogames forum (Plueschyoda)
+Open an issue or pull request on GitHub.

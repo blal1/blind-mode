@@ -1,75 +1,45 @@
 # Changelog
 
-## v2.0.0 (upcoming)
+## v1.0.0 (2026-03-03)
 
-Major expansion of the template with new guides, quality standards, and workflow improvements.
+Initial release of Master Duel Accessibility.
 
-### New: Guides and Documentation
+### Features
 
-- **Git/GitHub guide** - Explains Git and GitHub from scratch for complete beginners
-- **Distribution guide** - How to package, publish, and license your mod (GitHub Releases, NexusMods, license comparison)
-- **State management guide** - Managing multiple handlers on shared keys without conflicts
-- **Unity Reflection guide** - Accessing private fields, ReflectionHelper patterns
-- **Menu accessibility patterns** - Item types, label resolution, navigation patterns, debugging
-- **Legacy Unity modding guide** - Unity 5.x and older, Assembly-Patching as fallback
+- **TTS** — Tolk integration for NVDA, JAWS, and SAPI
+- **Keyboard shortcuts** — F1–F5, F12, Space, Alt with full help text (F1)
+- **Announcement history** — F12 cycles through the last 10 announcements
+- **Localization** — French (primary) and English (fallback), auto-detected from game language
 
-### New: Templates
+### Duel
 
-- **ModConfig.cs** - In-game mod settings via MelonPreferences with keyboard-navigable settings menu (Ctrl+F11)
-- **ReflectionHelper.cs** - Utility class for accessing private Unity fields
-- **project_status.md** - Central project tracking document for continuity across sessions
+- LP change announcements (both players) with damage/heal amount
+- Phase and turn change announcements
+- Duel start and end (with result: win/lose/draw/timeout)
+- Card summons: Normal, Special, Flip, Fusion, Synchro, Ritual, Xyz, Pendulum, Link, Maximum
+- Attack declaration: attacker name + ATK vs target name + ATK
+- Spell/trap activations, set, send to graveyard, banish, return to hand, shuffle
+- Draw, coin flip (rock-paper-scissors), opponent thinking indicator
+- Duel dialog announcements (confirm/select dialogs)
+- Command menu (available actions when right-clicking a card)
+- Timer announcement
 
-### New: Setup Features
+### Menus
 
-- **Game familiarity question** (Step 2b) - Asks how well the user knows the game
-- **Tutorial text extraction** (Step 7b) - Offers to extract tutorial/help texts from decompiled code for unfamiliar users
-- **Project detection** - Claude now checks if `project_status.md` exists to distinguish new projects from returning sessions
-- **Build-test workflow** - Explains the build-test cycle to the user the first time it happens
-- **Token management guidance** - When to start new conversations and why
+- Button focus: contextual announcements for every menu (position N of M)
+- Shop: pack name, rarity, price, "New" label
+- Missions: mission name, reward, time remaining
+- Settings: slider value, toggle state
+- Deck edit: card added/removed, deck renamed/saved, deck name on focus
+- Card browser: auto-reads current card on open and on scroll
+- Card crafting: create/dismantle/boost dialog + result message
+- Deck selection: deck name announced on focus
+- Matchmaking: searching / match found / timeout
+- Notifications, friends, events, topics banners
 
-### New: Code Quality Standards
+### Technical
 
-- **Localization from day one** - All ScreenReader strings must go through `Loc.Get()`, no exceptions, from the first prototype
-- **XML documentation required** - All public classes and methods must have `<summary>` comments
-- **Submission-quality principle** - Code should be clean enough for game developers to consider integrating
-- **Error handling rules** - Explicit standards: null-safety with logging, try-catch only for Reflection/external calls
-- **.editorconfig** - Consistent formatting across editors, supports C#, Python, GDScript, C++
-
-### New: Accessibility Patterns
-
-- **Announcement priority** - Guidelines for when to interrupt vs. queue speech
-- **AnnouncementManager concept** - Documented as optional advanced pattern for games with many simultaneous events
-- **SayQueued()** convenience method added to ScreenReader template
-
-### Changed
-
-- **Phase 1 reorganized into tiers** - Essential (do first), Just-in-time (before each feature), When-relevant (later). Prevents information overload for beginners.
-- **Step 8 (Languages) rewritten** - Localization is no longer optional. Question is now "which languages?" not "should it be multilingual?"
-- **Loc.cs is now part of Phase 2** (basic framework), not a later addition
-- **Session management** - Claude suggests new conversations after completed features and updates project_status.md before ending
-- **Context management** - Rules to prevent re-reading already-documented code, saving tokens
-
-### Fixed
-
-- **ScreenReader API consistency** - Removed all references to non-existent `ScreenReader.Announce()` and `ScreenReader.SayQueued()` methods across all templates and docs. Everything now uses `Say()` and `SayQueued()` which map to real Tolk functions.
-- **Namespace placeholders unified** - All templates now use `NAMESPACE` consistently (was `[MODNAME]` in some files)
-- **Handler template language** - All hardcoded German strings replaced with English + Loc.Get()
-- **CLAUDE.de.md** - Added all missing reference links that existed in CLAUDE.md
-
-## v1.0.1
-
-- Restructured project into subfolder layout (docs/, templates/, scripts/)
-- Expanded README tips section
-- Added debit card as payment option note
-
-## v1.0
-
-- Initial release
-- Setup interview workflow
-- Core templates (Main.cs, Handler.cs, ScreenReader.cs, Loc.cs, DebugLogger.cs, csproj)
-- Accessibility Modding Guide
-- Menu accessibility checklist
-- Localization guide
-- Technical reference
-- PowerShell helper scripts (Get-MelonLoaderInfo, Test-ModSetup)
-- game-api.md template
+- MelonLoader v0.7.1 / Unity 6 IL2CPP
+- Harmony patches via runtime reflection (no compile-time game DLL dependency)
+- Input blocking: Tab, Ctrl (during duel), Escape (modal overlays), Space/Enter in input fields
+- Deduplication of rapid repeated announcements (300 ms window)
