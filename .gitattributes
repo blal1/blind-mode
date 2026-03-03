@@ -1,0 +1,2 @@
+dump/il2cpp.h filter=lfs diff=lfs merge=lfs -text
+dump/script.json filter=lfs diff=lfs merge=lfs -text

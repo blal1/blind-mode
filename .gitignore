@@ -20,14 +20,6 @@ packages/
 # Decompiled game files (too large for git)
 decompiled/
 
-# Game engine files (too large for git — not needed to build the mod)
-dump/
-BepInEx/
-dotnet/
-
-# External dev tools (separate git repo — HearthstoneAccess/DevTools)
-DevTools/
-
 # OS files
 .DS_Store
 Thumbs.db
