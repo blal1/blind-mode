@@ -199,6 +199,15 @@ namespace MasterDuelAccessibility
                 () => WithTts(ReadOppHandCount),
                 () => IsInDuel));
 
+            // Tab — Avancer la phase / passer la priorité (duel uniquement)
+            // Note : le déclenchement est géré dans Update() (early-exit, avant la remise
+            // à zéro des positions de navigation). L'action ici est vide — uniquement pour
+            // que BuildHelpText() inclue ce raccourci dans l'aide F1.
+            r.Register(new ShortcutDefinition(
+                KeyCode.Tab, null, "shortcut_tab",
+                () => { },   // handled in Update() early exit
+                () => IsInDuel));
+
             Plugin.Instance?.LogMsg($"[Shortcuts] Registre initialisé avec {r.GetAll().Count} raccourcis.");
         }
 
@@ -251,6 +260,16 @@ namespace MasterDuelAccessibility
             if (IsInDuel && Input.GetKeyDown((KeyCode)285) && ctrl && !shift && !alt)
             {
                 HandleMyFieldCardNav(tts);
+                return;
+            }
+
+            // Tab — Avancer la phase / passer la priorité (duel uniquement)
+            // Inspiré du pattern AccessibleArena UIActivator : déclencher programmatiquement
+            // un bouton de l'interface jeu via réflexion (PhaseSelect3D.OnClickButtonPhase).
+            // Tab = "passer au suivant / confirmer" — conventionnel pour un lecteur d'écran.
+            if (IsInDuel && Input.GetKeyDown(KeyCode.Tab) && !ctrl && !alt)
+            {
+                HandlePhaseAdvance(tts);
                 return;
             }
 
@@ -352,6 +371,65 @@ namespace MasterDuelAccessibility
             tts.Speak(
                 Loc.Get("opp_field_card_nav", names[_oppFieldNavPos], _oppFieldNavPos + 1, names.Length),
                 interrupt: true, addToHistory: false);
+        }
+
+        // ── Tab : Avancer la phase / passer la priorité ──────────────────────
+
+        /// <summary>
+        /// Simule un clic sur le bouton de phase (PhaseSelect3D) pour avancer la phase
+        /// ou passer la priorité sans utiliser la souris.
+        ///
+        /// Stratégie (inspirée d'AccessibleArena UIActivator) :
+        ///   1. Trouver l'instance active de PhaseSelect3D via FindObjectsOfType
+        ///   2. Appeler PhaseSelect3D.OnClickButtonPhase() via réflexion
+        ///
+        /// Le TTS de confirmation vient de PhasePatch.PhaseChange_Postfix — aucun message
+        /// additionnel nécessaire ici si la phase change. On n'annonce que si le bouton
+        /// est indisponible (phase non encore sélectionnable).
+        /// </summary>
+        private static void HandlePhaseAdvance(TtsService tts)
+        {
+            try
+            {
+                var phaseType = AccessToolsHelper.FindType("PhaseSelect3D");
+                if (phaseType == null)
+                {
+                    tts.Speak(Loc.Get("phase_btn_unavailable"), interrupt: true, addToHistory: false);
+                    return;
+                }
+
+                var instances = FindObjectsOfType(phaseType);
+                if (instances == null || instances.Length == 0)
+                {
+                    tts.Speak(Loc.Get("phase_btn_unavailable"), interrupt: true, addToHistory: false);
+                    return;
+                }
+
+                var clickMethod = phaseType.GetMethod(
+                    "OnClickButtonPhase",
+                    System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance);
+
+                foreach (var inst in instances)
+                {
+                    if (inst == null) continue;
+
+                    // Vérifier que le GO est actif (le bouton de phase est parfois caché
+                    // pendant le tour adversaire ou la résolution d'un effet).
+                    var goProp = inst.GetType().GetProperty("gameObject");
+                    var go     = goProp?.GetValue(inst);
+                    var active = go?.GetType()
+                        .GetProperty("activeInHierarchy")?.GetValue(go) as bool?;
+                    if (active != true) continue;
+
+                    clickMethod?.Invoke(inst, null);
+                    // PhasePatch annoncera le changement de phase — pas besoin d'annonce ici.
+                    return;
+                }
+
+                // Aucune instance active — le bouton est indisponible (tour adverse, etc.)
+                tts.Speak(Loc.Get("phase_btn_unavailable"), interrupt: true, addToHistory: false);
+            }
+            catch { }
         }
 
         // ── Helper : exécute une action avec TtsService ───────────────────────

@@ -89,6 +89,25 @@ namespace MasterDuelAccessibility.Patches
             DuelTimerPatch.Reset();
             DuelTimerPatch.Initialize(_harmonyLate!);
 
+            // Dialog Rituel — annonce les conditions d'invocation rituelle
+            DuelRitualDialogPatch.Reset();
+            DuelRitualDialogPatch.Initialize(_harmonyLate!);
+
+            // Navigation dans le menu de commande (CommandOperation.SetCursor)
+            // Annonce la commande courante quand le joueur navigue dans le menu d'action
+            CommandOperationPatch.Reset();
+            CommandOperationPatch.Initialize(_harmonyLate!);
+
+            // Curseur sur le terrain (RunEffectWorker.OnCursorEnter)
+            // Annonce la carte/zone sous le curseur pendant la sélection de cibles
+            DuelCursorPatch.Reset();
+            DuelCursorPatch.Initialize(_harmonyLate!);
+
+            // Placement d'invocation spéciale (SelectStandOperation.BeginSpSummon)
+            // Annonce le mode de sélection : zone à choisir ou position du monstre
+            SelectStandOperationPatch.Reset();
+            SelectStandOperationPatch.Initialize(_harmonyLate!);
+
             Plugin.Instance?.LogMsg("[LatePatches] Patches duel appliqués.");
         }
 

@@ -51,6 +51,9 @@ namespace MasterDuelAccessibility.Patches
             }
             catch { }
 
+            // Activer le contexte navigateur de cartes pour les annonces de filtres
+            GameState.CurrentMenu = GameState.Menu.CardBrowser;
+
             // Schedule an initial read — 0.8 s gives the browser time to populate the first slot
             KeyboardShortcuts.PendingCardReadAt = DateTime.Now.AddSeconds(0.8);
         }

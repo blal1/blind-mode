@@ -1,0 +1,451 @@
+# Dropdown Handling - Unified State Management
+
+**Created:** 2026-02-03
+**Updated:** 2026-03-05 (Pre-open Submit blocking via BlockSubmitForToggle on dropdown elements)
+
+---
+
+## Overview
+
+MTGA uses dropdowns for date selection (birthday, month/day/year pickers) and other settings. The accessibility mod needs to:
+
+1. Detect when a dropdown is open (to hand off arrow key handling to Unity)
+2. Handle explicit close (Escape/Backspace) and Tab-away
+3. Sync navigator index after dropdown closes
+4. Prevent re-entry when closing auto-opened dropdowns
+5. Block Enter/Submit from the game while in dropdown mode
+6. Select items without triggering onValueChanged (prevents chain auto-advance)
+7. Handle Tab navigation: close current dropdown and move to next element
+8. Suppress onValueChanged while dropdown is open (prevents form auto-advance)
+
+---
+
+## Architecture
+
+### Single Source of Truth: DropdownStateManager
+
+All dropdown state is managed by `DropdownStateManager` (`src/Core/Services/DropdownStateManager.cs`).
+
+**State:**
+- `_wasInDropdownMode` - Tracks previous frame state for exit transition detection
+- `_suppressReentry` - Prevents re-entry after closing auto-opened dropdowns
+- `_activeDropdownObject` - Reference to currently active dropdown
+- `_blockEnterFromGame` - Persistent flag blocking Enter from game's KeyboardManager and Unity's EventSystem Submit
+- `_blockSubmitAfterFrame` - Frame-based Submit blocking window after dropdown item selection or close
+- `_savedOnValueChanged` - Saved `m_OnValueChanged` event, replaced with empty event while dropdown is open
+- `_suppressedDropdownComponent` - The component whose onValueChanged was suppressed
+- `_cachedOnValueChangedField` - Cached FieldInfo for cTMP_Dropdown.m_OnValueChanged
+- `_pendingNotifyValue` - Selected value (>=0) to fire via onValueChanged after restore on close (-1 = no pending notification)
+
+**Public API:**
+```csharp
+// Query state
+bool IsDropdownExpanded     // Real state from dropdown's IsExpanded property
+bool IsInDropdownMode       // Takes suppression into account
+bool ShouldBlockEnterFromGame // True while dropdown is open (persistent across frames)
+bool IsSuppressed           // True when reentry is suppressed (old dropdown still closing)
+GameObject ActiveDropdown   // Currently active dropdown
+
+// Called by BaseNavigator each frame
+bool UpdateAndCheckExitTransition()  // Returns true if just exited dropdown mode
+
+// Called when user opens/closes dropdown
+void OnDropdownOpened(GameObject dropdown)  // Sets _blockEnterFromGame = true
+string OnDropdownClosed()            // Returns new focus element name, clears blocking
+
+// Called after closing auto-opened dropdown
+void SuppressReentry()
+
+// Called when Enter selects a dropdown item
+void OnDropdownItemSelected(int selectedValue)  // Stores pending value + starts Submit-blocking window
+
+// Post-selection Submit blocking
+bool ShouldBlockSubmit()             // True for 3 frames after item selection
+
+// Utility
+void Reset()                         // Clear all state
+```
+
+### onValueChanged Suppression
+
+When a dropdown is opened by the mod, `DropdownStateManager` temporarily replaces the dropdown's `m_OnValueChanged` event with an empty event. This prevents the game's form validation from detecting value changes while the user is browsing items.
+
+**Problem:** On forms with multiple required dropdowns (e.g., registration page with Month/Day/Year/Country/Experience), the game monitors `onValueChanged` to detect when all fields are filled and auto-advances to the next page. When the last dropdown is opened and an item receives focus, `cTMP_Dropdown` internally sets its value and fires `onValueChanged`, causing the form to auto-submit before the user confirms their selection.
+
+**Solution:** `SuppressOnValueChanged()` saves the original event and replaces it with an empty one on open. `RestoreOnValueChanged()` restores it on close. Restore is called from all close paths:
+- `OnDropdownClosed()` - explicit user close
+- `UpdateAndCheckExitTransition()` - dropdown closed unexpectedly by the game
+- `SuppressReentry()` - auto-opened dropdown closed
+- `Reset()` - navigator deactivates or scene changes
+
+After restoring, if the user confirmed a selection (Enter, not Escape), `FireOnValueChanged()` invokes the restored callback with the selected value. This notifies the game so the change persists even when the UI is destroyed and recreated (e.g., DeckDetailsPopup).
+
+Supports all dropdown types: `cTMP_Dropdown` (via reflection on `m_OnValueChanged` field), `TMP_Dropdown`, and legacy `Dropdown` (via `onValueChanged` property).
+
+### Enter/Submit Blocking
+
+The mod fully handles Enter key presses in dropdown mode. The game never sees Enter while a dropdown is open:
+
+1. **Pre-open blocking** - `InputManager.BlockSubmitForToggle` is set to true when the navigator focuses a dropdown element (before the user presses Enter). This blocks `SendSubmitEventToSelectedObject` and `Input.GetKeyDown(Enter)` via EventSystemPatch. Without this, Unity's EventSystem processes Submit BEFORE our Update runs, causing the game to auto-advance the form (e.g., registration page Continue button) when Enter is pressed to open the dropdown. Cleared by `OnDropdownOpened()` when the dropdown actually opens.
+2. **Open-mode blocking** - `ShouldBlockEnterFromGame` is set by `OnDropdownOpened()` and stays true until dropdown mode exits. Blocks Enter from `KeyboardManager.PublishKeyDown` and `SendSubmitEventToSelectedObject`.
+3. **Post-close blocking** - `ShouldBlockSubmit()` blocks Submit for 3 frames after dropdown close to prevent auto-clicking the next focused element
+
+**Handoff sequence:** `BlockSubmitForToggle` (navigate to dropdown) → `OnDropdownOpened()` clears `BlockSubmitForToggle`, sets `ShouldBlockEnterFromGame` → `OnDropdownClosed()` clears `ShouldBlockEnterFromGame`, starts `ShouldBlockSubmit()` window.
+
+### Item Selection and Close (BaseNavigator)
+
+When the user presses Enter on a dropdown item, the mod selects it and closes the dropdown:
+
+- **`SelectDropdownItem()`** - Parses item index from the item name ("Item N: ..."), calls `SetDropdownValueSilent()`, then calls `DropdownStateManager.OnDropdownItemSelected(itemIndex)` to store the pending value
+- **`SetDropdownValueSilent()`** - Sets the value via reflection:
+  - `TMP_Dropdown` / `Dropdown`: Uses `SetValueWithoutNotify()`
+  - `cTMP_Dropdown` (MTGA custom): Sets `m_Value` field directly + calls `RefreshShownValue()` (no `SetValueWithoutNotify` available)
+- After selection, `CloseActiveDropdown(silent: true)` closes the dropdown, which restores onValueChanged and fires it with the pending value via `FireOnValueChanged()`
+- The exit transition then calls `AnnounceCurrentElement()`, which re-reads the dropdown's current value via `GetDropdownDisplayValue()` and announces e.g. "2 of 10: Monat der Geburt: Januar, dropdown"
+
+### Dynamic Dropdown Value Display (BaseNavigator)
+
+`GetElementAnnouncement()` dynamically re-reads dropdown values (same pattern as toggles and input fields):
+
+- **`GetDropdownDisplayValue()`** reads `captionText.text` directly — NOT `options[value].text`
+  - `TMP_Dropdown` / `Dropdown`: Reads `captionText.text` directly
+  - `cTMP_Dropdown`: Reads `m_CaptionText` field via reflection (cTMP_Dropdown extends `Selectable`, NOT `TMP_Dropdown`)
+- **Critical:** Never call `RefreshShownValue()` in read paths — it overwrites `captionText` from `m_Value`, which may be stale (game can set captionText directly without updating m_Value)
+- If the current value differs from the base label, formats as "baseLabel: value, dropdown"
+- If unchanged (value matches label), keeps the original label
+
+**UIElementClassifier** also reads dropdown values (for settings detection and initial labeling) using the same captionText-first approach via `GetDropdownSelectedValue()`, `IsSettingsDropdownControl()`, and `GetCustomDropdownSelectedValue()`.
+
+### Stale Dropdown Value Correction (UIElementClassifier)
+
+`CorrectStaleDropdownValue()` attempts to fix dropdowns where the game initializes `value=0` but the actual setting is different. It only acts on dropdowns with `value == 0` and tries to match `Screen.width x Screen.height` against option texts.
+
+**Known limitation:** Screen/Camera Unity APIs return the native display resolution, not the game's internal render resolution. The resolution dropdown in Settings > Graphics cannot be corrected — see Known Issues.
+
+### Popup Dropdown Support (DropdownEditHelper)
+
+Popups (e.g., DeckDetailsPopup) can contain dropdowns. `BaseNavigator`'s popup mode discovers and handles them via `DropdownEditHelper`, following the same pattern as `InputFieldEditHelper`:
+
+- **Discovery:** `DiscoverPopupElements()` scans popup objects for TMP_Dropdown, Dropdown, and cTMP_Dropdown components. Labels use `GetDropdownDisplayValue()` + role suffix.
+- **Edit mode:** Enter on a dropdown item calls `DropdownEditHelper.EnterEditMode()` which opens the dropdown via `UIActivator.Activate()` and registers with `DropdownStateManager`.
+- **Key handling:** `HandleEditing()` routes Tab (close + navigate), Escape/Backspace (close), Enter (select + close), and passes arrow keys to Unity.
+- **Integration:** `BaseNavigator.HandlePopupInput()` checks `_popupDropdownHelper.IsEditing` before input field editing, ensuring dropdown mode takes priority.
+
+**Files:** `src/Core/Services/DropdownEditHelper.cs`, `src/Core/Services/BaseNavigator.cs`
+
+### Integration Points
+
+**BaseNavigator.HandleInput():**
+```csharp
+// Check dropdown state and detect exit transitions
+bool justExitedDropdown = DropdownStateManager.UpdateAndCheckExitTransition();
+
+if (DropdownStateManager.IsInDropdownMode)
+{
+    HandleDropdownNavigation();
+    return;
+}
+
+if (justExitedDropdown)
+{
+    SyncIndexToFocusedElement();
+    return; // SyncIndexToFocusedElement already announces; no separate announce needed
+}
+```
+
+**BaseNavigator.HandleDropdownNavigation():**
+- **Auto-open guard** (first check): If `!ShouldBlockEnterFromGame` and no Enter pressed, the dropdown was auto-opened (async, not by user). Closes it via `CloseDropdownOnElement()` and returns to normal navigation. If Enter IS pressed, registers the dropdown as user-opened via `OnDropdownOpened()`.
+- Tab/Shift+Tab: Calls `CloseActiveDropdown(silent: true)`, suppresses reentry, then navigates to next/previous element
+- Enter: Calls `SelectDropdownItem()` then `CloseActiveDropdown(silent: true)` (selects, closes, exit transition announces element with value)
+- Escape/Backspace: Calls `CloseActiveDropdown()` (closes dropdown, announces "closed", syncs focus)
+- All Enter key codes consumed via `InputManager.ConsumeKey()`
+
+**BaseNavigator.CloseActiveDropdown(bool silent = false):**
+- Calls `DropdownStateManager.OnDropdownClosed()` after closing dropdown
+- When `silent` is true, skips "dropdown closed" announcement (used by Tab handler)
+
+**BaseNavigator.CloseDropdownOnElement():**
+- Calls `DropdownStateManager.SuppressReentry()` after closing auto-opened dropdown
+
+**BaseNavigator.UpdateEventSystemSelection() - Dropdown branch:**
+- Sets EventSystem selection on dropdown element
+- If dropdown auto-opens (`IsAnyDropdownExpanded()`):
+  - If `_lastNavigationWasTab` AND suppression is NOT active: Calls `OnDropdownOpened()` to keep the dropdown open (Tab auto-open behavior)
+  - Otherwise (arrow navigation, or Tab from inside an open dropdown): Calls `CloseDropdownOnElement()` to suppress
+
+**EventSystemPatch:**
+- `SendSubmitEventToSelectedObject_Prefix` returns false when `ShouldBlockEnterFromGame`
+- `SendMoveEventToSelectedObject_Prefix` returns false when Tab key is pressed (blocks Unity's Tab navigation)
+
+**KeyboardManagerPatch:**
+- `ShouldBlockKey()` returns true for Enter when `ShouldBlockEnterFromGame`
+
+**UIFocusTracker:**
+- `EnterDropdownEditMode()` delegates to `DropdownStateManager.OnDropdownOpened()`
+- `ExitDropdownEditMode()` delegates to `DropdownStateManager.OnDropdownClosed()`
+- `IsAnyDropdownExpanded()` and `GetExpandedDropdown()` remain for querying real dropdown state
+
+---
+
+## State Machines
+
+### Scenario 1: Normal Dropdown Flow (User Opens, Selects, Closes)
+
+```
+[Normal Navigation]
+    |
+    v Navigator focuses dropdown element
+[Pre-Open Blocking]
+    | BlockSubmitForToggle = true (blocks Submit + Input.GetKeyDown(Enter) from game)
+    | EventSystemPatch: SendSubmitEventToSelectedObject blocked
+    | EventSystemPatch: Input.GetKeyDown(Enter) returns false, sets EnterPressedWhileBlocked
+    v User presses Enter
+[Dropdown Opens]
+    | UIActivator.Activate() opens dropdown
+    | OnDropdownOpened(): BlockSubmitForToggle = false (handoff)
+    | _blockEnterFromGame = true (Enter blocked from game)
+    | IsDropdownExpanded = true
+    | DropdownStateManager.IsInDropdownMode = true
+    | onValueChanged suppressed (replaced with empty event)
+    v
+[Dropdown Mode]
+    | Arrow keys handled by Unity's dropdown
+    v User presses Enter on an item
+[Select and Close]
+    | SelectDropdownItem() sets value silently + stores pending value
+    | CloseActiveDropdown(silent: true)
+    | DropdownStateManager.OnDropdownClosed()
+    | onValueChanged restored, then fired with pending value
+    | _blockEnterFromGame = false
+    | Submit blocked for 3 frames
+    v
+[Next Frame]
+    | UpdateAndCheckExitTransition() returns true
+    | SyncIndexToFocusedElement() called
+    | AnnounceCurrentElement() re-reads dropdown value via GetDropdownDisplayValue()
+    | Announces e.g. "2 of 10: Monat der Geburt: Januar, dropdown"
+    v
+[Normal Navigation]
+```
+
+### Scenario 2: Auto-Opened Dropdown Suppression
+
+Two layers catch auto-opened dropdowns depending on whether MTGA opens them synchronously or asynchronously:
+
+**Layer 1 - Synchronous auto-open (caught in UpdateEventSystemSelection):**
+```
+[Normal Navigation]
+    |
+    v Navigator calls UpdateEventSystemSelection() to focus dropdown
+[EventSystem Selection Set]
+    | MTGA auto-opens the dropdown synchronously (OnSelect handler)
+    | IsDropdownExpanded = true
+    v
+[Navigator Detects Auto-Open]
+    | Navigator checks IsAnyDropdownExpanded() in UpdateEventSystemSelection()
+    | Calls CloseDropdownOnElement()
+    v
+[CloseDropdownOnElement()]
+    | dropdown.Hide()
+    | DropdownStateManager.SuppressReentry()
+    | _suppressReentry = true, _wasInDropdownMode = false
+    v
+[Next Frame(s)]
+    | IsDropdownExpanded might STILL be true briefly
+    | DropdownStateManager.IsInDropdownMode = false (suppression active)
+    | UpdateAndCheckExitTransition() does not set _wasInDropdownMode
+    v
+[Eventually]
+    | IsDropdownExpanded = false
+    | _suppressReentry cleared
+    v
+[Normal Navigation]
+```
+
+**Layer 2 - Asynchronous auto-open (caught in HandleDropdownNavigation):**
+```
+[Normal Navigation]
+    |
+    v Navigator calls UpdateEventSystemSelection() to focus dropdown
+[EventSystem Selection Set]
+    | MTGA queues dropdown open for next frame (deferred/coroutine)
+    | IsAnyDropdownExpanded() = false (not yet open)
+    | No auto-open detected - normal announcement
+    v
+[Next Frame]
+    | MTGA opens the dropdown asynchronously
+    | IsDropdownExpanded = true, IsInDropdownMode = true
+    | _blockEnterFromGame = false (OnDropdownOpened was never called)
+    v
+[HandleDropdownNavigation - Auto-Open Guard]
+    | !ShouldBlockEnterFromGame = true AND no Enter pressed
+    | Detected as auto-opened dropdown
+    | CloseDropdownOnElement() + SuppressReentry()
+    v
+[Normal Navigation resumes next frame]
+```
+
+### Scenario 3: Tab Between Closed Dropdowns (Auto-Open)
+
+```
+[Normal Navigation]
+    |
+    v User presses Tab (not in dropdown mode)
+[Tab Handler in HandleInput]
+    | _lastNavigationWasTab = true
+    | MoveNext() calls UpdateEventSystemSelection()
+    v
+[UpdateEventSystemSelection - Dropdown Element]
+    | eventSystem.SetSelectedGameObject(dropdown)
+    | MTGA auto-opens the dropdown (side effect)
+    | IsAnyDropdownExpanded() = true
+    | _lastNavigationWasTab = true AND !IsSuppressed
+    v
+[OnDropdownOpened()]
+    | _blockEnterFromGame = true
+    | _suppressReentry = false (cleared)
+    | Dropdown stays open - user is now in dropdown mode
+    v
+[Dropdown Mode]
+    | Arrow keys navigate items, Enter selects, Escape closes
+```
+
+### Scenario 4: Tab From Inside Open Dropdown
+
+```
+[Dropdown Mode]
+    |
+    v User presses Tab
+[HandleDropdownNavigation - Tab]
+    | CloseActiveDropdown(silent: true) - no "closed" announcement
+    | DropdownStateManager.SuppressReentry() - suppression active
+    | _lastNavigationWasTab = true
+    | MoveNext() calls UpdateEventSystemSelection()
+    v
+[UpdateEventSystemSelection - Next Dropdown Element]
+    | eventSystem.SetSelectedGameObject(nextDropdown)
+    | MTGA auto-opens the dropdown (side effect)
+    | IsAnyDropdownExpanded() = true
+    | BUT: IsSuppressed = true (old dropdown still closing)
+    v
+[CloseDropdownOnElement()]
+    | New auto-opened dropdown is closed
+    | SuppressReentry() called again
+    | Next dropdown is announced but NOT opened
+    v
+[Eventually]
+    | Old dropdown's IsExpanded = false
+    | _suppressReentry cleared
+    v
+[Normal Navigation]
+    | User presses Enter to manually open the dropdown
+```
+
+**Known limitation:** Tab from inside an open dropdown does not auto-open the next dropdown. The old dropdown's `IsExpanded` lingers for a frame after `Hide()`, making it impossible to distinguish whether the new dropdown actually auto-opened or the old dropdown is still reporting expanded.
+
+---
+
+## Key Design Decisions
+
+### Why Block Enter from the Game?
+
+MTGA has multiple ways of detecting Enter:
+1. Unity's EventSystem Submit (`SendSubmitEventToSelectedObject`)
+2. Game's `KeyboardManager.PublishKeyDown`
+3. Direct `Input.GetKeyDown` calls
+
+All three must be blocked while in dropdown mode. The `_blockEnterFromGame` flag is set when entering dropdown mode and persists until our `Update()` processes the exit transition. This is necessary because `EventSystem.Process()` runs before our `Update()` and may close the dropdown before `PublishKeyDown` is called.
+
+**Critical timing issue:** `EventSystem.Update()` runs BEFORE MelonLoader's `OnUpdate()`. When the user presses Enter to open a dropdown, `SendSubmitEventToSelectedObject` fires before our code can open the dropdown and set `_blockEnterFromGame`. If MTGA has auto-moved EventSystem selection to a form button (e.g., Continue on the registration page when all fields are filled), the unblocked Submit triggers the button, auto-advancing the page. To prevent this, `BlockSubmitForToggle` is set preemptively when the navigator focuses a dropdown element, blocking Submit before the user even presses Enter. `OnDropdownOpened()` then clears `BlockSubmitForToggle` and sets `_blockEnterFromGame` to take over.
+
+### Why Silent Value Setting + Deferred Notification?
+
+MTGA's `cTMP_Dropdown` (custom dropdown class) has no `SetValueWithoutNotify()`. Its `value` setter always fires `onValueChanged`, which triggers the game's auto-advance chain (Month -> Day -> Year -> Country -> Experience). By setting `m_Value` directly via reflection and calling `RefreshShownValue()`, we update the visual state without triggering any callbacks.
+
+However, some UI (e.g., DeckDetailsPopup) is destroyed on close and recreated on reopen. The game populates the new UI from its data model, which is only updated via `onValueChanged`. To handle both cases, the mod uses **deferred notification**: the value is set silently while browsing, but when the user confirms with Enter, `OnDropdownItemSelected(value)` stores the pending value. On close, after restoring `onValueChanged`, `FireOnValueChanged()` invokes the callback to notify the game. Cancel (Escape/Backspace) does not fire the notification.
+
+### Why Suppress onValueChanged While Open?
+
+MTGA's `cTMP_Dropdown.value` setter always fires `m_OnValueChanged.Invoke()`. When a dropdown is open and the game internally changes the value (e.g., highlighting an item), `onValueChanged` fires. On multi-dropdown forms like registration, the game's form validation listens to these events. When the last required dropdown fires `onValueChanged`, the form detects all fields are filled and auto-advances to the next page - before the user has confirmed their selection.
+
+Simply blocking `SetDropdownValueSilent()` (our own selection) is not enough because the game's own dropdown internals also set the value. By replacing `m_OnValueChanged` with an empty event for the duration the dropdown is open, no value change notifications escape to form validation. The original event is restored when the dropdown closes.
+
+### Why a Separate Manager Class?
+
+Before the unified manager, dropdown state was tracked in two places (BaseNavigator and UIFocusTracker). This caused dual state tracking, two parallel suppression mechanisms, and complex coordination. The unified `DropdownStateManager` provides a single source of truth.
+
+### Suppression Mechanism
+
+The dropdown's `IsExpanded` property doesn't update immediately after `Hide()` is called.
+Without suppression, this would cause the system to incorrectly enter dropdown mode on the next frame. `SuppressReentry()` prevents this until `IsExpanded` actually becomes false.
+
+---
+
+## Test Scenarios
+
+1. **Normal dropdown navigation**
+   - Arrow keys navigate dropdown items
+   - Enter selects item and closes dropdown
+   - Exit transition announces element with selected value (e.g. "Monat der Geburt: Januar, dropdown")
+   - No double announcements
+
+2. **Dropdown value display**
+   - After selecting, navigating back to the dropdown shows current value
+   - e.g. "Monat der Geburt: Januar, dropdown" instead of just "Monat der Geburt, dropdown"
+
+3. **Auto-opened dropdown suppression (arrow keys)**
+   - Navigate to dropdown with arrow keys
+   - Dropdown should NOT auto-open
+   - Enter key should open dropdown
+
+4. **Tab between closed dropdowns (auto-open)**
+   - Tab from a non-dropdown element to a dropdown
+   - Dropdown auto-opens, user is in dropdown mode
+   - No "dropdown closed" announcement
+   - Only the dropdown name is announced
+
+5. **Tab from inside open dropdown**
+   - Open a dropdown, browse items with arrows
+   - Press Tab: current dropdown closes silently (no "closed" announcement)
+   - Next element is announced with correct name
+   - If next element is a dropdown, it is NOT auto-opened (known limitation)
+   - No double announcements
+
+6. **Shift+Tab from inside open dropdown**
+   - Same as Tab but navigates to previous element
+
+7. **Tab order matches arrow order**
+   - Tab and arrow keys navigate elements in the same order
+   - Tab uses the mod's element list, not Unity's spatial navigation
+
+8. **Post-close navigation**
+   - After closing dropdown (Escape/Backspace), Tab/arrow navigation works correctly
+   - Navigator index syncs to the element that has focus
+   - No Submit auto-click on next focused element
+
+9. **Registration date pickers**
+   - Selecting Month value does NOT auto-open Day dropdown
+   - User must manually navigate to Day and press Enter
+   - Tab from Month to Day auto-opens Day (if Month was closed)
+   - Tab from inside Month dropdown to Day does NOT auto-open Day
+
+10. **Form auto-advance prevention (registration page)**
+    - Fill all dropdowns except the last one (Experience)
+    - Open Experience dropdown with Enter
+    - Navigate items with arrow keys
+    - Page should NOT auto-advance to the Register page
+    - Select item with Enter, close with Escape/Tab
+    - Page only advances when user presses "Weiter" (Continue) button
+
+---
+
+## File References
+
+- `src/Core/Services/DropdownStateManager.cs` - Unified state manager
+- `src/Core/Services/BaseNavigator.cs` - HandleDropdownNavigation, SelectDropdownItem, SetDropdownValueSilent, GetDropdownDisplayValue
+- `src/Core/Services/UIElementClassifier.cs` - GetDropdownSelectedValue, IsSettingsDropdownControl, CorrectStaleDropdownValue
+- `src/Core/Services/DropdownEditHelper.cs` - Popup dropdown edit mode (state + key routing)
+- `src/Core/Services/BaseNavigator.cs` - Popup dropdown discovery and integration (popup mode region)
+- `src/Patches/EventSystemPatch.cs` - Blocks SendSubmitEventToSelectedObject in dropdown mode
+- `src/Patches/KeyboardManagerPatch.cs` - Blocks Enter from game's KeyboardManager in dropdown mode
+- `src/Core/Services/UIFocusTracker.cs` - Delegates to DropdownStateManager, provides IsAnyDropdownExpanded()

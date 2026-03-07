@@ -1,0 +1,4030 @@
+YGO Master Duel Assembly Analysis Results
+Generated: 07/03/2026 12:19:04
+Total classes found: 351
+============================================================
+
+============================================================
+TITLE / STARTUP CLASSES
+Count: 4
+============================================================
+
+CLASS: YgomGame.Dialog.CommonDialog.CommonDialogDef+TitleIconType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.TitleSettingMenuID
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapTopChildViewControllerParam_Public_Void_GameObject_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapTopChildViewControllerParam_Public_Void_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+============================================================
+MENU / NAVIGATION / VIEWCONTROLLER
+Count: 70
+============================================================
+
+CLASS: PvpMenuMatchingViewController_Room+View
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: PvpMenuMatchingViewController_WcsFinal+View
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: PvpMenuMatchingViewController+View
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.CardFile.CardFileSelector+MethodInfoStoreGeneric_Create_Public_Static_T_CardFileManager_GameObject_String_Action_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Certification.CertificationWritingViewController+MethodInfoStoreGeneric_CreateGameObject_Public_T_GameObject_String_Il2CppReferenceArray_1_Type_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.DeckEditUtil+SelectorPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+AutoBuildSetting
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+DisplayMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+SaveDialogType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+SelectedCardType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+ChildMenuAction
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+DeckCondition
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+DeckEventType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+SelectMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+MenuActType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+MenuParamType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SharedDefinition+DuelSelectorFieldPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SharedDefinition+DuelSelectorPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelLive.MenuAssistantBase+CustomFocusResult
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Friend.FriendViewController+PlayerActionSheetEntry
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.ItemExchangeViewController+ExchangeItemInfo
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Lottery.LotteryCardSelectUtil+SelectorPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Lottery.LotteryCardSelectViewController+SelectedCardType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Lottery.LotteryCardSelectViewController+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.ActionSheetViewController+ButtonStyle
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.Common.BindingDuelFieldCards+FieldPostion
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.Common.CardFileBinder+CardFileType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.Common.InputDigitViewController+ButtonLabel
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.DownloadViewController+MethodInfoStoreGeneric_CreateGameObject_Public_T_GameObject_String_Il2CppReferenceArray_1_Type_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.FilterSelectViewController+ButtonStyle
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.GameEntrySequenceV2ViewController+AgeGateViewResultType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.HomeViewController+MethodInfoStoreGeneric_PushOnHomeViewControlerParam_Public_Static_Boolean_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.ProfileEditViewController+SideMenuType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.ProfileViewController+ButtonType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.ProfileViewController+ProfileMenu
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.PvpMenuDefine+MatchingType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Pvp.TestDuelMatchingViewController+View
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Room.RoomViewController+RoomBehaviourNormal+DeckSelectKind
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Room.RoomViewController+RoomBehaviourNormal+MenuBtn
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Scenario.ScenarioMenuContainer+ButtonSet
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Scenario.ScenarioMenuContainer+ButtonType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingMenuViewController+Menu
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Team.TeamRoomViewController+TeamBehaviourNormal+MenuBtn
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_CARDMENU
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_ITEMMENU
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_MENU
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_SUBMENU
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TitleSettingMenuID
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.Tutorial.TutorialManager+FirstVisitMenu
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.WCS.Portal.WCSBattleInfoBaseViewController+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Network.DuelMenuCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.UI.Selector+InputMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.SelectorManager+InputDevice
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.SelectorManager+ScreenInputInfo
+Base: ValueType
+Public: False
+Methods:
+  Boolean IsChanged(ScreenInputInfo info)
+----------------------------------------
+
+CLASS: YgomSystem.UI.SelectorUtility+MethodInfoStoreGeneric_InvokeAction_Public_Static_Boolean_Action_1_T1_T1_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.SelectorUtility+MethodInfoStoreGeneric_InvokeAction_Public_Static_Boolean_Action_2_T1_T2_T1_T2_0`2
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.SelectorUtility+MethodInfoStoreGeneric_InvokeAction_Public_Static_Boolean_Action_3_T1_T2_T3_T1_T2_T3_0`3
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewController+MethodInfoStoreGeneric_CreateParameterArg_Public_Static_Dictionary_2_String_Object_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewController+MethodInfoStoreGeneric_GetParameterArg_Protected_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewController+ViewStyle
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_GetViewController_Public_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_GetViewControllerAtFirst_Public_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_PushChildViewControllerParam_Public_Void_GameObject_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_PushChildViewControllerParam_Public_Void_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapBottomChildViewControllerParam_Public_Void_GameObject_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapBottomChildViewControllerParam_Public_Void_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapChildViewControllerParam_Public_Void_ViewController_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapTopChildViewControllerParam_Public_Void_GameObject_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapTopChildViewControllerParam_Public_Void_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+============================================================
+DIALOG / POPUP / WINDOW CLASSES
+Count: 18
+============================================================
+
+CLASS: YgomGame.CardFile.CardFileCardGetDialog+GetDialogStatus
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+SaveDialogType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Dialog.CommonDialog.CommonDialogButtonGroupWidget+ButtonType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Dialog.CommonDialog.CommonDialogDef+TitleIconType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DialogEffectType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DialogInfo
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DialogMixTextType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DialogOkType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DialogRitualType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DialogType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.RunEffectWorker+CountDialogType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopPurchase+PurchaseHandler+MethodInfoStoreGeneric_AddConfirmDialogEntry_Public_Void_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopPurchase+PurchaseHandler+MethodInfoStoreGeneric_FindConfirmDialogEntry_Public_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopPurchase+PurchaseHandler+MethodInfoStoreGeneric_InsertConfirmDialogEntry_Public_Boolean_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopPurchase+PurchaseHandler+MethodInfoStoreGeneric_RemoveConfirmDialogEntry_Public_Boolean_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Solo.SoloModeUtil+DialogType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Utility.ItemUtil+DialogButtonFlags
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.SteamAuthSession+DIALOG_TYPE
+Base: Enum
+Public: False
+----------------------------------------
+
+============================================================
+DUEL / CARD RELATED CLASSES
+Count: 170
+============================================================
+
+CLASS: YgomDebug.ShowCardNameDataForAnalysis
+Base: ValueType
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.AutoDuel.AutoDuelModule+PlayerStatus
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.AutoDuel.Util+MethodInfoStoreGeneric_ActionFor_Public_Static_Boolean_T_Action_1_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Bg.BgGrave+BgGravePos
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Bg.BgGrave+GraveType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Bg.BgGrave+ParticleEffectIdx
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Card.CardFinishSetting+CardFinishData
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Card.CardPictureFontSetting+CardidFontSizePairData
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Card.CardQuality
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.Card.Content+LinkMarker
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Card.Content+LinkMarkerBit
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.CardFile.CardFileBase+MethodInfoStoreGeneric_Create_Public_Static_T_CardFileManager_GameObject_String_Action_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.CardFile.CardFileCardGetDialog+GetDialogStatus
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.CardFile.CardFileDefinition+CardPosition
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.CardFile.CardFileManager+MethodInfoStoreGeneric_CreateGameObject_Public_Static_T_GameObject_String_Il2CppReferenceArray_1_Type_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.CardFile.CardFilePagerInfo+MethodInfoStoreGeneric_Create_Public_Static_T_CardFileManager_GameObject_String_Action_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.CardFile.CardFileSelector+MethodInfoStoreGeneric_Create_Public_Static_T_CardFileManager_GameObject_String_Action_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.CardPictureSetting+CardPictureFormatSetting
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.CardPictureSetting+FrameCardNameColor
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Certification.CertificationDuelFieldSettings+FieldPostion
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Colosseum.ColosseumUtil+StatusDuelistCup
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Colosseum.ColosseumUtil+StatusDuelTrial
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.CardBaseData
+Base: ValueType
+Public: True
+Properties:
+  Int32 CardID
+  Int32 PremiumID
+  Boolean IsOwned
+  Int32 Obtained
+  Int32 Inventory
+  Int32 Rarity
+  Boolean IsRental
+  Boolean IsAutoBuild
+Methods:
+  Boolean Equals(CardBaseData data)
+  Int32 GetHashCode()
+----------------------------------------
+
+CLASS: YgomGame.Deck.CardData+INFOKIND
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.DeckCard+LocationInDeck
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.DeckEditUtil+SelectorPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.DeckInfo+DeckType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.DeckView+DeckContentWidget+DeckType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.SearchFilter+LinkMask
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.SearchFilter+Setting+LINK
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.SearchFilter+Setting+LINKMARKER
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.SearchFilter+Setting+NOTMONSTER
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.SoloDeckUtil+SoloDeckType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+AutoBuildSetting
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+DisplayMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+SaveDialogType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+SelectedCardType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+ChildMenuAction
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+DeckCondition
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+DeckEventType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+SelectMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DiceRally.DiceRallyUtil+CardCategory
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DiceRally.DiceRallyUtil+DuelCategory
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.ActivePlayerFieldEffect+PlauableGuideTrigger
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.AttackMotionSetting+EffectTiming
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.BlockingQueue`1+MethodInfoStoreGeneric_DeepCopy_Public_U_U_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.CardMoveMotionSetting+CardType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.CardRoot+MethodInfoStoreGeneric_GetElement_Public_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.CardRunEffectSetting+Player
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.CardSelectionList+CardLocateType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.ChoiceFirstPlayerData
+Base: ValueType
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.Duel.DrawOperation+TouchPhase
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelClient+DuelSpeed
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelClient+FocusCardSituation
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelClient+GUIPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelEffectPool+MethodInfoStoreGeneric_Use_Public_T_Type_GameObject_Boolean_Boolean_Action_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelEndMessage+FollowButtonStatus
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelEndOperation+EffectStep
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelEntryMode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelFieldBase+MethodInfoStoreGeneric_Create_Public_Static_T_DuelGameObjectManager_GameObject_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelGameObjectManager+MethodInfoStoreGeneric_CreateGameObject_Public_Static_T_GameObject_String_Il2CppReferenceArray_1_Type_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelStatusViewer+DuelStatusSideInfo
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelTutorialData+Effect
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelTutorialData+View
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.EffectTaskCardMove+SummonEffectType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.EffectTaskRunJanken+HandType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.EffectTaskRunSpecialefx+EffectType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+BtlPropFlag
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+CardLink
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+CardLinkBit
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+CardMoveType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+CardProp
+Base: ValueType
+Public: False
+Properties:
+  UInt16 cardId
+  UInt16 uniqueId
+  UInt16 flags
+  Int32 CardID
+  Int32 UniqueID
+  Int32 Owner
+  Boolean Correct
+  Boolean ByBattle
+  Boolean ByAnother
+  Boolean ByBreak
+  Boolean TurnPast
+  Boolean Disabled
+  Boolean TimingPast
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+CardStatus
+Base: ValueType
+Public: False
+Properties:
+  Int32 Player
+  Int32 Position
+  Int32 Index
+  Boolean Face
+  Boolean Turn
+Methods:
+  Int32 ToInt()
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DialogEffectType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DialogInfo
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DialogMixTextType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DialogOkType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DialogRitualType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DialogType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DuelType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+FieldAnimeType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+MenuActType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+MenuParamType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+Phase
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+PlayerType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+PvpFieldType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.FusionEffect+FusionType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.HandCardManager+ViewSortMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.LethalEffect+EffectType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.ListCardData+ArrowInfo
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.MainCameraOrganizer+ViewMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.RunEffectWorker+CountDialogType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SelectStandOperation+ZoneMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SharedDefinition+DuelSelectorFieldPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SharedDefinition+DuelSelectorPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SharedDefinition+SelectableShaderCull
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SharedDefinition+SelectableShaderZTest
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SharedDefinition+ZoneType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SharedMisc+MethodInfoStoreGeneric_BinarySearch_Public_Static_Int32_List_1_T_Func_2_T_Int32_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.ShowCardNameData
+Base: ValueType
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.Duel.ShowPhaseData
+Base: ValueType
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.Duel.ShowTextData
+Base: ValueType
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.Duel.ShowTurnData
+Base: ValueType
+Public: True
+Properties:
+  Int32 playeridc
+  Int32 turn
+  Int32 playeridl
+  Int32 playeridr
+----------------------------------------
+
+CLASS: YgomGame.Duel.Sound+DuelBGM
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Util+DisplayType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.ZoneCard+Zone
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelLive.DuelLiveDef+MainTabButtonType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelLive.DuelLiveWidgetMapSettings+MethodInfoStoreGeneric_GetAsset_Public_T_Int32_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelLive.DuelLiveWidgetMapSettings+MethodInfoStoreGeneric_GetAsset_Public_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelLive.MenuAssistantBase+CustomFocusResult
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelLive.ProductListWidget+MethodInfoStoreGeneric_GetWidgetByDataIndex_Public_T_Int32_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelLive.ProductListWidget+MethodInfoStoreGeneric_GetWidgetByEntity_Public_T_GameObject_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelPreview.Controller.PreviewPrefabController+MethodInfoStoreGeneric_Find_Public_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelPreview.Controller.PreviewResourceController+MethodInfoStoreGeneric_GetAsset_Public_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelPreview.Controller.PreviewResourceController+MethodInfoStoreGeneric_LoadCheckResource_Public_Boolean_String_Boolean_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelPreview.ControllerType
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.DuelPreview.Data.DuelPreviewTaskRawData+MethodInfoStoreGeneric_ArgAt_Public_T_Il2CppArrayBase_1_T_Int32_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Lottery.LotteryCardSelectUtil+SelectorPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Lottery.LotteryCardSelectViewController+SelectedCardType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Lottery.LotteryCardSelectViewController+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.MDMarkup.MDMarkupDef+CardSize
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.Common.BindingDuelFieldCards+FieldPostion
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.Common.CardFileBinder+CardFileType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Pvp.TestDuelMatchingViewController+View
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Room.RoomUtil+LPType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Room.RoomViewController+RoomBehaviourNormal+DeckSelectKind
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingsUtil+AudienceParam+GENERIC_CARDLIST_LAYOUT_TYPE
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingsUtil+AudienceParam+SHOW_CARDINFO_TYPE
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingsUtil+BasicParam+CARD_QUALITY
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingsUtil+BasicParam+CARD_TEXT_SIZE
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingsUtil+DuelParam
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingsUtil+DuelParam+CARDLIST_LAYOUT_TYPE
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingsUtil+DuelParam+GENERIC_CARDLIST_LAYOUT_TYPE
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingsUtil+DuelParam+SHOW_CARDINFO_TYPE
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingsUtil+SHOW_CARDREPORT_TYPE
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopPurchase+PurchaseHandler+MethodInfoStoreGeneric_AddConfirmDialogEntry_Public_Void_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopPurchase+PurchaseHandler+MethodInfoStoreGeneric_FindConfirmDialogEntry_Public_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopPurchase+PurchaseHandler+MethodInfoStoreGeneric_InsertConfirmDialogEntry_Public_Boolean_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopPurchase+PurchaseHandler+MethodInfoStoreGeneric_RemoveConfirmDialogEntry_Public_Boolean_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Solo.SoloModeUtil+DeckType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Stats.CardStatsData+CARD_STATS_EFFECT_TYPE
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_CARD
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_CARDFILE
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_CARDMENU
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_CARDPACK
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DECKBROWSER
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DECKEDIT
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DECKRECIPE
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DECKSELECT
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DUEL
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DUELISTCUP
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DUELLIVE
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DUELPASS
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DUELTRIAL
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_HELP
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_PUBLICDECKSEARCH
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.LocalFileSystem.Internal.Helper+MethodInfoStoreGeneric_GetStorageIO_Public_Static_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Network.CardFileCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.CardTermDataCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.CgdbDeckSearchCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.DeckCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.DuelCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.DuelLiveCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.DuelMenuCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.DuelpassCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.DuelTrialCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.GeneralPoolCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.RateDuelCode
+Base: Enum
+Public: True
+----------------------------------------
+
+============================================================
+SUMMON TYPE CLASSES
+Count: 9
+============================================================
+
+CLASS: YgomGame.Card.Content+LinkMarker
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Card.Content+LinkMarkerBit
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.SearchFilter+LinkMask
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.SearchFilter+Setting+LINK
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.SearchFilter+Setting+LINKMARKER
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+CardLink
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+CardLinkBit
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DialogRitualType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.FusionEffect+FusionType
+Base: Enum
+Public: False
+----------------------------------------
+
+============================================================
+UI / PANEL / BUTTON CLASSES
+Count: 107
+============================================================
+
+CLASS: GoalInfomationWidget+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: PvpMenuMatchingViewController_Room+View
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: PvpMenuMatchingViewController_WcsFinal+View
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: PvpMenuMatchingViewController+View
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: UnityEngine.UI.TextVertexLimitter+TagInfo
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.AgreeRequirementType
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.Certification.CertificationDuelFieldSettings+FieldPostion
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Certification.CertificationUtil+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Certification.CertificationWritingViewController+MethodInfoStoreGeneric_CreateGameObject_Public_T_GameObject_String_Il2CppReferenceArray_1_Type_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.DeckView+DeckContentWidget+DeckType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+AutoBuildSetting
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+DisplayMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+SaveDialogType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+SelectedCardType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+ChildMenuAction
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+DeckCondition
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+DeckEventType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+SelectMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Dialog.CommonDialog.CommonDialogButtonGroupWidget+ButtonType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.ActivePlayerFieldEffect+PlauableGuideTrigger
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelClient+GUIPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelEndMessage+FollowButtonStatus
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelFieldBase+MethodInfoStoreGeneric_Create_Public_Static_T_DuelGameObjectManager_GameObject_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelStatusViewer+DuelStatusSideInfo
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelTutorialData+View
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+FieldAnimeType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+PvpFieldType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.HandCardManager+ViewSortMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.MainCameraOrganizer+ViewMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SharedDefinition+DuelSelectorFieldPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Util+DisplayType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelLive.DuelLiveDef+MainTabButtonType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelPreview.Controller.PreviewPrefabController+MethodInfoStoreGeneric_Find_Public_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelPreview.Controller.PreviewResourceController+MethodInfoStoreGeneric_GetAsset_Public_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelPreview.Controller.PreviewResourceController+MethodInfoStoreGeneric_LoadCheckResource_Public_Boolean_String_Boolean_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelPreview.ControllerType
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.DuelPreview.Data.DuelPreviewTaskRawData+MethodInfoStoreGeneric_ArgAt_Public_T_Il2CppArrayBase_1_T_Int32_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Friend.FriendViewController+PlayerActionSheetEntry
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.ItemExchangeViewController+ExchangeItemInfo
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Lottery.LotteryCardSelectViewController+SelectedCardType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Lottery.LotteryCardSelectViewController+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.MDMarkup.MDMarkupDef+ButtonStyle
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.MDMarkup.MDMarkupDef+CloseButtonType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.ActionSheetViewController+ButtonStyle
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.Common.BindingDuelFieldCards+FieldPostion
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.Common.InputDigitViewController+ButtonLabel
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.DownloadViewController+MethodInfoStoreGeneric_CreateGameObject_Public_T_GameObject_String_Il2CppReferenceArray_1_Type_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.FilterSelectViewController+ButtonStyle
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.GameEntrySequenceV2ViewController+AgeGateViewResultType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.HomeViewController+MethodInfoStoreGeneric_PushOnHomeViewControlerParam_Public_Static_Boolean_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.ProfileEditViewController+SideMenuType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.ProfileViewController+ButtonType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.ProfileViewController+ProfileMenu
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Pvp.TestDuelMatchingViewController+View
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Room.RoomViewController+RoomBehaviourNormal+DeckSelectKind
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Room.RoomViewController+RoomBehaviourNormal+MenuBtn
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Scenario.ScenarioMenuContainer+ButtonSet
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Scenario.ScenarioMenuContainer+ButtonType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingMenuViewController+Menu
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopDef+ListButtonType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopDef+ViewerLoopType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopDef+ViewerType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopInformButtonData+ButtonStyle
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Solo.SoloModeUtil+PortalButton
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Team.TeamRoomViewController+TeamBehaviourNormal+MenuBtn
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DLQUIZ
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_QUIZ
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TitleSettingMenuID
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.Utility.ItemUtil+DialogButtonFlags
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Utility.ItemUtil+EquipTargetFlags
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.WCS.Portal.WCSBattleInfoBaseViewController+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Effect.ScreenEffect+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.UGUI.ScrollRectExtension.ScrollRectExtension+InputMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.ResourceManager+MethodInfoStoreGeneric_Load_Public_Static_Boolean_String_byref_UInt32_Boolean_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.ScrollViewAutoScroll+ScrollViewDirection
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ButtonShortcutKeySetter+InputType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ColorContainer+SelectMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ColorLabel
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.UI.GenericScrollView+MethodInfoStoreGeneric_GetItemByDataIndex_Public_T_Int32_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.InfinityScroll.EntityPoolController+MethodInfoStoreGeneric_GetEntityByDataIndex_Public_T_Int32_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.InfinityScroll.InfinityScrollView+MethodInfoStoreGeneric_GetEntityByDataIndex_Public_T_Int32_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.MultiVCTab.MultiVCTabRootWidget+MethodInfoStoreGeneric_OrderDescendingChild_Private_Void_byref_List_1_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.MultiVCTab.MultiVCTabRootWidget+MethodInfoStoreGeneric_OrderDescendungHorizon_Private_Void_byref_List_1_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.PadInputDirection
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.UI.Selector+InputMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.SelectorManager+InputDevice
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.SelectorManager+ScreenInputInfo
+Base: ValueType
+Public: False
+Methods:
+  Boolean IsChanged(ScreenInputInfo info)
+----------------------------------------
+
+CLASS: YgomSystem.UI.SelectorUtility+MethodInfoStoreGeneric_InvokeAction_Public_Static_Boolean_Action_1_T1_T1_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.SelectorUtility+MethodInfoStoreGeneric_InvokeAction_Public_Static_Boolean_Action_2_T1_T2_T1_T2_0`2
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.SelectorUtility+MethodInfoStoreGeneric_InvokeAction_Public_Static_Boolean_Action_3_T1_T2_T3_T1_T2_T3_0`3
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.TransitionAlongDirection+SelectTarget
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewController+MethodInfoStoreGeneric_CreateParameterArg_Public_Static_Dictionary_2_String_Object_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewController+MethodInfoStoreGeneric_GetParameterArg_Protected_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewController+ViewStyle
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_GetViewController_Public_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_GetViewControllerAtFirst_Public_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_PushChildViewControllerParam_Public_Void_GameObject_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_PushChildViewControllerParam_Public_Void_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapBottomChildViewControllerParam_Public_Void_GameObject_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapBottomChildViewControllerParam_Public_Void_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapChildViewControllerParam_Public_Void_ViewController_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapTopChildViewControllerParam_Public_Void_GameObject_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapTopChildViewControllerParam_Public_Void_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Viewer.ViewerBgCameraOrganizerInner+DisplayType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Viewer.ViewerBgCameraOrganizerInner+ViewMode
+Base: Enum
+Public: False
+----------------------------------------
+
+============================================================
+GAME FLOW / SCENE / MANAGER CLASSES
+Count: 263
+============================================================
+
+CLASS: Character+TapPhase
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: Ionic.Zlib.InflateManager+InflateManagerMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: PvpMenuMatchingViewController_Room+View
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: PvpMenuMatchingViewController_WcsFinal+View
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: PvpMenuMatchingViewController+View
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: USnd.AudioManager+MethodInfoStoreGeneric_CategoryFromJson_Private_Il2CppArrayBase_1_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: USnd.AudioManager+MethodInfoStoreGeneric_LabelFromJson_Private_Il2CppArrayBase_1_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: USnd.AudioManager+MethodInfoStoreGeneric_MasterFromJson_Private_Il2CppArrayBase_1_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomDebug.ShowPhaseDataForAnalysis
+Base: ValueType
+Public: True
+----------------------------------------
+
+CLASS: YgomDebug.ShowTurnDataForAnalysis
+Base: ValueType
+Public: True
+Properties:
+  Int32 playeridc
+  Int32 turn
+  Int32 playeridl
+  Int32 playeridr
+----------------------------------------
+
+CLASS: YgomGame.AccountUtility+LoginResultInfo
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.AgreeRequirementType
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.AutoDuel.AutoDuelModule+PlayerStatus
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.AutoDuel.Util+MethodInfoStoreGeneric_ActionFor_Public_Static_Boolean_T_Action_1_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Bg.BgEffectSettingInner+AnimationLabelDefine
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Bg.BgEffectSettingInner+TriggerLabelDefine
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Bg.BgGrave+BgGravePos
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Bg.BgGrave+GraveType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Bg.BgGrave+ParticleEffectIdx
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Bg.BgUnit+BgPhase
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Card.CardFinishSetting+CardFinishData
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Card.CardPictureFontSetting+CardidFontSizePairData
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Card.CardQuality
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.Card.Content+LinkMarker
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Card.Content+LinkMarkerBit
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.CardFile.CardFileBase+MethodInfoStoreGeneric_Create_Public_Static_T_CardFileManager_GameObject_String_Action_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.CardFile.CardFileCardGetDialog+GetDialogStatus
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.CardFile.CardFileDefinition+CardPosition
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.CardFile.CardFileManager+MethodInfoStoreGeneric_CreateGameObject_Public_Static_T_GameObject_String_Il2CppReferenceArray_1_Type_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.CardFile.CardFilePagerInfo+MethodInfoStoreGeneric_Create_Public_Static_T_CardFileManager_GameObject_String_Action_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.CardFile.CardFileSelector+MethodInfoStoreGeneric_Create_Public_Static_T_CardFileManager_GameObject_String_Action_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.CardPictureSetting+CardPictureFormatSetting
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.CardPictureSetting+FrameCardNameColor
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Certification.ArrayExtensions+MethodInfoStoreGeneric_ForEach_Public_Static_Void_Il2CppArrayBase_1_T_Action_1_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Certification.ArrayExtensions+MethodInfoStoreGeneric_Sort_Public_Static_Void_Il2CppArrayBase_1_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Certification.CertificationDuelFieldSettings+FieldPostion
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Certification.CertificationUtil+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Certification.CertificationWritingViewController+MethodInfoStoreGeneric_CreateGameObject_Public_T_GameObject_String_Il2CppReferenceArray_1_Type_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Colosseum.ColosseumFlagManager+MethodInfoStoreGeneric_SetFlagManager_Private_Static_Void_Int32_Int32_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Colosseum.ColosseumUtil+StatusDuelistCup
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Colosseum.ColosseumUtil+StatusDuelTrial
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Colosseum.ColosseumUtil+Turn
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.CardBaseData
+Base: ValueType
+Public: True
+Properties:
+  Int32 CardID
+  Int32 PremiumID
+  Boolean IsOwned
+  Int32 Obtained
+  Int32 Inventory
+  Int32 Rarity
+  Boolean IsRental
+  Boolean IsAutoBuild
+Methods:
+  Boolean Equals(CardBaseData data)
+  Int32 GetHashCode()
+----------------------------------------
+
+CLASS: YgomGame.Deck.CardData+INFOKIND
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.DeckCard+LocationInDeck
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.DeckEditUtil+SelectorPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.DeckInfo+DeckType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.DeckView+DeckContentWidget+DeckType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.SearchFilter+LinkMask
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.SearchFilter+Setting+LINK
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.SearchFilter+Setting+LINKMARKER
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.SearchFilter+Setting+NOTMONSTER
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.SoloDeckUtil+SoloDeckType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+AutoBuildSetting
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+DisplayMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+SaveDialogType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+SelectedCardType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+ChildMenuAction
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+DeckCondition
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+DeckEventType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+SelectMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Dialog.CommonDialog.CommonDialogButtonGroupWidget+ButtonType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Dialog.CommonDialog.CommonDialogDef+TitleIconType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DiceRally.DiceRallyUtil+CardCategory
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DiceRally.DiceRallyUtil+DuelCategory
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.ActivePlayerFieldEffect+PlauableGuideTrigger
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.AttackMotionSetting+EffectTiming
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.BlockingQueue`1+MethodInfoStoreGeneric_DeepCopy_Public_U_U_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.CardMoveMotionSetting+CardType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.CardRoot+MethodInfoStoreGeneric_GetElement_Public_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.CardRunEffectSetting+Player
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.CardSelectionList+CardLocateType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.ChoiceFirstPlayerData
+Base: ValueType
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.Duel.DrawOperation+TouchPhase
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelClient+DuelSpeed
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelClient+FocusCardSituation
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelClient+GUIPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelEffectPool+MethodInfoStoreGeneric_Use_Public_T_Type_GameObject_Boolean_Boolean_Action_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelEndMessage+FollowButtonStatus
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelEndOperation+EffectStep
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelEntryMode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelFieldBase+MethodInfoStoreGeneric_Create_Public_Static_T_DuelGameObjectManager_GameObject_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelGameObjectManager+MethodInfoStoreGeneric_CreateGameObject_Public_Static_T_GameObject_String_Il2CppReferenceArray_1_Type_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelStatusViewer+DuelStatusSideInfo
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelTutorialData+Effect
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelTutorialData+View
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.EffectTaskCardMove+SummonEffectType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.EffectTaskRunJanken+HandType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.EffectTaskRunSpecialefx+EffectType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+BtlPropFlag
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+CardLink
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+CardLinkBit
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+CardMoveType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+CardProp
+Base: ValueType
+Public: False
+Properties:
+  UInt16 cardId
+  UInt16 uniqueId
+  UInt16 flags
+  Int32 CardID
+  Int32 UniqueID
+  Int32 Owner
+  Boolean Correct
+  Boolean ByBattle
+  Boolean ByAnother
+  Boolean ByBreak
+  Boolean TurnPast
+  Boolean Disabled
+  Boolean TimingPast
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+CardStatus
+Base: ValueType
+Public: False
+Properties:
+  Int32 Player
+  Int32 Position
+  Int32 Index
+  Boolean Face
+  Boolean Turn
+Methods:
+  Int32 ToInt()
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DialogEffectType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DialogInfo
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DialogMixTextType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DialogOkType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DialogRitualType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DialogType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+DuelType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+FieldAnimeType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+MenuActType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+MenuParamType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+Phase
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+PlayerType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+PvpFieldType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Engine+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.FusionEffect+FusionType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.HandCardManager+ViewSortMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.LethalEffect+EffectType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.ListCardData+ArrowInfo
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.MainCameraOrganizer+ViewMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.RunEffectWorker+CountDialogType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SelectStandOperation+ZoneMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SharedDefinition+DuelSelectorFieldPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SharedDefinition+DuelSelectorPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SharedDefinition+SelectableShaderCull
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SharedDefinition+SelectableShaderZTest
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SharedDefinition+ZoneType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SharedMisc+MethodInfoStoreGeneric_BinarySearch_Public_Static_Int32_List_1_T_Func_2_T_Int32_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.ShowCardNameData
+Base: ValueType
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.Duel.ShowPhaseData
+Base: ValueType
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.Duel.ShowTextData
+Base: ValueType
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.Duel.ShowTurnData
+Base: ValueType
+Public: True
+Properties:
+  Int32 playeridc
+  Int32 turn
+  Int32 playeridl
+  Int32 playeridr
+----------------------------------------
+
+CLASS: YgomGame.Duel.Sound+DuelBGM
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.Util+DisplayType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.ZoneCard+Zone
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelLive.DuelLiveDef+MainTabButtonType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelLive.DuelLiveWidgetMapSettings+MethodInfoStoreGeneric_GetAsset_Public_T_Int32_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelLive.DuelLiveWidgetMapSettings+MethodInfoStoreGeneric_GetAsset_Public_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelLive.MenuAssistantBase+CustomFocusResult
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelLive.ProductListWidget+MethodInfoStoreGeneric_GetWidgetByDataIndex_Public_T_Int32_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelLive.ProductListWidget+MethodInfoStoreGeneric_GetWidgetByEntity_Public_T_GameObject_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelPreview.Controller.PreviewPrefabController+MethodInfoStoreGeneric_Find_Public_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelPreview.Controller.PreviewResourceController+MethodInfoStoreGeneric_GetAsset_Public_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelPreview.Controller.PreviewResourceController+MethodInfoStoreGeneric_LoadCheckResource_Public_Boolean_String_Boolean_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelPreview.ControllerType
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.DuelPreview.Data.DuelPreviewTaskRawData+MethodInfoStoreGeneric_ArgAt_Public_T_Il2CppArrayBase_1_T_Int32_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Friend.FriendViewController+PlayerActionSheetEntry
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.ItemExchangeViewController+ExchangeItemInfo
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Lottery.LotteryCardSelectUtil+SelectorPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Lottery.LotteryCardSelectViewController+SelectedCardType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Lottery.LotteryCardSelectViewController+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Lottery.LotteryUtil+WinningInfo
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.MDMarkup.MDMarkupDef+ButtonStyle
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.MDMarkup.MDMarkupDef+CardSize
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.MDMarkup.MDMarkupDef+CloseButtonType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.MDMarkup.MDMarkupDef+IdMatchType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.ActionSheetViewController+ButtonStyle
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.Common.BindingDuelFieldCards+FieldPostion
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.Common.CardFileBinder+CardFileType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.Common.InputDigitViewController+ButtonLabel
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.DownloadViewController+MethodInfoStoreGeneric_CreateGameObject_Public_T_GameObject_String_Il2CppReferenceArray_1_Type_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.FilterSelectViewController+ButtonStyle
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.GameEntrySequenceV2ViewController+AgeGateViewResultType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.HomeViewController+MethodInfoStoreGeneric_PushOnHomeViewControlerParam_Public_Static_Boolean_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.ProfileEditViewController+SideMenuType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.ProfileViewController+ButtonType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.ProfileViewController+ProfileMenu
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.PvpMenuDefine+MatchingType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Movie.TextType
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.PromoCodes.PromoCodeInviteBehaviourBase+MethodInfoStoreGeneric_AssignTemplate_Protected_Int32_List_1_TemplateInfo_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Pvp.TestDuelMatchingViewController+View
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Room.RoomUtil+LPType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Room.RoomViewController+RoomBehaviourNormal+DeckSelectKind
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Room.RoomViewController+RoomBehaviourNormal+MenuBtn
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Scenario.ScenarioBehaviour+MethodInfoStoreGeneric_FindChildBehaviours_Protected_List_1_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Scenario.ScenarioBehaviour+MethodInfoStoreGeneric_FindChildBehaviours_Protected_Void_List_1_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Scenario.ScenarioMenuContainer+ButtonSet
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Scenario.ScenarioMenuContainer+ButtonType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Scenario.ScenarioTextContainer+TextPos
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingMenuViewController+Menu
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingsUtil+AudienceParam+GENERIC_CARDLIST_LAYOUT_TYPE
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingsUtil+AudienceParam+SHOW_CARDINFO_TYPE
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingsUtil+BasicParam+CARD_QUALITY
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingsUtil+BasicParam+CARD_TEXT_SIZE
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingsUtil+DuelParam
+Base: ValueType
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingsUtil+DuelParam+CARDLIST_LAYOUT_TYPE
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingsUtil+DuelParam+GENERIC_CARDLIST_LAYOUT_TYPE
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingsUtil+DuelParam+SHOW_CARDINFO_TYPE
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingsUtil+SHOW_CARDREPORT_TYPE
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Settings.SettingsUtil+SHOW_HAPPENEDEFFECT_TYPE
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopDef+ListButtonType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopDef+ViewerLoopType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopDef+ViewerType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopInformButtonData+ButtonStyle
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopPurchase+PurchaseHandler+MethodInfoStoreGeneric_AddConfirmDialogEntry_Public_Void_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopPurchase+PurchaseHandler+MethodInfoStoreGeneric_FindConfirmDialogEntry_Public_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopPurchase+PurchaseHandler+MethodInfoStoreGeneric_InsertConfirmDialogEntry_Public_Boolean_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShopPurchase+PurchaseHandler+MethodInfoStoreGeneric_RemoveConfirmDialogEntry_Public_Boolean_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShowcaseWidgetsController+SelectBlockOperate
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Solo.SoloModeUtil+DeckType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Solo.SoloModeUtil+DialogType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Solo.SoloModeUtil+PortalButton
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Stats.CardStatsData+CARD_STATS_EFFECT_TYPE
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Tdy.PlayEffectType
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.Team.TeamRoomViewController+TeamBehaviourNormal+MenuBtn
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Team.TeamUtil+MatchType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_CARD
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_CARDFILE
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_CARDMENU
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_CARDPACK
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DECKBROWSER
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DECKEDIT
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DECKRECIPE
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DECKSELECT
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DLQUIZ
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DUEL
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DUELISTCUP
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DUELLIVE
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DUELPASS
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DUELTRIAL
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_HELP
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_ITEMMENU
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_MATCH_TIPS
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_MENU
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_PUBLICDECKSEARCH
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_QUIZ
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_STRUCTURE_SELECT
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_SUBMENU
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TitleSettingMenuID
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.Tutorial.TutorialManager+FirstVisitMenu
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Utility.CommonInstanceCache+MethodInfoStoreGeneric_GetCache_Public_Static_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Utility.GlobalTextData+MethodInfoStoreGeneric_SetTextId_Public_Void_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Utility.ItemUtil+DialogButtonFlags
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Utility.ItemUtil+EquipTargetFlags
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Utility.ItemUtil+ItemDetailType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Utility.TextGroupLoadHolder+MethodInfoStoreGeneric_LoadCheck_Public_Void_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Utility.TextGroupLoadHolder+MethodInfoStoreGeneric_LoadCheckAsync_Public_Void_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.WCS.Portal.WCSBattleInfoBaseViewController+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Effect.ScreenEffect+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Either`2+MethodInfoStoreGeneric_Match_Public_T_Func_2_L_T_Func_2_R_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.ElementSystem.ElementObjectManager+MethodInfoStoreGeneric_GetElement_Public_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.ElementSystem.ElementObjectManager+MethodInfoStoreGeneric_GetNestedElement_Public_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.GameObjectExtension+MethodInfoStoreGeneric_AddOrReplaceComponent_Public_Static_T_GameObject_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.GameObjectExtension+MethodInfoStoreGeneric_GetOrAddComponent_Public_Static_T_GameObject_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.GameObjectExtension+MethodInfoStoreGeneric_RemoveComponent_Public_Static_Void_GameObject_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.ResourceManager+MethodInfoStoreGeneric_getAssets_Private_List_1_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.ResourceManager+MethodInfoStoreGeneric_GetAssets_Public_Static_List_1_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.ResourceManager+MethodInfoStoreGeneric_Load_Public_Static_Boolean_String_Boolean_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.ResourceManager+MethodInfoStoreGeneric_Load_Public_Static_Boolean_String_byref_UInt32_Boolean_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.InfinityScroll.EntityPoolController+MethodInfoStoreGeneric_GetEntityByDataIndex_Public_T_Int32_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.SelectorManager+InputDevice
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.SelectorManager+ScreenInputInfo
+Base: ValueType
+Public: False
+Methods:
+  Boolean IsChanged(ScreenInputInfo info)
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewController+MethodInfoStoreGeneric_CreateParameterArg_Public_Static_Dictionary_2_String_Object_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewController+MethodInfoStoreGeneric_GetParameterArg_Protected_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewController+ViewStyle
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_GetViewController_Public_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_GetViewControllerAtFirst_Public_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_PushChildViewControllerParam_Public_Void_GameObject_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_PushChildViewControllerParam_Public_Void_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapBottomChildViewControllerParam_Public_Void_GameObject_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapBottomChildViewControllerParam_Public_Void_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapChildViewControllerParam_Public_Void_ViewController_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapTopChildViewControllerParam_Public_Void_GameObject_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapTopChildViewControllerParam_Public_Void_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.GameObjectPoolManager+MethodInfoStoreGeneric_Get_Public_T_String_Transform_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.GameObjectUtil+MethodInfoStoreGeneric_FindInChildren_Public_Static_T_GameObject_String_Boolean_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.GameObjectUtil+MethodInfoStoreGeneric_FindInParent_Public_Static_T_GameObject_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.IGameObjectPool+MethodInfoStoreGeneric_Get_Public_Static_T_String_Transform_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+============================================================
+INPUT / SELECTION CLASSES
+Count: 137
+============================================================
+
+CLASS: YgomGame.CardFile.CardFileSelector+MethodInfoStoreGeneric_Create_Public_Static_T_CardFileManager_GameObject_String_Action_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Deck.DeckEditUtil+SelectorPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckEditViewController2+SelectedCardType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+ChildMenuAction
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+DeckCondition
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+DeckEventType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DeckSelectViewController2+SelectMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.CardSelectionList+CardLocateType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.DuelClient+FocusCardSituation
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SelectStandOperation+ZoneMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SharedDefinition+DuelSelectorFieldPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SharedDefinition+DuelSelectorPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SharedDefinition+SelectableShaderCull
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Duel.SharedDefinition+SelectableShaderZTest
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.DuelLive.MenuAssistantBase+CustomFocusResult
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Lottery.LotteryCardSelectUtil+SelectorPriority
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Lottery.LotteryCardSelectViewController+SelectedCardType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Lottery.LotteryCardSelectViewController+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.Common.InputDigitViewController+ButtonLabel
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Menu.FilterSelectViewController+ButtonStyle
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Room.RoomViewController+RoomBehaviourNormal+DeckSelectKind
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.Shop.ShowcaseWidgetsController+SelectBlockOperate
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_DECKSELECT
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomGame.TextIDs.IDS_STRUCTURE_SELECT
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Effect.ScreenEffect+ViewType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Either`2+MethodInfoStoreGeneric_Match_Public_T_Func_2_L_T_Func_2_R_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.ElementSystem.ElementObjectManager+MethodInfoStoreGeneric_GetElement_Public_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.ElementSystem.ElementObjectManager+MethodInfoStoreGeneric_GetNestedElement_Public_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.ComponentExtension+MethodInfoStoreGeneric_AddOrReplaceComponent_Public_Static_T_Component_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.ComponentExtension+MethodInfoStoreGeneric_GetOrAddComponent_Public_Static_T_Component_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.ComponentExtension+MethodInfoStoreGeneric_SafeRef_Public_Static_T_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.DictionaryExtension+MethodInfoStoreGeneric_GetEnum_Public_Static_T_Dictionary_2_String_Object_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.DictionaryExtension+MethodInfoStoreGeneric_GetEnumOrDefault_Public_Static_T_Dictionary_2_String_Object_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.DictionaryExtension+MethodInfoStoreGeneric_GetValue_Public_Static_T_Dictionary_2_String_Object_String_Func_2_T_Boolean_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.DictionaryExtension+MethodInfoStoreGeneric_GetValueOrDefault_Public_Static_T_Dictionary_2_String_Object_String_T_Func_2_T_Boolean_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.DictionaryExtension+MethodInfoStoreGeneric_GetValueOrNull_Public_Static_T_Dictionary_2_String_Object_String_Func_2_T_Boolean_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.DictionaryExtension+MethodInfoStoreGeneric_TryGetEnum_Public_Static_Boolean_Dictionary_2_String_Object_String_byref_T_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.DictionaryExtension+MethodInfoStoreGeneric_TryGetValue_Public_Static_Boolean_Dictionary_2_String_Object_String_byref_T_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.GameObjectExtension+MethodInfoStoreGeneric_AddOrReplaceComponent_Public_Static_T_GameObject_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.GameObjectExtension+MethodInfoStoreGeneric_GetOrAddComponent_Public_Static_T_GameObject_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.GameObjectExtension+MethodInfoStoreGeneric_RemoveComponent_Public_Static_Void_GameObject_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.IReadOnlyCollectionExtension+MethodInfoStoreGeneric_IsExists_Public_Static_Boolean_IReadOnlyCollection_1_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.IReadOnlyCollectionExtension+MethodInfoStoreGeneric_IsNullOrEmpty_Public_Static_Boolean_IReadOnlyCollection_1_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.IReadOnlyCollectionExtension+MethodInfoStoreGeneric_SafeGetCount_Public_Static_Int32_IReadOnlyCollection_1_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.ListExtension+MethodInfoStoreGeneric_GetValueAt_Public_Static_T_List_1_Object_Int32_Func_2_T_Boolean_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.ListExtension+MethodInfoStoreGeneric_Indexed_Public_Static_Void_IEnumerable_1_T_Action_2_T_Int32_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.ListExtension+MethodInfoStoreGeneric_IsExists_Public_Static_Boolean_List_1_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.ListExtension+MethodInfoStoreGeneric_IsNullOrEmpty_Public_Static_Boolean_List_1_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.ListExtension+MethodInfoStoreGeneric_SafeGetCount_Public_Static_Int32_List_1_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.ListExtension+MethodInfoStoreGeneric_Shuffle_Public_Static_Void_List_1_T_Nullable_1_Int32_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.ScriptableObjectExtension+MethodInfoStoreGeneric_SafeRef_Public_Static_T_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Extension.UGUI.ScrollRectExtension.ScrollRectExtension+InputMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.LocalFileSystem.CustomFileStream+MethodInfoStoreGeneric_Create_Public_Static_CustomFileStream_String_StreamOpenMode_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.LocalFileSystem.Internal.Helper+MethodInfoStoreGeneric_GetStorageIO_Public_Static_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.LocalFileSystem.LocalFile+MethodInfoStoreGeneric_GetStorageIO_Public_Static_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.LocalFileSystem.LocalFileStream+MethodInfoStoreGeneric_readType_Private_T_Func_3_Il2CppStructArray_1_Byte_Int32_T_Int32_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.LocalFileSystem.LocalFileStream+MethodInfoStoreGeneric_tryReadType_Private_Boolean_Func_1_T_byref_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Network.CardFileCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.CardTermDataCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.CgdbDeckSearchCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.DeckCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.DuelCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.DuelLiveCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.DuelMenuCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.DuelpassCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.DuelTrialCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.GeneralPoolCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Network.RateDuelCode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.ResourceManager+MethodInfoStoreGeneric_getAssets_Private_List_1_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.ResourceManager+MethodInfoStoreGeneric_GetAssets_Public_Static_List_1_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.ResourceManager+MethodInfoStoreGeneric_Load_Public_Static_Boolean_String_Boolean_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.ResourceManager+MethodInfoStoreGeneric_Load_Public_Static_Boolean_String_byref_UInt32_Boolean_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.ScrollViewAutoScroll+ScrollViewDirection
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.SteamAuthSession+DIALOG_TYPE
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.SteamSoftwareKeyboard+TEXT
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.StepSequencer+MethodInfoStoreGeneric_IsStepRegistered_Public_Boolean_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.StepSequencer+MethodInfoStoreGeneric_RegisterStep_Public_Void_T_Action_1_StepSequencer_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.StepSequencer+MethodInfoStoreGeneric_RegisterStep_Public_Void_T_Func_2_StepSequencer_IEnumerator_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.StepSequencer+MethodInfoStoreGeneric_SetStep_Public_Void_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.StepSequencer+MethodInfoStoreGeneric_StartSequence_Public_Void_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Timeline.LabelDirectorWrapMode
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.Timeline.TimelineUtlity+MethodInfoStoreGeneric_GetTrack_Public_Static_T_PlayableDirector_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Timeline.TimelineUtlity+MethodInfoStoreGeneric_GetTrack_Public_Static_T_PlayableDirector_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Timeline.TimelineUtlity+MethodInfoStoreGeneric_GetTracks_Public_Static_List_1_T_PlayableDirector_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Timeline.TimelineUtlity+MethodInfoStoreGeneric_GetTracks_Public_Static_List_1_T_PlayableDirector_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ButtonShortcutKeySetter+InputType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ColorContainer+SelectMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ColorLabel
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.UI.GenericScrollView+MethodInfoStoreGeneric_GetItemByDataIndex_Public_T_Int32_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.InfinityScroll.EntityPoolController+MethodInfoStoreGeneric_GetEntityByDataIndex_Public_T_Int32_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.InfinityScroll.InfinityScrollView+MethodInfoStoreGeneric_GetEntityByDataIndex_Public_T_Int32_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.MultiVCTab.MultiVCTabRootWidget+MethodInfoStoreGeneric_OrderDescendingChild_Private_Void_byref_List_1_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.MultiVCTab.MultiVCTabRootWidget+MethodInfoStoreGeneric_OrderDescendungHorizon_Private_Void_byref_List_1_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.PadInputDirection
+Base: Enum
+Public: True
+----------------------------------------
+
+CLASS: YgomSystem.UI.Selector+InputMode
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.SelectorManager+InputDevice
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.SelectorManager+ScreenInputInfo
+Base: ValueType
+Public: False
+Methods:
+  Boolean IsChanged(ScreenInputInfo info)
+----------------------------------------
+
+CLASS: YgomSystem.UI.SelectorUtility+MethodInfoStoreGeneric_InvokeAction_Public_Static_Boolean_Action_1_T1_T1_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.SelectorUtility+MethodInfoStoreGeneric_InvokeAction_Public_Static_Boolean_Action_2_T1_T2_T1_T2_0`2
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.SelectorUtility+MethodInfoStoreGeneric_InvokeAction_Public_Static_Boolean_Action_3_T1_T2_T3_T1_T2_T3_0`3
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.TransitionAlongDirection+SelectTarget
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewController+MethodInfoStoreGeneric_CreateParameterArg_Public_Static_Dictionary_2_String_Object_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewController+MethodInfoStoreGeneric_GetParameterArg_Protected_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewController+ViewStyle
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_GetViewController_Public_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_GetViewControllerAtFirst_Public_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_PushChildViewControllerParam_Public_Void_GameObject_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_PushChildViewControllerParam_Public_Void_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapBottomChildViewControllerParam_Public_Void_GameObject_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapBottomChildViewControllerParam_Public_Void_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapChildViewControllerParam_Public_Void_ViewController_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapTopChildViewControllerParam_Public_Void_GameObject_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.UI.ViewControllerManager+MethodInfoStoreGeneric_SwapTopChildViewControllerParam_Public_Void_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.AssetContainer+MethodInfoStoreGeneric_GetAsset_Public_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.AssetReferer+MethodInfoStoreGeneric_GetAsset_Public_T_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.ClientWork+MethodInfoStoreGeneric_getTypedByJsonPath_Internal_Static_T_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.ClientWorkUtil+MethodInfoStoreGeneric_ListToTypedArray_Public_Static_Il2CppArrayBase_1_T_List_1_Object_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.CSharpUtil+MethodInfoStoreGeneric_ToList_Public_Static_List_1_T_Object_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.GameObjectPoolManager+MethodInfoStoreGeneric_Get_Public_T_String_Transform_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.GameObjectUtil+MethodInfoStoreGeneric_FindInChildren_Public_Static_T_GameObject_String_Boolean_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.GameObjectUtil+MethodInfoStoreGeneric_FindInParent_Public_Static_T_GameObject_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.IGameObjectPool+MethodInfoStoreGeneric_Get_Public_Static_T_String_Transform_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.JsonPath+MethodInfoStoreGeneric_getEnum_Public_Static_T_Object_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.JsonPath+MethodInfoStoreGeneric_getTyped_Internal_Static_T_Object_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.ResourceCacheHolderContainer+Holder+MethodInfoStoreGeneric_LoadCheck_Public_Void_String_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.TextData+MethodInfoStoreGeneric_ContainsText_Public_Static_Boolean_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.TextData+MethodInfoStoreGeneric_EnumToFullTextId_Public_Static_String_T_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.TextData+MethodInfoStoreGeneric_GetRefCount_Public_Static_Int32_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.TextData+MethodInfoStoreGeneric_GetText_Public_Static_String_T_Boolean_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.TextData+MethodInfoStoreGeneric_IsDone_Public_Static_Boolean_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.TextData+MethodInfoStoreGeneric_IsLoad_Public_Static_Boolean_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.TextData+MethodInfoStoreGeneric_Load_Public_Static_Void_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.TextData+MethodInfoStoreGeneric_LoadAsync_Public_Static_Void_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.TextData+MethodInfoStoreGeneric_Reload_Public_Static_Void_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Utility.TextData+MethodInfoStoreGeneric_Unload_Public_Static_Void_0`1
+Base: Object
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Viewer.ViewerBgCameraOrganizerInner+DisplayType
+Base: Enum
+Public: False
+----------------------------------------
+
+CLASS: YgomSystem.Viewer.ViewerBgCameraOrganizerInner+ViewMode
+Base: Enum
+Public: False
+----------------------------------------
+
+============================================================
+INTERESTING METHODS (display / interaction related)
+============================================================
+

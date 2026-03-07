@@ -62,7 +62,9 @@ namespace MasterDuelAccessibility.Patches
             if (!string.IsNullOrWhiteSpace(penScale)) parts.Add(Loc.Get("card_pendulum_scale", penScale));
             if (!string.IsNullOrWhiteSpace(atk))      parts.Add(Loc.Get("card_atk",            atk));
             if (!string.IsNullOrWhiteSpace(def))      parts.Add(Loc.Get("card_def",            def));
-            if (!string.IsNullOrWhiteSpace(desc))     parts.Add(desc!);
+            // Description incluse uniquement en mode verbeux (Loc.Verbose = CfgVerbose BepInEx).
+            // Pattern Strings.cs.WithDetail() d'AccessibleArena : description optionnelle.
+            if (Loc.Verbose && !string.IsNullOrWhiteSpace(desc)) parts.Add(desc!);
 
             return string.Join(". ", parts);
         }

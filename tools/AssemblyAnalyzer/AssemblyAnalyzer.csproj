@@ -1,0 +1,15 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>Exe</OutputType>
+    <!-- net472 keeps the tool self-contained on Windows without a runtime install.
+         The BepInEx interop stubs (Assembly-CSharp.dll) are .NET Standard 2.0
+         compatible and load fine from net472. -->
+    <TargetFramework>net472</TargetFramework>
+    <LangVersion>latest</LangVersion>
+    <AssemblyName>AssemblyAnalyzer</AssemblyName>
+    <RootNamespace>AssemblyAnalyzer</RootNamespace>
+    <Nullable>enable</Nullable>
+  </PropertyGroup>
+
+</Project>

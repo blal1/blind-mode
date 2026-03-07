@@ -80,6 +80,8 @@ namespace MasterDuelAccessibility.Patches
                 61 => "duel_coin",           // RunCoin           [critique]
                 62 => "duel_dice",           // RunDice           [critique]
                 90 => "duel_janken",         // RunJanken         [critique]
+                26 => GetCardMoveKey(__1), // CardMove — param1 = Engine.CardMoveType
+                34 => "duel_banish",      // CardExclude — carte bannie
                 55 => null,  // RunDialog  — handled by DuelDialogPatch
                 56 => null,  // RunList    — handled by DuelDialogPatch
                 60 => null,  // RunDetail  — handled by CardInfoPatch
@@ -104,6 +106,19 @@ namespace MasterDuelAccessibility.Patches
             _ => "duel_special_summon",  // generic fallback
         };
 
+        /// <summary>
+        /// Engine.CardMoveType (extrait du dump) :
+        ///   Normal=0, Draw=9, Drop=10, Search=11, CostDrop=17
+        /// Draw(9) ignoré délibérément — CutinDraw(68) l'annonce déjà.
+        /// </summary>
+        private static string? GetCardMoveKey(int moveType) => moveType switch
+        {
+            11 => "duel_search",    // Search — carte cherchée depuis le deck
+            10 => "duel_discard",   // Drop — carte envoyée de la main au cimetière
+            17 => "duel_cost_drop", // CostDrop — défaussée comme coût d'activation
+            _  => null              // Draw(9) et autres → pas d'annonce supplémentaire
+        };
+
         private static string GetDuelEndKey(int resultType) => resultType switch
         {
             1 => "duel_end_win",
@@ -126,7 +141,7 @@ namespace MasterDuelAccessibility.Patches
             // Réinitialise la déduplication des messages de duel entre deux parties.
             DuelEffectQueuePatch.ResetDuelState();
 
-            Plugin.Instance?.Tts?.Speak(Loc.Get("duel_started"));
+            Plugin.Instance?.Tts?.Speak(Loc.WithHint(Loc.Get("duel_started"), "hint_help"));
         }
 
         public static void DuelEnd_Postfix()

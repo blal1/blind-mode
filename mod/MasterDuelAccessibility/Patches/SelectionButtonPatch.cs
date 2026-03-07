@@ -169,6 +169,9 @@ namespace MasterDuelAccessibility.Patches
                 case GameState.Menu.Settings:
                     return ProcessSettingsMenu(instance);
 
+                case GameState.Menu.CardBrowser:
+                    return ProcessCardBrowser(instance);
+
                 case GameState.Menu.Solo:
                 case GameState.Menu.Duel:
                     return ProcessDuelGame(instance)
@@ -245,7 +248,19 @@ namespace MasterDuelAccessibility.Patches
         private static string? ProcessPacks(object instance)
         {
             var t = GetTransform(instance);
-            if (!( GetName(GetParent(t)) ?? "" ).Contains("Shop")) return null;
+            // Walk up to 5 ancestors to find a "Shop"-named container
+            // (covers featured packs, bundles, structural decks in different layouts)
+            bool inShopContext = false;
+            var walker = GetParent(t);
+            for (int i = 0; i < 5 && walker != null; i++, walker = GetParent(walker))
+            {
+                if ((GetName(walker) ?? "").Contains("Shop", System.StringComparison.OrdinalIgnoreCase))
+                {
+                    inShopContext = true;
+                    break;
+                }
+            }
+            if (!inShopContext) return null;
             try
             {
                 var texts   = CollectAllTexts(GetGO(t));
@@ -431,6 +446,111 @@ namespace MasterDuelAccessibility.Patches
                     string? comp = FindByKey(texts, "Complete");
                     if (!string.IsNullOrEmpty(last))
                         return comp != null ? Loc.Get("duel_mode_complete", last, comp) : last;
+                }
+            }
+            catch { }
+            return null;
+        }
+
+        // ── Card Browser : filtres ────────────────────────────────────────────
+
+        /// <summary>
+        /// Annonce le bouton de filtre courant dans le navigateur de cartes.
+        ///
+        /// Détecte le contexte "filtre" en remontant jusqu'à 7 niveaux dans la hiérarchie
+        /// à la recherche d'un parent dont le nom contient des mots-clés de filtre
+        /// (Filter, Search, TagRoot, AttributeRoot, TypeRoot, etc.).
+        ///
+        /// Si un contexte filtre est détecté :
+        ///   - Lit le label du bouton (TMP_Text → nom du GO)
+        ///   - Tente de lire l'état actif via Toggle.isOn ou la présence d'un child "Checkmark"
+        ///   - Retourne "{label} (actif)" ou "{label} (inactif)"
+        ///
+        /// Si le bouton n'est pas dans un filtre : retourne null (texte de base utilisé).
+        /// </summary>
+        private static string? ProcessCardBrowser(object instance)
+        {
+            var t = GetTransform(instance);
+
+            // Detect filter context via ancestor name patterns
+            bool inFilterContext = false;
+            var walker = GetParent(t);
+            for (int i = 0; i < 7 && walker != null; i++, walker = GetParent(walker))
+            {
+                string? pName = GetName(walker);
+                if (pName != null && IsFilterContextName(pName))
+                {
+                    inFilterContext = true;
+                    break;
+                }
+            }
+
+            if (!inFilterContext) return null;
+
+            // Read the filter label (text child preferred, GO name as fallback)
+            string? label = ReadText(GetGO(t));
+            if (string.IsNullOrWhiteSpace(label))
+                label = GetName(instance);
+            if (string.IsNullOrWhiteSpace(label)) return null;
+
+            // Try to determine if filter is currently active
+            bool? active = ReadFilterActiveState(GetGO(t));
+            if (active.HasValue)
+                return active.Value
+                    ? Loc.Get("card_filter_active",   label)
+                    : Loc.Get("card_filter_inactive",  label);
+
+            return label;
+        }
+
+        /// <summary>
+        /// Returns true if <paramref name="name"/> indicates a filter-area parent.
+        /// Matches common YGO card browser filter container names.
+        /// </summary>
+        private static bool IsFilterContextName(string name) =>
+            name.IndexOf("Filter",    System.StringComparison.OrdinalIgnoreCase) >= 0 ||
+            name.IndexOf("Search",    System.StringComparison.OrdinalIgnoreCase) >= 0 ||
+            name == "TagRoot"       || name == "AttributeRoot" ||
+            name == "TypeRoot"      || name == "RaceRoot"      ||
+            name == "LevelRoot"     || name == "SortArea"      ||
+            name == "FilterPanel"   || name == "FilterRoot"    ||
+            name == "ConditionRoot" || name == "KeywordRoot";
+
+        /// <summary>
+        /// Tries to read the active state of a filter button's GO.
+        /// Strategy 1: UnityEngine.UI.Toggle.isOn (Unity toggle).
+        /// Strategy 2: first active child named "Checkmark", "Check", "Selected", "SelectIcon",
+        ///             "ActiveState", or "OnIcon".
+        /// Returns null if state cannot be determined.
+        /// </summary>
+        private static bool? ReadFilterActiveState(object? go)
+        {
+            if (go == null) return null;
+            try
+            {
+                // Strategy 1: Unity Toggle component
+                var toggleType = AccessToolsHelper.FindType("UnityEngine.UI.Toggle");
+                if (toggleType != null)
+                {
+                    var getComp = go.GetType().GetMethod(
+                        "GetComponent", Pub, null, new[] { typeof(Type) }, null);
+                    var toggle = getComp?.Invoke(go, new object[] { toggleType });
+                    if (toggle != null)
+                    {
+                        var isOnProp = toggleType.GetProperty("isOn", Pub);
+                        if (isOnProp?.GetValue(toggle) is bool b)
+                            return b;
+                    }
+                }
+
+                // Strategy 2: named child active state
+                var xform = go.GetType().GetProperty("transform", Pub)?.GetValue(go);
+                foreach (string childName in new[]
+                    { "Checkmark", "Check", "Selected", "SelectIcon", "ActiveState", "OnIcon" })
+                {
+                    var childT = FindChild(xform, childName);
+                    if (childT != null)
+                        return IsActive(GetGO(childT));
                 }
             }
             catch { }

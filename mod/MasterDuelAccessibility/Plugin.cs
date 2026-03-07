@@ -47,8 +47,9 @@ namespace MasterDuelAccessibility
         private HarmonyLib.Harmony? _harmony;
 
         // BepInEx config entries
-        internal BepInEx.Configuration.ConfigEntry<bool>? CfgEnabled { get; private set; }
-        internal BepInEx.Configuration.ConfigEntry<bool>? CfgVerbose { get; private set; }
+        internal BepInEx.Configuration.ConfigEntry<bool>? CfgEnabled    { get; private set; }
+        internal BepInEx.Configuration.ConfigEntry<bool>? CfgVerbose    { get; private set; }
+        internal BepInEx.Configuration.ConfigEntry<bool>? CfgShowHints  { get; private set; }
 
         // ── Logger helpers ───────────────────────────────────────────────────
         internal void LogMsg(string msg)  => Log.LogInfo(msg);
@@ -72,6 +73,12 @@ namespace MasterDuelAccessibility
                 "verbose_announcements",
                 true,
                 "Inclure les descriptions complètes dans les annonces (mode verbeux).");
+
+            CfgShowHints = Config.Bind(
+                "General",
+                "show_keyboard_hints",
+                true,
+                "Afficher les indications de raccourcis clavier dans les annonces (ex. 'F1 pour l'aide').");
 
             // ── Localisation ─────────────────────────────────────────────────
             Loc.Initialize();
@@ -97,7 +104,7 @@ namespace MasterDuelAccessibility
             ApplyPatches();
 
             LogMsg($"{MyPluginInfo.PLUGIN_NAME} v{MyPluginInfo.PLUGIN_VERSION} chargé (BepInEx).");
-            Tts.Speak(Loc.Get("mod_loaded"));
+            Tts.Speak(Loc.WithHint(Loc.Get("mod_loaded"), "hint_help"));
         }
 
         internal void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -261,6 +268,36 @@ namespace MasterDuelAccessibility
 
             // ── CardReportTelopPatch — bandeau stats post-effet (ex: "+500 ATK")
             CardReportTelopPatch.Apply(_harmony!);
+
+            // ── SliderPatch — valeur des curseurs dans les menus (ex: volume, musique)
+            TryPatchPostfix(
+                typeof(UnityEngine.UI.Slider), "Set", new[] { typeof(float), typeof(bool) },
+                new HarmonyMethod(typeof(SliderPatch), nameof(SliderPatch.Set_Postfix)));
+
+            // ── DropdownPatch — listes déroulantes TMP (ex: langue, options graphiques)
+            // Show() : annonce l'ouverture avec l'option courante
+            TryPatchPostfix(
+                typeof(TMPro.TMP_Dropdown), "Show", Array.Empty<Type>(),
+                new HarmonyMethod(typeof(DropdownPatch), nameof(DropdownPatch.Show_Postfix)));
+            // set_value : annonce la sélection d'une nouvelle option
+            TryPatchPostfix(
+                typeof(TMPro.TMP_Dropdown), "set_value", new[] { typeof(int) },
+                new HarmonyMethod(typeof(DropdownPatch), nameof(DropdownPatch.SetValue_Postfix)));
+            // Hide() : réinitialise l'état interne lors de la fermeture
+            TryPatchPostfix(
+                typeof(TMPro.TMP_Dropdown), "Hide", Array.Empty<Type>(),
+                new HarmonyMethod(typeof(DropdownPatch), nameof(DropdownPatch.Hide_Postfix)));
+
+            // ── InputDigitViewPatch — sélecteur de nombre (ex: "Payer X PV")
+            TryPatch("YgomGame.Menu.Common.InputDigitViewController", "OnCreatedView",
+                new HarmonyMethod(typeof(InputDigitViewPatch), nameof(InputDigitViewPatch.OnCreatedView_Postfix)));
+            TryPatch("YgomGame.Menu.Common.InputDigitViewController", "OnValueAdded",
+                new HarmonyMethod(typeof(InputDigitViewPatch), nameof(InputDigitViewPatch.OnValueAdded_Postfix)));
+
+            // ── FilterSelectViewPatch — dialog de filtres multi-sélection
+            // Annonce le titre et l'état de chaque option (actif / inactif)
+            TryPatch("FilterSelectViewController", "OpenFilterSelect",
+                new HarmonyMethod(typeof(FilterSelectViewPatch), nameof(FilterSelectViewPatch.OpenFilterSelect_Postfix)));
         }
 
         // ── TryPatch helpers ─────────────────────────────────────────────────

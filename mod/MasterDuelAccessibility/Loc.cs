@@ -24,6 +24,7 @@ namespace MasterDuelAccessibility
 
         private static readonly Dictionary<string, string> _french  = new();
         private static readonly Dictionary<string, string> _english = new();
+        private static readonly Dictionary<string, string> _german  = new();
 
         #endregion
 
@@ -33,6 +34,7 @@ namespace MasterDuelAccessibility
         public static void Initialize()
         {
             InitializeStrings();
+            InitializeGermanStrings();
             _initialized = true;
             RefreshLanguage(); // detect game language after strings are loaded
         }
@@ -53,7 +55,11 @@ namespace MasterDuelAccessibility
                     BindingFlags.Public | BindingFlags.Static);
                 var result = getLanguageMethod?.Invoke(null, null) as string;
                 if (!string.IsNullOrEmpty(result))
-                    _currentLang = result!.StartsWith("fr") ? "fr" : "en";
+                {
+                    if      (result!.StartsWith("fr")) _currentLang = "fr";
+                    else if (result.StartsWith("de"))  _currentLang = "de";
+                    else                               _currentLang = "en";
+                }
             }
             catch { /* keep current lang on error */ }
         }
@@ -80,8 +86,12 @@ namespace MasterDuelAccessibility
 
         #region Private
 
-        private static Dictionary<string, string> GetCurrentDict() =>
-            _currentLang == "fr" ? _french : _english;
+        private static Dictionary<string, string> GetCurrentDict() => _currentLang switch
+        {
+            "fr" => _french,
+            "de" => _german,
+            _    => _english,
+        };
 
         /// <summary>
         /// Adds a string in both languages.
@@ -125,6 +135,9 @@ namespace MasterDuelAccessibility
             Add("menu_duelpass",
                 "Duel Pass",
                 "Duel Pass");
+            Add("menu_card_browser",
+                "Navigateur de cartes",
+                "Card Browser");
 
             // ===== DUEL — LP =====
             Add("duel_lp_damage_you",
@@ -287,6 +300,18 @@ namespace MasterDuelAccessibility
             Add("duel_destroy",
                 "Destruction !",
                 "Destroyed!");
+            Add("duel_banish",
+                "Carte bannie.",
+                "Card banished.");
+            Add("duel_search",
+                "Carte cherchée.",
+                "Card searched.");
+            Add("duel_discard",
+                "Carte défaussée.",
+                "Card discarded.");
+            Add("duel_cost_drop",
+                "Carte défaussée (coût).",
+                "Card discarded (cost).");
             Add("duel_surrender",
                 "Abandon.",
                 "Surrender.");
@@ -755,6 +780,12 @@ namespace MasterDuelAccessibility
             Add("cmd_turn_def",  "Mode Défense",          "Defense Position");
             Add("cmd_surrender", "Abandonner",            "Surrender");
             Add("cmd_look",      "Voir",                  "View");
+            Add("cmd_decide",    "Décider",               "Decide");
+            Add("cmd_draw",      "Piocher",               "Draw");
+            // Navigation dans le menu — "{0}" = nom de la commande, "{1}/{2}" = position
+            Add("cmd_cursor",
+                "{0}, {1} sur {2}",
+                "{0}, {1} of {2}");
 
             // ===== TOPICS / BANNER =====
             Add("topic_banner",
@@ -969,6 +1000,345 @@ namespace MasterDuelAccessibility
             Add("solo_mode_opened",
                 "Mode Solo.",
                 "Solo Mode.");
+
+            // ===== DIALOG RITUEL (DuelRitualDialogPatch) =====
+            // Begin(message, type, remainNum, maxNum) — {0}=message, {1}=remain, {2}=max, {3}=unit
+            Add("ritual_begin",
+                "{0}. {3} restants : {1} sur {2} maximum.",
+                "{0}. {3} remaining: {1} of {2} max.");
+            Add("ritual_begin_nomax",
+                "{0}. {2} restants : {1}.",
+                "{0}. {2} remaining: {1}.");
+            Add("ritual_begin_notext",
+                "Invocation Rituel. {2} restants : {0} sur {1} maximum.",
+                "Ritual Summon. {2} remaining: {0} of {1} max.");
+            Add("ritual_begin_notext_nomax",
+                "Invocation Rituel. {1} restants : {0}.",
+                "Ritual Summon. {1} remaining: {0}.");
+            // SetCount(remainNum) — progression au fil des sélections
+            Add("ritual_count_update",
+                "Restants : {0}.",
+                "Remaining: {0}.");
+            Add("ritual_ready",
+                "Prêt à invoquer !",
+                "Ready to summon!");
+            // Unités selon Engine.DialogRitualType
+            Add("ritual_unit_level", "niveaux",  "levels");
+            Add("ritual_unit_atk",   "ATK",      "ATK");
+            Add("ritual_unit_link",  "marqueurs","markers");
+
+            // ===== NAVIGATEUR DE CARTES : FILTRES (ProcessCardBrowser) =====
+            // card_filter_active   : {0}=label du filtre — filtre actif
+            // card_filter_inactive : {0}=label du filtre — filtre inactif
+            Add("card_filter_active",
+                "{0} (actif)",
+                "{0} (active)");
+            Add("card_filter_inactive",
+                "{0} (inactif)",
+                "{0} (inactive)");
+
+            // ===== CURSEUR TERRAIN (DuelCursorPatch) =====
+            // Annonce la carte/zone sous le curseur de ciblage
+            // cursor_card     : {0}=nom carte, {1}=libellé zone
+            // cursor_card_atk : {0}=nom carte, {1}=ATK, {2}=libellé zone
+            // cursor_empty_zone : {0}=libellé zone
+            Add("cursor_yours",      "votre",       "your");
+            Add("cursor_opp",        "adverse",     "opponent's");
+            Add("cursor_card",
+                "{0} — {1}",
+                "{0} — {1}");
+            Add("cursor_card_atk",
+                "{0} ATK {1} — {2}",
+                "{0} ATK {1} — {2}");
+            Add("cursor_empty_zone",
+                "{0} — vide",
+                "{0} — empty");
+            // ===== SÉLECTION DE ZONE (DuelCursorPatch.OnSelectField) =====
+            // Annonce la zone/carte confirmée quand le joueur valide sa sélection
+            // select_card     : {0}=nom carte
+            // select_card_atk : {0}=nom carte, {1}=ATK
+            // select_zone     : {0}=libellé zone
+            Add("select_card",
+                "Cible : {0}",
+                "Target: {0}");
+            Add("select_card_atk",
+                "Cible : {0} ATK {1}",
+                "Target: {0} ATK {1}");
+            Add("select_zone",
+                "Zone sélectionnée : {0}",
+                "Zone selected: {0}");
+            // Zones supplémentaires pour le curseur (autres que zone_monster déjà défini)
+            Add("zone_hand",         "Main",              "Hand");
+            Add("zone_grave",        "Cimetière",         "Graveyard");
+            Add("zone_banished",     "Zone bannie",       "Banished Zone");
+
+            // ===== CURSEURS (SliderPatch) =====
+            // {0} = label du slider, {1} = valeur formatée (entier ou %)
+            Add("slider_changed",
+                "{0} : {1}",
+                "{0}: {1}");
+
+            // ===== LISTES DÉROULANTES (DropdownPatch) =====
+            // dropdown_opened : {0} = label, {1} = option courante
+            Add("dropdown_opened",
+                "{0} : {1}",
+                "{0}: {1}");
+            // dropdown_selected : {0} = texte de l'option, {1} = position, {2} = total
+            Add("dropdown_selected",
+                "{0}, {1} sur {2}",
+                "{0}, {1} of {2}");
+
+            // ===== SÉLECTEUR DE NOMBRE (InputDigitViewPatch) =====
+            // Ouverture sans titre connu : {0}=valeur initiale, {1}=min, {2}=max
+            Add("input_digit_opened",
+                "Sélection : {0}. Minimum {1}, maximum {2}.",
+                "Selection: {0}. Min {1}, max {2}.");
+            // Ouverture avec titre : {0}=titre, {1}=valeur initiale, {2}=min, {3}=max
+            Add("input_digit_opened_titled",
+                "{0} : {1}. Minimum {2}, maximum {3}.",
+                "{0}: {1}. Min {2}, max {3}.");
+            // Changement de valeur : {0}=nouvelle valeur
+            Add("input_digit_value",
+                "{0}",
+                "{0}");
+
+            // ===== SELECT STAND OPERATION (SelectStandOperationPatch) =====
+            // Annonce le choix de zone ou de position lors d'une invocation spéciale
+            Add("stand_select_zone",
+                "Choisissez une zone d'invocation.",
+                "Choose a summon zone.");
+            Add("stand_decide_position",
+                "Choisissez la position du monstre.",
+                "Choose monster position.");
+            Add("stand_decide_atk_facedef",
+                "Choisissez : Attaque Recto ou Défense Recto.",
+                "Choose: Face-up Attack or Face-up Defense.");
+            Add("stand_decide_atk_backdef",
+                "Choisissez : Attaque Recto ou Défense Verso.",
+                "Choose: Face-up Attack or Face-down Defense.");
+            Add("stand_decide_facedef_backdef",
+                "Choisissez : Défense Recto ou Défense Verso.",
+                "Choose: Face-up Defense or Face-down Defense.");
+            Add("stand_decide_any",
+                "Choisissez : Attaque Recto, Défense Recto, ou Défense Verso.",
+                "Choose: Face-up Attack, Face-up Defense, or Face-down Defense.");
+
+            // ===== FILTER SELECT DIALOG (FilterSelectViewPatch) =====
+            // filter_dialog_opened : {0} = titre du dialog
+            Add("filter_dialog_title",
+                "Filtres",
+                "Filters");
+            Add("filter_dialog_opened",
+                "Filtres : {0}",
+                "Filters: {0}");
+
+            // ===== PHASE BUTTON — Tab shortcut (KeyboardShortcuts) =====
+            Add("shortcut_tab",
+                "Avancer la phase / passer la priorité",
+                "Advance phase / pass priority");
+            Add("phase_btn_unavailable",
+                "Bouton de phase indisponible.",
+                "Phase button not available.");
+
+            // ===== HINTS (WithHint pattern — Strings.cs TutorialMessages) =====
+            // Appended after core announcements when Loc.ShowHints is true.
+            // hint_help   : rappel F1 au chargement et en début de duel
+            // hint_nav    : rappel navigation clavier pour les écrans complexes
+            // hint_phase  : rappel Tab pour avancer les phases
+            Add("hint_help",
+                "F1 pour l'aide.",
+                "F1 for help.");
+            Add("hint_nav",
+                "F1 pour les raccourcis clavier.",
+                "F1 for keyboard shortcuts.");
+            Add("hint_phase",
+                "Tab pour avancer la phase.",
+                "Tab to advance the phase.");
+        }
+
+        // ── German strings (de-DE) ─────────────────────────────────────────────
+
+        /// <summary>
+        /// Traductions allemandes pour les joueurs utilisant la version DE du jeu.
+        /// Les clés manquantes tombent automatiquement sur l'anglais (cf. Get()).
+        ///
+        /// Sources terminologiques :
+        ///   - YGO Master Duel DE (noms officiels des phases/invocations)
+        ///   - Conventions standard de l'interface allemande du jeu
+        /// </summary>
+        private static void InitializeGermanStrings()
+        {
+            // GÉNÉRAL
+            _german["mod_loaded"]     = "Barrierefreiheits-Mod geladen. Sprachausgabe aktiv.";
+            _german["hint_help"]      = "F1 für Hilfe.";
+            _german["hint_nav"]       = "F1 für Tastenkürzel.";
+            _german["hint_phase"]     = "Tab um die Phase vorzurücken.";
+
+            // MENÜS
+            _german["menu_duel"]          = "Duell";
+            _german["menu_deck"]          = "Deck";
+            _german["menu_shop"]          = "Shop";
+            _german["menu_missions"]      = "Missionen";
+            _german["menu_settings"]      = "Einstellungen";
+            _german["menu_card_browser"]  = "Kartenbrowser";
+            _german["screen_duel"]        = "Duell";
+            _german["screen_deck"]        = "Deck";
+            _german["screen_shop"]        = "Shop";
+            _german["screen_deck_edit"]   = "Deck bearbeiten";
+            _german["screen_card_browser"]= "Kartenbrowser";
+            _german["screen_home"]        = "Startseite";
+
+            // DUEL — LP
+            _german["duel_lp_damage_you"]  = "Du: {0} LP. -{1} Schaden.";
+            _german["duel_lp_damage_opp"]  = "Gegner: {0} LP. -{1} Schaden.";
+            _german["duel_lp_gain_you"]    = "Du: {0} LP. +{1} wiederhergestellt.";
+            _german["duel_lp_gain_opp"]    = "Gegner: {0} LP. +{1} wiederhergestellt.";
+            _german["duel_lp_set_you"]     = "Deine LP gesetzt: {0}.";
+            _german["duel_lp_set_opp"]     = "Gegner-LP gesetzt: {0}.";
+            _german["duel_lp_status"]      = "Deine LP: {0}. Gegner-LP: {1}.";
+
+            // DUEL — ZÜGE / PHASEN
+            _german["duel_turn_yours"]    = "Dein Zug.";
+            _german["duel_turn_opp"]      = "Zug des Gegners.";
+            _german["duel_turn_yours_n"]  = "Dein Zug, Zug {0}.";
+            _german["duel_turn_opp_n"]    = "Zug des Gegners, Zug {0}.";
+            _german["duel_phase_draw"]    = "Ziehphase";
+            _german["duel_phase_standby"] = "Bereitschaftsphase";
+            _german["duel_phase_main1"]   = "Hauptphase 1";
+            _german["duel_phase_battle"]  = "Kampfphase";
+            _german["duel_phase_main2"]   = "Hauptphase 2";
+            _german["duel_phase_end"]     = "Endphase";
+
+            // DUEL — ÉVÉNEMENTS
+            _german["duel_started"]         = "Duell gestartet.";
+            _german["duel_end_win"]         = "Sieg!";
+            _german["duel_end_lose"]        = "Niederlage.";
+            _german["duel_end_draw"]        = "Unentschieden.";
+            _german["duel_end_time"]        = "Zeit abgelaufen.";
+            _german["duel_end_generic"]     = "Duell beendet.";
+            _german["duel_normal_summon"]   = "Normalbeschwörung.";
+            _german["duel_special_summon"]  = "Spezialbeschwörung.";
+            _german["duel_ritual_summon"]   = "Ritualbeschwörung.";
+            _german["duel_fusion_summon"]   = "Fusionsbeschwörung.";
+            _german["duel_synchro_summon"]  = "Synchrobeschwörung.";
+            _german["duel_xyz_summon"]      = "Xyz-Beschwörung.";
+            _german["duel_pendulum_summon"] = "Pendelbeschwörung.";
+            _german["duel_link_summon"]     = "Linkbeschwörung.";
+            _german["duel_tribute_summon"]  = "Tributbeschwörung.";
+            _german["duel_flip_summon"]     = "Wendebeschwörung.";
+            _german["duel_maximum_summon"]  = "Maximale Beschwörung.";
+            _german["duel_summon"]          = "Beschwörung.";
+            _german["duel_fusion"]          = "Fusion.";
+            _german["duel_draw"]            = "Karte gezogen.";
+            _german["duel_activate"]        = "Effekt aktiviert.";
+            _german["duel_set"]             = "Karte gesetzt.";
+            _german["duel_flip"]            = "Aufgedeckt.";
+            _german["duel_flip_summon"]     = "Wendebeschwörung.";
+            _german["duel_destroy"]         = "Zerstört!";
+            _german["duel_banish"]          = "Karte verbannt.";
+            _german["duel_search"]          = "Karte gesucht.";
+            _german["duel_discard"]         = "Karte abgeworfen.";
+            _german["duel_cost_drop"]       = "Karte abgeworfen (Kosten).";
+            _german["duel_damage"]          = "Kampfschaden.";
+            _german["duel_chain_start"]     = "Kette beginnt.";
+            _german["duel_chain_resolve"]   = "Kette löst auf.";
+            _german["duel_chain_response"]  = "Kettenreaktion.";
+            _german["duel_chain_step"]      = "Kettenschritt.";
+            _german["duel_chain_end"]       = "Kette beendet.";
+            _german["duel_hand_show"]       = "Handkarten gezeigt.";
+            _german["duel_materials_used"]  = "Material verwendet.";
+            _german["duel_turn_end_event"]  = "Zug beendet.";
+            _german["duel_effect_resolved"] = "Effekt aufgelöst.";
+            _german["duel_surrender"]       = "Aufgabe.";
+            _german["duel_special_win"]     = "Sondersieg!";
+            _german["duel_coin"]            = "Münzwurf.";
+            _german["duel_dice"]            = "Würfelwurf.";
+            _german["duel_janken"]          = "Schere-Stein-Papier.";
+            _german["duel_cpu_thinking"]    = "Gegner denkt nach…";
+
+            // DUEL — ANGRIFF
+            _german["attack_declared"] = "{0} (ATK {1}) greift {2} (ATK {3}) an!";
+            _german["attack_declared_no_target"] = "{0} (ATK {1}) greift direkt an!";
+
+            // KARTEN AUF DER HAND / FELD
+            // Hinweis: {1} ist der Plural-Suffix — in Deutsch "n" für Karten → einfach weglassen
+            _german["hand_cards"]       = "Hand ({0} Karten): {2}";
+            _german["hand_empty"]       = "Keine Karten auf der Hand.";
+            _german["field_cards"]      = "Spielfeld ({0} Karten): {2}";
+            _german["field_empty"]      = "Keine Karten auf dem Spielfeld.";
+            _german["grave_cards"]      = "Friedhof ({0} Karten): {2}";
+            _german["banished_cards"]   = "Verbannte Karten ({0} Karten): {2}";
+            _german["extra_deck_cards"] = "Extra Deck ({0} Karten): {2}";
+            _german["opp_field_cards"]  = "Spielfeld des Gegners ({0} Karten): {2}";
+            _german["opp_grave_cards"]  = "Friedhof des Gegners ({0} Karten): {2}";
+            _german["opp_banished_cards"] = "Verbannte Karten des Gegners ({0} Karten): {2}";
+            _german["opp_extra_deck_count"] = "Extra Deck des Gegners: {0} Karten.";
+            _german["deck_count"]       = "Mein Deck: {0} Karten. Gegner-Deck: {2} Karten.";
+            _german["opp_hand_count"]   = "Hand des Gegners: {0} Karten.";
+            _german["hand_empty_opp"]   = "Keine Karten in der Hand des Gegners.";
+            _german["field_empty_opp"]  = "Keine Karten auf dem Feld des Gegners.";
+
+            // NAVIGATION
+            _german["nav_position"]  = ", {0} von {1}";
+            _german["nav_boundary"]  = "Listenende.";
+
+            // TASTENKÜRZEL-HILFE
+            _german["shortcut_help_title"]   = "Tastenkürzel";
+            _german["shortcut_f1"]           = "F1 : Diese Hilfe vorlesen";
+            _german["shortcut_f2"]           = "F2 : Letzten Text wiederholen";
+            _german["shortcut_f5"]           = "F5 : Sprache stoppen";
+            _german["shortcut_alt"]          = "Alt : Karte vorlesen";
+            _german["shortcut_space"]        = "Leertaste : LP beider Spieler vorlesen";
+            _german["shortcut_tab"]          = "Tab : Phase vorwärts / Priorität passen";
+            _german["phase_btn_unavailable"] = "Phasentaste nicht verfügbar.";
+
+            // ZONEN (Curseur terrain)
+            _german["zone_monster"]    = "Monster-Zone {0}";
+            _german["zone_extra"]      = "Extra-Monster-Zone {0}";
+            _german["zone_spelltrap"]  = "Zauber/Fallen-Zone {0}";
+            _german["zone_fieldspell"] = "Spielfeldkarten-Zone";
+            _german["zone_hand"]       = "Hand";
+            _german["zone_grave"]      = "Friedhof";
+            _german["zone_banished"]   = "Verbannte Zone";
+            _german["zone_unknown"]    = "Unbekannte Zone {0}";
+            _german["cursor_yours"]    = "deine";
+            _german["cursor_opp"]      = "Gegner";
+            _german["cursor_card"]     = "{0} — {1}";
+            _german["cursor_card_atk"] = "{0} ATK {1} — {2}";
+            _german["cursor_empty_zone"] = "{0} — leer";
+            _german["select_zone"]     = "Zone ausgewählt: {0}";
+            _german["select_card"]     = "Ziel: {0}";
+            _german["select_card_atk"] = "Ziel: {0} ATK {1}";
+
+            // FILTRES NAVIGATEUR DE CARTES
+            _german["card_filter_active"]   = "{0} (aktiv)";
+            _german["card_filter_inactive"] = "{0} (inaktiv)";
+
+            // DECK
+            _german["deck_select_focus"] = "Ausgewähltes Deck: {0}.";
+            _german["new_deck"]          = "Neues Deck";
+            _german["deck_rename"]       = "Deck umbenennen";
+            _german["deck_auto_build"]   = "Deck automatisch erstellen";
+
+            // SELECT STAND OPERATION
+            _german["stand_select_zone"]           = "Wähle eine Beschwörungszone.";
+            _german["stand_decide_position"]       = "Wähle die Monster-Position.";
+            _german["stand_decide_atk_facedef"]    = "Wähle: Offen-Angriff oder Offen-Verteidigung.";
+            _german["stand_decide_atk_backdef"]    = "Wähle: Offen-Angriff oder Verdeckt-Verteidigung.";
+            _german["stand_decide_facedef_backdef"]= "Wähle: Offen-Verteidigung oder Verdeckt-Verteidigung.";
+            _german["stand_decide_any"]            = "Wähle: Offen-Angriff, Offen-Verteidigung oder Verdeckt-Verteidigung.";
+
+            // FILTER DIALOG
+            _german["filter_dialog_title"]  = "Filter";
+            _german["filter_dialog_opened"] = "Filter: {0}";
+
+            // KARTEN — BEWEGEN
+            _german["duel_search"]     = "Karte gesucht.";
+            _german["duel_discard"]    = "Karte abgeworfen.";
+            _german["duel_cost_drop"]  = "Karte abgeworfen (Kosten).";
+
+            // TIMER
+            _german["duel_timer_warning"] = "Duell-Timer: {0} Sekunden verbleiben.";
         }
 
         // ── WithVerbose helper (pattern Strings.cs WithDetail) ─────────────────
@@ -997,6 +1367,66 @@ namespace MasterDuelAccessibility
         /// </summary>
         public static string WithVerbose(string core, string detail)
             => Verbose && !string.IsNullOrWhiteSpace(detail) ? $"{core}. {detail}" : core;
+
+        // ── WithHint helper (pattern Strings.cs TutorialMessages) ──────────────
+
+        /// <summary>
+        /// Indique si les indications de raccourcis clavier sont affichées.
+        /// Lit la ConfigEntry BepInEx "show_keyboard_hints".
+        /// Valeur par défaut : true (comportement découvrable pour les nouveaux joueurs).
+        /// </summary>
+        public static bool ShowHints
+        {
+            get
+            {
+                try   { return Plugin.Instance?.CfgShowHints?.Value ?? true; }
+                catch { return true; }
+            }
+        }
+
+        /// <summary>
+        /// Concatène une indication de raccourci clavier à un message si ShowHints est actif.
+        ///
+        /// Usage : Loc.WithHint(Loc.Get("duel_started"), "hint_help")
+        ///   ShowHints ON  → "Duell gestartet. F1 für Hilfe."
+        ///   ShowHints OFF → "Duell gestartet."
+        ///
+        /// Inspiré de Strings.cs.WithHint(core, hintKey) (AccessibleArena MTGA).
+        /// </summary>
+        public static string WithHint(string core, string hintKey)
+        {
+            if (!ShowHints) return core;
+            string hint = Get(hintKey);
+            if (string.IsNullOrWhiteSpace(hint) || hint == hintKey) return core;
+            return $"{core} {hint}";
+        }
+
+        // ── GetPlural helper (pattern LocaleManager pluralization) ──────────────
+
+        /// <summary>
+        /// Retourne une chaîne localisée au singulier ou au pluriel.
+        ///
+        /// Convention de clé :
+        ///   "{key}_one"   : forme singulière (count == 1)
+        ///   "{key}"       : forme plurielle / par défaut
+        ///
+        /// Usage :
+        ///   Add("card_count_one", "1 carte",    "1 card");
+        ///   Add("card_count",     "{0} cartes",  "{0} cards");
+        ///   Loc.GetPlural("card_count", 3, 3) → "3 cartes" / "3 cards"
+        ///   Loc.GetPlural("card_count", 1)    → "1 carte"  / "1 card"
+        ///
+        /// Inspiré de LocaleManager.GetPluralForm() (AccessibleArena MTGA).
+        /// </summary>
+        public static string GetPlural(string key, int count, params object[] args)
+        {
+            string pluralKey = count == 1 ? $"{key}_one" : key;
+            string template  = Get(pluralKey);
+            // If _one key is missing, fall back to base key
+            if (template == pluralKey && count == 1) template = Get(key);
+            try   { return string.Format(template, args); }
+            catch { return template; }
+        }
 
         #endregion
     }

@@ -17,6 +17,7 @@ namespace MasterDuelAccessibility
             Notifications,
             Settings,
             DuelPass,
+            CardBrowser, // Navigateur de cartes (recherche/filtres)
         }
 
         /// <summary>Currently displayed menu.</summary>
@@ -68,6 +69,7 @@ namespace MasterDuelAccessibility
             Menu.Notifications => Loc.Get("menu_notifications"),
             Menu.Settings      => Loc.Get("menu_settings"),
             Menu.DuelPass      => Loc.Get("menu_duelpass"),
+            Menu.CardBrowser   => Loc.Get("menu_card_browser"),
             _                  => string.Empty,
         };
     }
