@@ -33,11 +33,58 @@ namespace MasterDuelAccessibility.Patches
 
             try
             {
+                string modeLabel = GetModeLabel(__instance);
                 string? deckName = GetSelectedDeckName(__instance);
+
                 if (!string.IsNullOrWhiteSpace(deckName))
-                    tts.Speak(Loc.Get("deck_select_focus", deckName), interrupt: false);
+                    tts.Speak(Loc.Get("deck_select_focus_mode", modeLabel, deckName), interrupt: false);
+                else if (!string.IsNullOrWhiteSpace(modeLabel))
+                    tts.Speak(Loc.Get("deck_select_mode", modeLabel), interrupt: false);
             }
             catch { /* réflexion silencieuse */ }
+        }
+
+        /// <summary>
+        /// Lit m_SelectMode (protected field) depuis l'instance via réflexion
+        /// et retourne le libellé localisé correspondant.
+        /// </summary>
+        private static string GetModeLabel(object instance)
+        {
+            try
+            {
+                var type = instance.GetType();
+                FieldInfo? field = null;
+                while (type != null && field == null)
+                {
+                    field = type.GetField("m_SelectMode", AnyInst);
+                    type = type.BaseType;
+                }
+                if (field == null) return string.Empty;
+
+                int mode = System.Convert.ToInt32(field.GetValue(instance));
+                return mode switch
+                {
+                    0  => Loc.Get("deck_mode_default"),
+                    1  => Loc.Get("deck_mode_ranked"),
+                    2  => Loc.Get("deck_mode_pve"),
+                    3  => Loc.Get("deck_mode_tournament"),
+                    4  => Loc.Get("deck_mode_solo"),
+                    5  => Loc.Get("deck_mode_room"),
+                    6  => Loc.Get("deck_mode_exhibition"),
+                    8  => Loc.Get("deck_mode_free"),
+                    9  => Loc.Get("deck_mode_cup"),
+                    10 => Loc.Get("deck_mode_wcs"),
+                    12 => Loc.Get("deck_mode_rank_event"),
+                    13 => Loc.Get("deck_mode_team"),
+                    15 => Loc.Get("deck_mode_duel_trial"),
+                    17 => Loc.Get("deck_mode_versus"),
+                    20 => Loc.Get("deck_mode_rate"),
+                    22 => Loc.Get("deck_mode_rdc"),
+                    24 => Loc.Get("deck_mode_dice_rally"),
+                    _  => string.Empty,
+                };
+            }
+            catch { return string.Empty; }
         }
 
         /// <summary>

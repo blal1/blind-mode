@@ -73,6 +73,35 @@ namespace MasterDuelAccessibility.Patches
                 "YgomGame.Duel.DuelResultDialog", "Open",
                 typeof(DuelMiscPatch), nameof(DuelMiscPatch.ResultDialog_Open_Postfix));
 
+            // Premier joueur — annonce qui joue en premier (pile/face ou aléatoire)
+            TryPatchPostfix(
+                "ChoiceFirstPlayerDialog", "ReqOpen",
+                typeof(DuelMiscPatch), nameof(DuelMiscPatch.ChoiceFirstPlayer_ReqOpen_Postfix));
+
+            // Dialog OK simple en duel (message déjà localisé par le jeu)
+            // Patch la surcharge à 3 params : Open(string, Action<bool>, Action)
+            TryPatchByParamCount(
+                "DuelOkDialog", "Open", 3,
+                typeof(DuelMiscPatch), nameof(DuelMiscPatch.DuelOkDialog_Open_Postfix));
+
+            // Menu de position de monstre (Face-Up Attack / Face-Up Defense / Face-Down Defense)
+            // CardCommandEx.Open(int cardID, int face, Vector3 screenPoint)
+            TryPatchByParamCount(
+                "CardCommandEx", "Open", 3,
+                typeof(CardCommandExPatch), nameof(CardCommandExPatch.Open_Postfix));
+
+            // Liste multi-sélection en duel (ordre de chaîne, choix de cibles groupés, etc.)
+            // DuelPullDownDialog.Open(string, List<string>, int, Action<List<int>,bool>, Action) — 5 params
+            TryPatchByParamCount(
+                "DuelPullDownDialog", "Open", 5,
+                typeof(DuelPullDownDialogPatch), nameof(DuelPullDownDialogPatch.Open_Postfix));
+
+            // DuelInfoDialog.ReqOpen — messages informatifs en duel (non-interactifs)
+            // ReqOpen(string message, Place, bool cancelable, Action, Action, bool, Action, Action)
+            TryPatchPostfix(
+                "DuelInfoDialog", "ReqOpen",
+                typeof(DuelInfoDialogPatch), nameof(DuelInfoDialogPatch.ReqOpen_Postfix));
+
             // Déléguer les dialogs de duel à DialogStatePatch (pattern MTGA PanelStatePatch)
             DialogStatePatch.Initialize(_harmonyLate!);
 
@@ -130,7 +159,50 @@ namespace MasterDuelAccessibility.Patches
             Plugin.Instance?.LogMsg("[LatePatches] Patches menu appliqués.");
         }
 
-        // ── Helper ───────────────────────────────────────────────────────────
+        // ── Helpers ──────────────────────────────────────────────────────────
+
+        private static void TryPatchByParamCount(
+            string typeName,
+            string methodName,
+            int    paramCount,
+            Type   patchClass,
+            string patchMethod)
+        {
+            try
+            {
+                var type = FindType(typeName);
+                if (type == null)
+                {
+                    Plugin.Instance?.LogWarn($"[LatePatches] Type '{typeName}' introuvable.");
+                    return;
+                }
+
+                var method = System.Array.Find(type.GetMethods(), m =>
+                    m.Name == methodName && m.GetParameters().Length == paramCount);
+
+                if (method == null)
+                {
+                    Plugin.Instance?.LogWarn($"[LatePatches] '{typeName}.{methodName}' ({paramCount} params) introuvable.");
+                    return;
+                }
+
+                var postfixInfo = patchClass.GetMethod(
+                    patchMethod, BindingFlags.Public | BindingFlags.Static);
+
+                if (postfixInfo == null)
+                {
+                    Plugin.Instance?.LogWarn($"[LatePatches] Postfix '{patchMethod}' introuvable sur {patchClass.Name}.");
+                    return;
+                }
+
+                _harmonyLate!.Patch(method, postfix: new HarmonyMethod(postfixInfo));
+                Plugin.Instance?.LogMsg($"[LatePatches] ✓ {typeName}.{methodName} ({paramCount} params)");
+            }
+            catch (Exception ex)
+            {
+                Plugin.Instance?.LogErr($"[LatePatches] Échec {typeName}.{methodName}/{paramCount}: {ex.Message}");
+            }
+        }
 
         private static void TryPatchPostfix(
             string typeName,
@@ -270,6 +342,36 @@ namespace MasterDuelAccessibility.Patches
             }
             catch { }
         }
+
+        // Annonce qui joue en premier.
+        // ChoiceFirstPlayerDialog.ReqOpen(int choicePlayer, int firstPlayer, bool coinFace, float showTime)
+        //   firstPlayer : 0 = joueur local, 1 = adversaire
+        public static void ChoiceFirstPlayer_ReqOpen_Postfix(int __1)
+        {
+            var tts = Plugin.Instance?.Tts;
+            if (tts == null) return;
+            try
+            {
+                string key = __1 == 0 ? "first_player_you" : "first_player_opp";
+                tts.Speak(Loc.Get(key), interrupt: true);
+            }
+            catch { }
+        }
+
+        // Annonce le message d'un dialog OK simple en duel.
+        // DuelOkDialog.Open(string message, Action<bool> resultCallback, Action openCallback)
+        //   __0 = message déjà localisé par le jeu
+        public static void DuelOkDialog_Open_Postfix(string __0)
+        {
+            var tts = Plugin.Instance?.Tts;
+            if (tts == null) return;
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(__0))
+                    tts.Speak(__0, interrupt: true);
+            }
+            catch { }
+        }
     }
 
     // =========================================================================
@@ -298,6 +400,158 @@ namespace MasterDuelAccessibility.Patches
             try
             {
                 tts.Speak(Loc.Get("solo_mode_opened"), interrupt: false);
+            }
+            catch { }
+        }
+    }
+
+    // =========================================================================
+    // CardCommandEx — menu de position de monstre (Attaque / Défense / Face cachée)
+    // =========================================================================
+
+    internal static class CardCommandExPatch
+    {
+        /// <summary>
+        /// Postfix pour CardCommandEx.Open(int cardID, int face, Vector3 screenPoint).
+        ///
+        /// __0 = cardID (int) — résolu en nom via Content.GetName
+        /// __1 = face   (int) — 0 = face cachée, 1 = face visible
+        ///
+        /// Annonce le nom de la carte et les positions disponibles (lues depuis
+        /// le tableau `buttons` via réflexion sur les boutons actifs).
+        /// </summary>
+        public static void Open_Postfix(object __instance, int __0)
+        {
+            var tts = Plugin.Instance?.Tts;
+            if (tts == null) return;
+            try
+            {
+                // Résoudre le nom de la carte
+                string? cardName = AccessToolsHelper.GetCardName(__0);
+
+                // Lire les boutons actifs dans le menu
+                var buttonsField = __instance.GetType()
+                    .GetField("buttons", BindingFlags.NonPublic | BindingFlags.Instance);
+                var buttonsArray = buttonsField?.GetValue(__instance) as System.Array;
+
+                var positions = new System.Collections.Generic.List<string>(3);
+                if (buttonsArray != null)
+                {
+                    foreach (var btn in buttonsArray)
+                    {
+                        if (btn == null) continue;
+                        // Lire root (ElementObjectManager) → activeInHierarchy pour savoir si visible
+                        var rootField = btn.GetType().GetField("root",
+                            BindingFlags.Public | BindingFlags.Instance);
+                        var root = rootField?.GetValue(btn);
+                        if (root == null) continue;
+
+                        // Vérifier si actif (ElementObjectManager wraps a GameObject)
+                        var goField = root.GetType().GetField("gameObject",
+                            BindingFlags.Public | BindingFlags.Instance);
+                        var go = goField?.GetValue(root) as UnityEngine.GameObject;
+                        if (go == null || !go.activeInHierarchy) continue;
+
+                        // Lire le champ battlePosition (StandType)
+                        var posField = btn.GetType().GetField("battlePosition",
+                            BindingFlags.Public | BindingFlags.Instance);
+                        if (posField?.GetValue(btn) is int pos)
+                        {
+                            string posLabel = pos switch
+                            {
+                                0 => Loc.Get("pos_front_atk"),
+                                1 => Loc.Get("pos_front_def"),
+                                2 => Loc.Get("pos_back_def"),
+                                _ => string.Empty,
+                            };
+                            if (!string.IsNullOrEmpty(posLabel))
+                                positions.Add(posLabel);
+                        }
+                    }
+                }
+
+                string msg = string.IsNullOrWhiteSpace(cardName)
+                    ? Loc.Get("card_command_ex_nocard", string.Join(", ", positions))
+                    : Loc.Get("card_command_ex", cardName!, string.Join(", ", positions));
+
+                tts.Speak(msg, interrupt: true);
+            }
+            catch { }
+        }
+    }
+
+    // =========================================================================
+    // DuelInfoDialog — messages informatifs en duel (non-interactifs ou cancelables)
+    // =========================================================================
+
+    internal static class DuelInfoDialogPatch
+    {
+        /// <summary>
+        /// Postfix pour DuelInfoDialog.ReqOpen(
+        ///   string message, DuelInfoDialogBase.Place place,
+        ///   bool cancelable, Action cancelCallback, Action closeCallback,
+        ///   bool decidable, Action decisionCallback, Action actCallback).
+        ///
+        /// __0 = message — texte informatif localisé par le jeu
+        ///
+        /// Utilisé pour afficher des messages d'effet ou d'information contextuels
+        /// pendant le duel (non-interactifs ou avec boutons Annuler/Décision).
+        /// </summary>
+        public static void ReqOpen_Postfix(string __0)
+        {
+            var tts = Plugin.Instance?.Tts;
+            if (tts == null) return;
+            try
+            {
+                if (!string.IsNullOrWhiteSpace(__0))
+                    tts.Speak(__0, interrupt: true);
+            }
+            catch { }
+        }
+    }
+
+    // =========================================================================
+    // DuelPullDownDialog — liste multi-sélection en duel
+    // =========================================================================
+
+    internal static class DuelPullDownDialogPatch
+    {
+        /// <summary>
+        /// Postfix pour DuelPullDownDialog.Open(
+        ///   string message, List&lt;string&gt; selectionList,
+        ///   int selectNum, Action&lt;List&lt;int&gt;, bool&gt; resultCallback, Action openCallback).
+        ///
+        /// __0 = message       — texte du prompt localisé par le jeu
+        /// __1 = selectionList — liste des options (strings déjà localisés)
+        /// __2 = selectNum     — nombre d'éléments à sélectionner
+        /// </summary>
+        public static void Open_Postfix(string __0, object __1, int __2)
+        {
+            var tts = Plugin.Instance?.Tts;
+            if (tts == null) return;
+            try
+            {
+                // Lire la liste d'options via IEnumerable
+                var options = new System.Collections.Generic.List<string>();
+                if (__1 is System.Collections.IEnumerable enumerable)
+                {
+                    foreach (var item in enumerable)
+                    {
+                        var s = item?.ToString();
+                        if (!string.IsNullOrWhiteSpace(s))
+                            options.Add(s!);
+                    }
+                }
+
+                string prompt = string.IsNullOrWhiteSpace(__0)
+                    ? Loc.Get("pulldown_select", __2)
+                    : __0;
+
+                string announcement = options.Count > 0
+                    ? Loc.Get("pulldown_open", prompt, __2, string.Join(", ", options))
+                    : Loc.Get("pulldown_open_nolist", prompt, __2);
+
+                tts.Speak(announcement, interrupt: true);
             }
             catch { }
         }

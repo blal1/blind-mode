@@ -298,6 +298,23 @@ namespace MasterDuelAccessibility
             // Annonce le titre et l'état de chaque option (actif / inactif)
             TryPatch("FilterSelectViewController", "OpenFilterSelect",
                 new HarmonyMethod(typeof(FilterSelectViewPatch), nameof(FilterSelectViewPatch.OpenFilterSelect_Postfix)));
+
+            // ── CommonDialogPatch — dialogs génériques (confirmation, alerte, erreur, etc.)
+            // Toutes les variantes Open*Dialog partagent (string title, string message, ...)
+            var commonDialogPostfix = new HarmonyMethod(
+                typeof(CommonDialogPatch), nameof(CommonDialogPatch.Dialog_Postfix));
+            TryPatch("YgomGame.Menu.CommonDialogViewController", "OpenAlertDialog",          commonDialogPostfix);
+            TryPatch("YgomGame.Menu.CommonDialogViewController", "OpenAlertDialogScroll",    commonDialogPostfix);
+            TryPatch("YgomGame.Menu.CommonDialogViewController", "OpenConfirmationDialog",   commonDialogPostfix);
+            TryPatch("YgomGame.Menu.CommonDialogViewController", "OpenConfirmationDialogScroll", commonDialogPostfix);
+            TryPatch("YgomGame.Menu.CommonDialogViewController", "OpenConfirmationPartDialog", commonDialogPostfix);
+            TryPatch("YgomGame.Menu.CommonDialogViewController", "OpenErrorDialog",          commonDialogPostfix);
+            TryPatch("YgomGame.Menu.CommonDialogViewController", "OpenYesNoConfirmationDialog", commonDialogPostfix);
+            TryPatch("YgomGame.Menu.CommonDialogViewController", "OpenYesNoConfirmationDialogScroll", commonDialogPostfix);
+            TryPatch("YgomGame.Menu.CommonDialogViewController", "OpenNoticeYesNoDialog",    commonDialogPostfix);
+            TryPatch("YgomGame.Menu.CommonDialogViewController", "OpenCheckBoxDialog",       commonDialogPostfix);
+            TryPatchByParamCount("YgomGame.Menu.CommonDialogViewController", "OpenItemConfirmDialog", 7, commonDialogPostfix);
+            TryPatchByParamCount("YgomGame.Menu.CommonDialogViewController", "OpenItemConfirmDialog", 9, commonDialogPostfix);
         }
 
         // ── TryPatch helpers ─────────────────────────────────────────────────

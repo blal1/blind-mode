@@ -1,0 +1,5 @@
+bin/
+obj/
+msbuild.binlog
+# WSL artifact (CopyToGame target creates this when run under WSL)
+C:/

@@ -24,7 +24,7 @@ namespace MasterDuelAccessibility.Patches
         private static readonly System.Collections.Generic.Dictionary<string, string> ScreenTitles =
             new System.Collections.Generic.Dictionary<string, string>(System.StringComparer.OrdinalIgnoreCase)
         {
-            // Menus principaux (aussi couverts par OnFocusChanged via GameState.MenuNames)
+            // ── Menus principaux (aussi couverts par OnFocusChanged via GameState.MenuNames) ──
             { "DUEL",            "screen_duel"        },
             { "DECK",            "screen_deck"        },
             { "SOLO",            "screen_solo"        },
@@ -33,21 +33,97 @@ namespace MasterDuelAccessibility.Patches
             { "Notifications",   "screen_notifications" },
             { "Game Settings",   "screen_settings"    },
             { "Duel Pass",       "screen_duel_pass"   },
-            // Vues secondaires
+            // ── Navigation decks / cartes ────────────────────────────────────
             { "DeckBrowser",          "screen_deck_browser"  },
             { "DeckEdit",             "screen_deck_edit"     },
             { "CardBrowser",          "screen_card_browser"  },
-            { "PvpMenuMatching",      "screen_matching"      },
-            { "Home",                 "screen_home"          },
             { "DeckSelect",           "screen_deck_select"   },
+            // ── PvP / Matchmaking ─────────────────────────────────────────────
+            { "PvpMenuMatching",      "screen_matching"      },
+            { "PvpMenuMatching_Room", "screen_matching_room" },
+            { "PvpMenuMatching_Team", "screen_matching_team" },
+            // ── Accueil ───────────────────────────────────────────────────────
+            { "Home",                 "screen_home"          },
+            // ── Boutique / Packs ──────────────────────────────────────────────
+            { "ShopBuy",              "screen_shop_buy"      },
+            { "LotteryPortal",        "screen_lottery"       },
+            { "LotteryResult",        "screen_lottery_result"},
+            { "LotteryHistory",       "screen_lottery_history"},
+            { "LotteryCardSelect",    "screen_lottery_card_select"},
+            { "LotteryRewardView",    "screen_lottery_reward"},
+            // ── Récompenses / Boîte cadeaux ───────────────────────────────────
+            { "PresentBox",           "screen_present_box"   },
+            // ── Profil / Social ───────────────────────────────────────────────
+            { "Profile",              "screen_profile"       },
+            { "ProfileData",          "screen_profile"       },
+            { "ProfileEdit",          "screen_profile_edit"  },
+            { "ProfileCardCheck",     "screen_profile_cards" },
+            { "ProfileReplay",        "screen_profile_replay"},
+            { "Friend",               "screen_friends"       },
+            { "FriendSearch",         "screen_friends_search"},
+            // ── Solo / Scénario ───────────────────────────────────────────────
+            { "SoloGate",             "screen_solo_gate"     },
+            { "SoloSelectChapter",    "screen_solo_chapter"  },
+            // ── Saison ───────────────────────────────────────────────────────
+            { "SeasonPoint",          "screen_season_ranking"},
+            { "SeasonPointHistory",   "screen_season_history"},
+            { "SeasonPointRanking",   "screen_season_ranking"},
+            { "SeasonPointTopMenu",   "screen_season_ranking"},
+            { "SeasonResult",         "screen_season_result" },
+            // ── Échange d'objets ─────────────────────────────────────────────
+            { "ItemExchange",         "screen_item_exchange" },
+            // ── Colosseum ────────────────────────────────────────────────────
+            { "ColosseumDuelResult",  "screen_colosseum_result" },
+            { "WCSFinal_Colosseum",   "screen_colosseum"     },
+            // ── Tri / Filtres ─────────────────────────────────────────────────
+            { "SortDialog_Card",      "screen_sort_card"     },
+            { "SortDialog_CardFile",  "screen_sort_cardfile" },
+            { "SortDialog_Solo",      "screen_sort_solo"     },
+            { "FilterSelect",         "screen_filter_select" },
+            // ── Divers ────────────────────────────────────────────────────────
+            { "PasswordDialog",       "screen_password"      },
         };
 
-        /// <summary>Résout un nom de ViewController en libellé lisible via Loc.</summary>
+        // Suffixes à supprimer du nom brut du ViewController (fallback)
+        private static readonly string[] _vcSuffixes =
+            { "ViewController", "Dialog", "Widget" };
+
+        /// <summary>
+        /// Résout un nom de ViewController en libellé lisible.
+        ///
+        /// 1. Si le nom est dans ScreenTitles → retourne le libellé localisé.
+        /// 2. Sinon, nettoyage automatique du nom brut :
+        ///    a. Supprime les suffixes connus (ViewController, Dialog, Widget).
+        ///    b. Sépare les mots en PascalCase par des espaces.
+        ///       ex. "LotteryPortalViewController" → "Lottery Portal"
+        ///       ex. "WCSProfile" → "WCS Profile"
+        /// </summary>
         private static string ResolveName(string vcName)
         {
             if (ScreenTitles.TryGetValue(vcName, out var key))
                 return Loc.Get(key);
-            return vcName; // fallback : nom brut
+
+            // Nettoyage automatique : supprime les suffixes connus
+            string clean = vcName;
+            foreach (var suffix in _vcSuffixes)
+            {
+                if (clean.Length > suffix.Length &&
+                    clean.EndsWith(suffix, System.StringComparison.Ordinal))
+                {
+                    clean = clean.Substring(0, clean.Length - suffix.Length);
+                    break;
+                }
+            }
+
+            // Sépare PascalCase en mots :
+            //   (?<=[a-z])(?=[A-Z])          "LotteryPortal" → "Lottery Portal"
+            //   (?<=[A-Z])(?=[A-Z][a-z])     "WCSProfile"    → "WCS Profile"
+            clean = System.Text.RegularExpressions.Regex.Replace(
+                clean,
+                @"(?<=[a-z])(?=[A-Z])|(?<=[A-Z])(?=[A-Z][a-z])",
+                " ");
+
+            return clean; // ex: "Lottery Portal", "WCS Profile", "Present Box"
         }
         // Postfix pour : ViewController.OnFocusChanged(bool setfocus)
         public static void OnFocusChanged_Postfix(object __instance, bool setfocus)

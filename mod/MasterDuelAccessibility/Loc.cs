@@ -303,6 +303,15 @@ namespace MasterDuelAccessibility
             Add("duel_banish",
                 "Carte bannie.",
                 "Card banished.");
+            Add("duel_flip_facedown",
+                "Carte retournée face cachée.",
+                "Card flipped face-down.");
+            Add("duel_negate",
+                "Effet nié.",
+                "Effect negated.");
+            Add("duel_equip",
+                "Sort d'équipement activé.",
+                "Equip spell activated.");
             Add("duel_search",
                 "Carte cherchée.",
                 "Card searched.");
@@ -787,6 +796,28 @@ namespace MasterDuelAccessibility
                 "{0}, {1} sur {2}",
                 "{0}, {1} of {2}");
 
+            // ===== MENU POSITION DE MONSTRE (CardCommandEx) =====
+            Add("pos_front_atk",   "Attaque face visible",  "Face-Up Attack");
+            Add("pos_front_def",   "Défense face visible",  "Face-Up Defense");
+            Add("pos_back_def",    "Défense face cachée",   "Face-Down Defense");
+            Add("card_command_ex",
+                "Position pour {0} : {1}",
+                "Position for {0}: {1}");
+            Add("card_command_ex_nocard",
+                "Choisir la position : {0}",
+                "Choose position: {0}");
+
+            // ===== PULLDOWN DIALOG (DuelPullDownDialog) =====
+            Add("pulldown_select",
+                "Sélectionner {0}",
+                "Select {0}");
+            Add("pulldown_open",
+                "{0} — Sélectionner {1} : {2}",
+                "{0} — Select {1}: {2}");
+            Add("pulldown_open_nolist",
+                "{0} — Sélectionner {1}",
+                "{0} — Select {1}");
+
             // ===== TOPICS / BANNER =====
             Add("topic_banner",
                 "Actualité, page {0}",
@@ -832,6 +863,31 @@ namespace MasterDuelAccessibility
             Add("deck_select_focus",
                 "Deck sélectionné : {0}",
                 "Selected deck: {0}");
+            Add("deck_select_focus_mode",
+                "{0} — Deck sélectionné : {1}",
+                "{0} — Selected deck: {1}");
+            Add("deck_select_mode",
+                "{0}",
+                "{0}");
+
+            // ===== MODES SÉLECTION DE DECK =====
+            Add("deck_mode_default",    "Sélection",     "Selection");
+            Add("deck_mode_ranked",     "Classé",        "Ranked");
+            Add("deck_mode_pve",        "CPU",           "CPU");
+            Add("deck_mode_tournament", "Tournoi",       "Tournament");
+            Add("deck_mode_solo",       "Solo",          "Solo");
+            Add("deck_mode_room",       "Salle",         "Room");
+            Add("deck_mode_exhibition", "Démo",          "Exhibition");
+            Add("deck_mode_free",       "Libre",         "Free");
+            Add("deck_mode_cup",        "Cup",           "Cup");
+            Add("deck_mode_wcs",        "WCS",           "WCS");
+            Add("deck_mode_rank_event", "Événement",     "Event");
+            Add("deck_mode_team",       "Équipe",        "Team Match");
+            Add("deck_mode_duel_trial", "Duel Trial",    "Duel Trial");
+            Add("deck_mode_versus",     "Versus",        "Versus");
+            Add("deck_mode_rate",       "Évaluation",    "Rated");
+            Add("deck_mode_rdc",        "RDC",           "RDC");
+            Add("deck_mode_dice_rally", "Dice Rally",    "Dice Rally");
 
             // ===== CARD CRAFT (création / démantèlement) =====
             Add("craft_create",
@@ -872,6 +928,14 @@ namespace MasterDuelAccessibility
                 "Mulligan : {0} cartes en main. Garder ou remplacer ?",
                 "Mulligan: {0} cards in hand. Keep or replace?");
 
+            // ===== PREMIER JOUEUR =====
+            Add("first_player_you",
+                "Tu joues en premier.",
+                "You go first.");
+            Add("first_player_opp",
+                "L'adversaire joue en premier.",
+                "Opponent goes first.");
+
             // ===== RÉSULTAT DE DUEL =====
             Add("duel_win",
                 "Victoire !",
@@ -887,6 +951,12 @@ namespace MasterDuelAccessibility
             Add("shop_opened",
                 "Boutique ouverte.",
                 "Shop opened.");
+
+            // ===== DIALOGS GÉNÉRIQUES (CommonDialogPatch) =====
+            // Format : "Titre : Message" — utilisé par OpenAlertDialog, OpenConfirmationDialog, etc.
+            Add("dialog_title_message",
+                "{0} : {1}",
+                "{0}: {1}");
 
             // ===== DIALOG DUEL (DialogStatePatch) =====
             Add("dialog_opened",
@@ -916,6 +986,41 @@ namespace MasterDuelAccessibility
             Add("screen_card_browser",  "Navigateur de cartes", "Card Browser");
             Add("screen_matching",      "Recherche de duel",    "Matchmaking");
             Add("screen_deck_select",   "Sélection de deck",    "Deck Selection");
+            // Vues secondaires — noms de prefabs confirmés ou déduits par pattern
+            Add("screen_shop_buy",           "Boutique — Achat",         "Shop — Purchase");
+            Add("screen_sort_card",          "Tri des cartes",           "Sort Cards");
+            Add("screen_sort_cardfile",      "Tri",                      "Sort");
+            Add("screen_sort_solo",          "Tri Solo",                 "Sort Solo");
+            Add("screen_filter_select",      "Filtres",                  "Filter Selection");
+            Add("screen_solo_gate",          "Portes Solo",              "Solo Gates");
+            Add("screen_solo_chapter",       "Chapitres Solo",           "Solo Chapters");
+            Add("screen_password",           "Saisie mot de passe",      "Enter Password");
+            // Matchmaking variantes
+            Add("screen_matching_room",      "Recherche de salle",       "Room Matchmaking");
+            Add("screen_matching_team",      "Recherche d'équipe",       "Team Matchmaking");
+            // Boutique / Packs (Loterie)
+            Add("screen_lottery",            "Ouverture de packs",       "Open Packs");
+            Add("screen_lottery_result",     "Résultat — packs ouverts", "Pack Opening Result");
+            Add("screen_lottery_history",    "Historique — packs",       "Pack History");
+            Add("screen_lottery_card_select","Sélection de carte",       "Card Selection");
+            Add("screen_lottery_reward",     "Récompense — packs",       "Pack Reward");
+            // Récompenses
+            Add("screen_present_box",        "Boîte de récompenses",     "Gift Box");
+            // Profil / Social
+            Add("screen_profile",            "Profil",                   "Profile");
+            Add("screen_profile_edit",       "Modifier le profil",       "Edit Profile");
+            Add("screen_profile_cards",      "Cartes favorites",         "Favorite Cards");
+            Add("screen_profile_replay",     "Replays du profil",        "Profile Replays");
+            Add("screen_friends",            "Amis",                     "Friends");
+            Add("screen_friends_search",     "Rechercher un ami",        "Search Friend");
+            // Saison
+            Add("screen_season_ranking",     "Classement saisonnier",    "Season Ranking");
+            Add("screen_season_history",     "Historique saisonnier",    "Season History");
+            Add("screen_season_result",      "Résultats de saison",      "Season Results");
+            // Échange / Colosseum
+            Add("screen_item_exchange",      "Échange d'objets",         "Item Exchange");
+            Add("screen_colosseum",          "Colosseum",                "Colosseum");
+            Add("screen_colosseum_result",   "Résultat Colosseum",       "Colosseum Result");
 
             // ===== CHAMPS DE TEXTE (InputFieldPatch) =====
             Add("input_focused",
@@ -1187,6 +1292,32 @@ namespace MasterDuelAccessibility
             _german["screen_deck_edit"]   = "Deck bearbeiten";
             _german["screen_card_browser"]= "Kartenbrowser";
             _german["screen_home"]        = "Startseite";
+            // Matchmaking
+            _german["screen_matching_room"]      = "Raumssuche";
+            _german["screen_matching_team"]      = "Teamsuche";
+            // Packs / Lotterie
+            _german["screen_lottery"]            = "Packs öffnen";
+            _german["screen_lottery_result"]     = "Ergebnis — Packs geöffnet";
+            _german["screen_lottery_history"]    = "Pack-Verlauf";
+            _german["screen_lottery_card_select"]= "Kartenauswahl";
+            _german["screen_lottery_reward"]     = "Pack-Belohnung";
+            // Geschenke
+            _german["screen_present_box"]        = "Geschenkebox";
+            // Profil / Soziales
+            _german["screen_profile"]            = "Profil";
+            _german["screen_profile_edit"]       = "Profil bearbeiten";
+            _german["screen_profile_cards"]      = "Lieblingskarten";
+            _german["screen_profile_replay"]     = "Profil-Replays";
+            _german["screen_friends"]            = "Freunde";
+            _german["screen_friends_search"]     = "Freund suchen";
+            // Saison
+            _german["screen_season_ranking"]     = "Saisonrangliste";
+            _german["screen_season_history"]     = "Saisonverlauf";
+            _german["screen_season_result"]      = "Saisondergebnis";
+            // Austausch / Kolosseum
+            _german["screen_item_exchange"]      = "Gegenstandsaustausch";
+            _german["screen_colosseum"]          = "Kolosseum";
+            _german["screen_colosseum_result"]   = "Kolosseum-Ergebnis";
 
             // DUEL — LP
             _german["duel_lp_damage_you"]  = "Du: {0} LP. -{1} Schaden.";
@@ -1225,17 +1356,18 @@ namespace MasterDuelAccessibility
             _german["duel_pendulum_summon"] = "Pendelbeschwörung.";
             _german["duel_link_summon"]     = "Linkbeschwörung.";
             _german["duel_tribute_summon"]  = "Tributbeschwörung.";
-            _german["duel_flip_summon"]     = "Wendebeschwörung.";
-            _german["duel_maximum_summon"]  = "Maximale Beschwörung.";
-            _german["duel_summon"]          = "Beschwörung.";
-            _german["duel_fusion"]          = "Fusion.";
-            _german["duel_draw"]            = "Karte gezogen.";
-            _german["duel_activate"]        = "Effekt aktiviert.";
+            _german["duel_flip_summon"]     = "Wendebeschwörung!";
+            _german["duel_maximum_summon"]  = "Maximale Beschwörung!";
+            _german["duel_summon"]          = "Beschwörung!";
+            _german["duel_fusion"]          = "Fusion!";
+            _german["duel_activate"]        = "Effekt aktiviert!";
             _german["duel_set"]             = "Karte gesetzt.";
-            _german["duel_flip"]            = "Aufgedeckt.";
-            _german["duel_flip_summon"]     = "Wendebeschwörung.";
+            _german["duel_flip"]            = "Aufgedeckt!";
             _german["duel_destroy"]         = "Zerstört!";
             _german["duel_banish"]          = "Karte verbannt.";
+            _german["duel_flip_facedown"]   = "Karte verdeckt gelegt.";
+            _german["duel_negate"]          = "Effekt negiert.";
+            _german["duel_equip"]           = "Ausrüstungszauber aktiviert.";
             _german["duel_search"]          = "Karte gesucht.";
             _german["duel_discard"]         = "Karte abgeworfen.";
             _german["duel_cost_drop"]       = "Karte abgeworfen (Kosten).";
@@ -1257,8 +1389,11 @@ namespace MasterDuelAccessibility
             _german["duel_cpu_thinking"]    = "Gegner denkt nach…";
 
             // DUEL — ANGRIFF
-            _german["attack_declared"] = "{0} (ATK {1}) greift {2} (ATK {3}) an!";
-            _german["attack_declared_no_target"] = "{0} (ATK {1}) greift direkt an!";
+            _german["duel_attack"]              = "Angriff!";
+            _german["duel_attack_vs"]           = "{0} greift {1} an!";
+            _german["duel_attack_direct"]       = "{0}: Direktangriff!";
+            _german["duel_attack_vs_stats"]     = "{0} (ATK {1}) greift {2} (ATK {3}) an!";
+            _german["duel_attack_direct_stats"] = "{0} (ATK {1}): Direktangriff!";
 
             // KARTEN AUF DER HAND / FELD
             // Hinweis: {1} ist der Plural-Suffix — in Deutsch "n" für Karten → einfach weglassen
@@ -1332,13 +1467,365 @@ namespace MasterDuelAccessibility
             _german["filter_dialog_title"]  = "Filter";
             _german["filter_dialog_opened"] = "Filter: {0}";
 
-            // KARTEN — BEWEGEN
-            _german["duel_search"]     = "Karte gesucht.";
-            _german["duel_discard"]    = "Karte abgeworfen.";
-            _german["duel_cost_drop"]  = "Karte abgeworfen (Kosten).";
-
             // TIMER
-            _german["duel_timer_warning"] = "Duell-Timer: {0} Sekunden verbleiben.";
+            _german["timer_warning_60"]       = "Achtung: 60 Sekunden verbleiben.";
+            _german["timer_warning_30"]       = "Achtung: 30 Sekunden — Zug endet bald.";
+            _german["timer_warning_10"]       = "DRINGEND: 10 Sekunden!";
+            _german["timer_duel_warning_120"] = "Achtung: 2 Minuten im Duell verbleiben.";
+            _german["timer_duel_warning_60"]  = "Achtung: 1 Minute im Duell verbleibend.";
+            _german["timer_duel_warning_30"]  = "DRINGEND: 30 Sekunden im Duell!";
+
+            // MENÜS (ergänzt)
+            _german["menu_solo"]          = "Solo";
+            _german["menu_notifications"] = "Benachrichtigungen";
+            _german["menu_duelpass"]      = "Duel Pass";
+
+            // BILDSCHIRME
+            _german["screen_solo"]          = "Solo";
+            _german["screen_missions"]      = "Missionen";
+            _german["screen_notifications"] = "Benachrichtigungen";
+            _german["screen_settings"]      = "Einstellungen";
+            _german["screen_duel_pass"]     = "Duel Pass";
+            _german["screen_deck_browser"]  = "Deck-Browser";
+            _german["screen_matching"]      = "Duelsuche";
+            _german["screen_deck_select"]   = "Deckauswahl";
+            _german["screen_shop_buy"]      = "Shop — Kaufen";
+            _german["screen_sort_card"]     = "Karten sortieren";
+            _german["screen_sort_cardfile"] = "Sortieren";
+            _german["screen_sort_solo"]     = "Solo sortieren";
+            _german["screen_filter_select"] = "Filter";
+            _german["screen_solo_gate"]     = "Solo-Tore";
+            _german["screen_solo_chapter"]  = "Solo-Kapitel";
+            _german["screen_password"]      = "Passwort eingeben";
+
+            // PHASEN (ergänzt)
+            _german["duel_phase_unknown"] = "Phase {0}";
+
+            // DUELL — ERGEBNIS
+            _german["duel_win"]  = "Sieg!";
+            _german["duel_lose"] = "Niederlage.";
+            _german["duel_draw"] = "Unentschieden.";
+
+            // KARTENINFO
+            _german["card_level"]          = "Stufe {0}";
+            _german["card_rank"]           = "Rang {0}";
+            _german["card_link"]           = "Link {0}";
+            _german["card_pendulum_scale"] = "Pendelskala {0}";
+            _german["card_atk"]            = "ATK {0}";
+            _german["card_def"]            = "DEF {0}";
+            _german["card_not_available"]  = "Karte nicht verfügbar.";
+
+            // ATTRIBUTE
+            _german["attr_light"]  = "LICHT";
+            _german["attr_dark"]   = "FINSTERNIS";
+            _german["attr_water"]  = "WASSER";
+            _german["attr_fire"]   = "FEUER";
+            _german["attr_earth"]  = "ERDE";
+            _german["attr_wind"]   = "WIND";
+            _german["attr_divine"] = "GÖTTLICH";
+
+            // TASTENNAMEN
+            _german["key_space"] = "Leertaste";
+            _german["key_shift"] = "Umsch.";
+            _german["key_ctrl"]  = "Strg";
+            _german["key_alt"]   = "Alt";
+            _german["no_shortcuts_active"] = "Keine aktiven Tastenkürzel.";
+
+            // TASTENKÜRZEL — BESCHREIBUNGEN (ergänzt)
+            _german["shortcut_f3"]            = "Alle Handkarten";
+            _german["shortcut_f4"]            = "Spielfeld (deine Seite)";
+            _german["shortcut_f6"]            = "Friedhof";
+            _german["shortcut_f7"]            = "Verbannte Karten";
+            _german["shortcut_f8"]            = "Extra Deck";
+            _german["shortcut_f9"]            = "Friedhof des Gegners";
+            _german["shortcut_f10"]           = "Deckgröße";
+            _german["shortcut_f11"]           = "Hand des Gegners (Anzahl)";
+            _german["shortcut_f12"]           = "Ansagen-Verlauf";
+            _german["shortcut_shift_space"]   = "Duellstatus (Zug, Phase, LP)";
+            _german["shortcut_shift_f3"]      = "Nächste Handkarte";
+            _german["shortcut_ctrl_f4"]       = "Nächste Feldkarte";
+            _german["shortcut_ctrl_shift_f4"] = "Nächste Feldkarte (Gegner)";
+            _german["shortcut_ctrl_f7"]       = "Verbannte Karten (Gegner)";
+            _german["shortcut_ctrl_f8"]       = "Extra Deck Größe (Gegner)";
+            _german["shortcut_shift_f4"]      = "Spielfeld (Gegner)";
+            _german["help_text"] =
+                "Tastenkürzel: " +
+                "Leertaste: Lebenspunkte. " +
+                "Umsch.+Leertaste: Duellstatus. " +
+                "Alt: Karteninfo. " +
+                "F1: Hilfe. F2: Wiederholen. " +
+                "F3: Handkarten. F4: Feldkarten. " +
+                "Umsch.+F4: Gegnerfeld. F5: Stille. " +
+                "F6: Friedhof. F7: Verbannte. F8: Extra Deck. " +
+                "F9: Friedhof (Gegner). F10: Deckgröße. " +
+                "F11: Gegner-Hand. F12: Ansagen-Verlauf.";
+
+            // HANDKARTEN / FELD (Fehlermeldungen ergänzt)
+            _german["hand_error"]         = "Handkarten konnten nicht gelesen werden.";
+            _german["field_error"]        = "Spielfeld konnte nicht gelesen werden.";
+            _german["grave_empty"]        = "Friedhof leer.";
+            _german["grave_error"]        = "Friedhof konnte nicht gelesen werden.";
+            _german["banished_empty"]     = "Keine verbannten Karten.";
+            _german["banished_error"]     = "Verbannte Karten konnten nicht gelesen werden.";
+            _german["extra_deck_empty"]   = "Extra Deck leer.";
+            _german["extra_deck_error"]   = "Extra Deck konnte nicht gelesen werden.";
+            _german["opp_field_empty"]    = "Spielfeld des Gegners ist leer.";
+            _german["opp_field_error"]    = "Gegner-Spielfeld konnte nicht gelesen werden.";
+            _german["opp_grave_empty"]    = "Friedhof des Gegners leer.";
+            _german["opp_grave_error"]    = "Gegner-Friedhof konnte nicht gelesen werden.";
+            _german["opp_banished_empty"] = "Keine verbannten Karten beim Gegner.";
+            _german["opp_banished_error"] = "Gegner-Verbannte konnten nicht gelesen werden.";
+            _german["opp_extra_deck_error"]= "Gegner-Extra Deck konnte nicht gelesen werden.";
+            _german["deck_error"]         = "Deckgröße konnte nicht gelesen werden.";
+            _german["opp_hand_error"]     = "Gegner-Hand konnte nicht gelesen werden.";
+
+            // KARTENNAVIGATION
+            _german["hand_card_nav"]          = "{0}, {1} von {2}";
+            _german["field_card_nav"]         = "{0}, {1} von {2}";
+            _german["opp_field_card_nav"]     = "Gegner: {0}, {1} von {2}";
+            _german["history_entry"]          = "{2} ({0}/{1})";
+            _german["history_empty"]          = "Verlauf leer.";
+            _german["card_face_down"]         = " (verdeckt)";
+            _german["card_face_down_unknown"] = "verdeckte Karte";
+            _german["duel_status_yours"]      = "Zug {0}, dein Zug. Du: {1} LP, Gegner: {2} LP.";
+            _german["duel_status_opp"]        = "Zug {0}, Zug des Gegners. Du: {1} LP, Gegner: {2} LP.";
+            _german["monster_attack_pos"]     = "(Angriff)";
+            _german["monster_defense_pos"]    = "(Verteidigung)";
+            _german["monster_counters"]       = "{0} Zähler";
+            _german["field_card_with_zone"]   = "{0}: {1}";
+
+            // SCHALTFLÄCHEN
+            _german["btn_maintenance"]    = "Wartung";
+            _german["btn_bug"]            = "Problem melden";
+            _german["btn_notification"]   = "Benachrichtigungen";
+            _german["btn_input"]          = "Eingabe";
+            _german["btn_auto_build"]     = "Automatisch erstellen";
+            _german["btn_bookmark_add"]   = "Zu Favoriten hinzufügen";
+            _german["btn_bookmarks"]      = "Favoritenkarten";
+            _german["btn_how_to_get"]     = "Wie erhalten";
+            _german["btn_related_cards"]  = "Verwandte Karten";
+            _german["btn_add"]            = "+1 hinzufügen";
+            _german["btn_remove"]         = "-1 entfernen";
+            _german["btn_card_list"]      = "Kartenliste";
+            _german["btn_card_history"]   = "Kartenverlauf";
+            _german["btn_copy_deck"]      = "Deck kopieren";
+            _german["btn_save"]           = "Speichern";
+            _german["btn_menu"]           = "Menü";
+            _german["btn_duel_menu"]      = "Duell-Menü";
+            _german["btn_show_pack"]      = "Pack-Karten anzeigen";
+            _german["btn_secret_pack"]    = "Geheimpack";
+            _german["btn_regulation"]     = "Regelwerk";
+            _german["btn_switch_display"] = "Anzeige wechseln";
+            _german["btn_filters"]        = "Filter";
+            _german["btn_sort"]           = "Sortieren";
+            _german["btn_clear_filters"]  = "Filter zurücksetzen";
+            _german["btn_sort_asc"]       = "{0}, aufsteigend";
+            _german["btn_sort_desc"]      = "{0}, absteigend";
+            _german["btn_increment"]      = "Menge erhöhen";
+            _german["btn_decrement"]      = "Menge verringern";
+            _german["btn_play"]           = "Spielen";
+            _german["btn_ok"]             = "OK";
+            _german["btn_show_owned"]     = "Besessene Karten anzeigen";
+            _german["btn_bulk_delete"]    = "Decks massenweise löschen";
+            _german["btn_neuron"]         = "Mit Yu-Gi-Oh Database verknüpfen";
+            _german["tab_my_deck"]        = "Mein Deck";
+            _german["tab_rental"]         = "Leihdecks";
+
+            // DEMONTIEREN / ERSTELLEN
+            _german["dismantle_cant"] = "Demontieren (nicht demontierbar)";
+            _german["dismantle_cost"] = "Demontieren: {0} CP";
+            _german["create_cost"]    = "Karte erstellen: {0} CP";
+
+            // KAPITEL-DUELL
+            _german["chapter_duel"]   = "Duell, {0} Sterne";
+            _german["duel_list_card"] = "Kartenauswahl im Duell";
+
+            // SELEKTIONSSCHALTFLÄCHE — Kontext
+            _german["friends_add"]              = "Freund hinzufügen";
+            _german["event_banner"]             = "Event-Banner";
+            _german["profile_level"]            = "{0}, Stufe {1}";
+            _german["duel_field_card_selected"] = "Karte auf dem Feld ausgewählt";
+            _german["deck_category"]            = "{0}, Kategorie: {1}";
+            _german["mission_info"]             = "{0}\nBelohnung: {1}\nVerbleibende Zeit: {2}";
+            _german["duelpass_info"]            = "{0} Pass, Grad {1}, Menge: {2}";
+            _german["duelpass_normal"]          = "Normal";
+            _german["duelpass_gold"]            = "Gold";
+            _german["notification_status"]      = "\nStatus: {0}";
+
+            // SHOP
+            _german["shop_pack_info"] = "{0}\nKategorie: {1}\nLäuft ab: {2}\nPreis: {3}";
+            _german["shop_no_limit"]  = "Keine Begrenzung";
+            _german["shop_opened"]    = "Shop geöffnet.";
+
+            // KARTENPACK
+            _german["card_pack_entry"] = "Rarität: {0}. Neu: {1}. Besessen: {2}";
+            _german["rarity_normal"]   = "Normal";
+            _german["rarity_rare"]     = "Selten";
+            _german["rarity_super"]    = "Super Selten";
+            _german["rarity_ultra"]    = "Ultra Selten";
+            _german["yes"]             = "Ja";
+            _german["no"]              = "Nein";
+
+            // EINSTELLUNGEN
+            _german["settings_slider"] = "{0}\nWert: {1} von {2}";
+            _german["settings_mode"]   = "{0}: {1}";
+
+            // DUELL-MENÜ — BEFEHLE
+            _german["cmd_menu"]       = "Aktionen: {0}";
+            _german["cmd_attack"]     = "Angreifen";
+            _german["cmd_action"]     = "Effekt aktivieren";
+            _german["cmd_summon_sp"]  = "Spezialbeschwörung";
+            _german["cmd_summon"]     = "Normalbeschwörung";
+            _german["cmd_reverse"]    = "Wenden";
+            _german["cmd_set_monst"]  = "Monster setzen";
+            _german["cmd_set"]        = "Zauber/Falle setzen";
+            _german["cmd_pendulum"]   = "Pendel";
+            _german["cmd_turn_atk"]   = "Angriffsposition";
+            _german["cmd_turn_def"]   = "Verteidigungsposition";
+            _german["cmd_surrender"]  = "Aufgeben";
+            _german["cmd_look"]       = "Ansehen";
+            _german["cmd_decide"]     = "Entscheiden";
+            _german["cmd_draw"]       = "Ziehen";
+            _german["cmd_cursor"]     = "{0}, {1} von {2}";
+
+            // MONSTERPOSITION (CardCommandEx)
+            _german["pos_front_atk"]          = "Offener Angriff";
+            _german["pos_front_def"]          = "Offene Verteidigung";
+            _german["pos_back_def"]           = "Verdeckte Verteidigung";
+            _german["card_command_ex"]        = "Position für {0}: {1}";
+            _german["card_command_ex_nocard"] = "Position wählen: {0}";
+
+            // PULLDOWN-DIALOG
+            _german["pulldown_select"]      = "Auswählen {0}";
+            _german["pulldown_open"]        = "{0} — Auswählen {1}: {2}";
+            _german["pulldown_open_nolist"] = "{0} — Auswählen {1}";
+
+            // THEMEN / BANNER
+            _german["topic_banner"]       = "Neuigkeiten, Seite {0}";
+            _german["duel_mode_complete"] = "{0}, abgeschlossen: {1}";
+
+            // MATCHMAKING
+            _german["match_searching"] = "Gegner wird gesucht…";
+            _german["match_found"]     = "Gegner gefunden! Duell wird vorbereitet.";
+            _german["match_timeout"]   = "Suche abgelaufen.";
+
+            // DECK-EDITOR
+            _german["deck_card_added"]   = "{0} zum Deck hinzugefügt.";
+            _german["deck_card_removed"] = "{0} aus dem Deck entfernt.";
+            _german["deck_editing"]      = "Deck bearbeiten: {0}.";
+            _german["deck_renamed"]      = "Deck umbenannt: {0}.";
+            _german["deck_saved"]        = "Deck gespeichert.";
+            _german["deck_saved_named"]  = "Deck \"{0}\" gespeichert.";
+
+            // DECK-AUSWAHL
+            _german["deck_select_focus_mode"] = "{0} — Ausgewähltes Deck: {1}";
+            _german["deck_select_mode"]       = "{0}";
+
+            // DECK-MODI
+            _german["deck_mode_default"]    = "Auswahl";
+            _german["deck_mode_ranked"]     = "Rangliste";
+            _german["deck_mode_pve"]        = "CPU";
+            _german["deck_mode_tournament"] = "Turnier";
+            _german["deck_mode_solo"]       = "Solo";
+            _german["deck_mode_room"]       = "Raum";
+            _german["deck_mode_exhibition"] = "Demo";
+            _german["deck_mode_free"]       = "Frei";
+            _german["deck_mode_cup"]        = "Cup";
+            _german["deck_mode_wcs"]        = "WCS";
+            _german["deck_mode_rank_event"] = "Event";
+            _german["deck_mode_team"]       = "Team";
+            _german["deck_mode_duel_trial"] = "Duel Trial";
+            _german["deck_mode_versus"]     = "Versus";
+            _german["deck_mode_rate"]       = "Bewertet";
+            _german["deck_mode_rdc"]        = "RDC";
+            _german["deck_mode_dice_rally"] = "Dice Rally";
+
+            // KARTENERSTELLUNG
+            _german["craft_create"]         = "Erstellen: {0}";
+            _german["craft_boost_create"]   = "Boost-Erstellung: {0}";
+            _german["craft_dismantle"]      = "Demontieren: {0}";
+            _german["craft_result_generic"] = "Karte erstellt: {0}";
+
+            // WÜRFEL / MÜNZWURF
+            _german["dice_you"]       = "du";
+            _german["dice_opponent"]  = "der Gegner";
+            _german["dice_result"]    = "Würfel: {0} würfelt {1}";
+            _german["coin_heads"]     = "Zahl";
+            _german["coin_tails"]     = "Kopf";
+            _german["coin_result"]    = "Münzwurf: {0} bekommt {1}";
+
+            // MULLIGAN
+            _german["mulligan_open"] = "Mulligan: {0} Karten auf der Hand. Behalten oder ersetzen?";
+
+            // ERSTER SPIELER
+            _german["first_player_you"] = "Du spielst zuerst.";
+            _german["first_player_opp"] = "Der Gegner spielt zuerst.";
+
+            // DIALOGE
+            _german["dialog_title_message"]       = "{0}: {1}";
+            _german["dialog_opened"]              = "{0}";
+            _german["choice_first_player_dialog"] = "Wahl des ersten Spielers.";
+            _german["view_opened"]                = "{0}";
+            _german["solo_mode_opened"]           = "Solo-Modus.";
+
+            // TEXTEINGABE
+            _german["input_focused"]              = "{0} — leer";
+            _german["input_focused_with_content"] = "{0} — {1}";
+            _german["input_exited"]               = "Textfeld verlassen.";
+            _german["input_field_generic"]        = "Textfeld";
+
+            // KONTROLLKÄSTCHEN / SCHALTER
+            _german["toggle_on"]    = "Ein";
+            _german["toggle_off"]   = "Aus";
+            _german["toggle_state"] = "{0}: {1}";
+
+            // KARTENAUSWAHL-LISTE
+            _german["card_sel_list_open"]         = "Kartenauswahl — {0}: {1} Karte{2} verfügbar.";
+            _german["card_sel_list_open_nocount"] = "Kartenauswahl — {0}.";
+            _german["card_sel_cursor"]            = "{0}, {1} von {2}";
+
+            // Auswahltypen
+            _german["sel_type_summon"]         = "Beschwörung";
+            _german["sel_type_spsummon"]       = "Spezialbeschwörung";
+            _german["sel_type_monster_effect"] = "Monster-Effekt";
+            _german["sel_type_magic_trap"]     = "Zauber oder Falle";
+            _german["sel_type_flip"]           = "Wenden";
+            _german["sel_type_attack"]         = "Angriff";
+            _german["sel_type_chain"]          = "Kette";
+            _german["sel_type_check_timing"]   = "Timing prüfen";
+            _german["sel_type_normal"]         = "Normale Auswahl";
+            _german["sel_type_selection"]      = "Kartenauswahl";
+            _german["sel_type_grave"]          = "Friedhof";
+            _german["sel_type_extra"]          = "Extra Deck";
+            _german["sel_type_deck"]           = "Deck";
+            _german["sel_type_opp_hand"]       = "Gegner-Hand";
+            _german["sel_type_generic"]        = "Auswahl";
+
+            // KARTEN-REPORT-TELOP
+            _german["card_report_telop"] = "{0}: {1}";
+
+            // RITUAL-DIALOG
+            _german["ritual_begin"]              = "{0}. {3} verbleibend: {1} von {2} Maximum.";
+            _german["ritual_begin_nomax"]        = "{0}. {2} verbleibend: {1}.";
+            _german["ritual_begin_notext"]       = "Ritualbeschwörung. {2} verbleibend: {0} von {1} Maximum.";
+            _german["ritual_begin_notext_nomax"] = "Ritualbeschwörung. {1} verbleibend: {0}.";
+            _german["ritual_count_update"]       = "Verbleibend: {0}.";
+            _german["ritual_ready"]              = "Bereit zur Beschwörung!";
+            _german["ritual_unit_level"]         = "Stufen";
+            _german["ritual_unit_atk"]           = "ATK";
+            _german["ritual_unit_link"]          = "Markierungen";
+
+            // SCHIEBEREGLER
+            _german["slider_changed"] = "{0}: {1}";
+
+            // DROPDOWN-MENÜS
+            _german["dropdown_opened"]   = "{0}: {1}";
+            _german["dropdown_selected"] = "{0}, {1} von {2}";
+
+            // ZAHLENEINGABE
+            _german["input_digit_opened"]        = "Auswahl: {0}. Minimum {1}, Maximum {2}.";
+            _german["input_digit_opened_titled"] = "{0}: {1}. Minimum {2}, Maximum {3}.";
+            _german["input_digit_value"]         = "{0}";
         }
 
         // ── WithVerbose helper (pattern Strings.cs WithDetail) ─────────────────

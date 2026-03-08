@@ -81,7 +81,10 @@ namespace MasterDuelAccessibility.Patches
                 62 => "duel_dice",           // RunDice           [critique]
                 90 => "duel_janken",         // RunJanken         [critique]
                 26 => GetCardMoveKey(__1), // CardMove — param1 = Engine.CardMoveType
-                34 => "duel_banish",      // CardExclude — carte bannie
+                28 => "duel_flip_facedown",  // CardFlipTurn — carte retournée face cachée
+                34 => "duel_banish",         // CardExclude — carte bannie
+                36 => "duel_negate",         // CardDisable — effet nié
+                37 => "duel_equip",          // CardEquip — sort d'équipement appliqué
                 55 => null,  // RunDialog  — handled by DuelDialogPatch
                 56 => null,  // RunList    — handled by DuelDialogPatch
                 60 => null,  // RunDetail  — handled by CardInfoPatch
