@@ -12,24 +12,44 @@ namespace MasterDuelAccessibility
     ///
     /// Raccourcis disponibles :
     /// ──────────────────────────────────────────────────────────────
-    ///  Touche        KeyCode   Contexte   Action
+    ///  Touche         KeyCode   Contexte   Action
     /// ────────────────────────────────────────────────────────────────
-    ///  Espace          32      Duel       Lire les points de vie
-    ///  Maj+Espace      32      Duel       État du duel (tour + phase + PV)
-    ///  Alt gauche     308      Partout    Lire les infos carte en cours
-    ///  F1             282      Partout    Lire la liste des raccourcis
-    ///  F2             283      Partout    Répéter le dernier texte lu
-    ///  F3             284      Duel       Lire toutes les cartes en main
-    ///  F4             285      Duel       Lire les cartes sur le terrain
-    ///  Maj+F4         285      Duel       Lire le terrain adverse
-    ///  F5             286      Partout    Couper la lecture (silence)
-    ///  F6             287      Duel       Lire le cimetière (joueur)
-    ///  F7             288      Duel       Lire les cartes bannies (joueur)
-    ///  F8             289      Duel       Lire l'Extra Deck (joueur)
-    ///  F9             290      Duel       Lire le cimetière adversaire
-    ///  F10            291      Duel       Taille des decks (moi + adv)
-    ///  F11            292      Duel       Nombre de cartes en main adverse
-    ///  F12            293      Partout    Historique des annonces (remonte dans le passé)
+    ///  F1              282      Partout    Aide (raccourcis actifs)
+    ///  F2              283      Partout    Répéter la dernière annonce
+    ///  F3              284      Menu       Annoncer l'écran courant
+    ///  F3              284      Duel       Toutes les cartes en main
+    ///  F5              286      Partout    Silence
+    ///  F12             293      Partout    Historique des annonces
+    ///  Alt gauche      308      Partout    Infos carte focalisée
+    /// ────────────────────────────────────────────────────────────────
+    ///  Espace           32      Duel       Points de vie
+    ///  Maj+Espace       32      Duel       État duel (tour + phase + PV)
+    ///  Tab             Tab      Duel       Avancer la phase / passer priorité
+    ///  Maj+F3          284      Duel       Carte suivante en main
+    ///  F4              285      Duel       Terrain (votre côté)
+    ///  Maj+F4          285      Duel       Terrain adverse
+    ///  Ctrl+F4         285      Duel       Carte suivante sur le terrain
+    ///  Ctrl+Maj+F4     285      Duel       Carte suivante terrain adverse
+    ///  F6              287      Duel       Cimetière
+    ///  F7              288      Duel       Cartes bannies
+    ///  Ctrl+F7         288      Duel       Cartes bannies adversaires
+    ///  F8              289      Duel       Extra Deck
+    ///  Ctrl+F8         289      Duel       Taille Extra Deck adverse
+    ///  F9              290      Duel       Cimetière adverse
+    ///  F10             291      Duel       Taille des decks
+    ///  F11             292      Duel       Main adverse (nombre)
+    /// ────────────────────────────────────────────────────────────────
+    ///  C                        Duel       Toutes les cartes en main
+    ///  Maj+C                    Duel       Main adverse (nombre)
+    ///  G / Maj+G                Duel       Cimetière / Cimetière adverse
+    ///  X / Maj+X                Duel       Cartes bannies / bannies adversaires
+    ///  M / Maj+M                Duel       Terrain (votre côté) / Terrain adverse
+    ///  E / Maj+E                Duel       Extra Deck / Taille Extra Deck adverse
+    ///  T                        Duel       Tour, phase et PV (état complet)
+    ///  L                        Duel       Points de vie
+    ///  D                        Duel       Taille des decks
+    ///  I                        Duel       Infos carte
+    ///  S                        Duel       Relire l'instruction en cours
     /// ────────────────────────────────────────────────────────────────
     /// </summary>
     public class KeyboardShortcuts : MonoBehaviour
@@ -208,6 +228,206 @@ namespace MasterDuelAccessibility
                 () => { },   // handled in Update() early exit
                 () => IsInDuel));
 
+            // ── F3 hors duel — annoncer l'écran courant (modèle MTGA F3) ─────
+            // En duel, F3 = main du joueur. En menu, F3 = écran courant.
+            // (Priorité : F3 en duel déjà enregistré avec ActiveCondition=IsInDuel)
+            r.Register(new ShortcutDefinition(
+                (KeyCode)284, null, "shortcut_f3_menu",
+                () => WithTts(ReadCurrentScreen),
+                () => !IsInDuel));
+
+            // ── H hors duel — infos d'en-tête (gemmes, CP, etc.) ─────────────
+            r.Register(new ShortcutDefinition(
+                KeyCode.H, null, "shortcut_h",
+                () => WithTts(ReadHeaderInfo),
+                () => !IsInDuel));
+
+            // ── RACCOURCIS LETTRÉS — navigation zones duel (modèle MTGA) ─────
+            // Inspiré de AccessibleArena : lettre = zone, Maj+lettre = zone adverse.
+            // Enregistrés : Maj+lettre AVANT lettre seule pour priorité de modificateur.
+
+            // C / Maj+C — main
+            r.Register(new ShortcutDefinition(
+                KeyCode.C, KeyCode.LeftShift, "shortcut_shift_c",
+                () => WithTts(ReadOppHandCount),
+                () => IsInDuel));
+            r.Register(new ShortcutDefinition(
+                KeyCode.C, null, "shortcut_c",
+                () => WithTts(ReadHandCards),
+                () => IsInDuel));
+
+            // G / Maj+G — cimetière
+            r.Register(new ShortcutDefinition(
+                KeyCode.G, KeyCode.LeftShift, "shortcut_shift_g",
+                () => WithTts(ReadOppGrave),
+                () => IsInDuel));
+            r.Register(new ShortcutDefinition(
+                KeyCode.G, null, "shortcut_g",
+                () => WithTts(ReadGraveCards),
+                () => IsInDuel));
+
+            // X / Maj+X — cartes bannies
+            r.Register(new ShortcutDefinition(
+                KeyCode.X, KeyCode.LeftShift, "shortcut_shift_x",
+                () => WithTts(ReadOppBanishedCards),
+                () => IsInDuel));
+            r.Register(new ShortcutDefinition(
+                KeyCode.X, null, "shortcut_x",
+                () => WithTts(ReadBanishedCards),
+                () => IsInDuel));
+
+            // M / Maj+M — terrain
+            r.Register(new ShortcutDefinition(
+                KeyCode.M, KeyCode.LeftShift, "shortcut_shift_m",
+                () => WithTts(ReadOppFieldCards),
+                () => IsInDuel));
+            r.Register(new ShortcutDefinition(
+                KeyCode.M, null, "shortcut_m",
+                () => WithTts(ReadFieldCards),
+                () => IsInDuel));
+
+            // E / Maj+E — extra deck
+            r.Register(new ShortcutDefinition(
+                KeyCode.E, KeyCode.LeftShift, "shortcut_shift_e",
+                () => WithTts(ReadOppExtraDeckCount),
+                () => IsInDuel));
+            r.Register(new ShortcutDefinition(
+                KeyCode.E, null, "shortcut_e",
+                () => WithTts(ReadExtraDeck),
+                () => IsInDuel));
+
+            // T — état duel complet (tour + phase + PV)
+            r.Register(new ShortcutDefinition(
+                KeyCode.T, null, "shortcut_t",
+                () => WithTts(ReadDuelStatus),
+                () => IsInDuel));
+
+            // L — points de vie uniquement
+            r.Register(new ShortcutDefinition(
+                KeyCode.L, null, "shortcut_l",
+                () => WithTts(t => t.Speak(Loc.Get("duel_lp_status", MyLP, OppLP), interrupt: true)),
+                () => IsInDuel));
+
+            // D — taille des decks
+            r.Register(new ShortcutDefinition(
+                KeyCode.D, null, "shortcut_d",
+                () => WithTts(ReadDeckCount),
+                () => IsInDuel));
+
+            // I — infos carte (alias Alt, plus intuitif en duel)
+            r.Register(new ShortcutDefinition(
+                KeyCode.I, null, "shortcut_i",
+                () => WithTts(ReadCurrentCard),
+                () => IsInDuel));
+
+            // S — relire l'instruction courante (modèle MTGA S = stack)
+            // Relit le dernier message de la barre d'info du duel (ex : "Choisissez une cible").
+            // Très utile quand le joueur a manqué l'annonce automatique.
+            r.Register(new ShortcutDefinition(
+                KeyCode.S, null, "shortcut_s",
+                () => WithTts(ReadCurrentInstruction),
+                () => IsInDuel));
+
+            // ── Touches NUMÉRIQUES — accès direct aux cartes (modèle Hearthstone Access) ──
+            // Inspiré de HearthstoneAccess : 1-9 pour sélectionner une carte en main
+            // (sans Maj = main, Maj = zone de terrain correspondante)
+            // IMPORTANT : enregistrés UNIQUEMENT en duel pour ne pas parasiter les menus.
+            // Enregistrer Shift+N avant N pour la priorité de modificateur.
+
+            // Shift+1-5 : zones de terrain adversaire (positions champ 0-4)
+            // → En YGO : 5 zones monstres adverses (position 0=gauche extrême → 4=droite extrême)
+            // Shift+6-0 : zones sorts/pièges adverses (positions 7-11)
+            // Note : YGO a 5 zones monstres + 5 zones sorts/pièges + 2 extra monster + 1 terrain
+            for (int i = 1; i <= 5; i++)
+            {
+                int capturedI = i;
+                int capturedPos = i - 1; // positions 0-4 = monstres adverses
+
+                r.Register(new ShortcutDefinition(
+                    (KeyCode)(48 + capturedI), // KeyCode.Alpha1-5 = 49-53
+                    KeyCode.LeftShift,
+                    "shortcut_field_opp_n",
+                    () => WithTts(tts => ReadCardAtPosition(tts, capturedPos, team: 1)),
+                    () => IsInDuel));
+            }
+
+            // 1-5 : cartes en main du joueur (par index, 1 = première carte à gauche)
+            for (int i = 1; i <= 5; i++)
+            {
+                int capturedI = i;
+                r.Register(new ShortcutDefinition(
+                    (KeyCode)(48 + capturedI), // Alpha1=49 … Alpha5=53
+                    null,
+                    "shortcut_hand_n",
+                    () => WithTts(tts => ReadHandCardAt(tts, capturedI - 1)),
+                    () => IsInDuel));
+            }
+
+            // 6-0 (Shift) : zones sorts/pièges adverses (positions 7-11)
+            for (int i = 6; i <= 9; i++)
+            {
+                int capturedI = i;
+                int capturedPos = i + 1; // position 7=1er sort-trap, 8=2e, … 11=5e
+                r.Register(new ShortcutDefinition(
+                    (KeyCode)(48 + capturedI),
+                    KeyCode.LeftShift,
+                    "shortcut_field_opp_st_n",
+                    () => WithTts(tts => ReadCardAtPosition(tts, capturedPos, team: 1)),
+                    () => IsInDuel));
+            }
+            // 0 key (KeyCode 48) = zone de terrain adverse (position 12 = Field Spell)
+            r.Register(new ShortcutDefinition(
+                (KeyCode)48, KeyCode.LeftShift, "shortcut_field_opp_fz",
+                () => WithTts(tts => ReadCardAtPosition(tts, 12, team: 1)),
+                () => IsInDuel));
+
+            // 6-0 : zones sorts/pièges du joueur (positions 7-11)
+            for (int i = 6; i <= 9; i++)
+            {
+                int capturedI = i;
+                int capturedPos = i + 1;
+                r.Register(new ShortcutDefinition(
+                    (KeyCode)(48 + capturedI),
+                    null,
+                    "shortcut_field_my_st_n",
+                    () => WithTts(tts => ReadCardAtPosition(tts, capturedPos, team: 0)),
+                    () => IsInDuel));
+            }
+            // 0 = zone de terrain du joueur (position 12)
+            r.Register(new ShortcutDefinition(
+                (KeyCode)48, null, "shortcut_field_my_fz",
+                () => WithTts(tts => ReadCardAtPosition(tts, 12, team: 0)),
+                () => IsInDuel));
+
+            // ── O — aperçu adversaire (LP + main + deck) ────────────────────────
+            // Inspiré de Hearthstone Access : O = "anomalies affecting current game"
+            // Ici : résumé rapide de l'état adversaire sans interrompre le jeu
+            r.Register(new ShortcutDefinition(
+                KeyCode.O, null, "shortcut_o",
+                () => WithTts(ReadOpponentOverview),
+                () => IsInDuel));
+
+            // ── P — phase courante uniquement ────────────────────────────────────
+            // Inspiré de Hearthstone Access (tavern tier = T chez eux, phase ici)
+            // T donne le statut complet, P donne uniquement la phase
+            r.Register(new ShortcutDefinition(
+                KeyCode.P, null, "shortcut_p",
+                () => WithTts(tts =>
+                {
+                    string phase = string.IsNullOrEmpty(GameState.CurrentPhaseLabel)
+                        ? Loc.Get("phase_unknown")
+                        : GameState.CurrentPhaseLabel;
+                    tts.Speak(phase, interrupt: true);
+                }),
+                () => IsInDuel));
+
+            // ── F — sort terrain / zone terrain (Field Spell Zone) ───────────────
+            // F lit la carte de sort de terrain si présente (position 12)
+            r.Register(new ShortcutDefinition(
+                KeyCode.F, null, "shortcut_f",
+                () => WithTts(tts => ReadCardAtPosition(tts, 12, team: 0)),
+                () => IsInDuel));
+
             Plugin.Instance?.LogMsg($"[Shortcuts] Registre initialisé avec {r.GetAll().Count} raccourcis.");
         }
 
@@ -264,12 +484,14 @@ namespace MasterDuelAccessibility
             }
 
             // Tab — Avancer la phase / passer la priorité (duel uniquement)
-            // Inspiré du pattern AccessibleArena UIActivator : déclencher programmatiquement
-            // un bouton de l'interface jeu via réflexion (PhaseSelect3D.OnClickButtonPhase).
-            // Tab = "passer au suivant / confirmer" — conventionnel pour un lecteur d'écran.
+            // MTGA pattern : Tab = "Cycle targets or highlighted elements".
+            //   Si une CardSelectionList est ouverte → Tab navigue dans la liste.
+            //   Sinon → Tab avance la phase (comportement original).
+            // Inspiré de AccessibleArena UIActivator : action contextuelle selon l'état.
             if (IsInDuel && Input.GetKeyDown(KeyCode.Tab) && !ctrl && !alt)
             {
-                HandlePhaseAdvance(tts);
+                if (!CardSelectionListPatch.TryMoveNext())
+                    HandlePhaseAdvance(tts);
                 return;
             }
 
@@ -438,6 +660,182 @@ namespace MasterDuelAccessibility
         {
             var t = Plugin.Instance?.Tts;
             if (t != null) action(t);
+        }
+
+        // ── F3 (hors duel) : annoncer l'écran courant ───────────────────────
+
+        /// <summary>
+        /// Répète le nom de l'écran/menu courant tel qu'annoncé par ViewControllerPatch.
+        /// Implémente le pattern MTGA F3 : « Announce current screen ».
+        /// </summary>
+        private static void ReadCurrentScreen(TtsService tts)
+        {
+            string raw = ViewControllerPatch.LastRawView;
+            if (string.IsNullOrEmpty(raw))
+            {
+                tts.Speak(Loc.Get("screen_unknown"), interrupt: true);
+                return;
+            }
+            string name = ViewControllerPatch.GetResolvedName(raw);
+            tts.Speak(Loc.Get("screen_current", name), interrupt: true);
+        }
+
+        // ── H : Infos d'en-tête (gemmes, etc.) ───────────────────────────────
+
+        private static void ReadHeaderInfo(TtsService tts)
+        {
+            string? info = HeaderPatch.ReadHeaderInfo();
+            if (string.IsNullOrWhiteSpace(info))
+            {
+                tts.Speak(Loc.Get("header_no_info"), interrupt: true);
+                return;
+            }
+            tts.Speak(info!, interrupt: true);
+        }
+
+        // ── Touches numériques : carte en main par index ──────────────────────
+
+        /// <summary>
+        /// Annonce la carte en main à l'index donné (0-based).
+        /// Inspiré de HearthstoneAccess : 1-9 pour la Nième carte en main.
+        /// </summary>
+        private static void ReadHandCardAt(TtsService tts, int index)
+        {
+            try
+            {
+                var names = CollectCardNames(hand: true, team: 0);
+                if (names.Length == 0)
+                {
+                    tts.Speak(Loc.Get("hand_empty"), interrupt: true);
+                    return;
+                }
+                if (index >= names.Length)
+                {
+                    tts.Speak(Loc.Get("hand_card_index_out", names.Length), interrupt: true);
+                    return;
+                }
+                // "Carte 2 : Magicien Sombre (2 sur 5)"
+                tts.Speak(Loc.Get("hand_card_at", index + 1, names[index], index + 1, names.Length),
+                    interrupt: true);
+            }
+            catch { tts.Speak(Loc.Get("hand_error")); }
+        }
+
+        /// <summary>
+        /// Annonce la carte présente à une position de terrain précise.
+        /// Positions 0-4 = monstres, 7-11 = sorts/pièges, 12 = terrain.
+        /// </summary>
+        private static void ReadCardAtPosition(TtsService tts, int position, int team)
+        {
+            try
+            {
+                var contentType = AccessToolsHelper.FindType("Content");
+                if (contentType == null) { tts.Speak(Loc.Get("field_empty"), interrupt: true); return; }
+
+                var instanceProp = contentType.GetProperty("Instance",
+                    System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
+                var contentInstance = instanceProp?.GetValue(null);
+                if (contentInstance == null) { tts.Speak(Loc.Get("field_empty"), interrupt: true); return; }
+
+                var getNameMethod = contentType.GetMethod("GetName",
+                    System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance,
+                    null, new[] { typeof(int), typeof(bool) }, null);
+                if (getNameMethod == null) { tts.Speak(Loc.Get("field_empty"), interrupt: true); return; }
+
+                var rootType = AccessToolsHelper.FindType("CardRoot");
+                if (rootType == null) { tts.Speak(Loc.Get("field_empty"), interrupt: true); return; }
+
+                var roots = FindObjectsOfType(rootType);
+                if (roots == null) { tts.Speak(Loc.Get("field_empty"), interrupt: true); return; }
+
+                var pub = System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance;
+                var teamProp   = rootType.GetProperty("team",   pub);
+                var cardIdProp = rootType.GetProperty("cardId", pub);
+                var posField   = rootType.GetField("position",  pub);
+                var isFaceProp = rootType.GetProperty("isFace", pub);
+                var atkProp    = rootType.GetProperty("atk",    pub);
+                var defProp    = rootType.GetProperty("def",    pub);
+
+                foreach (var root in roots)
+                {
+                    if (root == null) continue;
+                    if (teamProp?.GetValue(root) is not int t || t != team) continue;
+                    if (posField?.GetValue(root) is not int p || p != position) continue;
+                    if (cardIdProp?.GetValue(root) is not int cardId || cardId <= 0) continue;
+
+                    string? name = getNameMethod.Invoke(contentInstance,
+                        new object[] { cardId, false }) as string;
+                    if (string.IsNullOrWhiteSpace(name)) continue;
+
+                    bool isFace = isFaceProp?.GetValue(root) is bool f && f;
+                    string zoneName = GetZoneName(position);
+
+                    if (!isFace && team == 1)
+                    {
+                        tts.Speak(Loc.Get("field_card_face_down_zone", zoneName), interrupt: true);
+                        return;
+                    }
+
+                    string msg = name!;
+                    if (position <= 6 && isFace)
+                    {
+                        int atk = atkProp?.GetValue(root) is int a ? a : -1;
+                        int def = defProp?.GetValue(root) is int d ? d : -1;
+                        if (atk >= 0) msg += $" ATK {atk} DEF {def}";
+                    }
+
+                    tts.Speak(Loc.Get("field_card_at_zone", zoneName, msg), interrupt: true);
+                    return;
+                }
+
+                // Nothing found at that position
+                tts.Speak(Loc.Get("field_zone_empty", GetZoneName(position)), interrupt: true);
+            }
+            catch { tts.Speak(Loc.Get("field_error")); }
+        }
+
+        // ── O : Aperçu adversaire ──────────────────────────────────────────────
+
+        private static void ReadOpponentOverview(TtsService tts)
+        {
+            try
+            {
+                int oppHand  = CountCardsAt(13, team: 1);
+                int oppDeck  = CountCardsAt(15, team: 1);
+                int oppGrave = CountCardsAt(16, team: 1);
+                string msg = Loc.Get("opp_overview", OppLP, oppHand, oppDeck, oppGrave);
+                tts.Speak(msg, interrupt: true);
+            }
+            catch { tts.Speak(Loc.Get("field_error")); }
+        }
+
+        // ── S : Relire l'instruction courante (modèle MTGA S = stack) ────────
+
+        /// <summary>
+        /// Relit le dernier message de la barre d'info du duel.
+        /// Utile quand le joueur a manqué l'annonce automatique de ce qu'il doit faire.
+        ///
+        /// Analogie MTGA : S = lire la pile (stack/chain courante).
+        /// Ici : relit infoMessage (RunEffectWorker) = l'instruction active de sélection.
+        /// Si aucune instruction n'est active, tente de relire le dernier message flash.
+        /// </summary>
+        private static void ReadCurrentInstruction(TtsService tts)
+        {
+            string info = DuelEffectQueuePatch.LastInfoMsg;
+            if (!string.IsNullOrWhiteSpace(info))
+            {
+                tts.Speak(info, interrupt: true, addToHistory: false);
+                return;
+            }
+
+            string flash = DuelEffectQueuePatch.LastInstantMsg;
+            if (!string.IsNullOrWhiteSpace(flash))
+            {
+                tts.Speak(flash, interrupt: true, addToHistory: false);
+                return;
+            }
+
+            tts.Speak(Loc.Get("duel_no_instruction"), interrupt: true, addToHistory: false);
         }
 
         // ── Lecture des infos carte ──────────────────────────────────────────

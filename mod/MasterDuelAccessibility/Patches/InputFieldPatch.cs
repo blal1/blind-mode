@@ -22,6 +22,9 @@ namespace MasterDuelAccessibility.Patches
         // Guard : évite de ré-annoncer focus si le champ n'a pas changé
         private static TMP_InputField? _lastFocused;
 
+        /// <summary>True when a text input field currently has keyboard focus.</summary>
+        public static bool IsActive => _lastFocused != null;
+
         // ── OnSelect ─────────────────────────────────────────────────────────
 
         public static void OnSelect_Postfix(TMP_InputField __instance)

@@ -35,6 +35,7 @@ namespace MasterDuelAccessibility
         {
             InitializeStrings();
             InitializeGermanStrings();
+            AddTitleKeys();
             _initialized = true;
             RefreshLanguage(); // detect game language after strings are loaded
         }
@@ -285,6 +286,15 @@ namespace MasterDuelAccessibility
             Add("duel_activate",
                 "Effet activé !",
                 "Effect activated!");
+            Add("duel_activate_field",
+                "Effet activé depuis le terrain !",
+                "Effect activated from field!");
+            Add("duel_activate_hand",
+                "Effet activé depuis la main !",
+                "Effect activated from hand!");
+            Add("duel_activate_grave",
+                "Effet activé depuis le cimetière !",
+                "Effect activated from graveyard!");
             Add("duel_set",
                 "Sort/Piège posé.",
                 "Spell/Trap set.");
@@ -330,9 +340,21 @@ namespace MasterDuelAccessibility
             Add("duel_coin",
                 "Lancer de pièce.",
                 "Coin toss.");
+            Add("duel_coin_front",
+                "Pièce : Pile !",
+                "Coin: Heads!");
+            Add("duel_coin_back",
+                "Pièce : Face !",
+                "Coin: Tails!");
+            Add("duel_coin_multi",
+                "Pièces : {0} pile(s), {1} face(s).",
+                "Coins: {0} heads, {1} tails.");
             Add("duel_dice",
                 "Lancer de dé.",
                 "Dice roll.");
+            Add("duel_dice_result",
+                "Dé : {0} !",
+                "Dice: {0}!");
             Add("duel_janken",
                 "Jeu de Pierre-Feuille-Ciseaux.",
                 "Rock-Paper-Scissors.");
@@ -1004,6 +1026,16 @@ namespace MasterDuelAccessibility
             Add("screen_lottery_history",    "Historique — packs",       "Pack History");
             Add("screen_lottery_card_select","Sélection de carte",       "Card Selection");
             Add("screen_lottery_reward",     "Récompense — packs",       "Pack Reward");
+            // Résultats de pack (LotteryRewardPatch)
+            Add("lottery_reward_open",
+                "Pack ouvert : {0}",
+                "Pack opened: {0}");
+            Add("lottery_item_generic",
+                "Objet",
+                "Item");
+            Add("lottery_reward_item",
+                "{0}, {1} sur {2}",
+                "{0}, {1} of {2}");
             // Récompenses
             Add("screen_present_box",        "Boîte de récompenses",     "Gift Box");
             // Profil / Social
@@ -1021,6 +1053,10 @@ namespace MasterDuelAccessibility
             Add("screen_item_exchange",      "Échange d'objets",         "Item Exchange");
             Add("screen_colosseum",          "Colosseum",                "Colosseum");
             Add("screen_colosseum_result",   "Résultat Colosseum",       "Colosseum Result");
+            // Bonus connexion / panneaux additionnels (MenuPanelStatePatch)
+            Add("screen_login_bonus",        "Bonus de connexion",       "Login Bonus");
+            Add("action_sheet_opened",       "Menu contextuel",          "Context menu");
+            Add("action_sheet_title",        "Menu : {0}",               "Menu: {0}");
 
             // ===== CHAMPS DE TEXTE (InputFieldPatch) =====
             Add("input_focused",
@@ -1241,6 +1277,66 @@ namespace MasterDuelAccessibility
             Add("shortcut_tab",
                 "Avancer la phase / passer la priorité",
                 "Advance phase / pass priority");
+
+            // ===== RACCOURCIS LETTRÉS (modèle MTGA — navigation zones duel) =====
+            Add("shortcut_f3_menu",
+                "Annoncer l'écran courant",
+                "Announce current screen");
+            Add("shortcut_c",
+                "Toutes les cartes en main",
+                "All hand cards");
+            Add("shortcut_shift_c",
+                "Main adverse (nombre)",
+                "Opponent hand count");
+            Add("shortcut_g",
+                "Cimetière",
+                "Graveyard");
+            Add("shortcut_shift_g",
+                "Cimetière adverse",
+                "Opponent graveyard");
+            Add("shortcut_x",
+                "Cartes bannies",
+                "Banished cards");
+            Add("shortcut_shift_x",
+                "Cartes bannies adversaires",
+                "Opponent banished cards");
+            Add("shortcut_m",
+                "Terrain (votre côté)",
+                "Your field cards");
+            Add("shortcut_shift_m",
+                "Terrain adverse",
+                "Opponent field");
+            Add("shortcut_t",
+                "Tour, phase et PV",
+                "Turn, phase and LP");
+            Add("shortcut_l",
+                "Points de vie",
+                "Life points");
+            Add("shortcut_d",
+                "Taille des decks",
+                "Deck sizes");
+            Add("shortcut_e",
+                "Extra Deck",
+                "Extra Deck");
+            Add("shortcut_shift_e",
+                "Extra Deck adverse (nombre)",
+                "Opponent Extra Deck size");
+            Add("shortcut_i",
+                "Infos carte",
+                "Card info");
+            Add("shortcut_s",
+                "Relire l'instruction en cours",
+                "Re-read current instruction");
+            Add("duel_no_instruction",
+                "Aucune instruction en cours.",
+                "No instruction active.");
+            Add("screen_current",
+                "Écran courant : {0}",
+                "Current screen: {0}");
+            Add("screen_unknown",
+                "Écran courant inconnu.",
+                "Current screen unknown.");
+
             Add("phase_btn_unavailable",
                 "Bouton de phase indisponible.",
                 "Phase button not available.");
@@ -1301,6 +1397,9 @@ namespace MasterDuelAccessibility
             _german["screen_lottery_history"]    = "Pack-Verlauf";
             _german["screen_lottery_card_select"]= "Kartenauswahl";
             _german["screen_lottery_reward"]     = "Pack-Belohnung";
+            _german["lottery_reward_open"]       = "Pack geöffnet: {0}";
+            _german["lottery_item_generic"]      = "Objekt";
+            _german["lottery_reward_item"]       = "{0}, {1} von {2}";
             // Geschenke
             _german["screen_present_box"]        = "Geschenkebox";
             // Profil / Soziales
@@ -1361,6 +1460,9 @@ namespace MasterDuelAccessibility
             _german["duel_summon"]          = "Beschwörung!";
             _german["duel_fusion"]          = "Fusion!";
             _german["duel_activate"]        = "Effekt aktiviert!";
+            _german["duel_activate_field"]  = "Effekt vom Feld aktiviert!";
+            _german["duel_activate_hand"]   = "Effekt von der Hand aktiviert!";
+            _german["duel_activate_grave"]  = "Effekt vom Friedhof aktiviert!";
             _german["duel_set"]             = "Karte gesetzt.";
             _german["duel_flip"]            = "Aufgedeckt!";
             _german["duel_destroy"]         = "Zerstört!";
@@ -1384,7 +1486,11 @@ namespace MasterDuelAccessibility
             _german["duel_surrender"]       = "Aufgabe.";
             _german["duel_special_win"]     = "Sondersieg!";
             _german["duel_coin"]            = "Münzwurf.";
+            _german["duel_coin_front"]      = "Münze: Kopf!";
+            _german["duel_coin_back"]       = "Münze: Zahl!";
+            _german["duel_coin_multi"]      = "Münzen: {0} Kopf, {1} Zahl.";
             _german["duel_dice"]            = "Würfelwurf.";
+            _german["duel_dice_result"]     = "Würfel: {0}!";
             _german["duel_janken"]          = "Schere-Stein-Papier.";
             _german["duel_cpu_thinking"]    = "Gegner denkt nach…";
 
@@ -1548,6 +1654,28 @@ namespace MasterDuelAccessibility
             _german["shortcut_ctrl_f7"]       = "Verbannte Karten (Gegner)";
             _german["shortcut_ctrl_f8"]       = "Extra Deck Größe (Gegner)";
             _german["shortcut_shift_f4"]      = "Spielfeld (Gegner)";
+
+            // BUCHSTABEN-TASTEN (MTGA-Zonenmodell)
+            _german["shortcut_f3_menu"]   = "Aktuellen Bildschirm ansagen";
+            _german["shortcut_c"]         = "Handkarten";
+            _german["shortcut_shift_c"]   = "Gegner-Hand (Anzahl)";
+            _german["shortcut_g"]         = "Friedhof";
+            _german["shortcut_shift_g"]   = "Friedhof des Gegners";
+            _german["shortcut_x"]         = "Verbannte Karten";
+            _german["shortcut_shift_x"]   = "Verbannte Karten (Gegner)";
+            _german["shortcut_m"]         = "Spielfeld (deine Seite)";
+            _german["shortcut_shift_m"]   = "Spielfeld (Gegner)";
+            _german["shortcut_t"]         = "Zug, Phase und LP";
+            _german["shortcut_l"]         = "Lebenspunkte";
+            _german["shortcut_d"]         = "Deckgröße";
+            _german["shortcut_e"]         = "Extra Deck";
+            _german["shortcut_shift_e"]   = "Extra Deck (Gegner, Anzahl)";
+            _german["shortcut_i"]         = "Karteninfo";
+            _german["shortcut_s"]         = "Aktuelle Anweisung wiederholen";
+            _german["duel_no_instruction"]= "Keine aktive Anweisung.";
+            _german["screen_current"]     = "Aktueller Bildschirm: {0}";
+            _german["screen_unknown"]     = "Aktueller Bildschirm unbekannt.";
+
             _german["help_text"] =
                 "Tastenkürzel: " +
                 "Leertaste: Lebenspunkte. " +
@@ -1826,6 +1954,141 @@ namespace MasterDuelAccessibility
             _german["input_digit_opened"]        = "Auswahl: {0}. Minimum {1}, Maximum {2}.";
             _german["input_digit_opened_titled"] = "{0}: {1}. Minimum {2}, Maximum {3}.";
             _german["input_digit_value"]         = "{0}";
+
+            // SYSTEMDIALOG
+            _german["system_error"]               = "Systemfehler: {0}";
+            _german["system_error_generic"]       = "Systemfehler. Überprüfen Sie Ihre Verbindung.";
+            _german["system_maintenance"]         = "Wartung: {0}";
+            _german["system_maintenance_generic"] = "Server wird gewartet.";
+
+            // DUELL-ERGEBNIS
+            _german["screen_duel_result"]   = "Duellergebnis";
+            _german["result_mode_ranked"]   = "Ranglistenmodus";
+            _german["result_mode_casual"]   = "Freier Modus";
+            _german["result_mode_solo"]     = "Solomodus";
+            _german["result_mode_room"]     = "Privater Raum";
+            _german["result_mode_event"]    = "Event";
+            _german["result_score"]         = "Punkte: {0}";
+            _german["result_actions"]       = "Aktionen: {0}";
+            _german["result_btn_retry"]     = "Wiederholen";
+            _german["result_btn_save"]      = "Replay speichern";
+            _german["result_btn_back"]      = "Zurück";
+
+            // GESCHENKEBOX
+            _german["present_box_open_count"] = "Geschenkebox — {0} Geschenk(e).";
+            _german["present_box_empty"]      = "Geschenkebox ist leer.";
+            _german["present_expires"]        = "läuft ab am {0}";
+
+            // KOPFZEILE
+            _german["header_gems"]    = "{0} Edelsteine";
+            _german["header_no_info"] = "Kopfzeile nicht verfügbar.";
+            _german["shortcut_h"]     = "Kopfzeilen-Info";
+
+            // ZAHLENTASTEN / NEUE DUELL-TASTENKÜRZEL
+            _german["shortcut_hand_n"]         = "Handkarte N";
+            _german["shortcut_field_opp_n"]    = "Gegner Monsterzone N";
+            _german["shortcut_field_opp_st_n"] = "Gegner Zauber/Fallen-Zone N";
+            _german["shortcut_field_opp_fz"]   = "Gegner Feldzone";
+            _german["shortcut_field_my_st_n"]  = "Eigene Zauber/Fallen-Zone N";
+            _german["shortcut_field_my_fz"]    = "Eigene Feldzone";
+            _german["shortcut_o"]              = "Gegner-Übersicht";
+            _german["shortcut_p"]              = "Aktuelle Phase";
+            _german["shortcut_f"]              = "Feldzauberkarte";
+            _german["hand_card_at"]            = "Karte {0}: {1} ({2} von {3})";
+            _german["hand_card_index_out"]     = "Nur {0} Karte(n) auf der Hand.";
+            _german["field_card_at_zone"]      = "{0}: {1}";
+            _german["field_card_face_down_zone"] = "{0}: verdeckte Karte";
+            _german["field_zone_empty"]        = "{0}: leer";
+            _german["phase_unknown"]           = "Unbekannte Phase.";
+            _german["opp_overview"]            = "Gegner: {0} LP, {1} Karte(n) auf Hand, Deck {2}, Friedhof {3}.";
+
+            // LOGIN BONUS
+            _german["screen_login_bonus"]        = "Täglicher Bonus.";
+            _german["login_bonus_day_n_of_m"]    = "Täglicher Bonus. Tag {0} von {1}.";
+            _german["login_bonus_claimed"]       = "Bereits abgeholt.";
+            _german["login_bonus_available"]     = "Verfügbar.";
+
+            // LOTTERIE-PORTAL
+            _german["screen_lottery_portal"]     = "Kartenpack-Portal.";
+            _german["lottery_portal_pack"]       = "Kartenpack-Portal — {0}.";
+
+            // DUELPASS ERGEBNIS
+            _german["duelpass_grade_up"]         = "Rang aufgestiegen! Rang {0}.";
+
+            // DUEL PASS VIEWCONTROLLER
+            _german["duelpass_grade_info"]       = "Duel Pass. Aktueller Rang: {0}. Nächster Rang: {1}.";
+            _german["duelpass_grade_current"]    = "Duel Pass. Aktueller Rang: {0}.";
+
+            // SOLO-TOR
+            _german["solo_gate_open"]            = "Solo-Tore.";
+            _german["solo_gate_open_count"]      = "Solo-Tore — {0} Tor(e).";
+            _german["solo_gate_item"]            = "{0}. {1}.";
+            _german["solo_gate_complete"]        = "Abgeschlossen";
+            _german["solo_gate_clear"]           = "Bestanden";
+            _german["solo_gate_unlocked"]        = "Verfügbar";
+            _german["solo_gate_locked"]          = "Gesperrt";
+            _german["solo_gate_unknown"]         = "Solo-Tor.";
+
+            // SOLO-KAPITEL
+            _german["solo_chapter_item"]         = "Kapitel: {0}. {1}.";
+            _german["solo_chapter_unknown"]      = "Solo-Kapitel.";
+
+            // AKTIONSBLATT
+            _german["action_sheet_open"]         = "Kontextmenü.";
+            _german["action_sheet_with_title"]   = "{0}. Optionen: {1}.";
+            _german["action_sheet_options"]      = "Kontextmenü. Optionen: {0}.";
+
+            // MISSIONEN
+            _german["mission_screen_with_tab"]   = "Missionen — {0}.";
+            _german["mission_tab_selected"]      = "Registerkarte: {0}.";
+            _german["mission_tab_mission"]       = "Missionen";
+            _german["mission_tab_panel"]         = "Panel-Missionen";
+
+            // DECK-BROWSER
+            _german["deck_browser_open"]         = "{0}. Hauptdeck: {1} Karten. Extra-Deck: {2} Karten.";
+            _german["deck_browser_title"]        = "Deck-Betrachter.";
+            _german["deck_browser_type_solo"]    = "Solo-Deck.";
+            _german["deck_browser_type_solo_npc"]= "Gegner-Deck.";
+            _german["deck_browser_type_structure"]= "Struktur-Deck.";
+            _german["deck_browser_type_public"]  = "Öffentliches Deck.";
+            _german["deck_browser_type_neuron"]  = "Neuron-Deck.";
+
+            // SAISON-PUNKTE
+            _german["season_point_open"]         = "Saisonpunkte.";
+            _german["season_point_open_rank"]    = "Saisonpunkte. {0}.";
+
+            // PROFIL
+            _german["profile_open"]              = "Profil.";
+            _german["profile_open_name"]         = "Profil von {0}.";
+            _german["profile_open_name_level"]   = "Profil von {0}. Stufe {1}.";
+
+            // SZENARIO
+            _german["scenario_open"]             = "Solo-Szenario.";
+            _german["scenario_open_name"]        = "Szenario: {0}.";
+
+            // FREUNDE
+            _german["friend_open"]               = "Freunde.";
+            _german["friend_open_count"]         = "Freunde — {0} Abonnement(s).";
+
+            // RAUM
+            _german["room_open"]                 = "Raum.";
+            _german["room_open_name"]            = "Raum: {0}.";
+            _german["room_open_name_members"]    = "Raum: {0}. {1} von {2} Spieler(n).";
+
+            // SUCHFELD
+            _german["search_box_open"]           = "Kartensuche. Name eingeben.";
+            _german["search_box_open_keyword"]   = "Kartensuche: {0}.";
+
+            // SHOP
+            _german["shop_vc_open"]              = "Shop.";
+            _german["shop_open_category"]        = "Shop — {0}.";
+            _german["shop_tab_selected"]         = "{0}.";
+
+            // DOWNLOAD
+            _german["download_open"]             = "Download.";
+            _german["download_in_progress"]      = "Download läuft.";
+            _german["download_open_text"]        = "Download. {0}.";
+            _german["download_open_state"]       = "Download. {0}. {1}.";
         }
 
         // ── WithVerbose helper (pattern Strings.cs WithDetail) ─────────────────
@@ -1913,6 +2176,491 @@ namespace MasterDuelAccessibility
             if (template == pluralKey && count == 1) template = Get(key);
             try   { return string.Format(template, args); }
             catch { return template; }
+        }
+
+        #endregion
+
+        #region Titre et chargement initial
+
+        private static void AddTitleKeys()
+        {
+            Add("game_loading",
+                "Chargement du jeu en cours. Veuillez patienter.",
+                "Loading game. Please wait.");
+            Add("loading_in_progress",
+                "Chargement en cours.",
+                "Loading.");
+            Add("title_screen_ready",
+                "Yu-Gi-Oh ! Master Duel. Appuyez sur Entrée pour commencer.",
+                "Yu-Gi-Oh! Master Duel. Press Enter to start.");
+            Add("title_starting",
+                "Connexion en cours.",
+                "Connecting.");
+
+            // ── Logos d'intro ─────────────────────────────────────────────────
+            Add("logo_konami",
+                "Logo Konami. Appuyez sur Entrée pour continuer.",
+                "Konami logo. Press Enter to continue.");
+            Add("logo_unity",
+                "Logo Unity.",
+                "Unity logo.");
+            Add("logo_on_demand",
+                "Chargement des ressources.",
+                "Loading resources.");
+            Add("logo_pre_title",
+                "Cinématique de présentation.",
+                "Intro sequence.");
+
+            // ── Extras écran titre ────────────────────────────────────────────
+            Add("title_demo",
+                "Cinématique de démo.",
+                "Demo sequence.");
+            Add("title_demo_named",
+                "Cinématique de démo : {0}.",
+                "Demo sequence: {0}.");
+            Add("title_settings",
+                "Paramètres. Utilisez les flèches pour naviguer.",
+                "Settings. Use arrow keys to navigate.");
+            Add("title_data_link",
+                "Liaison de compte.",
+                "Account link.");
+            Add("title_data_link_text",
+                "Liaison de compte. {0}",
+                "Account link. {0}");
+
+            // ── Écran de chargement inter-scènes ──────────────────────────────
+            Add("loading_screen",
+                "Chargement en cours.",
+                "Loading.");
+
+            // ── Inscription / Première connexion (RegistrationPatch) ──────────
+            Add("reg_account_create",
+                "Création de compte. Suivez les étapes.",
+                "Account creation. Follow the steps.");
+            Add("reg_approval",
+                "Approbation requise. Lisez et acceptez pour continuer.",
+                "Approval required. Read and accept to continue.");
+            Add("reg_age_gate",
+                "Vérification d'âge. Saisissez votre date de naissance.",
+                "Age verification. Enter your date of birth.");
+            Add("reg_age_select",
+                "Sélection d'âge. Âge actuel : {0} ans.",
+                "Age selection. Current age: {0}.");
+            Add("reg_age_select_range",
+                "Sélection d'âge. Âge actuel : {0} ans. De {1} à {2} ans.",
+                "Age selection. Current age: {0}. From {1} to {2}.");
+            Add("reg_birthdate",
+                "Date de naissance. Saisissez votre date de naissance.",
+                "Date of birth. Enter your date of birth.");
+            Add("reg_country",
+                "Sélection du pays. Utilisez les flèches pour choisir.",
+                "Country selection. Use arrow keys to choose.");
+            Add("reg_country_selected",
+                "Pays : {0}. Utilisez les flèches pour changer.",
+                "Country: {0}. Use arrow keys to change.");
+            Add("reg_state",
+                "Sélection de l'état. Utilisez les flèches pour choisir.",
+                "State selection. Use arrow keys to choose.");
+            Add("reg_state_selected",
+                "État : {0}. Utilisez les flèches pour changer.",
+                "State: {0}. Use arrow keys to change.");
+            Add("reg_language_select",
+                "Sélection de la langue. Choisissez votre langue préférée.",
+                "Language selection. Choose your preferred language.");
+            Add("reg_tos",
+                "Conditions d'utilisation. Lisez et acceptez pour continuer.",
+                "Terms of service. Read and accept to continue.");
+            Add("reg_privacy",
+                "Politique de confidentialité. Lisez et acceptez pour continuer.",
+                "Privacy policy. Read and accept to continue.");
+
+            // ── Tutoriel (TutorialPatch) ──────────────────────────────────────
+            Add("tuto_initial_settings",
+                "Configuration initiale. Saisissez votre nom de duel.",
+                "Initial setup. Enter your duel name.");
+            Add("tuto_card_flying",
+                "Tutoriel. Présentation de votre deck de départ.",
+                "Tutorial. Presenting your starting deck.");
+            Add("tuto_card_flying_messages",
+                "Tutoriel. {0}",
+                "Tutorial. {0}");
+
+            // ── Boutique (ShopBuyViewController) ─────────────────────────────
+            Add("screen_shop_buy",
+                "Boutique — acheter.",
+                "Shop — Buy.");
+            Add("shop_page_next",
+                "Page suivante.",
+                "Next page.");
+            Add("shop_page_prev",
+                "Page précédente.",
+                "Previous page.");
+
+            // ── Notifications (NotificationViewController) ───────────────────
+            Add("notifications_open",
+                "Notifications.",
+                "Notifications.");
+            Add("notifications_open_unread",
+                "Notifications — {0} non lue(s).",
+                "Notifications — {0} unread.");
+            Add("notif_tab_news",
+                "Actualités",
+                "News");
+            Add("notif_tab_maintenance",
+                "Maintenance",
+                "Maintenance");
+            Add("notif_tab_bugs",
+                "Bugs",
+                "Bugs");
+            Add("notif_tab_changed",
+                "{0} — {1} élément(s).",
+                "{0} — {1} item(s).");
+
+            // ── Duel Pass (DuelPassRewardPatch) ──────────────────────────────
+            Add("duelpass_open",
+                "Récompenses Duel Pass.",
+                "Duel Pass Rewards.");
+            Add("duelpass_open_count",
+                "Duel Pass — {0} récompense(s).",
+                "Duel Pass — {0} reward(s).");
+            Add("duelpass_item_grade",
+                "{0}, Grade {1}.",
+                "{0}, Grade {1}.");
+            Add("duelpass_period_tag",
+                "Premium",
+                "Premium");
+
+            // ── Catégories d'items (partagées) ───────────────────────────────
+            Add("item_cat_gems",
+                "Gemmes",
+                "Gems");
+            Add("item_cat_sleeve",
+                "Protège-cartes",
+                "Card sleeve");
+            Add("item_cat_generic",
+                "Item (catégorie {0})",
+                "Item (category {0})");
+
+            // ── SystemDialog (SystemDialogPatch) ────────────────────────────────
+            Add("system_error",
+                "Erreur système : {0}",
+                "System error: {0}");
+            Add("system_error_generic",
+                "Erreur système. Vérifiez votre connexion.",
+                "System error. Check your connection.");
+            Add("system_maintenance",
+                "Maintenance : {0}",
+                "Maintenance: {0}");
+            Add("system_maintenance_generic",
+                "Le serveur est en maintenance.",
+                "Server is under maintenance.");
+
+            // ── DuelResult (DuelResultPatch) ────────────────────────────────────
+            Add("screen_duel_result",
+                "Résultat du duel",
+                "Duel Result");
+            Add("result_mode_ranked",
+                "Mode classé",
+                "Ranked");
+            Add("result_mode_casual",
+                "Mode libre",
+                "Casual");
+            Add("result_mode_solo",
+                "Mode solo",
+                "Solo");
+            Add("result_mode_room",
+                "Salon privé",
+                "Private Room");
+            Add("result_mode_event",
+                "Événement",
+                "Event");
+            Add("result_score",
+                "Score : {0}",
+                "Score: {0}");
+            Add("result_actions",
+                "Actions : {0}",
+                "Actions: {0}");
+            Add("result_btn_retry",
+                "Recommencer",
+                "Retry");
+            Add("result_btn_save",
+                "Sauvegarder",
+                "Save Replay");
+            Add("result_btn_back",
+                "Retour",
+                "Back");
+
+            // ── PresentBox (PresentBoxPatch) ────────────────────────────────────
+            Add("present_box_open_count",
+                "Boîte de récompenses — {0} cadeau(x).",
+                "Gift Box — {0} gift(s).");
+            Add("present_box_empty",
+                "Boîte de récompenses vide.",
+                "Gift Box is empty.");
+            Add("present_expires",
+                "expire le {0}",
+                "expires {0}");
+
+            // ── Header (HeaderPatch) ────────────────────────────────────────────
+            Add("header_gems",
+                "{0} gemmes",
+                "{0} gems");
+            Add("header_no_info",
+                "Information d'en-tête non disponible.",
+                "Header info not available.");
+
+            // ── Raccourci H (KeyboardShortcuts) ─────────────────────────────────
+            Add("shortcut_h",
+                "Infos en-tête",
+                "Header info");
+
+            // ── Raccourcis numériques et nouveaux duel (KeyboardShortcuts) ───────
+            Add("shortcut_hand_n",
+                "Carte N en main",
+                "Hand card N");
+            Add("shortcut_field_opp_n",
+                "Zone monstre N adverse",
+                "Opponent monster zone N");
+            Add("shortcut_field_opp_st_n",
+                "Zone sort/piège N adverse",
+                "Opponent spell/trap zone N");
+            Add("shortcut_field_opp_fz",
+                "Zone terrain adverse",
+                "Opponent field zone");
+            Add("shortcut_field_my_st_n",
+                "Zone sort/piège N",
+                "My spell/trap zone N");
+            Add("shortcut_field_my_fz",
+                "Zone terrain",
+                "My field zone");
+            Add("shortcut_o",
+                "Aperçu adversaire",
+                "Opponent overview");
+            Add("shortcut_p",
+                "Phase courante",
+                "Current phase");
+            Add("shortcut_f",
+                "Sort de terrain",
+                "Field spell");
+
+            // Messages pour accès individuel aux cartes
+            Add("hand_card_at",
+                "Carte {0} : {1} ({2} sur {3})",
+                "Card {0}: {1} ({2} of {3})");
+            Add("hand_card_index_out",
+                "Seulement {0} carte(s) en main.",
+                "Only {0} card(s) in hand.");
+            Add("field_card_at_zone",
+                "{0} : {1}",
+                "{0}: {1}");
+            Add("field_card_face_down_zone",
+                "{0} : carte face cachée",
+                "{0}: face-down card");
+            Add("field_zone_empty",
+                "{0} : vide",
+                "{0}: empty");
+            Add("phase_unknown",
+                "Phase inconnue.",
+                "Unknown phase.");
+            Add("opp_overview",
+                "Adversaire : {0} PV, {1} carte(s) en main, deck {2}, cimetière {3}.",
+                "Opponent: {0} LP, {1} card(s) in hand, deck {2}, graveyard {3}.");
+
+            // ── LoginBonusPatch ──────────────────────────────────────────────────
+            Add("screen_login_bonus",
+                "Bonus de connexion.",
+                "Login bonus.");
+            Add("login_bonus_day_n_of_m",
+                "Bonus de connexion. Jour {0} sur {1}.",
+                "Login bonus. Day {0} of {1}.");
+            Add("login_bonus_claimed",
+                "Déjà réclamé.",
+                "Already claimed.");
+            Add("login_bonus_available",
+                "Disponible.",
+                "Available.");
+
+            // ── LotteryPortalPatch ───────────────────────────────────────────────
+            Add("screen_lottery_portal",
+                "Portail de packs.",
+                "Pack portal.");
+            Add("lottery_portal_pack",
+                "Portail de packs — {0}.",
+                "Pack portal — {0}.");
+
+            // ── DuelpassResultViewPatch ───────────────────────────────────────────
+            Add("duelpass_grade_up",
+                "Palier supérieur ! Palier {0}.",
+                "Grade up! Grade {0}.");
+
+            // ── DuelPassViewControllerPatch ───────────────────────────────────────
+            Add("duelpass_grade_info",
+                "Duel Pass. Palier actuel : {0}. Prochain palier : {1}.",
+                "Duel Pass. Current grade: {0}. Next grade: {1}.");
+            Add("duelpass_grade_current",
+                "Duel Pass. Palier actuel : {0}.",
+                "Duel Pass. Current grade: {0}.");
+
+            // ── SoloGatePatch ─────────────────────────────────────────────────────
+            Add("solo_gate_open",
+                "Portails Solo.",
+                "Solo Portals.");
+            Add("solo_gate_open_count",
+                "Portails Solo — {0} portail(s).",
+                "Solo Portals — {0} portal(s).");
+            Add("solo_gate_item",
+                "{0}. {1}.",
+                "{0}. {1}.");
+            Add("solo_gate_complete",
+                "Complété",
+                "Completed");
+            Add("solo_gate_clear",
+                "Terminé",
+                "Cleared");
+            Add("solo_gate_unlocked",
+                "Disponible",
+                "Available");
+            Add("solo_gate_locked",
+                "Verrouillé",
+                "Locked");
+            Add("solo_gate_unknown",
+                "Portail Solo.",
+                "Solo Portal.");
+
+            // ── ActionSheetPatch ──────────────────────────────────────────────────
+            Add("action_sheet_open",
+                "Menu contextuel.",
+                "Context menu.");
+            Add("action_sheet_with_title",
+                "{0}. Options : {1}.",
+                "{0}. Options: {1}.");
+            Add("action_sheet_options",
+                "Menu contextuel. Options : {0}.",
+                "Context menu. Options: {0}.");
+
+            // ── MissionViewControllerPatch ────────────────────────────────────────
+            Add("mission_screen_with_tab",
+                "Missions — {0}.",
+                "Missions — {0}.");
+            Add("mission_tab_selected",
+                "Onglet : {0}.",
+                "Tab: {0}.");
+            Add("mission_tab_mission",
+                "Missions",
+                "Missions");
+            Add("mission_tab_panel",
+                "Missions de panel",
+                "Panel Missions");
+
+            // ── SoloChapterPatch ──────────────────────────────────────────────────
+            Add("solo_chapter_item",
+                "Chapitre : {0}. {1}.",
+                "Chapter: {0}. {1}.");
+            Add("solo_chapter_unknown",
+                "Chapitre Solo.",
+                "Solo Chapter.");
+
+            // ── DeckBrowserPatch ──────────────────────────────────────────────────
+            Add("deck_browser_open",
+                "{0}. Deck principal : {1} cartes. Extra Deck : {2} cartes.",
+                "{0}. Main deck: {1} cards. Extra deck: {2} cards.");
+            Add("deck_browser_title",
+                "Visionneuse de deck.",
+                "Deck Viewer.");
+            Add("deck_browser_type_solo",
+                "Deck Solo.",
+                "Solo Deck.");
+            Add("deck_browser_type_solo_npc",
+                "Deck Adversaire.",
+                "NPC Deck.");
+            Add("deck_browser_type_structure",
+                "Deck de Structure.",
+                "Structure Deck.");
+            Add("deck_browser_type_public",
+                "Deck Public.",
+                "Public Deck.");
+            Add("deck_browser_type_neuron",
+                "Deck Neuron.",
+                "Neuron Deck.");
+
+            // ── SeasonPointPatch ──────────────────────────────────────────────────
+            Add("season_point_open",
+                "Points de saison.",
+                "Season Points.");
+            Add("season_point_open_rank",
+                "Points de saison. {0}.",
+                "Season Points. {0}.");
+
+            // ── ProfilePatch ──────────────────────────────────────────────────────
+            Add("profile_open",
+                "Profil.",
+                "Profile.");
+            Add("profile_open_name",
+                "Profil de {0}.",
+                "Profile: {0}.");
+            Add("profile_open_name_level",
+                "Profil de {0}. Niveau {1}.",
+                "Profile: {0}. Level {1}.");
+
+            // ── ScenarioPatch ─────────────────────────────────────────────────────
+            Add("scenario_open",
+                "Scénario Solo.",
+                "Solo Scenario.");
+            Add("scenario_open_name",
+                "Scénario : {0}.",
+                "Scenario: {0}.");
+
+            // ── FriendViewControllerPatch ─────────────────────────────────────────
+            Add("friend_open",
+                "Amis.",
+                "Friends.");
+            Add("friend_open_count",
+                "Amis — {0} suivi(s).",
+                "Friends — {0} following.");
+
+            // ── RoomViewControllerPatch ───────────────────────────────────────────
+            Add("room_open",
+                "Salon.",
+                "Room.");
+            Add("room_open_name",
+                "Salon : {0}.",
+                "Room: {0}.");
+            Add("room_open_name_members",
+                "Salon : {0}. {1} sur {2} joueur(s).",
+                "Room: {0}. {1} of {2} players.");
+
+            // ── SearchBoxDialogPatch ──────────────────────────────────────────────
+            Add("search_box_open",
+                "Recherche de carte. Saisir le nom.",
+                "Card Search. Enter name.");
+            Add("search_box_open_keyword",
+                "Recherche de carte : {0}.",
+                "Card Search: {0}.");
+
+            // ── ShopViewControllerPatch ───────────────────────────────────────────
+            Add("shop_vc_open",
+                "Boutique.",
+                "Shop.");
+            Add("shop_open_category",
+                "Boutique — {0}.",
+                "Shop — {0}.");
+            Add("shop_tab_selected",
+                "{0}.",
+                "{0}.");
+
+            // ── DownloadViewControllerPatch ───────────────────────────────────────
+            Add("download_open",
+                "Téléchargement.",
+                "Download.");
+            Add("download_in_progress",
+                "Téléchargement en cours.",
+                "Downloading in progress.");
+            Add("download_open_text",
+                "Téléchargement. {0}.",
+                "Download. {0}.");
+            Add("download_open_state",
+                "Téléchargement. {0}. {1}.",
+                "Download. {0}. {1}.");
         }
 
         #endregion

@@ -68,6 +68,25 @@ namespace MasterDuelAccessibility.Patches
                 }
                 _lastSelectedObject = __instance;
 
+                // ── Lottery card buttons ─────────────────────────────────────
+                // If this button was mapped to a card ID by LotteryRewardPatch,
+                // announce the card name directly instead of the generic text.
+                try
+                {
+                    var getIdM = __instance.GetType().GetMethod("GetInstanceID",
+                        BindingFlags.Public | BindingFlags.Instance);
+                    if (getIdM?.Invoke(__instance, null) is int iid)
+                    {
+                        string? lotteryCard = LotteryRewardPatch.TryGetCardName(iid);
+                        if (lotteryCard != null)
+                        {
+                            tts.Speak(lotteryCard, interrupt: true);
+                            return;
+                        }
+                    }
+                }
+                catch { /* non-critical fallback to normal path */ }
+
                 string? text = ReadText(GetGO(GetTransform(__instance)));
                 if (!string.IsNullOrWhiteSpace(text))
                     text = Regex.Replace(text, "<[^>]+>", "").Trim();

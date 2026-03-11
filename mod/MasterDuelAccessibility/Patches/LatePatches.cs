@@ -146,15 +146,94 @@ namespace MasterDuelAccessibility.Patches
         {
             Plugin.Instance?.LogMsg("[LatePatches] Application des patches de scène menu...");
 
-            // Patch ShopViewController.Open — annonce l'ouverture du shop
-            TryPatchPostfix(
-                "YgomGame.Shop.ShopViewController", "Open",
-                typeof(MenuMiscPatch), nameof(MenuMiscPatch.ShopOpen_Postfix));
+            // ShopViewController and SoloModeViewController have no Open() method.
+            // Screen entry is announced by ViewControllerPatch.OnFocusChanged via ScreenTitles.
 
-            // Patch SoloModeViewController.Open — annonce l'entrée dans le mode solo
-            TryPatchPostfix(
-                "YgomGame.Solo.SoloModeViewController", "Open",
-                typeof(MenuMiscPatch), nameof(MenuMiscPatch.SoloOpen_Postfix));
+            // Patch DuelPassViewController.NotificationStackEntry — palier actuel + prochain palier
+            DuelPassViewControllerPatch.Reset();
+            DuelPassViewControllerPatch.Apply(_harmonyLate!);
+
+            // Patch SoloGateViewController — annonce le nombre de portails + portail focalisé
+            SoloGatePatch.Reset();
+            SoloGatePatch.Apply(_harmonyLate!);
+
+            // Patch SoloSelectChapterViewController.ChapterMap.OnClickChapter — annonce le chapitre cliqué
+            SoloChapterPatch.Reset();
+            SoloChapterPatch.Apply(_harmonyLate!);
+
+            // Patch MissionViewController — annonce l'onglet actif à l'entrée
+            MissionViewControllerPatch.Reset();
+            MissionViewControllerPatch.Apply(_harmonyLate!);
+
+            // Patch DuelpassResultViewController — montée de palier post-duel
+            DuelpassResultViewPatch.Reset();
+            DuelpassResultViewPatch.Apply(_harmonyLate!);
+
+            // Patch LoginBonusViewController.OnCreatedView — annonce le bonus quotidien (Jour N sur M)
+            LoginBonusPatch.Reset();
+            LoginBonusPatch.Apply(_harmonyLate!);
+
+            // Patch LotteryPortalViewController.NotificationStackEntry — annonce l'ouverture du portail
+            LotteryPortalPatch.Reset();
+            LotteryPortalPatch.Apply(_harmonyLate!);
+
+            // Patch LotteryRewardViewContorller.OnCreatedView — annonce les cartes obtenues
+            LotteryRewardPatch.Initialize(_harmonyLate!);
+
+            // Patch ShopBuyViewController — annonce le produit sélectionné, navigation pages
+            ShopBuyPatch.Apply(_harmonyLate!);
+
+            // Patch NotificationViewController — annonce l'ouverture et les onglets
+            NotificationPatch.Apply(_harmonyLate!);
+
+            // Patch DuelPassRewardListViewController — annonce les récompenses du Duel Pass
+            DuelPassRewardPatch.Apply(_harmonyLate!);
+
+            // Patch DuelResultViewController — annonce résultat détaillé post-duel
+            DuelResultPatch.Reset();
+            DuelResultPatch.Apply(_harmonyLate!);
+
+            // Patch PresentBoxViewController — boîte cadeaux avec ISV navigation
+            PresentBoxPatch.Reset();
+            PresentBoxPatch.Apply(_harmonyLate!);
+
+            // Patch ScenarioViewController.NotificationStackEntry — scénario Solo
+            ScenarioPatch.Reset();
+            ScenarioPatch.Apply(_harmonyLate!);
+
+            // Patch FriendViewController.NotificationStackEntry — liste d'amis
+            FriendViewControllerPatch.Reset();
+            FriendViewControllerPatch.Apply(_harmonyLate!);
+
+            // Patch RoomViewController.NotificationStackEntry — salon privé
+            RoomViewControllerPatch.Reset();
+            RoomViewControllerPatch.Apply(_harmonyLate!);
+
+            // Patch DeckBrowserViewController.NotificationStackEntry — visionneuse deck
+            DeckBrowserPatch.Reset();
+            DeckBrowserPatch.Apply(_harmonyLate!);
+
+            // Patch SeasonPointViewController.NotificationStackEntry — points de saison
+            SeasonPointPatch.Reset();
+            SeasonPointPatch.Apply(_harmonyLate!);
+
+            // Patch ProfileViewController.NotificationStackEntry — profil joueur
+            ProfilePatch.Reset();
+            ProfilePatch.Apply(_harmonyLate!);
+
+            // Patch ShopViewController.NotificationStackEntry + OnClickMainTab — boutique
+            ShopViewControllerPatch.Reset();
+            ShopViewControllerPatch.Apply(_harmonyLate!);
+
+            // Patch DownloadViewController — téléchargement initial
+            DownloadViewControllerPatch.Reset();
+            DownloadViewControllerPatch.Apply(_harmonyLate!);
+
+            // Patch ViewController.NotificationStackEntry/Remove — détecte l'ouverture
+            // des panneaux secondaires (Settings, LoginBonus, PresentBox, FriendSearch, etc.)
+            // Pattern inspiré de AccessibleArena PanelStatePatch.Initialize().
+            MenuPanelStatePatch.Reset();
+            MenuPanelStatePatch.Apply(_harmonyLate!);
 
             Plugin.Instance?.LogMsg("[LatePatches] Patches menu appliqués.");
         }

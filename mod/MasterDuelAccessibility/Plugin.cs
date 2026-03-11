@@ -3,6 +3,7 @@ using BepInEx.Unity.IL2CPP;
 using HarmonyLib;
 using Il2CppInterop.Runtime.Injection;
 using MasterDuelAccessibility.Patches;
+using MasterDuelAccessibility.Services.PanelDetection;
 using System;
 using System.Linq;
 using System.Reflection;
@@ -91,6 +92,26 @@ namespace MasterDuelAccessibility
                 LogMsg($"TTS {(CfgEnabled.Value ? "activé" : "désactivé")}");
             };
 
+            // ── PanelStateManager ────────────────────────────────────────────
+            // Source de vérité des panneaux de menu ouverts.
+            // Inspiré de AccessibleArena PanelStateManager — adapté pour Master Duel.
+            var panelManager = PanelStateManager.Initialize();
+
+            // Abonnement TTS aux évenements du manager
+            // Tout panneau ouvert → annonce TTS (interrupt = false pour ne pas couper)
+            panelManager.OnAnyPanelOpened += panel =>
+            {
+                if (Tts?.Enabled == true)
+                    Tts.Speak(panel.DisplayName, interrupt: false);
+            };
+
+            // Changement du panneau actif (overlay modal) → annonce avec interruption
+            panelManager.OnActivePanelChanged += (_, newPanel) =>
+            {
+                if (newPanel != null && Tts?.Enabled == true)
+                    Tts.Speak(newPanel.DisplayName, interrupt: true);
+            };
+
             // ── MonoBehaviour pour Update() + scène ─────────────────────────
             // BasePlugin n'étant pas un MonoBehaviour, on enregistre un composant
             // IL2CPP dédié (PluginBehaviour) pour les hooks per-frame et de scène.
@@ -110,6 +131,9 @@ namespace MasterDuelAccessibility
         internal void OnSceneLoaded(Scene scene, LoadSceneMode mode)
         {
             InputBlockPatch.ResetFrameState();
+
+            // Réinitialiser la stack de panneaux à chaque changement de scène
+            PanelStateManager.Instance?.Reset();
 
             // Appliquer les patches spécifiques à cette scène (runtime patching)
             if (_harmony != null)
@@ -186,8 +210,8 @@ namespace MasterDuelAccessibility
                 new HarmonyMethod(typeof(ViewControllerPatch), nameof(ViewControllerPatch.OnFocusChanged_Postfix)));
             TryPatch("YgomSystem.UI.ViewController", "OnBack",
                 new HarmonyMethod(typeof(ViewControllerPatch), nameof(ViewControllerPatch.OnBack_Postfix)));
-            TryPatch("YgomSystem.UI.ViewController", "ShowUI",
-                new HarmonyMethod(typeof(ViewControllerPatch), nameof(ViewControllerPatch.Show_Postfix)));
+            // ViewController.ShowUI does not exist — screen announcements handled by OnFocusChanged
+            // and NotificationStackEntry in individual ViewControllers.
 
             TryPatch("YgomGame.Duel.CardInfo", "SetDescriptionArea",
                 new HarmonyMethod(typeof(CardInfoPatch), nameof(CardInfoPatch.Show_Postfix)));
@@ -269,6 +293,12 @@ namespace MasterDuelAccessibility
             // ── CardReportTelopPatch — bandeau stats post-effet (ex: "+500 ATK")
             CardReportTelopPatch.Apply(_harmony!);
 
+            // ── TitleScreenPatch — écran de chargement initial et écran titre
+            TitleScreenPatch.Apply(_harmony!);
+
+            // ── SystemDialogPatch — erreurs fatales, maintenance, réseau
+            SystemDialogPatch.Apply(_harmony!);
+
             // ── SliderPatch — valeur des curseurs dans les menus (ex: volume, musique)
             TryPatchPostfix(
                 typeof(UnityEngine.UI.Slider), "Set", new[] { typeof(float), typeof(bool) },
@@ -315,6 +345,21 @@ namespace MasterDuelAccessibility
             TryPatch("YgomGame.Menu.CommonDialogViewController", "OpenCheckBoxDialog",       commonDialogPostfix);
             TryPatchByParamCount("YgomGame.Menu.CommonDialogViewController", "OpenItemConfirmDialog", 7, commonDialogPostfix);
             TryPatchByParamCount("YgomGame.Menu.CommonDialogViewController", "OpenItemConfirmDialog", 9, commonDialogPostfix);
+
+            // ── EventNotifyPatch — notifications d'événements en jeu
+            EventNotifyPatch.Apply(_harmony!);
+
+            // ── ActionSheetPatch — feuille d'action contextuelle (options menu)
+            ActionSheetPatch.Apply(_harmony!);
+
+            // ── SearchBoxDialogPatch — dialog de recherche de carte par nom (Deck Editor)
+            SearchBoxDialogPatch.Apply(_harmony!);
+
+            // ── RegistrationPatch — écrans inscription / première connexion (section 1.4)
+            RegistrationPatch.Apply(_harmony!);
+
+            // ── TutorialPatch — écrans tutoriel (section 1.5)
+            TutorialPatch.Apply(_harmony!);
         }
 
         // ── TryPatch helpers ─────────────────────────────────────────────────
@@ -417,9 +462,19 @@ namespace MasterDuelAccessibility
                 UnityEngine.Events.UnityAction<Scene, LoadSceneMode>>(_managedSceneHandler);
         }
 
+        private int _validateCounter;
+
         private void Update()
         {
             InputBlockPatch.ResetFrameState();
+
+            // Valider la stack des panneaux toutes les 30 frames
+            // (filet de sécurité si NotificationStackRemove a été raté)
+            if (++_validateCounter >= 30)
+            {
+                _validateCounter = 0;
+                PanelStateManager.Instance?.ValidatePanels();
+            }
         }
 
         private void OnDestroy()

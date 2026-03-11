@@ -45,6 +45,10 @@ Icon-only buttons that have no `SelectionButton`. Dispatched by object name:
 
 **ScreenTitles dictionary (ViewController name → Loc key):**
 
+Names follow the Unity `GameObject.name` pattern = class name minus `ViewController` suffix.
+
+**Fallback (unknown names):** `ResolveName` strips `ViewController`/`Dialog`/`Widget` suffix then converts PascalCase to words: `"LotteryPortalViewController"` → `"Lottery Portal"`.
+
 | ViewController name | Loc key | Screen |
 |---|---|---|
 | `DUEL` | `screen_duel` | Duel menu |
@@ -58,16 +62,39 @@ Icon-only buttons that have no `SelectionButton`. Dispatched by object name:
 | `DeckBrowser` | `screen_deck_browser` | Deck browser |
 | `DeckEdit` | `screen_deck_edit` | Deck editor |
 | `CardBrowser` | `screen_card_browser` | Card browser |
-| `PvpMenuMatching` | `screen_matching` | Matchmaking |
-| `Home` | `screen_home` | Home |
 | `DeckSelect` | `screen_deck_select` | Deck selection |
+| `PvpMenuMatching` | `screen_matching` | Matchmaking |
+| `PvpMenuMatching_Room` | `screen_matching_room` | Room matchmaking |
+| `PvpMenuMatching_Team` | `screen_matching_team` | Team matchmaking |
+| `Home` | `screen_home` | Home |
 | `ShopBuy` | `screen_shop_buy` | Shop — Purchase |
+| `LotteryPortal` | `screen_lottery` | Open Packs |
+| `LotteryResult` | `screen_lottery_result` | Pack Opening Result |
+| `LotteryHistory` | `screen_lottery_history` | Pack History |
+| `LotteryCardSelect` | `screen_lottery_card_select` | Card Selection (Lottery) |
+| `LotteryRewardView` | `screen_lottery_reward` | Pack Reward |
+| `PresentBox` | `screen_present_box` | Gift Box |
+| `Profile` | `screen_profile` | Profile |
+| `ProfileData` | `screen_profile` | Profile (data sub-view) |
+| `ProfileEdit` | `screen_profile_edit` | Edit Profile |
+| `ProfileCardCheck` | `screen_profile_cards` | Favorite Cards |
+| `ProfileReplay` | `screen_profile_replay` | Profile Replays |
+| `Friend` | `screen_friends` | Friends |
+| `FriendSearch` | `screen_friends_search` | Search Friend |
+| `SoloGate` | `screen_solo_gate` | Solo Gates *(verify in-game)* |
+| `SoloSelectChapter` | `screen_solo_chapter` | Solo Chapters *(verify in-game)* |
+| `SeasonPoint` | `screen_season_ranking` | Season Ranking |
+| `SeasonPointHistory` | `screen_season_history` | Season History |
+| `SeasonPointRanking` | `screen_season_ranking` | Season Ranking |
+| `SeasonPointTopMenu` | `screen_season_ranking` | Season Top Menu |
+| `SeasonResult` | `screen_season_result` | Season Results |
+| `ItemExchange` | `screen_item_exchange` | Item Exchange |
+| `ColosseumDuelResult` | `screen_colosseum_result` | Colosseum Result |
+| `WCSFinal_Colosseum` | `screen_colosseum` | Colosseum |
 | `SortDialog_Card` | `screen_sort_card` | Sort cards |
 | `SortDialog_CardFile` | `screen_sort_cardfile` | Sort |
 | `SortDialog_Solo` | `screen_sort_solo` | Sort Solo |
 | `FilterSelect` | `screen_filter_select` | Filter selection |
-| `SoloGate` | `screen_solo_gate` | Solo gates *(verify in-game)* |
-| `SoloSelectChapter` | `screen_solo_chapter` | Solo chapters *(verify in-game)* |
 | `PasswordDialog` | `screen_password` | Password entry *(verify in-game)* |
 
 ### Card Detail Panel — `CardInfoPatch`
@@ -249,6 +276,31 @@ Parameters (positional injection): `__0`=title, `__1`=entrys array, `__4`=messag
 - Simply announces "Solo Mode." on screen open
 - Covers `SoloModeViewController.Open`
 
+### Generic Dialogs — `CommonDialogPatch`
+
+**Applied in:** `Plugin.ApplyPatches` (global, all scenes)
+**Target:** `YgomGame.Menu.CommonDialogViewController` static methods
+
+All variants share signature `Open*Dialog(string title, string message, …)`. A single postfix reads `__0`=title and `__1`=message and announces:
+- Both present → `"{title}: {message}"` (`dialog_title_message` key)
+- Only title → title alone
+- Only message → message alone
+
+| Method patched | Typical use |
+|---|---|
+| `OpenAlertDialog` | Informational alert (OK only) |
+| `OpenAlertDialogScroll` | Long-text alert |
+| `OpenConfirmationDialog` | "Confirm?" (OK + Cancel) |
+| `OpenConfirmationDialogScroll` | Long-text confirmation |
+| `OpenConfirmationPartDialog` | Partial confirmation |
+| `OpenErrorDialog` | Network / system error |
+| `OpenYesNoConfirmationDialog` | Yes/No choice |
+| `OpenYesNoConfirmationDialogScroll` | Long-text Yes/No |
+| `OpenNoticeYesNoDialog` | Notice with Yes/No |
+| `OpenCheckBoxDialog` | Checkbox list selection |
+| `OpenItemConfirmDialog` (7-param) | Item purchase confirmation |
+| `OpenItemConfirmDialog` (9-param) | Item purchase confirmation (with period/category) |
+
 ---
 
 ## Duel Scene
@@ -280,44 +332,73 @@ Duel patches are applied dynamically at scene load via `LatePatches.ApplyDuelSce
 **Trigger:** `DuelClient.RunEffect(int id, int param1, int param2, int param3)`
 Postfix receives `(int __0, int __1)` = ViewType, subtype param.
 
-Key ViewTypes handled:
+All ViewType IDs are from `Engine.ViewType` in the dump. Full list in `DuelEventPatch.cs`.
 
-| ViewType | param | Announcement |
-|---|---|---|
-| DuelStart=1 | — | "Duel started!" (in Awake) |
-| DuelEnd=2 | ResultType (1=Win,2=Lose,3=Draw,4=Time) | Victory / Defeat / Draw / Time |
-| NormalSummon=3 | — | "Monster summoned." |
-| SpecialSummon=4 | — | "Special Summon!" |
-| RunSpSummon=58 | SpSummonType (0=Fusion,2=Synchro,3=Ritual,4=Xyz,5=Pendulum,6=Link,7=Maximum) | Type-specific summon name |
-| TributeSummon=7 | — | "Tribute Summon!" |
-| FlipSummon=8 | — | "Flip Summon!" |
-| Draw=9 | — | "Draw." |
-| CardMove=26 | moveType | Search(11)/Discard(10)/CostDrop(17) |
-| Activate=30 | — | "Effect activated!" |
-| Set=31 | — | "Spell/Trap set." |
-| Destroy=33 | — | "Destroyed!" |
-| Banish=35 | — | "Card banished." |
-| Chain start/step/resolve/end (40-43) | — | Chain state announcements |
-| Damage=50 | — | "Battle damage." |
-| CpuThinking=80 | — | "Opponent is thinking." |
-| Janken=90 | — | "Rock-Paper-Scissors." |
-| CoinToss / DiceRoll | — | Handled by DuelMiscPatch |
+| ViewType | Name | param | Announcement |
+|---|---|---|---|
+| 1 | DuelStart | — | "Duel started!" (in `DuelStart_Postfix`) |
+| 2 | DuelEnd | ResultType: 1=Win,2=Lose,3=Draw,4=Time | Victory / Defeat / Draw / Time *(critical)* |
+| 5 | PhaseChange | phase int | Draw/Standby/Main1/Battle/Main2/End — delegated to `PhasePatch` |
+| 6 | TurnChange | turn int | "Your turn / Opponent's turn, turn N" — delegated to `PhasePatch` |
+| 12 | BattleAttack | — | Delegated to `DuelAttackPatch` |
+| 19 | HandShow | — | "Hand revealed." |
+| 26 | CardMove | moveType | Search(11), Discard(10), CostDrop(17); Draw(9) skipped (CutinDraw covers it) |
+| 28 | CardFlipTurn | — | "Card flipped face-down." |
+| 34 | CardExclude | — | "Card banished." |
+| 36 | CardDisable | — | "Effect negated." |
+| 37 | CardEquip | — | "Equip spell activated." |
+| 45 | TributeRun | — | "Tribute Summon!" |
+| 48 | MaterialRun | — | "Materials used." (fusion/synchro/xyz) |
+| 51 | TuningRun | — | "Synchro Summon!" |
+| 52 | ChainSet | — | "Chain started." |
+| 53 | ChainRun | — | "Chain resolving." |
+| 54 | RunSurrender | — | "Surrender." *(critical)* |
+| 55 | RunDialog | — | Delegated to `DuelDialogPatch` |
+| 56 | RunList | — | Delegated to `DuelDialogPatch` |
+| 57 | RunSummon | — | "Monster summoned." |
+| 58 | RunSpSummon | SpSummonType: 0=Fusion,1=SpFusion,2=Synchro,3=Ritual,4=Xyz,5=Pendulum,6=Link,7=Maximum | Type-specific summon name |
+| 59 | RunFusion | — | "Fusion Summon!" |
+| 60 | RunDetail | — | Delegated to `CardInfoPatch` |
+| 61 | RunCoin | — | "Coin flip." *(critical)* |
+| 62 | RunDice | — | "Dice roll." *(critical)* |
+| 64 | RunSpecialWin | — | "Special win condition!" *(critical)* |
+| 68 | CutinDraw | — | "Draw." |
+| 69 | CutinSummon | — | "Summon!" |
+| 70 | CutinFusion | — | "Fusion!" |
+| 71 | CutinChain | — | "Chain response." |
+| 72 | CutinActivate | — | "Effect activated!" |
+| 73 | CutinSet | — | "Spell/Trap set." |
+| 74 | CutinReverse | — | "Flip!" |
+| 76 | CutinFlip | — | "Flip Summon!" |
+| 77 | CutinTurnEnd | — | "Turn ended." |
+| 78 | CutinDamage | — | "Battle damage." |
+| 79 | CutinBreak | — | "Destroyed!" |
+| 80 | CpuThinking | — | "Opponent is thinking." *(critical)* |
+| 84 | OverlayRun | — | "Xyz Summon!" |
+| 85 | CutinSuccess | — | "Effect resolved." |
+| 86 | ChainEnd | — | "Chain end." |
+| 89 | LinkRun | — | "Link Summon!" |
+| 90 | RunJanken | — | "Rock-Paper-Scissors." *(critical)* |
+| 92 | ChainStep | — | "Chain step." |
+
+*(critical)* = `interrupt: true`; others use `interrupt: false` (queued).
 
 `DuelEffectQueuePatch` deduplicates rapid events:
 - `InstantMessage.ReqOpen` → 300ms dedup on identical text
 - `RunEffectWorker.infoMessage` setter → exact-string dedup
 
-### Dialogs — `DuelDialogPatch` + `DuelMiscPatch`
+### Dialogs — `DuelDialogPatch` + `DuelMiscPatch` + `DuelInfoDialogPatch`
 
-| Class / Method | Announcement |
-|---|---|
-| `DuelConfirmDialog.Open` (6-param) | Confirmation prompt text |
-| `DuelConfirmDialog.Open` (4-param) | Confirmation prompt text |
-| `DuelSelectDialog.Open` | Selection dialog title (`DialogStatePatch`) |
-| `ChoiceFirstPlayerDialog.ReqOpen` | "You go first." or "Opponent goes first." (`__1`=firstPlayer) |
-| `DuelOkDialog.Open` (3-param) | Passes `__0` (string) directly as interrupt |
-| `DuelMulliganDialog.Open` | "Mulligan: N cards in hand. Keep or replace?" |
-| `DuelResultDialog.Open` | "Victory!" / "Defeat." / "Draw." |
+| Class / Method | Applied | Announcement |
+|---|---|---|
+| `DuelConfirmDialog.Open` (6-param) | `Plugin.ApplyPatches` | Confirmation prompt text |
+| `DuelConfirmDialog.Open` (4-param) | `Plugin.ApplyPatches` | Confirmation prompt text |
+| `DuelSelectDialog.Open` | `DialogStatePatch.Initialize` | Selection dialog title |
+| `ChoiceFirstPlayerDialog.ReqOpen` | `LatePatches` | "You go first." / "Opponent goes first." (`__1`=firstPlayer) |
+| `DuelOkDialog.Open` (3-param) | `LatePatches` | Passes `__0` (pre-localised string) as interrupt |
+| `DuelMulliganDialog.Open` | `LatePatches` | "Mulligan: N cards. Keep or replace?" |
+| `DuelResultDialog.Open` | `LatePatches` | "Victory!" / "Defeat." / "Draw." |
+| `DuelInfoDialog.ReqOpen` (8-param) | `LatePatches` | Passes `__0` (message) as interrupt; used for informational overlays during card effects |
 
 ### Attack Declaration — `DuelAttackPatch`
 
@@ -426,9 +507,14 @@ Duel clock alerts (total duel time):
 
 ### Dice and Coin — `DuelMiscPatch`
 
-**Trigger:** `DuelView.OnDiceResult(int player, int value)` / `OnCoinResult(int player, int value)`
-- Dice: "Dice: you/opponent rolls {value}"
-- Coin: "Coin flip: you/opponent gets heads/tails"
+**Trigger:** `DuelView.OnDiceResult(int player, int value)` / `OnCoinResult(int player, int side)`
+**Applied in:** `LatePatches`
+
+- `__0` = player (0=local, 1=opponent), `__1` = dice value or coin side (0=heads, 1=tails)
+- Dice: "Dice: you/opponent — {value}"
+- Coin: "Coin flip: you/opponent — heads/tails"
+
+Note: `DuelEventPatch` also fires for `RunCoin=61` and `RunDice=62` with a generic "Coin flip." / "Dice roll." announcement. These fire at the start of the animation; `DuelMiscPatch` fires with the actual result.
 
 ---
 
@@ -480,8 +566,14 @@ if (go == null || !go.activeInHierarchy) return;
 
 1. Find the controller class in `decompiled/interop/Assembly-CSharp/` or `dump/dump.cs`
 2. Identify the method that fires on open (typically `Open`, `Start`, `OnCreatedView`, `OnFocusChanged`)
-3. If it fires in the duel scene only → add to `LatePatches.ApplyDuelScenePatches()` with `TryPatchPostfix`
-4. If it fires in all scenes → add to `Plugin.ApplyPatches()` with `TryPatch` or `TryPatchByParamCount`
-5. Add Loc keys (`Add("key", fr, en)`) and German entry in `InitializeGermanStrings()`
-6. Document the new screen here (ViewController name if applicable, param injection, field names)
-7. Update `docs/KNOWN_ISSUES.md` if in-game verification is still needed
+3. Check if `ViewControllerPatch.Show_Postfix` already announces it:
+   - If the screen uses `ViewController.ShowUI()`, it is already announced (PascalCase auto-cleaner)
+   - If the name is not user-friendly, add it to `ScreenTitles` with a Loc key
+4. If extra data (title, message, list) needs announcing:
+   - Duel scene only → add `TryPatchPostfix` in `LatePatches.ApplyDuelScenePatches()`
+   - All scenes → add `TryPatch` / `TryPatchByParamCount` in `Plugin.ApplyPatches()`
+5. Add Loc keys: `Add("key", fr, en)` in `InitializeStrings()` and `_german["key"] = "…"` in `InitializeGermanStrings()`
+6. Document the new screen in this file (VC name, method, param injection, field names used)
+
+**Naming convention:** `ScreenTitles` key = class name minus `ViewController`/`Dialog`/`Widget` suffix.
+For unknown names, `ResolveName` auto-cleans PascalCase (e.g., `FriendSearchViewController` → `"Friend Search"`).

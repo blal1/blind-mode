@@ -67,6 +67,15 @@ namespace MasterDuelAccessibility.Patches
         private static string _lastInfoMsg = "";
 
         /// <summary>
+        /// Current game instruction displayed in the duel info bar (e.g. "Select a target").
+        /// Used by the S shortcut to let the user re-read what action is required.
+        /// </summary>
+        internal static string LastInfoMsg => _lastInfoMsg;
+
+        /// <summary>Last flash message (InstantMessage) announced during the duel.</summary>
+        internal static string LastInstantMsg => _lastInstantMsg;
+
+        /// <summary>
         /// Réinitialise l'état de déduplication entre deux duels.
         /// Appelé par DuelEventPatch.DuelStart_Postfix.
         /// </summary>

@@ -1,3 +1,16 @@
+/docs-de
+/templates
+/decompiled
+/DevTools
+/Accessibility-Mod-Template
+/INSTALL
+/dotnet
+/BepInEx
+/doorstop_config.ini
+/winhttp.dll
+/baselib.dll
+/CLAUDE.de.md
+
 # Build outputs
 bin/
 obj/

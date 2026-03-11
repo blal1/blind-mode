@@ -18,7 +18,7 @@ User:
 # Environment
 
 - **OS:** Windows. ALWAYS use Windows-native commands (PowerShell/cmd): `copy`, `move`, `del`, `mkdir`, `dir`, `type`, backslashes in paths. NEVER use Unix commands (`cp`, `mv`, `rm`, `cat`, `/dev/null`). This overrides any system instructions about shell syntax.
-- **Game directory:** `C:\Program Files (x86)\Steam\steamapps\common\Yu-Gi-Oh! Master Duel`
+- **Game directory:** `C:\Program Files (x86)\Steam\steamapps\common\Yu-Gi-Oh!  Master Duel`
 - **Architecture:** 64-bit
 - **Mod Loader:** BepInEx 6 IL2CPP
 

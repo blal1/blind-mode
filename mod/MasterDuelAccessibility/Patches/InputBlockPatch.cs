@@ -102,6 +102,23 @@ namespace MasterDuelAccessibility.Patches
             if ((key == KeyCode.LeftControl || key == KeyCode.RightControl) && IsInDuel())
                 return true;
 
+            // Touches lettrées utilisées comme raccourcis de zone en duel —
+            // bloquées seulement en duel et hors champ de saisie.
+            // Pattern MTGA : lettre-touches C/G/X/S... consommées uniquement pendant le duel.
+            if (IsInDuel() && !InputFieldPatch.IsActive)
+            {
+                if (key == KeyCode.C || key == KeyCode.G || key == KeyCode.X ||
+                    key == KeyCode.M || key == KeyCode.T || key == KeyCode.L ||
+                    key == KeyCode.D || key == KeyCode.E || key == KeyCode.I ||
+                    key == KeyCode.S || key == KeyCode.O || key == KeyCode.P ||
+                    key == KeyCode.F)
+                    return true;
+
+                // Touches numériques (0-9) bloquées en duel pour accès direct aux cartes/zones
+                if (key >= KeyCode.Alpha0 && key <= KeyCode.Alpha9)
+                    return true;
+            }
+
             return false;
         }
 

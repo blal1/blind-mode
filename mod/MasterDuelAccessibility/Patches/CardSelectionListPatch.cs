@@ -44,11 +44,25 @@ namespace MasterDuelAccessibility.Patches
         // répétitions si SetCursor est appelé plusieurs fois sur la même carte.
         private static string _lastCursorCard = "";
 
+        // Instance active de CardSelectionList — mise à jour par SetList_Postfix.
+        // Utilisée par TryMoveNext() pour naviguer via Tab (modèle MTGA Tab = cycle targets).
+        private static object? _activeInstance;
+        private static MethodInfo? _setCursorMethod;
+
+        /// <summary>
+        /// When true, SetCursor_Postfix ignores dedup for one call.
+        /// Set before programmatic cursor moves to ensure the card is always announced.
+        /// </summary>
+        internal static bool ForceNextAnnounce { get; set; }
+
         internal static void Reset()
         {
             _applied = false;
             _lastSetListKey = "";
             _lastCursorCard = "";
+            _activeInstance  = null;
+            _setCursorMethod = null;
+            ForceNextAnnounce = false;
         }
 
         internal static void Initialize(HarmonyLib.Harmony harmony)
@@ -148,6 +162,12 @@ namespace MasterDuelAccessibility.Patches
             if (tts == null) return;
             try
             {
+                // Stocker l'instance active et mettre en cache la méthode SetCursor pour Tab
+                _activeInstance = __instance;
+                if (_setCursorMethod == null)
+                    _setCursorMethod = __instance.GetType()
+                        .GetMethod("SetCursor", BindingFlags.NonPublic | BindingFlags.Instance);
+
                 // Construire la clé de déduplication
                 string dedupKey = $"{__0}:{__2}";
                 if (dedupKey == _lastSetListKey) return;
@@ -200,8 +220,12 @@ namespace MasterDuelAccessibility.Patches
                 string? cardName = GetCardDataName(item);
                 if (string.IsNullOrWhiteSpace(cardName)) return;
 
-                // Éviter de répéter si on re-lit la même carte
-                if (cardName == _lastCursorCard) return;
+                // Éviter de répéter si on re-lit la même carte.
+                // Exception : ForceNextAnnounce=true (déplacement programmatique via Tab)
+                // garantit que le joueur entend toujours la carte naviguée.
+                bool forced = ForceNextAnnounce;
+                ForceNextAnnounce = false;
+                if (cardName == _lastCursorCard && !forced) return;
                 _lastCursorCard = cardName!;
 
                 string msg = Loc.Get("card_sel_cursor", cardName!, __0 + 1, total);
@@ -248,6 +272,48 @@ namespace MasterDuelAccessibility.Patches
                 return list?.Count ?? 0;
             }
             catch { return 0; }
+        }
+
+        /// <summary>
+        /// Avance le curseur de la liste de sélection active d'une position (wrap-around).
+        ///
+        /// Implémente le pattern MTGA Tab = "Cycle targets or highlighted elements" :
+        /// si une CardSelectionList est ouverte, Tab navigue dedans au lieu d'avancer la phase.
+        ///
+        /// Retourne true si le curseur a été déplacé (la liste est active et non vide).
+        /// SetCursor_Postfix annonce automatiquement la carte via ForceNextAnnounce=true.
+        /// </summary>
+        internal static bool TryMoveNext()
+        {
+            if (_activeInstance == null || _setCursorMethod == null) return false;
+            try
+            {
+                var type = _activeInstance.GetType();
+
+                // Vérifier que la liste est ouverte (IsActive = public bool property)
+                var isActiveProp = type.GetProperty("IsActive",
+                    BindingFlags.Public | BindingFlags.Instance);
+                if (isActiveProp?.GetValue(_activeInstance) is not true) return false;
+
+                // Lire l'index courant (CurrentCursoredDataIndex = public int field)
+                var cursorField = type.GetField("CurrentCursoredDataIndex",
+                    BindingFlags.Public | BindingFlags.Instance);
+                int current = cursorField?.GetValue(_activeInstance) is int c ? c : 0;
+
+                // Compter les cartes disponibles
+                var listField = type.GetField("m_GroupedDataList",
+                    BindingFlags.NonPublic | BindingFlags.Instance);
+                var list = listField?.GetValue(_activeInstance) as System.Collections.IList;
+                if (list == null || list.Count == 0) return false;
+
+                int next = (current + 1) % list.Count;
+
+                // Forcer l'annonce même si c'est la même carte (wrap-around)
+                ForceNextAnnounce = true;
+                _setCursorMethod.Invoke(_activeInstance, new object[] { next });
+                return true;
+            }
+            catch { ForceNextAnnounce = false; return false; }
         }
 
         /// <summary>

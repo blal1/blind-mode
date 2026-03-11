@@ -35,7 +35,7 @@ namespace MasterDuelAccessibility.Patches
         private static readonly System.Collections.Generic.HashSet<int> CriticalEvents =
             new System.Collections.Generic.HashSet<int> { 2, 54, 61, 62, 64, 80, 90 };
 
-        public static void RunEffect_Postfix(int __0, int __1)
+        public static void RunEffect_Postfix(int __0, int __1, int __2)
         {
             var tts = Plugin.Instance?.Tts;
             if (tts == null) return;
@@ -43,6 +43,28 @@ namespace MasterDuelAccessibility.Patches
             // ViewType 5 = PhaseChange, 6 = TurnChange — délégués à PhasePatch
             if (__0 == 5) { PhasePatch.PhaseChange_Postfix(__1); return; }
             if (__0 == 6) { PhasePatch.TurnChange_Postfix(__1); return; }
+
+            // ── RunCoin (61) : annonce le résultat du lancer de pièce ─────────
+            // param1 = numThrows, param2 = faceBits (bit i = 1 → pile/Front, 0 → face/Back)
+            // À vérifier en jeu — si les résultats sont incohérents, ajuster le mapping.
+            if (__0 == 61)
+            {
+                string msg = GetCoinResultMessage(__1, __2);
+                Plugin.Instance?.LogMsg($"[DuelEventPatch] RunCoin p1={__1} p2={__2} → {msg}");
+                tts.Speak(msg, interrupt: true);
+                return;
+            }
+
+            // ── RunDice (62) : annonce le résultat du lancer de dé ────────────
+            // param1 = numThrows(?), param2 = diceResult(?)
+            // À vérifier en jeu — log pour diagnostic.
+            if (__0 == 62)
+            {
+                string msg = GetDiceResultMessage(__1, __2);
+                Plugin.Instance?.LogMsg($"[DuelEventPatch] RunDice p1={__1} p2={__2} → {msg}");
+                tts.Speak(msg, interrupt: true);
+                return;
+            }
 
             string? key = __0 switch
             {
@@ -56,7 +78,7 @@ namespace MasterDuelAccessibility.Patches
                 57 => "duel_normal_summon",  // RunSummon
                 58 => GetSpSummonKey(__1),   // RunSpSummon — param1 = Engine.SpSummonType
                 59 => "duel_fusion_summon",  // RunFusion
-                69 => "duel_summon",         // CutinSummon
+                69 => GetCutinSummonKey(__1), // CutinSummon — param1 = CutinSummonType?
                 70 => "duel_fusion",         // CutinFusion
                 76 => "duel_flip_summon",    // CutinFlip — flip summon cutin
                 80 => "duel_cpu_thinking",   // CpuThinking       [critique]
@@ -69,7 +91,7 @@ namespace MasterDuelAccessibility.Patches
                 86 => "duel_chain_end",      // ChainEnd
                 92 => "duel_chain_step",     // ChainStep
                 68 => "duel_draw",           // CutinDraw
-                72 => "duel_activate",       // CutinActivate
+                72 => GetActivateKey(__1),   // CutinActivate — param1 = CutinActivateType?
                 73 => "duel_set",            // CutinSet
                 74 => "duel_flip",           // CutinReverse
                 77 => "duel_turn_end_event", // CutinTurnEnd
@@ -77,8 +99,6 @@ namespace MasterDuelAccessibility.Patches
                 79 => "duel_destroy",        // CutinBreak
                 54 => "duel_surrender",      // RunSurrender      [critique]
                 64 => "duel_special_win",    // RunSpecialWin     [critique]
-                61 => "duel_coin",           // RunCoin           [critique]
-                62 => "duel_dice",           // RunDice           [critique]
                 90 => "duel_janken",         // RunJanken         [critique]
                 26 => GetCardMoveKey(__1), // CardMove — param1 = Engine.CardMoveType
                 28 => "duel_flip_facedown",  // CardFlipTurn — carte retournée face cachée
@@ -122,6 +142,42 @@ namespace MasterDuelAccessibility.Patches
             _  => null              // Draw(9) et autres → pas d'annonce supplémentaire
         };
 
+        /// <summary>
+        /// Engine.CutinSummonType (extrait du dump) :
+        ///   Normal=0, Release1=1, Release2=2, Release3=3, Reverse=4,
+        ///   SpByEffect=5, SpNormal=6, ReSummon=7, PreSynchro=8, PreXyz=9, PrePendulum=10
+        ///
+        /// Hypothèse : param1 = CutinSummonType. À vérifier en jeu via les logs.
+        /// </summary>
+        private static string GetCutinSummonKey(int summonType)
+        {
+            Plugin.Instance?.LogMsg($"[DuelEventPatch] CutinSummon type={summonType}");
+            return summonType switch
+            {
+                4 => "duel_flip_summon",    // Reverse = flip summon
+                5 => "duel_special_summon", // SpByEffect = special summon by card effect
+                _ => "duel_summon"          // generic fallback
+            };
+        }
+
+        /// <summary>
+        /// Engine.CutinActivateType (extrait du dump) :
+        ///   NoChain=0, FromField=1, FromHand=2, Activate=3, Effect=4, FldGrave=5, CostEffect=6
+        ///
+        /// Hypothèse : param1 = CutinActivateType. À vérifier en jeu via les logs.
+        /// </summary>
+        private static string GetActivateKey(int activateType)
+        {
+            Plugin.Instance?.LogMsg($"[DuelEventPatch] CutinActivate type={activateType}");
+            return activateType switch
+            {
+                1 => "duel_activate_field",  // FromField
+                2 => "duel_activate_hand",   // FromHand
+                5 => "duel_activate_grave",  // FldGrave — from GY
+                _ => "duel_activate"         // generic fallback
+            };
+        }
+
         private static string GetDuelEndKey(int resultType) => resultType switch
         {
             1 => "duel_end_win",
@@ -130,6 +186,58 @@ namespace MasterDuelAccessibility.Patches
             4 => "duel_end_time",
             _ => "duel_end_generic"
         };
+
+        /// <summary>
+        /// Décode le résultat d'un lancer de pièce (RunCoin, ViewType 61).
+        ///
+        /// Hypothèse : param1 = numThrows, param2 = faceBits (bitmask).
+        /// DuelCoinDialog.Result : Back=0 (face), Front=1 (pile).
+        /// faceBits bit i = 1 → pile (Front), 0 → face (Back).
+        /// À vérifier en jeu via les logs.
+        /// </summary>
+        private static string GetCoinResultMessage(int param1, int param2)
+        {
+            int numThrows = param1;
+            int faceBits = param2;
+
+            if (numThrows <= 0 || numThrows > 10)
+                return Loc.Get("duel_coin"); // fallback générique
+
+            if (numThrows == 1)
+            {
+                bool isFront = (faceBits & 1) == 1;
+                return isFront
+                    ? Loc.Get("duel_coin_front")
+                    : Loc.Get("duel_coin_back");
+            }
+
+            // Multiple coins
+            int frontCount = 0;
+            for (int i = 0; i < numThrows; i++)
+                if (((faceBits >> i) & 1) == 1) frontCount++;
+
+            int backCount = numThrows - frontCount;
+            return Loc.Get("duel_coin_multi", frontCount, backCount);
+        }
+
+        /// <summary>
+        /// Décode le résultat d'un lancer de dé (RunDice, ViewType 62).
+        ///
+        /// Hypothèse : param2 = valeur du dé (1-6).
+        /// À vérifier en jeu via les logs.
+        /// </summary>
+        private static string GetDiceResultMessage(int param1, int param2)
+        {
+            // Best guess: param2 = dice value
+            if (param2 >= 1 && param2 <= 6)
+                return Loc.Get("duel_dice_result", param2);
+
+            // Alternative: param1 = dice value
+            if (param1 >= 1 && param1 <= 6)
+                return Loc.Get("duel_dice_result", param1);
+
+            return Loc.Get("duel_dice"); // fallback générique
+        }
 
         public static void DuelStart_Postfix()
         {

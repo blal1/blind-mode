@@ -1,3 +1,9 @@
+using System;
+using System.Reflection;
+using System.Runtime.InteropServices;
+using Il2CppInterop.Runtime;
+using Il2CppInterop.Runtime.InteropTypes;
+
 namespace MasterDuelAccessibility.Patches
 {
     /// <summary>
@@ -14,6 +20,12 @@ namespace MasterDuelAccessibility.Patches
         // Cache pour éviter de ré-annoncer le même écran lors de redraws UI
         private static string _lastAnnouncedView = "";
         private static System.DateTime _lastAnnouncedAt = System.DateTime.MinValue;
+
+        /// <summary>Raw VC name last announced — used by F3 shortcut to repeat current screen.</summary>
+        internal static string LastRawView => _lastAnnouncedView;
+
+        /// <summary>Resolves a raw VC name to a human-readable label (public for KeyboardShortcuts).</summary>
+        internal static string GetResolvedName(string rawName) => ResolveName(rawName);
         private static readonly System.TimeSpan ViewAnnounceCooldown = System.TimeSpan.FromSeconds(1.5);
 
         /// <summary>
@@ -125,6 +137,62 @@ namespace MasterDuelAccessibility.Patches
 
             return clean; // ex: "Lottery Portal", "WCS Profile", "Present Box"
         }
+        /// <summary>
+        /// Safely resolves the ViewController name from its instance.
+        ///
+        /// CRASH ROOT CAUSE (ErrorLog.log):
+        ///   UnityEngine.Object.get_name() → il2cpp_runtime_invoke → AccessViolationException (FATAL)
+        ///   This happens when the native IL2CPP object backing the VC has been partially freed
+        ///   while the managed wrapper still exists (Unity 6 timing issue).
+        ///
+        /// FIX:
+        ///   Instead of calling .name (native call through IL2CPP), we read the C# type name
+        ///   of the managed wrapper. For YgomSystem.UI.ViewController subclasses, the type name
+        ///   IS the ViewController identity (e.g. "DeckEditViewController2", "SoloModeViewController").
+        ///   This is a pure .NET reflection call — zero native IL2CPP involvement, cannot crash.
+        ///
+        ///   We strip known suffixes ("ViewController2","ViewController","Dialog","Widget")
+        ///   to get the logical name used in ScreenTitles and GameState.MenuNames.
+        ///
+        /// FALLBACK: if the type name ends with a numeric suffix we strip it too
+        ///   (e.g. "DeckSelectViewController2" → "DeckSelect").
+        /// </summary>
+        private static string? SafeGetName(object instance)
+        {
+            if (instance == null) return null;
+            try
+            {
+                // Primary: IL2CPP safety check (managed-side, no native call)
+                if (instance is Il2CppObjectBase il2cppObj)
+                {
+                    if (il2cppObj.WasCollected || il2cppObj.Pointer == IntPtr.Zero)
+                        return null;
+                }
+
+                // Read the C# type name — pure .NET, cannot trigger AccessViolationException
+                string typeName = instance.GetType().Name;
+                if (string.IsNullOrEmpty(typeName)) return null;
+
+                // Strip common suffixes to get the logical VC name
+                // Order matters: "ViewController2" before "ViewController"
+                string[] suffixes = { "ViewController2", "ViewController", "Dialog", "Widget" };
+                foreach (var s in suffixes)
+                {
+                    if (typeName.EndsWith(s, StringComparison.Ordinal))
+                    {
+                        typeName = typeName.Substring(0, typeName.Length - s.Length);
+                        break;
+                    }
+                }
+
+                return string.IsNullOrEmpty(typeName) ? null : typeName;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         // Postfix pour : ViewController.OnFocusChanged(bool setfocus)
         public static void OnFocusChanged_Postfix(object __instance, bool setfocus)
         {
@@ -132,17 +200,12 @@ namespace MasterDuelAccessibility.Patches
 
             try
             {
-                var nameProp = __instance.GetType()
-                    .GetProperty("name",
-                        System.Reflection.BindingFlags.Public |
-                        System.Reflection.BindingFlags.Instance);
-                string? vcName = nameProp?.GetValue(__instance)?.ToString();
+                string? vcName = SafeGetName(__instance);
                 if (string.IsNullOrEmpty(vcName)) return;
 
                 if (GameState.MenuNames.TryGetValue(vcName, out var menu))
                 {
                     GameState.CurrentMenu = menu;
-                    // Utiliser le titre lisible plutôt que le label brut du menu
                     string label = ResolveName(vcName);
                     if (!string.IsNullOrEmpty(label))
                         Plugin.Instance?.Tts?.Speak(label, interrupt: false);
@@ -156,30 +219,21 @@ namespace MasterDuelAccessibility.Patches
         {
             try
             {
-                // Vérifie si on est revenu à l'écran Home
                 var managerProp = __instance.GetType()
-                    .GetProperty("manager",
-                        System.Reflection.BindingFlags.Public |
-                        System.Reflection.BindingFlags.Instance);
+                    .GetProperty("manager", BindingFlags.Public | BindingFlags.Instance);
                 var manager = managerProp?.GetValue(__instance);
                 if (manager == null) return;
 
                 var getFocusMethod = manager.GetType().GetMethod(
                     "GetFocusViewController",
-                    System.Reflection.BindingFlags.Public |
-                    System.Reflection.BindingFlags.Instance,
+                    BindingFlags.Public | BindingFlags.Instance,
                     null,
                     new[] { typeof(bool) },
                     null);
                 var focusVc = getFocusMethod?.Invoke(manager, new object[] { false });
                 if (focusVc == null) return;
 
-                var nameProp = focusVc.GetType()
-                    .GetProperty("name",
-                        System.Reflection.BindingFlags.Public |
-                        System.Reflection.BindingFlags.Instance);
-                string? focusName = nameProp?.GetValue(focusVc)?.ToString();
-
+                string? focusName = SafeGetName(focusVc);
                 if (focusName == "Home")
                     GameState.CurrentMenu = GameState.Menu.None;
             }
@@ -201,11 +255,7 @@ namespace MasterDuelAccessibility.Patches
             if (tts == null) return;
             try
             {
-                var nameProp = __instance.GetType()
-                    .GetProperty("name",
-                        System.Reflection.BindingFlags.Public |
-                        System.Reflection.BindingFlags.Instance);
-                string? vcName = nameProp?.GetValue(__instance)?.ToString();
+                string? vcName = SafeGetName(__instance);
                 if (string.IsNullOrEmpty(vcName)) return;
 
                 // Ignorer les vues qui correspondent à un menu principal —
