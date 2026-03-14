@@ -224,9 +224,17 @@ namespace MasterDuelAccessibility.Patches
             RoomViewControllerPatch.Reset();
             RoomViewControllerPatch.Apply(_harmonyLate!);
 
-            // Patch DeckBrowserViewController.NotificationStackEntry — visionneuse deck
+            // Patch Room VCs secondaires — création, entrée, info, invitation, membres (section 10.2)
+            RoomPatch.Reset();
+            RoomPatch.Apply(_harmonyLate!);
+
+            // Patch DeckBrowserViewController.NotificationStackEntry + TrialDrawViewController
             DeckBrowserPatch.Reset();
             DeckBrowserPatch.Apply(_harmonyLate!);
+
+            // Patch StructureDeckSelectViewController / ObtainViewController — decks de structure
+            StructureDeckPatch.Reset();
+            StructureDeckPatch.Apply(_harmonyLate!);
 
             // Patch SeasonPointViewController.NotificationStackEntry — points de saison
             SeasonPointPatch.Reset();
@@ -236,9 +244,41 @@ namespace MasterDuelAccessibility.Patches
             ProfilePatch.Reset();
             ProfilePatch.Apply(_harmonyLate!);
 
-            // Patch ShopViewController.NotificationStackEntry + OnClickMainTab — boutique
+            // Patch ProfileData/Edit/CardCheck/FriendSearch (sections 11.1-11.2)
+            ProfileMiscPatch.Reset();
+            ProfileMiscPatch.Apply(_harmonyLate!);
+
+            // Patch SeasonPoint secondary VCs (section 14)
+            SeasonMiscPatch.Reset();
+            SeasonMiscPatch.Apply(_harmonyLate!);
+
+            // Patch Settings VCs (section 15)
+            SettingsMiscPatch.Reset();
+            SettingsMiscPatch.Apply(_harmonyLate!);
+
+            // Patch remaining DeckEdit dialogs (section 6.1)
+            DeckEditMiscPatch.Reset();
+            DeckEditMiscPatch.Apply(_harmonyLate!);
+
+            // Patch MissionBulkRecieveDialogWidget.OnPostAllInserted (section 12.2)
+            MissionMiscPatch.Reset();
+            MissionMiscPatch.Apply(_harmonyLate!);
+
+            // Patch ShopViewController.NotificationStackEntry + OnClickMainTab + OnFocusProductLine
             ShopViewControllerPatch.Reset();
             ShopViewControllerPatch.Apply(_harmonyLate!);
+
+            // Patch widgets d'achat : ConfirmRegDialogProductWidget + BuyButtonGroupWidget
+            ShopBuyWidgetPatch.Reset();
+            ShopBuyWidgetPatch.Apply(_harmonyLate!);
+
+            // Patch boutique secondaire (gemmes, tickets, échanges, historique)
+            ShopMiscPatch.Reset();
+            ShopMiscPatch.Apply(_harmonyLate!);
+
+            // Patches divers : cosmétiques deck, Neuron, lottery secondaires, packs
+            MiscViewsPatch.Reset();
+            MiscViewsPatch.Apply(_harmonyLate!);
 
             // Patch DownloadViewController — téléchargement initial
             DownloadViewControllerPatch.Reset();

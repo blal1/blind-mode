@@ -5,22 +5,13 @@ using System.Reflection;
 namespace MasterDuelAccessibility.Patches
 {
     /// <summary>
-    /// Patch pour DeckBrowserViewController — visionneuse de deck (Solo, Structure, Deck public, etc.)
+    /// Patches pour la navigation de decks :
     ///
-    /// ## Ce qui est annoncé :
+    ///   DeckBrowserViewController.NotificationStackEntry()
+    ///     → "[Nom du deck]. Deck principal : N cartes. Extra Deck : M cartes."
     ///
-    /// A) NotificationStackEntry() — visionneuse ouverte
-    ///    → "[Nom du deck]. Deck principal : N cartes. Extra Deck : M cartes."
-    ///    ou → "[Type]. Deck principal : N cartes. Extra Deck : M cartes." si nom vide
-    ///
-    /// ## Chaîne de données (dump-confirmé) :
-    ///
-    ///   DeckBrowserViewController (namespace YgomGame.DeckBrowser)
-    ///     m_DeckName      (string 0x158) — nom du deck
-    ///     m_NumMainCards  (int    0x1A8) — nombre de cartes du deck principal
-    ///     m_NumExtraCards (int    0x1AC) — nombre de cartes de l'Extra Deck
-    ///     m_BrowserType   (enum   0x298) — Solo=0, SoloNPC=1, StructureShop=2, StructureCopy=3,
-    ///                                      StructureFirst=4, PublicDeck=5, NeuronMyDeck=6
+    ///   TrialDrawViewController.NotificationStackEntry()
+    ///     → "Tirage d'essai" (annonce l'ouverture du simulateur de pioche)
     ///
     /// Appliqué dans LatePatches.ApplyMenuScenePatches() — types chargés dynamiquement.
     /// </summary>
@@ -57,6 +48,20 @@ namespace MasterDuelAccessibility.Patches
 
             harmony.Patch(mStack, postfix: new HarmonyMethod(
                 typeof(DeckBrowserPatch), nameof(StackEntry_Postfix)));
+
+            // TrialDrawViewController
+            var trialType = AccessToolsHelper.FindType("TrialDrawViewController");
+            if (trialType != null)
+            {
+                var mTrial = trialType.GetMethod("NotificationStackEntry",
+                    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                if (mTrial != null)
+                {
+                    harmony.Patch(mTrial, postfix: new HarmonyMethod(
+                        typeof(DeckBrowserPatch), nameof(TrialDraw_Entry_Postfix)));
+                    Plugin.Instance?.LogMsg("[DeckBrowserPatch] ✓ TrialDrawViewController.NotificationStackEntry");
+                }
+            }
 
             _applied = true;
             Plugin.Instance?.LogMsg("[DeckBrowserPatch] ✓ DeckBrowserViewController.NotificationStackEntry");
@@ -116,6 +121,14 @@ namespace MasterDuelAccessibility.Patches
                 };
             }
             catch { return Loc.Get("deck_browser_title"); }
+        }
+
+        // ── TrialDrawViewController.NotificationStackEntry ────────────────────
+
+        /// <summary>Applied separately for TrialDrawViewController.</summary>
+        public static void TrialDraw_Entry_Postfix(object __instance)
+        {
+            Plugin.Instance?.Tts?.Speak(Loc.Get("trial_draw"), interrupt: false);
         }
 
         private static FieldInfo? FindField(Type t, string name)

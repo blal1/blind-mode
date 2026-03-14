@@ -861,6 +861,140 @@ namespace MasterDuelAccessibility
                 "Délai de recherche dépassé.",
                 "Search timed out.");
 
+            // ── MatchingPatch — types de matchmaking (section 10.1) ───────────
+            Add("matchmaking_ranked",
+                "Matchmaking classé.",
+                "Ranked matchmaking.");
+            Add("matchmaking_room",
+                "Matchmaking salon privé.",
+                "Private room matchmaking.");
+            Add("matchmaking_team",
+                "Matchmaking équipe.",
+                "Team matchmaking.");
+            Add("matchmaking_wcs",
+                "Matchmaking WCS Finals.",
+                "WCS Finals matchmaking.");
+            Add("matchmaking_test_duel",
+                "Matchmaking duel test.",
+                "Test duel matchmaking.");
+
+            // ── DeckEditMiscPatch — dialogs éditeur deck (section 6.1) ────────
+            Add("deck_submenu",
+                "Sous-menu deck.",
+                "Deck sub-menu.");
+            Add("deck_name_edit",
+                "Renommer le deck.",
+                "Rename deck.");
+            Add("deck_auto_build",
+                "Construction automatique.",
+                "Auto build.");
+            Add("deck_filter_dialog",
+                "Filtres avancés.",
+                "Advanced filters.");
+
+            // ── SeasonMiscPatch — saison / ranked (section 14) ───────────────
+            Add("season_topmenu",
+                "Menu saison.",
+                "Season menu.");
+            Add("season_history",
+                "Historique de saison.",
+                "Season history.");
+            Add("season_ranking",
+                "Classement saison.",
+                "Season ranking.");
+            Add("season_team_create",
+                "Créer une équipe.",
+                "Create a team.");
+            Add("season_team_participate",
+                "Rejoindre une équipe.",
+                "Join a team.");
+            Add("season_team_top",
+                "Classement équipe.",
+                "Team ranking.");
+            Add("season_result",
+                "Résultat de saison.",
+                "Season result.");
+
+            // ── SettingsMiscPatch — paramètres (section 15) ──────────────────
+            Add("settings_open",
+                "Paramètres — {0}.",
+                "Settings — {0}.");
+            Add("settings_open_generic",
+                "Paramètres.",
+                "Settings.");
+            Add("settings_page_general",
+                "Général",
+                "General");
+            Add("settings_page_duel",
+                "Duel",
+                "Duel");
+            Add("settings_page_audience",
+                "Spectateur",
+                "Audience");
+            Add("settings_page_crossplay",
+                "Jeu croisé",
+                "Cross-play");
+            Add("settings_page_privacy",
+                "Confidentialité",
+                "Privacy");
+            Add("language_select",
+                "Sélection de langue.",
+                "Language selection.");
+            Add("language_select_current",
+                "Sélection de langue. {0}.",
+                "Language selection. {0}.");
+            Add("privacy_settings",
+                "Paramètres de confidentialité.",
+                "Privacy settings.");
+
+            // ── ProfileMiscPatch — profil et social (sections 11.1-11.2) ─────
+            Add("profile_data",
+                "Données du profil.",
+                "Profile data.");
+            Add("profile_edit",
+                "Édition du profil.",
+                "Edit profile.");
+            Add("profile_card_check",
+                "Vérification des cartes du profil.",
+                "Profile card check.");
+            Add("friend_search",
+                "Recherche d'ami.",
+                "Friend search.");
+
+            // ── MissionMiscPatch — collecte de récompenses (section 12.2) ────
+            Add("mission_bulk_receive",
+                "{0} récompense(s) collectée(s).",
+                "{0} reward(s) collected.");
+            Add("mission_bulk_receive_generic",
+                "Récompenses collectées.",
+                "Rewards collected.");
+
+            // ── RoomPatch — salons privés (section 10.2) ─────────────────────
+            Add("room_create",
+                "Créer un salon.",
+                "Create a room.");
+            Add("room_entry",
+                "Rejoindre un salon.",
+                "Join a room.");
+            Add("room_entry_specter",
+                "Rejoindre en tant que spectateur.",
+                "Join as spectator.");
+            Add("room_info",
+                "Salon : {0}. {1} sur {2} joueur(s).",
+                "Room: {0}. {1} of {2} player(s).");
+            Add("room_info_name",
+                "Salon : {0}.",
+                "Room: {0}.");
+            Add("room_info_generic",
+                "Informations du salon.",
+                "Room information.");
+            Add("room_invite",
+                "Inviter un ami.",
+                "Invite a friend.");
+            Add("room_member",
+                "Membres du salon.",
+                "Room members.");
+
             // ===== DECK EDITOR =====
             Add("deck_card_added",
                 "{0} ajoutée au deck.",
@@ -924,6 +1058,50 @@ namespace MasterDuelAccessibility
             Add("craft_result_generic",
                 "Carte fabriquée : {0}",
                 "Card crafted: {0}");
+            Add("batch_dismantle_dialog",
+                "Démantèlement en lot",
+                "Batch dismantle");
+            Add("batch_dismantle_open",
+                "Démantèlement en lot : {0} cartes",
+                "Batch dismantle: {0} cards");
+            Add("relative_browser",
+                "Cartes liées",
+                "Related cards");
+            Add("relative_browser_card",
+                "Cartes liées : {0}",
+                "Related cards: {0}");
+            Add("trial_draw",
+                "Tirage d'essai",
+                "Trial draw");
+            Add("structure_deck_select",
+                "Sélection du deck de structure",
+                "Structure deck selection");
+            Add("structure_deck_obtained",
+                "Deck de structure obtenu",
+                "Structure deck obtained");
+
+            // ===== COSMÉTIQUES DECK / APERÇUS / NEURON (MiscViewsPatch) =====
+            Add("icon_viewer",           "Aperçu d'icône",              "Icon preview");
+            Add("item_preview",          "Aperçu de l'objet",           "Item preview");
+            Add("set_accessory_dialog",  "Personnalisation du deck",    "Deck customization");
+            Add("neuron_deck_search",    "Recherche Neuron",            "Neuron deck search");
+
+            // ===== LOTTERY / PACKS SECONDAIRES (MiscViewsPatch) =====
+            Add("lottery_first_info",    "Premier achat — informations", "First purchase — info");
+            Add("lottery_first_view",    "Premier achat — aperçu",       "First purchase — preview");
+            Add("lottery_submission",    "Confirmation d'achat de pack", "Pack purchase confirmation");
+            Add("lottery_history",       "Historique des packs ouverts", "Pack opening history");
+            Add("pack_rate_list",        "Taux de drop",                 "Drop rates");
+            Add("secret_pack_obtained",       "Pack secret débloqué",          "Secret pack unlocked");
+            Add("secret_pack_obtained_name",  "Pack secret débloqué : {0}",    "Secret pack unlocked: {0}");
+
+            // ===== MODE SOLO — ÉCRANS SECONDAIRES (MiscViewsPatch) =====
+            Add("solo_portal",           "Portail Solo",                  "Solo portal");
+            Add("solo_start_production", "Début de duel Solo",            "Solo duel start");
+            Add("solo_clear",            "Victoire Solo",                 "Solo clear");
+            Add("solo_clear_complete",   "Chapitre terminé !",            "Chapter complete!");
+            Add("solo_clear_goal",       "Objectif atteint !",            "Goal achieved!");
+            Add("scenario_volume",       "Sélection du volume",           "Volume selection");
 
             // ===== DÉ / PILE-FACE (LatePatches — DuelView) =====
             Add("dice_you",
@@ -1026,6 +1204,16 @@ namespace MasterDuelAccessibility
             Add("screen_lottery_history",    "Historique — packs",       "Pack History");
             Add("screen_lottery_card_select","Sélection de carte",       "Card Selection");
             Add("screen_lottery_reward",     "Récompense — packs",       "Pack Reward");
+
+            // ===== BOUTIQUE — GEMMES / TICKETS / ÉCHANGES (ShopMiscPatch) =====
+            Add("gem_shop",            "Boutique de gemmes",         "Gem shop");
+            Add("gem_shop_permission", "Consentement requis",        "Consent required");
+            Add("gem_shop_approval",   "Approbation requise",        "Approval required");
+            Add("gem_get_history",     "Historique des achats",      "Purchase history");
+            Add("ticket_inventory",    "Inventaire de tickets",      "Ticket inventory");
+            Add("item_exchange",       "Échange d'objets",           "Item exchange");
+            Add("item_get_history",    "Historique des objets",      "Item history");
+
             // Résultats de pack (LotteryRewardPatch)
             Add("lottery_reward_open",
                 "Pack ouvert : {0}",
@@ -2500,6 +2688,14 @@ namespace MasterDuelAccessibility
                 "Portail de packs — {0}.",
                 "Pack portal — {0}.");
 
+            // ── LotteryCardSelectViewController (LotteryPortalPatch) ─────────────
+            Add("lottery_card_select",
+                "Sélection de carte garantie.",
+                "Guaranteed card selection.");
+            Add("lottery_card_select_pack",
+                "Sélection de carte garantie — {0}.",
+                "Guaranteed card selection — {0}.");
+
             // ── DuelpassResultViewPatch ───────────────────────────────────────────
             Add("duelpass_grade_up",
                 "Palier supérieur ! Palier {0}.",
@@ -2520,6 +2716,11 @@ namespace MasterDuelAccessibility
             Add("solo_gate_open_count",
                 "Portails Solo — {0} portail(s).",
                 "Solo Portals — {0} portal(s).");
+
+            // ── SoloGatePatch ISV navigation (OnItemSetDataMain) ─────────────────
+            Add("solo_gate_isv_item",
+                "Portail : {0}, {1} sur {2}.",
+                "Portal: {0}, {1} of {2}.");
             Add("solo_gate_item",
                 "{0}. {1}.",
                 "{0}. {1}.");
@@ -2659,6 +2860,24 @@ namespace MasterDuelAccessibility
             Add("shop_tab_selected",
                 "{0}.",
                 "{0}.");
+
+            // ── Shop ISV navigation (ShopViewControllerPatch.OnFocusProductLine) ──
+            Add("shop_product_focus",
+                "Produit : {0}.",
+                "Product: {0}.");
+
+            // ── Shop buy widgets (ShopBuyWidgetPatch) ────────────────────────────
+            Add("shop_confirm_product",
+                "Confirmation : {0}. {1}. {2}.",
+                "Confirmation: {0}. {1}. {2}.");
+            Add("shop_buy_widget_product",
+                "Acheter : {0}.",
+                "Buy: {0}.");
+
+            // ── Deck ISV navigation (DeckSelectPatch.OnItemSetData) ──────────────
+            Add("deck_isv_item",
+                "Deck {0}, {1} sur {2}.",
+                "Deck {0}, {1} of {2}.");
 
             // ── GemRestoreOnLogin (RegistrationPatch) ────────────────────────────
             Add("gem_restore_login",

@@ -1,3 +1,4 @@
+using System;
 using System.Reflection;
 
 namespace MasterDuelAccessibility.Patches
@@ -6,6 +7,8 @@ namespace MasterDuelAccessibility.Patches
     /// Patch pour YgomGame.DeckSelectViewController2 :
     ///   - OnFocusChanged(bool setfocus) : annonce le nom du deck mis en focus
     ///     lorsque l'écran de sélection de deck s'ouvre (avant un duel, mode solo, etc.)
+    ///   - OnItemSetData(GameObject gob, int dataindex) : ISV callback — annonce le
+    ///     nom du deck quand un item de la liste ISV est chargé (avec cooldown 300ms).
     ///
     /// DeckSelectViewController2 hérite de BaseMenuViewController.
     /// Les decks sont stockés dans le champ protégé m_Decks (List<DeckReference>).
@@ -22,6 +25,10 @@ namespace MasterDuelAccessibility.Patches
             BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance;
         private static readonly BindingFlags PubInst =
             BindingFlags.Public | BindingFlags.Instance;
+
+        // ISV cooldown — évite les annonces en rafale pendant le scroll
+        private static long _lastISVTick = 0L;
+        private const long ISVCooldownTicks = 3_000_000L; // 300 ms
 
         // Postfix pour DeckSelectViewController2.OnFocusChanged(bool setfocus)
         public static void OnFocusChanged_Postfix(object __instance, bool setfocus)
@@ -137,6 +144,55 @@ namespace MasterDuelAccessibility.Patches
 
             var nameField = deckRef.GetType().GetField("name", PubInst);
             return nameField?.GetValue(deckRef) as string;
+        }
+
+        // ── ISV Navigation — OnItemSetData ────────────────────────────────────
+
+        /// <summary>
+        /// Postfix pour DeckSelectViewController2.OnItemSetData(GameObject gob, int dataindex).
+        /// Fires when an ISV item is populated with deck data.
+        /// Announces deck name + position with 300 ms cooldown to suppress scroll flooding.
+        /// </summary>
+        public static void OnItemSetData_Postfix(object __instance, object gob, int dataindex)
+        {
+            // 300 ms cooldown
+            long now = DateTime.Now.Ticks;
+            if (now - _lastISVTick < ISVCooldownTicks) return;
+            _lastISVTick = now;
+
+            var tts = Plugin.Instance?.Tts;
+            if (tts == null) return;
+
+            try
+            {
+                var type = __instance.GetType();
+                FieldInfo? decksField = null;
+                while (type != null && decksField == null)
+                {
+                    decksField = type.GetField("m_Decks", AnyInst);
+                    type = type.BaseType;
+                }
+                if (decksField == null) return;
+
+                var deckList = decksField.GetValue(__instance);
+                if (deckList == null) return;
+
+                var countProp = deckList.GetType().GetProperty("Count", PubInst);
+                int count = countProp?.GetValue(deckList) is int c ? c : 0;
+                if (dataindex < 0 || dataindex >= count) return;
+
+                var getItem = deckList.GetType().GetMethod(
+                    "get_Item", PubInst, null, new[] { typeof(int) }, null);
+                var deckRef = getItem?.Invoke(deckList, new object[] { dataindex });
+                if (deckRef == null) return;
+
+                var nameField = deckRef.GetType().GetField("name", AnyInst);
+                string? name = nameField?.GetValue(deckRef) as string;
+                if (string.IsNullOrWhiteSpace(name)) return;
+
+                tts.Speak(Loc.Get("deck_isv_item", name, dataindex + 1, count), interrupt: true);
+            }
+            catch { }
         }
     }
 }

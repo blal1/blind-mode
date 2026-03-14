@@ -206,12 +206,15 @@ namespace MasterDuelAccessibility
             TryPatch("YgomSystem.UI.ColorContainerImage", "SetColor",
                 new HarmonyMethod(typeof(ColorContainerPatch), nameof(ColorContainerPatch.SetColor_Postfix)));
 
-            TryPatch("YgomSystem.UI.ViewController", "OnFocusChanged",
-                new HarmonyMethod(typeof(ViewControllerPatch), nameof(ViewControllerPatch.OnFocusChanged_Postfix)));
-            TryPatch("YgomSystem.UI.ViewController", "OnBack",
-                new HarmonyMethod(typeof(ViewControllerPatch), nameof(ViewControllerPatch.OnBack_Postfix)));
-            // ViewController.ShowUI does not exist — screen announcements handled by OnFocusChanged
-            // and NotificationStackEntry in individual ViewControllers.
+            // ── ViewController base class patches intentionally OMITTED ──────────
+            // Patching virtual methods on YgomSystem.UI.ViewController (base class) causes
+            // HarmonyX IL2CPP vtable recursion or NullReferenceException storms (~267K/session).
+            // Rule: NEVER patch virtual methods on ViewController base directly.
+            //
+            // OnFocusChanged: CurrentMenu tracking is handled by SelectionButtonPatch.OnPointerClick_Postfix.
+            // OnBack: CurrentMenu reset handled by DuelEventPatch (duel end → Menu.None)
+            //         and scene transitions (sceneLoaded → reinitialise).
+            // ─────────────────────────────────────────────────────────────────────
 
             TryPatch("YgomGame.Duel.CardInfo", "SetDescriptionArea",
                 new HarmonyMethod(typeof(CardInfoPatch), nameof(CardInfoPatch.Show_Postfix)));
@@ -249,6 +252,23 @@ namespace MasterDuelAccessibility
             TryPatch("PvpMenuMatchingViewController", "SetActiveView",
                 new HarmonyMethod(typeof(MatchingPatch), nameof(MatchingPatch.SetActiveView_Postfix)));
 
+            // Patch PvpMenuMatchingViewControllerBase.NotificationStackEntry — ouverture écran matchmaking
+            // Annonce le type : standard (ranked/cup), salon privé, équipe, WCS Finals.
+            TryPatch("PvpMenuMatchingViewControllerBase", "NotificationStackEntry",
+                new HarmonyMethod(typeof(MatchingPatch), nameof(MatchingPatch.MatchingBase_NSE_Postfix)));
+
+            // Patch Room/WcsFinal SetActiveView — même que standard mais INIT=0 (silencieux)
+            TryPatch("PvpMenuMatchingViewController_Room", "SetActiveView",
+                new HarmonyMethod(typeof(MatchingPatch), nameof(MatchingPatch.SetActiveView_Room_Postfix)));
+            TryPatch("PvpMenuMatchingViewController_WcsFinal", "SetActiveView",
+                new HarmonyMethod(typeof(MatchingPatch), nameof(MatchingPatch.SetActiveView_Room_Postfix)));
+
+            // Patch TestDuelMatchingViewController.NotificationStackEntry + SetActiveView
+            TryPatch("TestDuelMatchingViewController", "NotificationStackEntry",
+                new HarmonyMethod(typeof(MatchingPatch), nameof(MatchingPatch.TestDuelMatching_NSE_Postfix)));
+            TryPatch("TestDuelMatchingViewController", "SetActiveView",
+                new HarmonyMethod(typeof(MatchingPatch), nameof(MatchingPatch.SetActiveView_TestDuel_Postfix)));
+
             TryPatchByParamCount("YgomGame.Duel.CardCommand", "Open", 6,
                 new HarmonyMethod(typeof(CardCommandPatch), nameof(CardCommandPatch.Open_Postfix)));
 
@@ -258,11 +278,20 @@ namespace MasterDuelAccessibility
             TryPatch("YgomGame.DeckSelectViewController2", "OnFocusChanged",
                 new HarmonyMethod(typeof(DeckSelectPatch), nameof(DeckSelectPatch.OnFocusChanged_Postfix)));
 
+            TryPatch("YgomGame.DeckSelectViewController2", "OnItemSetData",
+                new HarmonyMethod(typeof(DeckSelectPatch), nameof(DeckSelectPatch.OnItemSetData_Postfix)));
+
             TryPatchByParamCount("YgomGame.Deck.CardCraftDialog", "Open", 5,
                 new HarmonyMethod(typeof(CardCraftPatch), nameof(CardCraftPatch.Open_Postfix)));
 
             TryPatch("YgomGame.Deck.CardCraftResultDialog", "GetResultMessage",
                 new HarmonyMethod(typeof(CardCraftResultPatch), nameof(CardCraftResultPatch.GetResultMessage_Postfix)));
+
+            TryPatch("YgomGame.Deck.BatchDismantleDialog", "NotificationStackEntry",
+                new HarmonyMethod(typeof(CardCraftPatch), nameof(CardCraftPatch.BatchDismantle_Entry_Postfix)));
+
+            TryPatch("CardRelativeBrowserViewController", "NotificationStackEntry",
+                new HarmonyMethod(typeof(CardCraftPatch), nameof(CardCraftPatch.RelativeBrowser_Entry_Postfix)));
 
             // ── InputBlockPatch
             TryPatchPostfix(

@@ -7,25 +7,29 @@ namespace MasterDuelAccessibility.Patches
 {
     /// <summary>
     /// Patch for LotteryPortalViewController — pack selection portal.
+    /// Also patches LotteryCardSelectViewController — guaranteed card selection.
     ///
     /// ## What is announced:
     ///
-    /// A) NotificationStackEntry() — portal screen opens
+    /// A) LotteryPortalViewController.NotificationStackEntry() — portal screen opens
     ///    → "Pack portal. [pack name if available]"
     ///
-    /// B) OnResult(ViewController from, object value) — a pack was selected
-    ///    → announces the transition (before the lottery pack opens)
+    /// B) LotteryCardSelectViewController.NotificationStackEntry() — guaranteed card select
+    ///    → "Sélection de carte garantie — [pack name]." or "Sélection de carte garantie."
+    ///    Reads m_lotteryID (int) and resolves via LotteryData.GetName.
+    ///    Namespace: YgomGame.Lottery, TypeDefIndex 5901.
     ///
     /// ## Data chain (dump-confirmed):
     ///
     ///   LotteryPortalViewController (YgomGame.Lottery)
     ///     ├─ m_Id (int 0xE8)         — the lottery pack ID for the current screen
-    ///     └─ NotificationStackEntry() — fires when this VC becomes active in the stack
+    ///     └─ NotificationStackEntry()
     ///
-    /// Pack name resolution: Content.Instance.GetName(cardId) pattern won't work here
-    /// (m_Id is a lottery ID, not a card ID). We use a game API to resolve the pack name:
-    ///   YgomGame.Lottery.LotteryData.GetName(int lotteryId) — if it exists
-    ///   Fallback: use ViewControllerPatch.GetResolvedName() (screen title)
+    ///   LotteryCardSelectViewController (YgomGame.Lottery)
+    ///     ├─ m_lotteryID (int 0xD0)  — lottery pack ID
+    ///     └─ NotificationStackEntry() — override
+    ///
+    /// Pack name resolution via LotteryData.GetName(int lotteryId) — see ResolveLotteryName().
     ///
     /// Applied in LatePatches.ApplyMenuScenePatches().
     /// </summary>
@@ -57,6 +61,24 @@ namespace MasterDuelAccessibility.Patches
                 harmony.Patch(nse, postfix: new HarmonyMethod(
                     typeof(LotteryPortalPatch), nameof(NotificationStackEntry_Postfix)));
                 Plugin.Instance?.LogMsg("[LotteryPortalPatch] ✓ LotteryPortalViewController.NotificationStackEntry");
+            }
+
+            // LotteryCardSelectViewController.NotificationStackEntry — guaranteed card selection
+            var cardSelectType = AccessToolsHelper.FindType("YgomGame.Lottery.LotteryCardSelectViewController");
+            if (cardSelectType != null)
+            {
+                var nseCardSelect = cardSelectType.GetMethod("NotificationStackEntry",
+                    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                if (nseCardSelect != null)
+                {
+                    harmony.Patch(nseCardSelect, postfix: new HarmonyMethod(
+                        typeof(LotteryPortalPatch), nameof(CardSelectNSE_Postfix)));
+                    Plugin.Instance?.LogMsg("[LotteryPortalPatch] ✓ LotteryCardSelectViewController.NotificationStackEntry");
+                }
+            }
+            else
+            {
+                Plugin.Instance?.LogWarn("[LotteryPortalPatch] LotteryCardSelectViewController introuvable.");
             }
 
             _applied = true;
@@ -116,6 +138,30 @@ namespace MasterDuelAccessibility.Patches
                 return val == null ? 0 : Convert.ToInt32(val);
             }
             catch { return 0; }
+        }
+
+        // ── LotteryCardSelectViewController.NotificationStackEntry ────────────
+        // m_lotteryID (int 0xD0) — pack ID for the guaranteed card selection
+
+        public static void CardSelectNSE_Postfix(object __instance)
+        {
+            var tts = Plugin.Instance?.Tts;
+            if (tts == null) return;
+            try
+            {
+                var fId = __instance.GetType().GetField("m_lotteryID",
+                    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                int lotteryId = fId != null ? Convert.ToInt32(fId.GetValue(__instance)) : 0;
+                string? packName = lotteryId > 0 ? ResolveLotteryName(lotteryId) : null;
+                string msg = string.IsNullOrWhiteSpace(packName)
+                    ? Loc.Get("lottery_card_select")
+                    : Loc.Get("lottery_card_select_pack", packName!);
+                tts.Speak(msg, interrupt: false);
+            }
+            catch
+            {
+                Plugin.Instance?.Tts?.Speak(Loc.Get("lottery_card_select"), interrupt: false);
+            }
         }
 
         /// <summary>

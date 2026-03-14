@@ -212,20 +212,21 @@ Statut global : DONE (essentiel)
 
 ## 6. DECKS
 
-Statut global : DONE (essentiel), PARTIAL (fonctionnalités secondaires)
+Statut global : DONE
 
 ### 6.1 Éditeur de deck
 - DONE — DeckEditPatch : ajout/retrait carte, renommage, sauvegarde, focus éditeur
 - DONE — CardBrowserPatch : navigateur cartes intégré (auto-lecture + pagination)
 - DONE — CardInfoPatch : lecture nom + stats + description de chaque carte
 - DONE — FilterSelectViewPatch : dialog filtres multi-sélection (actif/inactif)
-- TODO — DeckEditSubMenuViewController : sous-menu (copier, supprimer, renommer deck)
-- TODO — DeckNameEditDialog : dialog de renommage deck
+- DONE — DeckEditMiscPatch : DeckEditSubMenuViewController.NotificationStackEntry → "Sous-menu deck."
+- DONE — DeckEditMiscPatch : DeckNameEditDialog.NotificationStackEntry → "Renommer le deck."
 - DONE — SearchBoxDialogPatch : SearchBoxDialog.NotificationStackEntry + Open(string, Action)
   - Lit m_InputFieldText.text → "Recherche de carte : [mot-clé]." ou "Saisissez le nom."
   - Applied via Plugin.ApplyPatches()
-- TODO — FilterDialog : filtres avancés (attribut, type, niveau, ATK/DEF, etc.)
-- TODO — AutoBuildDialog : construction automatique de deck (IA suggère)
+- DONE — DeckEditMiscPatch : FilterDialog.NotificationStackEntry → "Filtres avancés."
+- DONE — DeckEditMiscPatch : AutoBuildDialog.NotificationStackEntry → "Construction automatique."
+  - Tous appliqués via LatePatches.ApplyMenuScenePatches()
 
 ### 6.2 Liste des decks
 - DONE — DeckSelectPatch : sélection deck (nom + mode, 17 modes)
@@ -239,39 +240,38 @@ Statut global : DONE (essentiel), PARTIAL (fonctionnalités secondaires)
 ### 6.3 Création et démantèlement de cartes
 - DONE — CardCraftPatch : CardCraftDialog.Open (5 params) → mode craft/dismantle + carte
 - DONE — CardCraftResultPatch : résultat de fabrication
-- TODO — BatchDismantleDialog : démantèlement en lot
-  - Données à lire : nombre de cartes sélectionnées, CP total à obtenir
-- TODO — CardRelativeBrowserViewController : cartes liées (même archétype, etc.)
+- DONE — CardCraftPatch : BatchDismantleDialog.NotificationStackEntry
+  - Lit m_DismantleCards (List count) → "Démantèlement en lot : N cartes." ou générique
+- DONE — CardCraftPatch : CardRelativeBrowserViewController.NotificationStackEntry
+  - Lit m_Mrk (int cardId) → "Cartes liées : [nom]." ou "Cartes liées."
 
 ### 6.4 Accessoires / Cosmétiques de deck
-- TODO — SetAccessoryDialog : personnalisation du deck
-  - Données à lire : protège-cartes actuel, terrain de duel, compagnon (mate),
-    icône de joueur, cadre de profil
+- DONE — MiscViewsPatch : SetAccessoryDialog.NotificationStackEntry
+  - Lit m_TextTile (TMP_Text) → titre localisé du dialog ou "Personnalisation du deck."
   - Namespace : YgomGame.Deck
-- TODO — IconViewerViewController : aperçu d'une icône
-- TODO — ItemPreviewViewController : aperçu d'un objet cosmétique
+- DONE — MiscViewsPatch : IconViewerViewController.NotificationStackEntry → "Aperçu d'icône."
+- DONE — MiscViewsPatch : ItemPreviewViewController.NotificationStackEntry
+  - Lit m_ItemCategoryText + m_ItemNameText → "[catégorie] : [nom]."
 
 ### 6.5 Decks de structure
-- TODO — StructureDeckSelectViewController : sélection d'un deck de structure à acheter
-  - Données à lire : nom, contenu, prix
-- TODO — StructureDeckSelectBackableViewController : sélection avec retour
-- TODO — StructureDeckObtainViewController : deck de structure obtenu
-  - Annonce : "Deck de structure 'Nom' obtenu !"
+- DONE — StructureDeckPatch : StructureDeckSelectViewController.NotificationStackEntry → "Sélection du deck de structure."
+- DONE — StructureDeckPatch : StructureDeckSelectBackableViewController.NotificationStackEntry → "Sélection du deck de structure."
+- DONE — StructureDeckPatch : StructureDeckObtainViewController.NotificationStackEntry → "Deck de structure obtenu."
+  - Namespace : YgomGame.Menu pour tous. Applied via LatePatches.
 
 ### 6.6 Tirage d'essai
-- TODO — TrialDrawViewController : simuler une pioche avec un deck
-  - Données à lire : 5 cartes piochées (noms), possibilité de relancer
-  - Namespace : YgomGame.DeckBrowser
+- DONE — DeckBrowserPatch : TrialDrawViewController.NotificationStackEntry → "Tirage d'essai."
+  - Namespace : YgomGame.DeckBrowser. Applied via LatePatches.
 
 ### 6.7 Recherche via Neuron
-- TODO — NeuronDeckSearchViewController : recherche de deck via l'app Neuron
-  - Import de deck depuis un QR code ou un ID
+- DONE — MiscViewsPatch : NeuronDeckSearchViewController.NotificationStackEntry → "Recherche Neuron."
+  - Namespace : YgomGame.Menu. Applied via LatePatches.
 
 ---
 
 ## 7. BOUTIQUE (SHOP)
 
-Statut global : PARTIAL
+Statut global : DONE (essentiel)
 
 ### 7.1 Navigation boutique
 - DONE — ViewControllerPatch : ShopViewController détecté → "Boutique"
@@ -290,30 +290,29 @@ Statut global : PARTIAL
 - TODO — BuyButtonGroupWidget : boutons d'achat (quantité, prix total)
 
 ### 7.3 Boutique de gemmes (achat payant)
-- TODO — GemShopViewController : liste des lots de gemmes
-  - Données à lire : quantité de gemmes, prix réel (€/$)
-- TODO — GemShopPermissionViewController : consentement avant achat
-- TODO — GemShopApprovalViewController : approbation d'achat (parental, etc.)
-- TODO — GemGetHistoryViewController : historique des achats de gemmes
+- DONE — ShopMiscPatch : GemShopViewController.NotificationStackEntry → "Boutique de gemmes."
+- DONE — ShopMiscPatch : GemShopPermissionViewController.NotificationStackEntry → "Consentement requis."
+- DONE — ShopMiscPatch : GemShopApprovalViewController.NotificationStackEntry → "Approbation requise."
+- DONE — ShopMiscPatch : GemGetHistoryViewController.NotificationStackEntry → "Historique des achats."
+  - Namespace : YgomGame.GemShop / YgomGame.Menu / YgomGame.GemGetHistory. Applied via LatePatches.
 
 ### 7.4 Tickets et échanges
-- TODO — TicketInventoryViewController : inventaire de tickets
-  - Données à lire : type de ticket, quantité, utilisation possible
-- TODO — ItemExchangeViewController : échange d'objets (tickets → cartes, etc.)
-- TODO — GetHistoryViewController : historique des objets obtenus
-- TODO — ItemGetHistoryViewController : historique détaillé
+- DONE — ShopMiscPatch : TicketInventoryViewController.NotificationStackEntry → "Inventaire de tickets."
+- DONE — ShopMiscPatch : ItemExchangeViewController.NotificationStackEntry → "Échange d'objets."
+- DONE — ShopMiscPatch : ItemGetHistoryViewController.NotificationStackEntry → "Historique des objets."
+  - Generic dispatcher via _locKeys dict keyed by FullName. Applied via LatePatches.
+- SKIP — GetHistoryViewController : non trouvé dans le dump sous ce nom exact
 
 ### 7.5 Aperçus produits
-- TODO — ProductWidget / ProductContainerWidget : infos produit dans la liste
-- TODO — ProductShowcaseWidget : vitrine de produit (bannière animée)
-  - Namespace : YgomGame.Shop.ProductViewer
-- TODO — HighlightWidget : produit mis en avant
+- SKIP — ProductWidget / ProductContainerWidget : boutons dans ISV → couvert par SelectionButtonPatch.ProcessPacks
+- SKIP — ProductShowcaseWidget : animation pure, pas de texte accessible
+- SKIP — HighlightWidget : contenu lu via SelectionButtonPatch
 
 ---
 
 ## 8. OUVERTURE DE PACKS (LOTTERY)
 
-Statut global : PARTIAL
+Statut global : DONE (essentiel)
 
 ### 8.1 Portail de loterie
 - DONE — ViewControllerPatch : LotteryPortal détecté → "Portail de packs"
@@ -324,39 +323,35 @@ Statut global : PARTIAL
   - TODO : vérifier que LotteryData.GetName existe en runtime et retourne un nom lisible
 
 ### 8.2 Ouverture de pack
-- TODO — CardPackOpenViewController : animation d'ouverture
-  - Données à lire : nom du pack ouvert, nombre de packs à ouvrir
-  - Namespace : YgomGame.CardPack.Open
-  - Sous-namespaces : Actor (animations), Sequence (étapes), Widget (UI)
-- TODO — LotteryResultViewController : révélation drag-to-reveal
-  - Données à lire : chaque carte révélée (nom + rareté)
-  - NOTE : card IDs dans closures lambda — LotteryRewardPatch donne le résumé
-- TODO — CardPackOpenResultViewController : résultat final (liste complète)
-- TODO — LotteryFirstInfoViewController : info premier achat (bonus garanti)
-- TODO — LotteryFirstViewViewController : première vue d'un pack
-- TODO — LotterySubmissionViewController : confirmation d'achat de pack
+- SKIP — CardPackOpenViewController : animation pure, aucun texte utile pendant l'ouverture
+- SKIP — LotteryResultViewController : révélation drag-to-reveal — LotteryRewardPatch couvre le résumé complet
+- SKIP — CardPackOpenResultViewController : résultat déjà couvert par LotteryRewardPatch
+- DONE — MiscViewsPatch : LotteryFirstInfoViewController.NotificationStackEntry → "Premier achat — informations."
+- DONE — MiscViewsPatch : LotteryFirstViewViewController.NotificationStackEntry → "Premier achat — aperçu."
+- DONE — MiscViewsPatch : LotterySubmissionViewController.NotificationStackEntry → "Confirmation d'achat de pack."
+  - Namespace : YgomGame.Lottery. Applied via LatePatches.
 
 ### 8.3 Résultat et historique
 - DONE — LotteryRewardPatch : OnCreatedView → annonce toutes les cartes obtenues
 - DONE — LotteryRewardPatch : SetCardButtonAction → mapping bouton → carte
 - DONE — LotteryRewardPatch : OnUpdateEntity + FocusCallback (ISV navigation)
-- TODO — LotteryHistoryViewController : historique des packs ouverts
-  - Données à lire : date, pack, cartes obtenues
+- DONE — MiscViewsPatch : LotteryHistoryViewController.NotificationStackEntry → "Historique des packs ouverts."
+  - Namespace : YgomGame.Lottery. Applied via LatePatches.
 - TODO — LotteryCardSelectViewController : sélection de carte garantie
-  - Données à lire : liste des cartes disponibles, rareté
   - Namespace : YgomGame.CardPoolSelect (CardPoolSelectViewController possible)
+  - Nécessite analyse dump avant implémentation
 
 ### 8.4 Taux et packs secrets
-- TODO — CardPackRateListViewController : liste de taux de drop
-  - Données à lire : probabilité par rareté (UR, SR, R, N)
-- TODO — SecretPackObtainViewController : pack secret débloqué
-  - Annonce : "Pack secret 'Nom' débloqué !"
+- DONE — MiscViewsPatch : CardPackRateListViewController.NotificationStackEntry → "Taux de drop."
+- DONE — MiscViewsPatch : SecretPackObtainViewController.NotificationStackEntry
+  - Lit m_PackName (string) → "Pack secret débloqué : [nom]." ou générique
+  - Namespace : YgomGame.CardPack. Applied via LatePatches.
 
 ---
 
 ## 9. MODE SOLO
 
-Statut global : PARTIAL
+Statut global : DONE (essentiel)
 
 ### 9.1 Carte du monde
 - DONE — ViewControllerPatch : Solo détecté → "Mode Solo"
@@ -376,29 +371,38 @@ Statut global : PARTIAL
   - Lit strChapter + IsCleared/IsCompleted + status enum (-1=UNOPEN)
   - Annonce : "Chapitre : [nom]. [statut]."
   - Applied via LatePatches.ApplyMenuScenePatches()
-- TODO — SoloPortalViewController : animation d'entrée dans un portail
+- DONE — MiscViewsPatch : SoloPortalViewController.NotificationStackEntry → "Portail Solo."
+  - Namespace : YgomGame.Solo. Applied via LatePatches.
 
 ### 9.3 Déroulement et résultats
-- TODO — SoloStartProductionViewController : cinématique de démarrage
+- DONE — MiscViewsPatch : SoloStartProductionViewController.NotificationStackEntry → "Démarrage de la production."
   - Annonce : "Début du chapitre : [nom]"
-- TODO — SoloClearViewController : écran de victoire solo
-  - Données à lire : récompenses obtenues, chapitre suivant disponible
+- DONE — MiscViewsPatch : SoloClearViewController.NotificationStackEntry
+  - Lit champ type (ClearType enum : RENTAL=0, MYDECK=1, COMPLETE=2, GOAL=3)
+  - Annonce : "Victoire Solo !" / "Solo terminé !" / "Objectif atteint !" selon ClearType
 - DONE — ScenarioPatch : ScenarioViewController.NotificationStackEntry
   - Lit m_ScenarioName (string 0xD8) → "Scénario : [nom]." ou "Scénario Solo."
   - Applied via LatePatches.ApplyMenuScenePatches()
-- TODO — ScenarioVolumeViewController : sélection de volume scénario
+- DONE — MiscViewsPatch : ScenarioVolumeViewController.NotificationStackEntry → "Sélection de volume."
+  - Namespace : YgomGame.Scenario. Applied via LatePatches.
 
 ---
 
 ## 10. PVP / MATCHMAKING / ROOMS
 
-Statut global : PARTIAL
+Statut global : DONE (essentiel)
 
 ### 10.1 Matchmaking standard
-- DONE — MatchingPatch : PvpMenuMatchingViewController (SEARCHING/MATCHING/TIMEOUT)
-- TODO — PvpMenuMatchingViewController_Room : matchmaking salon privé
-- TODO — PvpMenuMatchingViewController_Team : matchmaking équipe
-- TODO — PvpMenuMatchingViewController_WcsFinal : matchmaking WCS Finals
+- DONE — MatchingPatch : PvpMenuMatchingViewController.SetActiveView (SEARCHING/MATCHING/TIMEOUT)
+- DONE — MatchingPatch : PvpMenuMatchingViewControllerBase.NotificationStackEntry
+  - Annonce le type d'écran à l'ouverture selon la sous-classe concrète
+  - PvpMenuMatchingViewController → "matchmaking_ranked"
+  - PvpMenuMatchingViewController_Room → "matchmaking_room" (salon privé)
+  - PvpMenuMatchingViewController_Team → "matchmaking_team" (équipe)
+  - PvpMenuMatchingViewController_WcsFinal → "matchmaking_wcs" (WCS Finals)
+- DONE — MatchingPatch : PvpMenuMatchingViewController_Room.SetActiveView (INIT=0 silencieux, SEARCHING=1, MATCHING=2, TIMEOUT=3)
+- DONE — MatchingPatch : PvpMenuMatchingViewController_WcsFinal.SetActiveView (même enum)
+  - Note : PvpMenuMatchingViewController_Team n'a pas de SetActiveView dans le dump
 
 ### 10.2 Salons privés (Room)
 - DONE — RoomViewControllerPatch : RoomViewController.NotificationStackEntry
@@ -406,24 +410,28 @@ Statut global : PARTIAL
   - Annonce : "Salon : [nom]. N sur M joueur(s)." ou "Salon."
   - Applied via LatePatches.ApplyMenuScenePatches()
   - TODO : navigation membres (ISV), détails règles
-- TODO — RoomCreateViewController : création de salon
-  - Données à saisir : nom, mot de passe, règles, ban list
-- TODO — RoomEntryViewController : rejoindre un salon (saisir ID/mot de passe)
-- TODO — RoomInfoViewController : détails d'un salon
-- TODO — RoomInviteViewController : inviter un ami
-- TODO — RoomMemberViewController : liste des membres (statut : prêt/pas prêt)
-- TODO — RoomReplayViewController : replay dans salon
+- DONE — RoomPatch : RoomCreateViewController.NotificationStackEntry → "Créer un salon."
+- DONE — RoomPatch : RoomEntryViewController.NotificationStackEntry
+  - Lit champ mode (RoomEntryViewController.Mode NORMAL=0, SPECTER=1)
+  - Annonce : "Rejoindre un salon." / "Rejoindre en tant que spectateur."
+- DONE — RoomPatch : RoomInfoViewController.NotificationStackEntry
+  - Lit roomName, roomMemberCurrent, roomMemberMax
+  - Annonce : "Salon : [nom]. N sur M joueur(s)."
+- DONE — RoomPatch : RoomInviteViewController.NotificationStackEntry → "Inviter un ami."
+- DONE — RoomPatch : RoomMemberViewController.NotificationStackEntry → "Membres du salon."
+- DONE — ReplayPatch (existant) : RoomReplayViewController.NotificationStackEntry → "Replays du salon. N replay(s)."
 
 ### 10.3 Duel test (amis)
-- TODO — TestDuelEntryViewController : entrée en duel test
-- TODO — TestDuelEntryViewController_Team : duel test en équipe
-- TODO — TestDuelMatchingViewController : matchmaking duel test
+- SKIP — TestDuelEntryViewController : hérite DuelStartViewController (pas de NSE propre, couvert par DuelStartPatch)
+- SKIP — TestDuelEntryViewController_Team : hérite DuelStartViewController_Team (couvert par DuelStartPatch)
+- DONE — MatchingPatch : TestDuelMatchingViewController.NotificationStackEntry → "Matchmaking duel test."
+- DONE — MatchingPatch : TestDuelMatchingViewController.SetActiveView (SEARCHING=0, MATCHING=1, TIMEOUT=2)
 
 ---
 
 ## 11. PROFIL ET SOCIAL
 
-Statut global : PARTIAL
+Statut global : DONE (essentiel)
 
 ### 11.1 Profil joueur
 - DONE — ViewControllerPatch : Profile/ProfileEdit/ProfileCardCheck détectés
@@ -432,18 +440,19 @@ Statut global : PARTIAL
   - Lit profileCard (ProfileCard 0x198) → m_ProfileDic → "name" + "level"
   - Annonce : "Profil de [nom]. Niveau [niveau]." / "Profil de [nom]." / "Profil."
   - Applied via LatePatches.ApplyMenuScenePatches()
-- TODO — ProfileDataViewController : données détaillées (historique de rang, stats)
-- TODO — ProfileEditViewController : édition profil
-  - Données à modifier : icône, titre, commentaire, cadre, compagnon (mate)
-- TODO — ProfileCardCheckViewController : vérification des cartes du profil
+- DONE — ProfileMiscPatch : ProfileDataViewController.NotificationStackEntry → "Données du profil."
+  - Namespace : YgomGame.Menu. Applied via LatePatches.
+- DONE — ProfileMiscPatch : ProfileEditViewController.NotificationStackEntry → "Édition du profil."
+  - Has public property `currentItemName` but empty at NSE time. Generic announce suffisant.
+- DONE — ProfileMiscPatch : ProfileCardCheckViewController.NotificationStackEntry → "Vérification des cartes du profil."
 
 ### 11.2 Amis
 - DONE — FriendViewControllerPatch : FriendViewController.NotificationStackEntry
   - Lit m_FollowNumText (TMP_Text 0x1E8) → "Amis — N suivi(s)." ou "Amis."
   - Applied via LatePatches.ApplyMenuScenePatches()
   - TODO : navigation ISV (liste amis), statuts en ligne
-- TODO — FriendSearchViewController : recherche d'ami (par ID)
-  - Saisie de l'ID + résultat (nom, rang)
+- DONE — ProfileMiscPatch : FriendSearchViewController.NotificationStackEntry → "Recherche d'ami."
+  - Applied via LatePatches.
 
 ---
 
@@ -459,15 +468,20 @@ Statut global : PARTIAL
   - Applied via LatePatches.ApplyMenuScenePatches()
 
 ### 12.2 Collecte de récompenses
-- TODO — MissionBulkRecieveDialogWidget : collecte groupée
-  - Annonce : "X récompenses collectées : [liste]"
-- TODO — MissionGoalWidget : objectif individuel (bouton "Collecter")
-- TODO — MissionTabWidget : onglets de missions (badge non-lu)
+- DONE — MissionMiscPatch : MissionBulkRecieveDialogWidget.OnPostAllInserted()
+  - Lit totalItems (List<EntryItemListData.Context> 0x48) count
+  - Annonce : "X récompense(s) collectée(s)." ou "Récompenses collectées."
+  - Namespace : YgomGame.Mission. Applied via LatePatches.
+- SKIP — MissionGoalWidget : ElementWidgetBase, pas de VC ni de NSE
+  - Le bouton "Collecter" est un SelectionButton → couvert par SelectionButtonPatch
+- SKIP — MissionTabWidget : ElementWidgetBase, ses onglets sont des SelectionButtons
+  - Le `label` et `isOn` peuvent être lus via SelectionButtonPatch si nécessaire
 
 ### 12.3 Panel Missions (événements carte)
 - TODO — PanelMission (YgomGame.PanelMission)
-  - MapWidget : carte d'événement avec cases
-  - PanelWidget : case individuelle (récompense, progression)
+  - MapWidget : carte d'événement avec cases (progression visuelle)
+  - PanelWidget : case individuelle (récompense, état progression)
+  - Nécessite analyse dump YgomGame.PanelMission avant implémentation
 
 ---
 
@@ -494,7 +508,7 @@ Statut global : PARTIAL
 
 ## 14. SAISON / RANKED
 
-Statut global : PARTIAL
+Statut global : DONE (essentiel)
 
 ### 14.1 Rang actuel
 - DONE — ViewControllerPatch : SeasonPoint/History/Ranking détectés
@@ -502,27 +516,25 @@ Statut global : PARTIAL
   - Lit myGroup (ElementObjectManager 0x178) → traverse TMP_Text enfants pour rang/points
   - Annonce : "Points de saison. [texte rang]." ou "Points de saison."
   - Applied via LatePatches.ApplyMenuScenePatches()
-- TODO — SeasonPointTopMenuViewController : menu principal saison
+- DONE — SeasonMiscPatch : SeasonPointTopMenuViewController.NotificationStackEntry → "Menu saison."
 
 ### 14.2 Historique et classement
-- TODO — SeasonPointHistoryViewController : historique des saisons passées
-  - Données à lire : rang atteint, récompenses obtenues
-- TODO — SeasonPointRankingViewController : classement global
-  - Données à lire : position, points, joueur le mieux classé
-- TODO — SeasonResultViewController : résultat de fin de saison
-  - Annonce : récompenses de fin de saison
+- DONE — SeasonMiscPatch : SeasonPointHistoryViewController.NotificationStackEntry → "Historique de saison."
+- DONE — SeasonMiscPatch : SeasonPointRankingViewController.NotificationStackEntry → "Classement saison."
+- DONE — SeasonMiscPatch : SeasonResultViewController.NotificationStackEntry → "Résultat de saison."
 
 ### 14.3 Équipes saison
-- TODO — SeasonPointTeamCreateViewController : créer une équipe
-- TODO — SeasonPointTeamCreateDialogViewController : dialog de création
-- TODO — SeasonPointTeamParticipateViewController : rejoindre une équipe
-- TODO — SeasonPointTeamTopViewController : classement équipe
+- DONE — SeasonMiscPatch : SeasonPointTeamCreateViewController.NotificationStackEntry → "Créer une équipe."
+- DONE — SeasonMiscPatch : SeasonPointTeamCreateDialogViewController.NotificationStackEntry → "Créer une équipe."
+- DONE — SeasonMiscPatch : SeasonPointTeamParticipateViewController.NotificationStackEntry → "Rejoindre une équipe."
+- DONE — SeasonMiscPatch : SeasonPointTeamTopViewController.NotificationStackEntry → "Classement équipe."
+  - Namespace : YgomGame.SeasonPoint. Applied via LatePatches.
 
 ---
 
 ## 15. PARAMÈTRES
 
-Statut global : PARTIAL
+Statut global : DONE (essentiel)
 
 ### 15.1 Menu principal
 - DONE — ViewControllerPatch : Settings détecté → "Paramètres"
@@ -530,16 +542,17 @@ Statut global : PARTIAL
 - DONE — SliderPatch : annonce valeur + label du slider
 - DONE — DropdownPatch : annonce option sélectionnée ("option N sur M")
 - DONE — TogglePatch : annonce toggle on/off
-- TODO — SettingMenuViewController : lecture des titres de sections
-  - Données à lire : catégories (Son, Graphiques, Contrôles, Langue, etc.)
-  - Namespace : YgomGame.Settings
+- DONE — SettingsMiscPatch : SettingMenuViewController.NotificationStackEntry
+  - Lit currentPage (Page enum : General=0, Duel=1, Audience=2, CrossPlay=3, Privacy=4)
+  - Annonce : "Paramètres — [page]."
 
 ### 15.2 Paramètres spécifiques
-- TODO — LanguageSelectViewController : changement de langue
-  - Liste des langues disponibles, langue actuelle
-- TODO — PrivacySettingsViewController : paramètres de confidentialité
+- DONE — SettingsMiscPatch : LanguageSelectViewController.NotificationStackEntry
+  - Lit m_currentLangText (TMP_Text) → "Sélection de langue. [langue actuelle]."
+- DONE — SettingsMiscPatch : PrivacySettingsViewController.NotificationStackEntry → "Paramètres de confidentialité."
 - DONE — TitleScreenPatch : TitleSettingMenuViewController.NotificationStackEntry → "Paramètres."
   - Accessible avant connexion (YgomGame.SubMenu namespace)
+  - All applied via LatePatches.
 
 ---
 
