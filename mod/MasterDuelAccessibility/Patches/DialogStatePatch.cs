@@ -41,6 +41,10 @@ namespace MasterDuelAccessibility.Patches
     {
         private static bool _applied = false;
 
+        // Reflection cache for EffectTaskRunDialog.text field
+        private static FieldInfo? _fEffectTaskText;
+        private static string _lastEffectTaskText = "";
+
         /// <summary>
         /// Applique tous les patches de dialog duel.
         /// Doit être appelé depuis <see cref="LatePatches.Initialize"/> en scène duel.
@@ -87,6 +91,14 @@ namespace MasterDuelAccessibility.Patches
             PatchBaseClass(harmony,
                 "YgomGame.Duel.ChoiceFirstPlayerDialog", "ShowUI",
                 nameof(ChoiceFirstPlayer_ShowUI_Postfix));
+
+            // MessageDialog.SetMessage(string msg) — Open() has no params so
+            // PatchOpenWithMessage finds nothing; SetMessage is the only announce point.
+            PatchMessageDialogSetMessage(harmony);
+
+            // EffectTaskRunDialog.RunDialog() — private method that triggers the dialog;
+            // reads the `text` field and announces it (effect resolution messages).
+            PatchEffectTaskRunDialog(harmony);
 
             _applied = true;
             Plugin.Instance?.LogMsg("[DialogStatePatch] Patches de dialog duel appliqués.");
@@ -238,7 +250,7 @@ namespace MasterDuelAccessibility.Patches
             {
                 var message = __0 ?? "";
                 if (!string.IsNullOrWhiteSpace(message))
-                    tts.Speak(message, interrupt: true);
+                    tts.Speak(message, interrupt: false);
             }
             catch { }
         }
@@ -254,7 +266,121 @@ namespace MasterDuelAccessibility.Patches
             if (tts == null) return;
             try
             {
-                tts.Speak(Loc.Get("choice_first_player_dialog"), interrupt: true);
+                tts.Speak(Loc.Get("choice_first_player_dialog"), interrupt: false);
+            }
+            catch { }
+        }
+
+        // ── MessageDialog helpers ─────────────────────────────────────────────
+
+        /// <summary>
+        /// Patches <c>MessageDialog.SetMessage(string msg)</c>.
+        /// MessageDialog extends MonoBehaviour (not DuelDialogBase) so ShowUI/HideUI
+        /// patches don't apply. Open() has no parameters. SetMessage is the only
+        /// reliable point to read the displayed text.
+        /// </summary>
+        private static void PatchMessageDialogSetMessage(HarmonyLib.Harmony harmony)
+        {
+            try
+            {
+                var type = LatePatches.FindType("YgomGame.Duel.MessageDialog");
+                if (type == null)
+                {
+                    Plugin.Instance?.LogWarn("[DialogStatePatch] MessageDialog introuvable pour SetMessage.");
+                    return;
+                }
+
+                var method = type.GetMethod("SetMessage",
+                    BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
+                if (method == null)
+                {
+                    Plugin.Instance?.LogWarn("[DialogStatePatch] MessageDialog.SetMessage introuvable.");
+                    return;
+                }
+
+                harmony.Patch(method, postfix: new HarmonyMethod(
+                    typeof(DialogStatePatch), nameof(MessageDialog_SetMessage_Postfix)));
+                Plugin.Instance?.LogMsg("[DialogStatePatch] ✓ MessageDialog.SetMessage");
+            }
+            catch (Exception ex)
+            {
+                Plugin.Instance?.LogErr($"[DialogStatePatch] MessageDialog.SetMessage: {ex.Message}");
+            }
+        }
+
+        private static void MessageDialog_SetMessage_Postfix(string __0)
+        {
+            var tts = Plugin.Instance?.Tts;
+            if (tts == null || string.IsNullOrWhiteSpace(__0)) return;
+            try { tts.Speak(__0, interrupt: false); }
+            catch { }
+        }
+
+        // ── EffectTaskRunDialog helpers ───────────────────────────────────────
+
+        /// <summary>
+        /// Patches <c>EffectTaskRunDialog.RunDialog()</c> (private).
+        /// EffectTaskRunDialog is an EffectTask state machine that shows various
+        /// dialog types (DuelConfirmDialog, DuelCoinDialog, etc.) based on
+        /// Engine.DialogType. The <c>text</c> field (string 0x30) contains the
+        /// localized message resolved before RunDialog is called.
+        /// The downstream dialogs (DuelConfirmDialog etc.) are already announced by
+        /// their own Open() patches; this patch ensures the text is announced
+        /// even when the downstream dialog type is not individually patched.
+        /// Uses per-instance dedup to avoid re-announcing the same text.
+        /// </summary>
+        private static void PatchEffectTaskRunDialog(HarmonyLib.Harmony harmony)
+        {
+            try
+            {
+                var type = LatePatches.FindType("YgomGame.Duel.EffectTaskRunDialog");
+                if (type == null)
+                {
+                    Plugin.Instance?.LogWarn("[DialogStatePatch] EffectTaskRunDialog introuvable.");
+                    return;
+                }
+
+                var method = type.GetMethod("RunDialog",
+                    BindingFlags.NonPublic | BindingFlags.Instance);
+                if (method == null)
+                {
+                    Plugin.Instance?.LogWarn("[DialogStatePatch] EffectTaskRunDialog.RunDialog introuvable.");
+                    return;
+                }
+
+                harmony.Patch(method, postfix: new HarmonyMethod(
+                    typeof(DialogStatePatch), nameof(EffectTaskRunDialog_RunDialog_Postfix)));
+                Plugin.Instance?.LogMsg("[DialogStatePatch] ✓ EffectTaskRunDialog.RunDialog");
+            }
+            catch (Exception ex)
+            {
+                Plugin.Instance?.LogErr($"[DialogStatePatch] EffectTaskRunDialog.RunDialog: {ex.Message}");
+            }
+        }
+
+        private static void EffectTaskRunDialog_RunDialog_Postfix(object __instance)
+        {
+            var tts = Plugin.Instance?.Tts;
+            if (tts == null) return;
+            try
+            {
+                if (_fEffectTaskText == null)
+                {
+                    _fEffectTaskText = __instance.GetType().GetField("text",
+                        BindingFlags.NonPublic | BindingFlags.Instance);
+                }
+
+                var text = _fEffectTaskText?.GetValue(__instance) as string;
+
+                if (!string.IsNullOrWhiteSpace(text) && text != _lastEffectTaskText)
+                {
+                    _lastEffectTaskText = text!;
+                    tts.Speak(text!, interrupt: false);
+                }
+                else if (string.IsNullOrWhiteSpace(text))
+                {
+                    tts.Speak(Loc.Get("effect_task_dialog"), interrupt: false);
+                }
             }
             catch { }
         }

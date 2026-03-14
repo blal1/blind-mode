@@ -48,7 +48,7 @@ namespace MasterDuelAccessibility.Patches
                     ? Loc.Get("input_digit_opened", current, min, max)
                     : Loc.Get("input_digit_opened_titled", title, current, min, max);
 
-                tts.Speak(msg, interrupt: true);
+                tts.Speak(msg, interrupt: false);
             }
             catch { }
         }
@@ -65,7 +65,7 @@ namespace MasterDuelAccessibility.Patches
             try
             {
                 int current = ReadInt(__instance, "_currentValue");
-                tts.Speak(Loc.Get("input_digit_value", current), interrupt: true, addToHistory: false);
+                tts.Speak(Loc.Get("input_digit_value", current), interrupt: false, addToHistory: false);
             }
             catch { }
         }

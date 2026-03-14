@@ -103,7 +103,7 @@ namespace MasterDuelAccessibility.Patches
             {
                 string? catName = TryGetCurrentCategoryName(__instance);
                 if (!string.IsNullOrWhiteSpace(catName))
-                    tts.Speak(Loc.Get("shop_tab_selected", catName!), interrupt: true);
+                    tts.Speak(Loc.Get("shop_tab_selected", catName!), interrupt: false);
             }
             catch (Exception ex)
             {

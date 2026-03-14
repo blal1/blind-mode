@@ -51,7 +51,7 @@ namespace MasterDuelAccessibility.Patches
                         : message;
 
                 if (!string.IsNullOrEmpty(text))
-                    tts.Speak(text, interrupt: true);
+                    tts.Speak(text, interrupt: false);
             }
             catch { }
         }

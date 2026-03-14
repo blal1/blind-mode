@@ -33,7 +33,7 @@ namespace MasterDuelAccessibility.Patches
                 }
 
                 if (!string.IsNullOrWhiteSpace(msg))
-                    tts.Speak(msg, interrupt: true);
+                    tts.Speak(msg, interrupt: false);
             }
             catch { /* réflexion silencieuse */ }
         }

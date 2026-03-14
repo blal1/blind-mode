@@ -132,7 +132,7 @@ namespace MasterDuelAccessibility.Patches
                 // écrans de navigation dans AccessibleArena BaseNavigator).
                 tts.Speak(
                     Loc.Get("cmd_cursor", label, __0 + 1, total),
-                    interrupt: true, addToHistory: false);
+                    interrupt: false, addToHistory: false);
             }
             catch { }
         }

@@ -80,7 +80,7 @@ namespace MasterDuelAccessibility.Patches
                         string? lotteryCard = LotteryRewardPatch.TryGetCardName(iid);
                         if (lotteryCard != null)
                         {
-                            tts.Speak(lotteryCard, interrupt: true);
+                            tts.Speak(lotteryCard, interrupt: false);
                             return;
                         }
                     }
@@ -95,6 +95,12 @@ namespace MasterDuelAccessibility.Patches
                 if (contextText != null)
                     text = contextText;
 
+                // Enrich short/empty labels (icon buttons, abbreviations) by
+                // walking the transform hierarchy — skips container names.
+                // Pattern: Monster Train GetTextWithContext().
+                if (string.IsNullOrWhiteSpace(text) || text!.Length <= 2)
+                    text = AccessToolsHelper.GetContextualLabel(GetTransform(__instance), text) ?? text;
+
                 if (string.IsNullOrWhiteSpace(text)) return;
 
                 // Append "N sur M" position info when in a list context.
@@ -106,7 +112,7 @@ namespace MasterDuelAccessibility.Patches
                 _lastSpoken = text;
                 _lastSpokenAt = now;
 
-                tts.Speak(text, interrupt: true);
+                tts.Speak(text, interrupt: false);
             }
             catch { /* silent reflection fail */ }
         }
@@ -667,6 +673,10 @@ namespace MasterDuelAccessibility.Patches
             var t = go.GetType().GetProperty("transform", Pub)?.GetValue(go);
             if (t == null) return;
             string parentName = GetName(GetParent(t)) ?? "";
+            // Skip generic container names so they don't pollute FindByKey lookups.
+            string key = AccessToolsHelper.IsContainerName(parentName)
+                ? goName
+                : $"{parentName}/{goName}";
 
             foreach (var typeName in new[] { "RubyTextGX", "ExtendedTextMeshProUGUI" })
             {
@@ -679,7 +689,7 @@ namespace MasterDuelAccessibility.Patches
                 var text = compType.GetProperty("text", Pub)?.GetValue(comp)?.ToString();
                 if (!string.IsNullOrWhiteSpace(text))
                 {
-                    results.Add(($"{parentName}/{goName}", text));
+                    results.Add((key, text));
                     break;
                 }
             }

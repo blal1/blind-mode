@@ -254,7 +254,7 @@ namespace MasterDuelAccessibility.Patches
                 if (IsInstantDuplicate(__0)) return;
 
                 // Lire le message avec interruption — c'est une notification critique
-                tts.Speak(__0, interrupt: true);
+                tts.Speak(__0, interrupt: false);
             }
             catch { }
         }

@@ -164,7 +164,7 @@ namespace MasterDuelAccessibility.Patches
                 string msg = grade > 0
                     ? Loc.Get("duelpass_item_grade", name!, grade)
                     : name!;
-                tts.Speak(msg, interrupt: true);
+                tts.Speak(msg, interrupt: false);
             }
             catch { }
         }

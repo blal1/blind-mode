@@ -45,7 +45,7 @@ namespace MasterDuelAccessibility.Patches
                     ? Loc.Get("input_focused", label)
                     : Loc.Get("input_focused_with_content", label, content);
 
-                tts.Speak(msg, interrupt: true);
+                tts.Speak(msg, interrupt: false);
             }
             catch { /* réflexion silencieuse */ }
         }

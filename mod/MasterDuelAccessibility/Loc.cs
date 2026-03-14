@@ -2315,6 +2315,12 @@ namespace MasterDuelAccessibility
             Add("notif_tab_changed",
                 "{0} — {1} élément(s).",
                 "{0} — {1} item(s).");
+            Add("notif_unread_marker",
+                "non lue",
+                "unread");
+            Add("notif_item",
+                "{0}. {1}. {2}.",
+                "{0}. {1}. {2}.");
 
             // ── Duel Pass (DuelPassRewardPatch) ──────────────────────────────
             Add("duelpass_open",
@@ -2405,6 +2411,12 @@ namespace MasterDuelAccessibility
             Add("header_gems",
                 "{0} gemmes",
                 "{0} gems");
+            Add("header_unread_notif",
+                "{0} notification(s) non lue(s)",
+                "{0} unread notification(s)");
+            Add("header_presents",
+                "{0} cadeau(x) en attente",
+                "{0} pending gift(s)");
             Add("header_no_info",
                 "Information d'en-tête non disponible.",
                 "Header info not available.");
@@ -2647,6 +2659,72 @@ namespace MasterDuelAccessibility
             Add("shop_tab_selected",
                 "{0}.",
                 "{0}.");
+
+            // ── GemRestoreOnLogin (RegistrationPatch) ────────────────────────────
+            Add("gem_restore_login",
+                "Restauration de gemmes en cours.",
+                "Gem restoration in progress.");
+
+            // ── DuelResultMiscPatch (section 5.2) ─────────────────────────────────
+            Add("result_solo",
+                "Résultat solo.",
+                "Solo result.");
+            Add("result_duelist_cup",
+                "Duelist Cup. {0}. DP avant : {1}, après : {2} ({3}).",
+                "Duelist Cup. {0}. Before DP: {1}, after: {2} ({3}).");
+            Add("result_colosseum",
+                "Résultat Colosseum. {0}.",
+                "Colosseum result. {0}.");
+            Add("duel_result_unknown",
+                "Résultat",
+                "Result");
+
+            // ── ReplayPatch (section 5.3) ─────────────────────────────────────────
+            Add("replay_profile",
+                "Replays. {0} replay(s).",
+                "Replays. {0} replay(s).");
+            Add("replay_profile_empty",
+                "Replays. Aucun replay.",
+                "Replays. No replays.");
+            Add("replay_room",
+                "Replays du salon. {0} replay(s).",
+                "Room replays. {0} replay(s).");
+            Add("replay_room_empty",
+                "Replays du salon. Aucun replay.",
+                "Room replays. No replays.");
+            Add("replay_live",
+                "Replay en direct. Choisissez un deck.",
+                "Live replay. Choose a deck.");
+
+            // ── DuelStartPatch (section 3.2) ──────────────────────────────────────
+            Add("duel_start",
+                "Duel commençant.",
+                "Duel starting.");
+            Add("duel_start_team",
+                "Duel d'équipe commençant.",
+                "Team duel starting.");
+
+            // ── DialogStatePatch — EffectTaskRunDialog (section 4.3) ──────────────
+            Add("effect_task_dialog",
+                "Résolution en cours.",
+                "Effect resolution in progress.");
+
+            // ── HomeMiscPatch (sections 2.4 / 2.5) ───────────────────────────────
+            Add("home_announce",
+                "Annonce en cours.",
+                "Announcement in progress.");
+            Add("home_action",
+                "Actions disponibles.",
+                "Actions available.");
+            Add("home_action_n",
+                "Actions disponibles : {0}.",
+                "{0} actions available.");
+            Add("home_submenu",
+                "Sous-menu. Utilisez les flèches pour naviguer.",
+                "Sub-menu. Use arrows to navigate.");
+            Add("home_loading",
+                "Chargement de l'accueil.",
+                "Loading home screen.");
 
             // ── DownloadViewControllerPatch ───────────────────────────────────────
             Add("download_open",

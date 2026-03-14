@@ -135,7 +135,7 @@ namespace MasterDuelAccessibility.Patches
                     _announced10 = true;
                     _announced30 = true;
                     _announced60 = true;
-                    tts.Speak(Loc.Get("timer_warning_10"), interrupt: true, addToHistory: false);
+                    tts.Speak(Loc.Get("timer_warning_10"), interrupt: false, addToHistory: false);
                     return;
                 }
 

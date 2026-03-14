@@ -123,7 +123,7 @@ namespace MasterDuelAccessibility.Patches
         {
             var tts = Plugin.Instance?.Tts;
             if (tts == null) return;
-            try { tts.Speak(Loc.Get("tuto_initial_settings"), interrupt: true); }
+            try { tts.Speak(Loc.Get("tuto_initial_settings"), interrupt: false); }
             catch { }
         }
 
@@ -142,9 +142,9 @@ namespace MasterDuelAccessibility.Patches
             {
                 string? messages = ReadStringList(__0);
                 if (!string.IsNullOrWhiteSpace(messages))
-                    tts.Speak(Loc.Get("tuto_card_flying_messages", messages!), interrupt: true);
+                    tts.Speak(Loc.Get("tuto_card_flying_messages", messages!), interrupt: false);
                 else
-                    tts.Speak(Loc.Get("tuto_card_flying"), interrupt: true);
+                    tts.Speak(Loc.Get("tuto_card_flying"), interrupt: false);
             }
             catch { }
         }

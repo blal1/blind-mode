@@ -546,6 +546,108 @@ Build : 0 warning, 0 error.
 ## Section 1 FULL_COVERAGE_PLAN.md — ENTIÈREMENT COMPLÈTE (1.1 → 1.5)
 Logos, titre, chargement, téléchargement, inscription, tutoriel — tout couvert.
 
+## Travaux récents (session 2026-03-14)
+
+### Fix 46 — HeaderPatch : badge notifications + cadeaux (Patches/HeaderPatch.cs)
+- Ajout lecture du badge de btnNotice → nombre de notifications non lues
+- Ajout lecture du badge de btnPresent → nombre de cadeaux en attente
+- Pattern : walk des enfants du bouton → cherche TMP_Text actif avec contenu numérique
+- Annonce H hors duel : "{N} gemmes. {M} notification(s) non lue(s). {K} cadeau(x) en attente."
+- NOTE : CP (craft points) CONFIRMÉ absent du header (seul dans CardBrowserViewController.CardDetailWidget)
+- Loc : header_unread_notif, header_presents (fr/en)
+- Build : 0 warning, 0 error
+
+### Fix 47 — NotificationPatch : navigation ISV complète (Patches/NotificationPatch.cs)
+- UpdateEntity_Postfix : stocke maintenant head/category/date/isRead dans _itemData (Dictionary<int,NotifItem>)
+- PatchIsvFocusCallback : cherche la méthode b__**(int,int) dans NotificationViewController → postfix IsvFocus_Postfix
+  - Annonce : "[Titre]. [Catégorie]. [Date]." + "(non lue)" si non lue
+  - 200ms dedup + dédup par index pour éviter les doubles
+- CountUnread() exposé comme internal static → utilisé par HeaderPatch (badge H)
+- GetItemTitle(int) exposé pour SelectionButtonPatch si besoin
+- _activeInstance réinitialisé à l'ouverture, _itemData réinitialisé à chaque ouverture et changement d'onglet
+- Loc : notif_unread_marker, notif_item (fr/en)
+- Build : 0 warning, 0 error
+
+## Section 2.2 (HeaderFooter) — COMPLÈTE
+- Gemmes ✓ (fix 24)
+- Badge notifications non lues ✓ (fix 46)
+- Badge cadeaux en attente ✓ (fix 46)
+- CP : SKIP — non disponible dans le header
+
+## NotificationPatch — COMPLÈTE
+- Ouverture panneau + comptage non lues ✓
+- Changement d'onglet ✓
+- Navigation ISV avec annonce titre/catégorie/date/statut ✓
+
+### Fix 48 — GemRestoreOnLoginViewController (RegistrationPatch.cs)
+- Écran rare : restauration de gemmes lors de la connexion (après achat annulé ou erreur)
+- Namespace global — patché via PatchStackEntry standard dans RegistrationPatch.Apply()
+- NotificationStackEntry → "Restauration de gemmes en cours." (interrupt:true)
+- Pas de champs TMP_Text accessibles — annonce générique suffisante
+- Loc : gem_restore_login (fr/en)
+- FULL_COVERAGE_PLAN section 2.3 TODO GemRestoreOnLogin → DONE
+- Build : 0 warning, 0 error
+
+## Section 2.3 (Bonus quotidiennes) — COMPLÈTE
+- LoginBonusPatch ✓ (fix 25)
+- GemRestoreOnLoginViewController ✓ (fix 48)
+- PresentBoxPatch ✓ (fix 23)
+
+### Fix 49 — HomeMiscPatch (HomeMiscPatch.cs) — sections 2.4 / 2.5
+- HomeAnnounceViewController.NotificationStackEntry → "Annonce en cours." (interrupt:false)
+- HomeActionViewController.OnCreatedView → "Actions disponibles : N." via actionList IEnumerable count
+- HomeSubMenuViewController.NotificationStackEntry → "Sous-menu. Utilisez les flèches pour naviguer."
+- PreHomeViewController.NotificationStackEntry → "Chargement de l'accueil." (3s cooldown)
+- Loc : home_announce, home_action, home_action_n, home_submenu, home_loading (fr/en)
+- Enregistré dans LatePatches.ApplyMenuScenePatches()
+- Build : 0 warning, 0 error
+
+## Section 2.4 (Événements et bannières) — COMPLÈTE
+- HomeAnnounceViewController ✓ (fix 49)
+- HomeActionViewController ✓ (fix 49)
+
+## Section 2.5 (Sous-menus) — COMPLÈTE
+- HomeSubMenuViewController ✓ (fix 49)
+- PreHomeViewController ✓ (fix 49)
+
+### Fix 50 — DuelStartPatch (DuelStartPatch.cs) — section 3.2
+- DuelStartViewController.NotificationStackEntry → "Duel commençant." (interrupt:true)
+- DuelStartViewController_Team.NotificationStackEntry → "Duel commençant." (patched separately)
+- DuelStartOverlayViewController_Team.NotificationStackEntry → "Duel d'équipe commençant."
+- Loc : duel_start, duel_start_team (fr/en)
+- Enregistré dans LatePatches.ApplyDuelScenePatches()
+
+### Fix 51 — DialogStatePatch additions (section 4.3)
+- MessageDialog.SetMessage(string msg) → announce msg (interrupt:true); Open() has no params so PatchOpenWithMessage was a no-op
+- EffectTaskRunDialog.RunDialog() (private) → read `text` field via reflection; dedup per text value; fallback to "Résolution en cours."
+- Loc : effect_task_dialog (fr/en)
+
+### Fix 52 — DuelResultPatch enhancement (section 5.2)
+- ReadScoreReward: now reads m_TotalScore (int 0x58, dump-confirmed); fallback TMP_Text walk
+- DuelResultPatch still targets YgomGame.Menu.DuelResultViewController
+
+### Fix 53 — DuelResultMiscPatch (DuelResultMiscPatch.cs) — section 5.2
+- DuelResultViewController_Solo.NotificationStackEntry → "Résultat solo."
+- DuelistCupResultViewController.NotificationStackEntry → "Duelist Cup. [win/lose/draw]. DP avant : X, après : Y (delta)."
+- ColosseumDuelResultViewController_Rate.NotificationStackEntry → "Résultat Colosseum. [win/lose/draw]."
+- Loc : result_solo, result_duelist_cup, result_colosseum, duel_result_unknown (fr/en)
+
+### Fix 54 — ReplayPatch (ReplayPatch.cs) — section 5.3
+- ProfileReplayViewController.NotificationStackEntry → "Replays. N replay(s)." (reads replayInfos count)
+- RoomReplayViewController.NotificationStackEntry → "Replays du salon. N replay(s)." (reads dataList count)
+- DuelLiveReplayDialogViewController.NotificationStackEntry → "Replay en direct. Choisissez un deck."
+- Loc : replay_profile, replay_profile_empty, replay_room, replay_room_empty, replay_live (fr/en)
+- Build : 0 warning, 0 error
+
+## Notes pour la prochaine session
+- Tester Fix 46 : presser H hors duel → vérifier "X gemmes, Y notification(s) non lue(s)"
+- Tester Fix 47 : ouvrir panneau Notifications, naviguer avec les flèches → vérifier titres annoncés
+  - Si ISV focus callback introuvable (log [NotificationPatch] ISV focus callback introuvable) → fallback déjà en place via SelectionButtonPatch.ReadNotificationText
+- Tester Fix 49 : naviguer vers Home → vérifier "Chargement de l'accueil." / annonces HomeAction/SubMenu
+- Tester Fix 50 : lancer un duel → vérifier "Duel commençant." à l'animation de démarrage
+- Tester Fix 51 : résolution d'effet en duel → vérifier annonce message EffectTaskRunDialog
+- Tester Fix 53 : jouer en Duelist Cup → vérifier annonce DP avant/après
+
 ## Priorité 3 — Fonctionnalités secondaires (à démarrer)
 - BatchDismantleDialog — démantèlement en lot
 - AutoBuildDialog — construction auto de deck
@@ -553,4 +655,3 @@ Logos, titre, chargement, téléchargement, inscription, tutoriel — tout couve
 - TrialDrawViewController — tirage d'essai
 - StructureDeckSelectViewController — selection deck de structure
 - CardFileViewController — collection complète
-- NotificationPatch — lecture corps complet des notifications

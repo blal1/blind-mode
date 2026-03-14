@@ -105,7 +105,7 @@ namespace MasterDuelAccessibility
             // F1 — Aide (texte dynamique depuis le registre)
             r.Register(new ShortcutDefinition(
                 (KeyCode)282, null, "shortcut_f1",
-                () => WithTts(t => t.Speak(HelpText, interrupt: true))));
+                () => WithTts(t => t.Speak(HelpText, interrupt: false))));
 
             // F2 — Répéter
             r.Register(new ShortcutDefinition(
@@ -128,7 +128,7 @@ namespace MasterDuelAccessibility
             // Espace — PV des joueurs
             r.Register(new ShortcutDefinition(
                 (KeyCode)32, null, "shortcut_space",
-                () => WithTts(t => t.Speak(Loc.Get("duel_lp_status", MyLP, OppLP), interrupt: true)),
+                () => WithTts(t => t.Speak(Loc.Get("duel_lp_status", MyLP, OppLP), interrupt: false)),
                 () => IsInDuel));
 
             // Shift+F3 — Carte suivante dans la main (avant F3 pour priorité)
@@ -305,7 +305,7 @@ namespace MasterDuelAccessibility
             // L — points de vie uniquement
             r.Register(new ShortcutDefinition(
                 KeyCode.L, null, "shortcut_l",
-                () => WithTts(t => t.Speak(Loc.Get("duel_lp_status", MyLP, OppLP), interrupt: true)),
+                () => WithTts(t => t.Speak(Loc.Get("duel_lp_status", MyLP, OppLP), interrupt: false)),
                 () => IsInDuel));
 
             // D — taille des decks
@@ -417,7 +417,7 @@ namespace MasterDuelAccessibility
                     string phase = string.IsNullOrEmpty(GameState.CurrentPhaseLabel)
                         ? Loc.Get("phase_unknown")
                         : GameState.CurrentPhaseLabel;
-                    tts.Speak(phase, interrupt: true);
+                    tts.Speak(phase, interrupt: false);
                 }),
                 () => IsInDuel));
 
@@ -525,14 +525,14 @@ namespace MasterDuelAccessibility
         {
             if (tts.HistoryCount == 0)
             {
-                tts.Speak(Loc.Get("history_empty"), interrupt: true, addToHistory: false);
+                tts.Speak(Loc.Get("history_empty"), interrupt: false, addToHistory: false);
                 return;
             }
             _historyPos = Math.Min(_historyPos + 1, tts.HistoryCount - 1);
             var entry = tts.GetHistoryEntry(_historyPos)!;
             tts.Speak(
                 Loc.Get("history_entry", _historyPos + 1, tts.HistoryCount, entry),
-                interrupt: true, addToHistory: false);
+                interrupt: false, addToHistory: false);
         }
 
         // ── Shift+F3 : Navigation carte par carte dans la main ───────────────
@@ -546,14 +546,14 @@ namespace MasterDuelAccessibility
             var names = CollectCardNames(hand: true, team: 0);
             if (names.Length == 0)
             {
-                tts.Speak(Loc.Get("hand_empty"), interrupt: true, addToHistory: false);
+                tts.Speak(Loc.Get("hand_empty"), interrupt: false, addToHistory: false);
                 _handPos = -1;
                 return;
             }
             _handPos = (_handPos + 1) % names.Length;
             tts.Speak(
                 Loc.Get("hand_card_nav", names[_handPos], _handPos + 1, names.Length),
-                interrupt: true, addToHistory: false);
+                interrupt: false, addToHistory: false);
         }
 
         // ── Ctrl+F4 / Ctrl+Shift+F4 : Navigation carte par carte sur le terrain ─
@@ -566,14 +566,14 @@ namespace MasterDuelAccessibility
             var names = CollectCardNames(hand: false, team: 0);
             if (names.Length == 0)
             {
-                tts.Speak(Loc.Get("field_empty"), interrupt: true, addToHistory: false);
+                tts.Speak(Loc.Get("field_empty"), interrupt: false, addToHistory: false);
                 _myFieldPos = -1;
                 return;
             }
             _myFieldPos = (_myFieldPos + 1) % names.Length;
             tts.Speak(
                 Loc.Get("field_card_nav", names[_myFieldPos], _myFieldPos + 1, names.Length),
-                interrupt: true, addToHistory: false);
+                interrupt: false, addToHistory: false);
         }
 
         /// <summary>
@@ -585,14 +585,14 @@ namespace MasterDuelAccessibility
             var names = CollectCardNames(hand: false, team: 1);
             if (names.Length == 0)
             {
-                tts.Speak(Loc.Get("opp_field_empty"), interrupt: true, addToHistory: false);
+                tts.Speak(Loc.Get("opp_field_empty"), interrupt: false, addToHistory: false);
                 _oppFieldNavPos = -1;
                 return;
             }
             _oppFieldNavPos = (_oppFieldNavPos + 1) % names.Length;
             tts.Speak(
                 Loc.Get("opp_field_card_nav", names[_oppFieldNavPos], _oppFieldNavPos + 1, names.Length),
-                interrupt: true, addToHistory: false);
+                interrupt: false, addToHistory: false);
         }
 
         // ── Tab : Avancer la phase / passer la priorité ──────────────────────
@@ -616,14 +616,14 @@ namespace MasterDuelAccessibility
                 var phaseType = AccessToolsHelper.FindType("PhaseSelect3D");
                 if (phaseType == null)
                 {
-                    tts.Speak(Loc.Get("phase_btn_unavailable"), interrupt: true, addToHistory: false);
+                    tts.Speak(Loc.Get("phase_btn_unavailable"), interrupt: false, addToHistory: false);
                     return;
                 }
 
                 var instances = FindObjectsOfType(phaseType);
                 if (instances == null || instances.Length == 0)
                 {
-                    tts.Speak(Loc.Get("phase_btn_unavailable"), interrupt: true, addToHistory: false);
+                    tts.Speak(Loc.Get("phase_btn_unavailable"), interrupt: false, addToHistory: false);
                     return;
                 }
 
@@ -649,7 +649,7 @@ namespace MasterDuelAccessibility
                 }
 
                 // Aucune instance active — le bouton est indisponible (tour adverse, etc.)
-                tts.Speak(Loc.Get("phase_btn_unavailable"), interrupt: true, addToHistory: false);
+                tts.Speak(Loc.Get("phase_btn_unavailable"), interrupt: false, addToHistory: false);
             }
             catch { }
         }
@@ -673,11 +673,11 @@ namespace MasterDuelAccessibility
             string raw = ViewControllerPatch.LastRawView;
             if (string.IsNullOrEmpty(raw))
             {
-                tts.Speak(Loc.Get("screen_unknown"), interrupt: true);
+                tts.Speak(Loc.Get("screen_unknown"), interrupt: false);
                 return;
             }
             string name = ViewControllerPatch.GetResolvedName(raw);
-            tts.Speak(Loc.Get("screen_current", name), interrupt: true);
+            tts.Speak(Loc.Get("screen_current", name), interrupt: false);
         }
 
         // ── H : Infos d'en-tête (gemmes, etc.) ───────────────────────────────
@@ -687,10 +687,10 @@ namespace MasterDuelAccessibility
             string? info = HeaderPatch.ReadHeaderInfo();
             if (string.IsNullOrWhiteSpace(info))
             {
-                tts.Speak(Loc.Get("header_no_info"), interrupt: true);
+                tts.Speak(Loc.Get("header_no_info"), interrupt: false);
                 return;
             }
-            tts.Speak(info!, interrupt: true);
+            tts.Speak(info!, interrupt: false);
         }
 
         // ── Touches numériques : carte en main par index ──────────────────────
@@ -706,17 +706,17 @@ namespace MasterDuelAccessibility
                 var names = CollectCardNames(hand: true, team: 0);
                 if (names.Length == 0)
                 {
-                    tts.Speak(Loc.Get("hand_empty"), interrupt: true);
+                    tts.Speak(Loc.Get("hand_empty"), interrupt: false);
                     return;
                 }
                 if (index >= names.Length)
                 {
-                    tts.Speak(Loc.Get("hand_card_index_out", names.Length), interrupt: true);
+                    tts.Speak(Loc.Get("hand_card_index_out", names.Length), interrupt: false);
                     return;
                 }
                 // "Carte 2 : Magicien Sombre (2 sur 5)"
                 tts.Speak(Loc.Get("hand_card_at", index + 1, names[index], index + 1, names.Length),
-                    interrupt: true);
+                    interrupt: false);
             }
             catch { tts.Speak(Loc.Get("hand_error")); }
         }
@@ -730,23 +730,23 @@ namespace MasterDuelAccessibility
             try
             {
                 var contentType = AccessToolsHelper.FindType("Content");
-                if (contentType == null) { tts.Speak(Loc.Get("field_empty"), interrupt: true); return; }
+                if (contentType == null) { tts.Speak(Loc.Get("field_empty"), interrupt: false); return; }
 
                 var instanceProp = contentType.GetProperty("Instance",
                     System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Static);
                 var contentInstance = instanceProp?.GetValue(null);
-                if (contentInstance == null) { tts.Speak(Loc.Get("field_empty"), interrupt: true); return; }
+                if (contentInstance == null) { tts.Speak(Loc.Get("field_empty"), interrupt: false); return; }
 
                 var getNameMethod = contentType.GetMethod("GetName",
                     System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance,
                     null, new[] { typeof(int), typeof(bool) }, null);
-                if (getNameMethod == null) { tts.Speak(Loc.Get("field_empty"), interrupt: true); return; }
+                if (getNameMethod == null) { tts.Speak(Loc.Get("field_empty"), interrupt: false); return; }
 
                 var rootType = AccessToolsHelper.FindType("CardRoot");
-                if (rootType == null) { tts.Speak(Loc.Get("field_empty"), interrupt: true); return; }
+                if (rootType == null) { tts.Speak(Loc.Get("field_empty"), interrupt: false); return; }
 
                 var roots = FindObjectsOfType(rootType);
-                if (roots == null) { tts.Speak(Loc.Get("field_empty"), interrupt: true); return; }
+                if (roots == null) { tts.Speak(Loc.Get("field_empty"), interrupt: false); return; }
 
                 var pub = System.Reflection.BindingFlags.Public | System.Reflection.BindingFlags.Instance;
                 var teamProp   = rootType.GetProperty("team",   pub);
@@ -772,7 +772,7 @@ namespace MasterDuelAccessibility
 
                     if (!isFace && team == 1)
                     {
-                        tts.Speak(Loc.Get("field_card_face_down_zone", zoneName), interrupt: true);
+                        tts.Speak(Loc.Get("field_card_face_down_zone", zoneName), interrupt: false);
                         return;
                     }
 
@@ -784,12 +784,12 @@ namespace MasterDuelAccessibility
                         if (atk >= 0) msg += $" ATK {atk} DEF {def}";
                     }
 
-                    tts.Speak(Loc.Get("field_card_at_zone", zoneName, msg), interrupt: true);
+                    tts.Speak(Loc.Get("field_card_at_zone", zoneName, msg), interrupt: false);
                     return;
                 }
 
                 // Nothing found at that position
-                tts.Speak(Loc.Get("field_zone_empty", GetZoneName(position)), interrupt: true);
+                tts.Speak(Loc.Get("field_zone_empty", GetZoneName(position)), interrupt: false);
             }
             catch { tts.Speak(Loc.Get("field_error")); }
         }
@@ -804,7 +804,7 @@ namespace MasterDuelAccessibility
                 int oppDeck  = CountCardsAt(15, team: 1);
                 int oppGrave = CountCardsAt(16, team: 1);
                 string msg = Loc.Get("opp_overview", OppLP, oppHand, oppDeck, oppGrave);
-                tts.Speak(msg, interrupt: true);
+                tts.Speak(msg, interrupt: false);
             }
             catch { tts.Speak(Loc.Get("field_error")); }
         }
@@ -824,18 +824,18 @@ namespace MasterDuelAccessibility
             string info = DuelEffectQueuePatch.LastInfoMsg;
             if (!string.IsNullOrWhiteSpace(info))
             {
-                tts.Speak(info, interrupt: true, addToHistory: false);
+                tts.Speak(info, interrupt: false, addToHistory: false);
                 return;
             }
 
             string flash = DuelEffectQueuePatch.LastInstantMsg;
             if (!string.IsNullOrWhiteSpace(flash))
             {
-                tts.Speak(flash, interrupt: true, addToHistory: false);
+                tts.Speak(flash, interrupt: false, addToHistory: false);
                 return;
             }
 
-            tts.Speak(Loc.Get("duel_no_instruction"), interrupt: true, addToHistory: false);
+            tts.Speak(Loc.Get("duel_no_instruction"), interrupt: false, addToHistory: false);
         }
 
         // ── Lecture des infos carte ──────────────────────────────────────────
@@ -865,7 +865,7 @@ namespace MasterDuelAccessibility
                         {
                             string announcement = CardInfoPatch.BuildAnnouncement(detail);
                             if (!string.IsNullOrWhiteSpace(announcement))
-                                tts.Speak(announcement, interrupt: true);
+                                tts.Speak(announcement, interrupt: false);
                             return;
                         }
                     }
@@ -892,7 +892,7 @@ namespace MasterDuelAccessibility
                         string announcement = CardInfoPatch.BuildAnnouncement(inst);
                         if (!string.IsNullOrWhiteSpace(announcement))
                         {
-                            tts.Speak(announcement, interrupt: true);
+                            tts.Speak(announcement, interrupt: false);
                             return;
                         }
                     }
@@ -914,7 +914,7 @@ namespace MasterDuelAccessibility
                         names.Length > 1 ? "s" : "",
                         string.Join(", ", names))
                     : Loc.Get("hand_empty");
-                tts.Speak(msg, interrupt: true);
+                tts.Speak(msg, interrupt: false);
             }
             catch { tts.Speak(Loc.Get("hand_error")); }
         }
@@ -928,7 +928,7 @@ namespace MasterDuelAccessibility
                     names.Length > 0
                         ? Loc.Get("field_cards", string.Join(", ", names))
                         : Loc.Get("field_empty"),
-                    interrupt: true);
+                    interrupt: false);
             }
             catch { tts.Speak(Loc.Get("field_error")); }
         }
@@ -942,7 +942,7 @@ namespace MasterDuelAccessibility
                     names.Length > 0
                         ? Loc.Get("opp_field_cards", string.Join(", ", names))
                         : Loc.Get("opp_field_empty"),
-                    interrupt: true);
+                    interrupt: false);
             }
             catch { tts.Speak(Loc.Get("opp_field_error")); }
         }
@@ -953,7 +953,7 @@ namespace MasterDuelAccessibility
             string msg = Loc.Get(key, GameState.CurrentTurn, MyLP, OppLP);
             if (!string.IsNullOrEmpty(GameState.CurrentPhaseLabel))
                 msg += " " + GameState.CurrentPhaseLabel + ".";
-            tts.Speak(msg, interrupt: true);
+            tts.Speak(msg, interrupt: false);
         }
 
         private static void ReadGraveCards(TtsService tts)
@@ -967,7 +967,7 @@ namespace MasterDuelAccessibility
                     names.Length > 0
                         ? Loc.Get("grave_cards", names.Length, plural, string.Join(", ", names))
                         : Loc.Get("grave_empty"),
-                    interrupt: true);
+                    interrupt: false);
             }
             catch { tts.Speak(Loc.Get("grave_error")); }
         }
@@ -983,7 +983,7 @@ namespace MasterDuelAccessibility
                     names.Length > 0
                         ? Loc.Get("banished_cards", names.Length, plural, string.Join(", ", names))
                         : Loc.Get("banished_empty"),
-                    interrupt: true);
+                    interrupt: false);
             }
             catch { tts.Speak(Loc.Get("banished_error")); }
         }
@@ -999,7 +999,7 @@ namespace MasterDuelAccessibility
                     names.Length > 0
                         ? Loc.Get("extra_deck_cards", names.Length, plural, string.Join(", ", names))
                         : Loc.Get("extra_deck_empty"),
-                    interrupt: true);
+                    interrupt: false);
             }
             catch { tts.Speak(Loc.Get("extra_deck_error")); }
         }
@@ -1015,7 +1015,7 @@ namespace MasterDuelAccessibility
                     names.Length > 0
                         ? Loc.Get("opp_grave_cards", names.Length, plural, string.Join(", ", names))
                         : Loc.Get("opp_grave_empty"),
-                    interrupt: true);
+                    interrupt: false);
             }
             catch { tts.Speak(Loc.Get("opp_grave_error")); }
         }
@@ -1031,7 +1031,7 @@ namespace MasterDuelAccessibility
                     names.Length > 0
                         ? Loc.Get("opp_banished_cards", names.Length, plural, string.Join(", ", names))
                         : Loc.Get("opp_banished_empty"),
-                    interrupt: true);
+                    interrupt: false);
             }
             catch { tts.Speak(Loc.Get("opp_banished_error")); }
         }
@@ -1044,7 +1044,7 @@ namespace MasterDuelAccessibility
                 // Count only — opponent Extra Deck card names are private
                 int count = CountCardsAt(14, team: 1);
                 string plural = count == 1 ? "" : "s";
-                tts.Speak(Loc.Get("opp_extra_deck_count", count, plural), interrupt: true);
+                tts.Speak(Loc.Get("opp_extra_deck_count", count, plural), interrupt: false);
             }
             catch { tts.Speak(Loc.Get("opp_extra_deck_error")); }
         }
@@ -1059,7 +1059,7 @@ namespace MasterDuelAccessibility
                 tts.Speak(Loc.Get("deck_count",
                     myCount,  myCount  == 1 ? "" : "s",
                     oppCount, oppCount == 1 ? "" : "s"),
-                    interrupt: true);
+                    interrupt: false);
             }
             catch { tts.Speak(Loc.Get("deck_error")); }
         }
@@ -1072,7 +1072,7 @@ namespace MasterDuelAccessibility
                 // Count only — card names are hidden in real duels (privacy-safe)
                 int count = CountCardsAt(13, team: 1);
                 tts.Speak(Loc.Get("opp_hand_count", count, count == 1 ? "" : "s"),
-                    interrupt: true);
+                    interrupt: false);
             }
             catch { tts.Speak(Loc.Get("opp_hand_error")); }
         }

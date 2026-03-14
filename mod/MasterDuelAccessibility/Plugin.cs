@@ -109,7 +109,7 @@ namespace MasterDuelAccessibility
             panelManager.OnActivePanelChanged += (_, newPanel) =>
             {
                 if (newPanel != null && Tts?.Enabled == true)
-                    Tts.Speak(newPanel.DisplayName, interrupt: true);
+                    Tts.Speak(newPanel.DisplayName, interrupt: false);
             };
 
             // ── MonoBehaviour pour Update() + scène ─────────────────────────

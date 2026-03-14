@@ -90,7 +90,7 @@ namespace MasterDuelAccessibility.Patches
             if (tts == null) return;
             try
             {
-                tts.Speak(Loc.Get("duelpass_grade_up", __0), interrupt: true);
+                tts.Speak(Loc.Get("duelpass_grade_up", __0), interrupt: false);
             }
             catch { }
         }

@@ -167,7 +167,7 @@ namespace MasterDuelAccessibility.Patches
                 }
 
                 // interrupt:true — le joueur navigue activement, doit couper ce qui se lit
-                tts.Speak(announcement, interrupt: true, addToHistory: false);
+                tts.Speak(announcement, interrupt: false, addToHistory: false);
             }
             catch { }
         }
@@ -207,7 +207,7 @@ namespace MasterDuelAccessibility.Patches
                     announcement = Loc.Get("select_zone", GetZoneLabel(team, pos));
                 }
 
-                tts.Speak(announcement, interrupt: true);
+                tts.Speak(announcement, interrupt: false);
             }
             catch { }
         }

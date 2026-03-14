@@ -35,7 +35,7 @@ namespace MasterDuelAccessibility.Patches
             if (!string.IsNullOrWhiteSpace(leftButtonText))
                 announcement += $" {leftButtonText.Trim()}.";
 
-            tts.Speak(announcement.Trim(), interrupt: true);
+            tts.Speak(announcement.Trim(), interrupt: false);
         }
 
         // Surcharge sans libellés de boutons explicites :
@@ -44,7 +44,7 @@ namespace MasterDuelAccessibility.Patches
         {
             var tts = Plugin.Instance?.Tts;
             if (tts == null || string.IsNullOrWhiteSpace(message)) return;
-            tts.Speak(message.Trim(), interrupt: true);
+            tts.Speak(message.Trim(), interrupt: false);
         }
 
         // ── DuelSelectDialog.Open ─────────────────────────────────────────────
@@ -54,7 +54,7 @@ namespace MasterDuelAccessibility.Patches
         {
             var tts = Plugin.Instance?.Tts;
             if (tts == null || string.IsNullOrWhiteSpace(message)) return;
-            tts.Speak(message.Trim(), interrupt: true);
+            tts.Speak(message.Trim(), interrupt: false);
         }
     }
 }

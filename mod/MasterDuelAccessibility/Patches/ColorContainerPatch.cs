@@ -34,7 +34,7 @@ namespace MasterDuelAccessibility.Patches
             {
                 string? label = FindButtonLabel(__instance);
                 if (!string.IsNullOrWhiteSpace(label))
-                    tts.Speak(label!, interrupt: true);
+                    tts.Speak(label!, interrupt: false);
             }
             catch { /* silent reflection fail */ }
         }

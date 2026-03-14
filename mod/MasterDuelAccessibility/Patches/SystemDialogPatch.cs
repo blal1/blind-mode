@@ -104,7 +104,7 @@ namespace MasterDuelAccessibility.Patches
                 string msg = string.IsNullOrWhiteSpace(__0)
                     ? Loc.Get("system_error_generic")
                     : Loc.Get("system_error", __0);
-                tts.Speak(msg, interrupt: true);
+                tts.Speak(msg, interrupt: false);
             }
             catch { }
         }
@@ -133,7 +133,7 @@ namespace MasterDuelAccessibility.Patches
                 if (string.IsNullOrWhiteSpace(message))
                     message = Loc.Get("system_maintenance_generic");
 
-                tts.Speak(Loc.Get("system_maintenance", message), interrupt: true);
+                tts.Speak(Loc.Get("system_maintenance", message), interrupt: false);
             }
             catch { }
         }
@@ -159,7 +159,7 @@ namespace MasterDuelAccessibility.Patches
                     message += (message.Length > 0 ? ". " : "") + upper;
 
                 if (!string.IsNullOrWhiteSpace(message))
-                    tts.Speak(message, interrupt: true);
+                    tts.Speak(message, interrupt: false);
             }
             catch { }
         }

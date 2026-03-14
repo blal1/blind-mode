@@ -6,14 +6,14 @@ namespace MasterDuelAccessibility.Models
     ///
     /// Mapping vers TtsService.Speak(interrupt) :
     ///   Low / Normal  → interrupt: false  (mise en queue, ne coupe pas la lecture)
-    ///   High          → interrupt: true   (interrompt la lecture en cours)
-    ///   Immediate     → interrupt: true   (priorité absolue, réservé aux événements critiques)
+    ///   High          → interrupt: false  (événements importants, mis en queue)
+    ///   Immediate     → interrupt: false  (priorité absolue, mis en queue)
     /// </summary>
     public enum AnnouncementPriority
     {
         Low       = 0,  // Info accessoire, mise en queue silencieuse
         Normal    = 1,  // Navigation, menus — mise en queue standard
-        High      = 2,  // Événements duel importants — interruption
-        Immediate = 3,  // Résultat, abandon, cible imposée — interruption maximale
+        High      = 2,  // Événements duel importants — mise en queue
+        Immediate = 3,  // Résultat, abandon, cible imposée — mise en queue
     }
 }

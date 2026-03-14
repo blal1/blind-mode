@@ -345,7 +345,7 @@ namespace MasterDuelAccessibility.Patches
                     // Announce: "CardName, N of M"
                     int total = _dataIndexNames.Count;
                     string msg = Loc.Get("lottery_reward_item", name!, idx + 1, total);
-                    tts.Speak(msg, interrupt: true);
+                    tts.Speak(msg, interrupt: false);
                 }
             }
             catch { /* non-critical */ }

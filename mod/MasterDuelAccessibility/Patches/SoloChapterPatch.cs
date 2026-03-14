@@ -112,7 +112,7 @@ namespace MasterDuelAccessibility.Patches
             {
                 string msg = BuildAnnouncement(__1);
                 if (!string.IsNullOrWhiteSpace(msg))
-                    tts.Speak(msg, interrupt: true);
+                    tts.Speak(msg, interrupt: false);
             }
             catch (Exception ex)
             {

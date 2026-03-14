@@ -55,7 +55,7 @@ namespace MasterDuelAccessibility.Patches
                 string label   = ResolveLabel(__instance);
 
                 // Annonce avec interruption — ouvrir un dropdown est une action critique
-                tts.Speak(Loc.Get("dropdown_opened", label, current), interrupt: true);
+                tts.Speak(Loc.Get("dropdown_opened", label, current), interrupt: false);
             }
             catch { /* réflexion silencieuse */ }
         }

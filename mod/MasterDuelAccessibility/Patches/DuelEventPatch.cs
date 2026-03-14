@@ -51,7 +51,7 @@ namespace MasterDuelAccessibility.Patches
             {
                 string msg = GetCoinResultMessage(__1, __2);
                 Plugin.Instance?.LogMsg($"[DuelEventPatch] RunCoin p1={__1} p2={__2} → {msg}");
-                tts.Speak(msg, interrupt: true);
+                tts.Speak(msg, interrupt: false);
                 return;
             }
 
@@ -62,7 +62,7 @@ namespace MasterDuelAccessibility.Patches
             {
                 string msg = GetDiceResultMessage(__1, __2);
                 Plugin.Instance?.LogMsg($"[DuelEventPatch] RunDice p1={__1} p2={__2} → {msg}");
-                tts.Speak(msg, interrupt: true);
+                tts.Speak(msg, interrupt: false);
                 return;
             }
 

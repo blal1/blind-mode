@@ -141,7 +141,7 @@ namespace MasterDuelAccessibility.Patches
                         ? Loc.Get("ritual_begin",      __0, __2, __3, unit)
                         : Loc.Get("ritual_begin_nomax", __0, __2,       unit));
 
-                tts.Speak(msg, interrupt: true);
+                tts.Speak(msg, interrupt: false);
             }
             catch { }
         }

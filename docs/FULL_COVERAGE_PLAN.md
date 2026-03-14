@@ -1,6 +1,6 @@
 # MasterDuelAccessibility — Plan de couverture complète
 
-Date : 2026-03-11
+Date : 2026-03-14 (mis à jour)
 Objectif : couvrir l'intégralité des fonctionnalités du jeu du premier lancement à l'utilisation quotidienne.
 
 Légende :
@@ -57,7 +57,7 @@ Statut global : DONE
 
 ## 2. ÉCRAN D'ACCUEIL (HOME)
 
-Statut global : PARTIAL
+Statut global : DONE (essentiel) — ISV bannières TODO
 
 ### 2.1 Navigation principale
 - DONE — ViewControllerPatch : HomeViewController détecté → "Accueil"
@@ -65,37 +65,29 @@ Statut global : PARTIAL
 - DONE — ColorContainerPatch : boutons icônes cliquables au focus (Enter/hover)
 
 ### 2.2 Barre d'en-tête (HeaderFooter)
-- PARTIAL — HeaderPatch : raccourci H = annonce gemmes depuis gemText/gemButtonText
-  - Namespace : YgomGame.Menu.HeaderViewController (singleton : instance property)
-  - Méthodes dump : static instance, BtnGem, BtnPresent, BtnNotice (SelectionButton)
-  - TODO : lire aussi le solde CP (craft points) — champ TMP_Text non identifié
-  - TODO : badge notifications non lues sur BtnNotice
+- DONE — HeaderPatch : raccourci H = gemmes (gemText/gemButtonText) + badge notifications (btnNotice enfants) + cadeaux en attente (btnPresent enfants)
+  - Namespace : YgomGame.Menu.HeaderViewController (singleton via instance property)
+  - Badge lu via GetComponents&lt;Component&gt;() + IsAssignableFrom + TMP_Text walk (IL2CPP-safe)
+  - SKIP : CP (craft points) — absent du header ; uniquement dans CardBrowserViewController.CardDetailWidget.cpText
 
 ### 2.3 Bonus et récompenses quotidiennes
 - DONE — LoginBonusPatch : LoginBonusViewController.OnCreatedView → "Bonus de connexion. Jour N sur M. Récompense : [label] ×Q [statut]"
   - Dump : YgomGame.Menu, m_MapWidget (LoginBonusMapWidet 0xE8)
   - Lit progress (int property) = index 0-based du jour actuel
   - Lit slotWidgets (LoginBonusSlotWidget[]) → slot[progress].labelText + rewardNum + recievedCover
-  - LoginBonusSlotWidget : labelText (TMP_Text), rewardNum (TMP_Text), recievedCover (GameObject)
-  - Applied via LatePatches.ApplyMenuScenePatches()
-- TODO — GemRestoreOnLoginViewController : restauration de gemmes (cas rare)
+- DONE — RegistrationPatch : GemRestoreOnLoginViewController → "Restauration de gemmes en cours." (cas rare, namespace global, annonce générique suffisante)
 - DONE — PresentBoxPatch : PresentBoxViewController.OnCreatedView → "X cadeaux dans la boîte"
   - OnItemSetData(GameObject, int) → item focalisé : nom carte / "Gemmes × N" / "Objet cosmétique"
-  - Dump : classe globale, dataList (List<Data>), ISV via FocusCallback couverts
 
 ### 2.4 Événements et bannières
-- TODO — HomeActionViewController : actions contextuelles (boutons événements)
-- TODO — HomeAnnounceViewController : annonces/bannières en haut de l'écran
-  - Namespace : YgomGame.Notification (HomeAnnounceViewController)
-  - Données à lire : titre + type de bannière (événement, maintenance, mise à jour)
+- DONE — HomeMiscPatch : HomeAnnounceViewController.NotificationStackEntry → "Annonce en cours." (namespace global, pas de champs TMP_Text directs)
+- DONE — HomeMiscPatch : HomeActionViewController.OnCreatedView → "Actions disponibles : N." (lit actionList IEnumerable count)
 - DONE — EventNotifyPatch : EventNotifyViewController.Open(string[] messages, Action) → messages joints
-  - Applied via Plugin.ApplyPatches() (static method)
 - DONE (PARTIAL) — SelectionButtonPatch.ProcessTopicsBanner : TopicsBannerWidget → lit ScrollRectPageSnap.hpage
 
 ### 2.5 Sous-menus
-- TODO — HomeSubMenuViewController : sous-menu (liens rapides : paramètres, profil, etc.)
-  - Namespace : YgomGame.SubMenu
-- TODO — PreHomeViewController : écran pré-accueil (après chargement, avant Home)
+- DONE — HomeMiscPatch : HomeSubMenuViewController.NotificationStackEntry → "Sous-menu. Utilisez les flèches pour naviguer."
+- DONE — HomeMiscPatch : PreHomeViewController.NotificationStackEntry → "Chargement de l'accueil." (cooldown 3s)
 
 ---
 
@@ -113,12 +105,12 @@ Statut global : DONE (essentiel)
 - DONE — DuelMiscPatch : DuelView.OnDiceResult → "Toi : 4, Adversaire : 2"
 - DONE — DuelMiscPatch : DuelView.OnCoinResult → "Pile" / "Face"
 - DONE — DuelMiscPatch : DuelMulliganDialog → "Mulligan : X cartes, garder ou relancer ?"
-- TODO — DuelStartViewController : animation de démarrage du duel
-  - Données à lire : noms des joueurs, rangs, deck utilisé
-- TODO — DuelStartOverlayViewController_Team : version équipe
-- TODO — DuelSettingDialogViewController : paramètres de duel (timer, règles customs)
-- TODO — DuelCoinDialog : animation visuelle pile/face (info déjà couverte par DuelMiscPatch)
-- TODO — DuelDiceDialog : animation visuelle dé (info déjà couverte par DuelMiscPatch)
+- DONE — DuelStartPatch : DuelStartViewController.NotificationStackEntry → "Duel commençant." (noms chargés async via PlayerSet.myid — non lisibles à ce stade)
+- DONE — DuelStartPatch : DuelStartViewController_Team.NotificationStackEntry → "Duel commençant." (patché séparément, override IL2CPP)
+- DONE — DuelStartPatch : DuelStartOverlayViewController_Team.NotificationStackEntry → "Duel d'équipe commençant."
+- DONE — DialogStatePatch : DuelCoinDialog.Open(string message,...) → message lu via PatchOpenWithMessage
+- DONE — DialogStatePatch : DuelDiceDialog.Open(string message,...) → message lu via PatchOpenWithMessage
+- SKIP — DuelSettingDialogViewController : classe essentiellement vide (seulement un constructeur dans le dump)
 
 ---
 
@@ -153,8 +145,8 @@ Statut global : DONE (très complet — 40+ patches)
 - DONE — DuelPullDownDialog : liste multi-sélection (5-param)
 - DONE — DuelRitualDialog : conditions rituelle (Begin + SetCount)
 - DONE — DialogStatePatch : DuelDialogBase.ShowUI / HideUI
-- TODO — MessageDialog : messages pendant le duel (à vérifier si couvert par DuelInfoDialog)
-- TODO — EffectTaskRunDialog : résolution d'effet en attente ("Résolution en cours...")
+- DONE — DialogStatePatch : MessageDialog.SetMessage(string msg) → annonce msg ; Open() n'a pas de params donc PatchOpenWithMessage était sans effet (MonoBehaviour, pas DuelDialogBase)
+- DONE — DialogStatePatch : EffectTaskRunDialog.RunDialog() (private) → lit champ `text` via réflexion + dédup ; fallback "Résolution en cours."
 
 ### 4.4 Navigation de terrain et commandes
 - DONE — CardCommandPatch : menu d'actions carte (6 params, CommandBit bitmask)
@@ -195,7 +187,7 @@ Statut global : DONE (très complet — 40+ patches)
 
 ## 5. DUEL — APRÈS LE MATCH
 
-Statut global : PARTIAL
+Statut global : DONE (essentiel)
 
 ### 5.1 Résultat immédiat
 - DONE — DuelMiscPatch : DuelResultDialog → "Victoire !" / "Défaite" / "Égalité"
@@ -203,22 +195,18 @@ Statut global : PARTIAL
 
 ### 5.2 Écran de résultat détaillé
 - DONE — DuelResultPatch : DuelResultViewController.OnCreatedView → résumé résultat + mode de jeu + boutons disponibles
-  - Dump : classe globale, m_GameMode (Util.GameMode), RetryButton/SaveButton/BackButton
-  - TODO : lire le score total depuis m_GetScoreReward (ISV détaillé des récompenses)
-- TODO — DuelResultViewController_Solo : résultat solo
-  - Données à lire : scénario complété/échoué, récompenses solo, progression
-- TODO — DuelistCupResultViewController : résultat Duelist Cup (classement + points)
-- TODO — ColosseumDuelResultViewController_Rate : résultat Colosseum (rating +/-)
+  - ReadScoreReward : lit m_TotalScore (int 0x58, dump-confirmé) ; fallback TMP_Text walk
+- DONE — DuelResultMiscPatch : DuelResultViewController_Solo.NotificationStackEntry → "Résultat solo." (global namespace)
+- DONE — DuelResultMiscPatch : DuelistCupResultViewController.NotificationStackEntry → "Duelist Cup. [win/lose/draw]. DP avant : X, après : Y (delta)." (lit bDP/aDP/resultType via réflexion)
+- DONE — DuelResultMiscPatch : ColosseumDuelResultViewController_Rate.NotificationStackEntry → "Résultat Colosseum. [win/lose/draw]." (lit resultType ; valeurs rating dans EOM, non lisibles directement)
 - DONE — DuelpassResultViewPatch : DuelpassResultViewController.OnGradeUp + OnEndProgressBarAnimation
   - OnGradeUp → "Palier supérieur ! Palier X." (interrupt:true)
   - OnEndAnimation → "Duel Pass. Palier actuel : X. Prochain palier : Y."
 
 ### 5.3 Replay
-- TODO — ProfileReplayViewController : liste des replays du joueur
-  - Données à lire : adversaire, deck utilisé, date, résultat
-- TODO — RoomReplayViewController : replays depuis un salon
-- TODO — DuelLiveReplayDialogViewController : replay depuis le mode spectateur
-  - Namespace : YgomGame.DuelLive
+- DONE — ReplayPatch : ProfileReplayViewController.NotificationStackEntry → "Replays. N replay(s)." (lit replayInfos IEnumerable count ; YgomGame.Menu)
+- DONE — ReplayPatch : RoomReplayViewController.NotificationStackEntry → "Replays du salon. N replay(s)." (lit dataList IEnumerable count ; YgomGame.Room)
+- DONE — ReplayPatch : DuelLiveReplayDialogViewController.NotificationStackEntry → "Replay en direct. Choisissez un deck." (YgomGame.DuelLive)
 
 ---
 
@@ -870,10 +858,8 @@ Statut global : TODO
 - DONE — F1 : aide raccourcis
 - DONE — F3 : annonce l'écran courant
 - DONE — F12 : historique TTS
-- DONE — H : annonce gemmes depuis HeaderViewController.gemText/gemButtonText
-  - HeaderPatch.ReadHeaderInfo() → raccourci enregistré dans KeyboardShortcuts
-  - TODO : lire aussi le solde CP (craft points) — champ TMP_Text non identifié
-- TODO — N : nombre de notifications non lues — à implémenter
+- DONE — H : annonce gemmes + badge notifications non lues + cadeaux en attente (HeaderPatch)
+- TODO — N : nombre de notifications non lues — à implémenter (NotificationPatch.CountUnread() existe déjà, raccourci à enregistrer)
 - TODO — P : progression actuelle (Duel Pass / Missions / Saison) — à implémenter
 
 ---
@@ -883,22 +869,21 @@ Statut global : TODO
 - Total ViewControllers/Dialogs dans le jeu : ~240 (hors variantes IL2Cpp et tests)
 - Total Widgets pertinents : ~50
 - Total Namespaces métier : ~60
-- Couverts (DONE) : ~107
+- Couverts (DONE) : ~127  (+20 cette session)
   - Section 1 entière : 23 éléments (logos, titre, chargement, inscription, tutoriel)
-  - Duel complet : 40+ patches (PV, phases, événements, commandes, raccourcis)
-  - Menus quotidiens : 18 éléments (Duel Pass, Solo, Missions, Shop, Profil, Amis, etc.)
+  - Duel complet : 45+ patches (PV, phases, événements, commandes, raccourcis, démarrage)
+  - Menus quotidiens : 25+ éléments (Home, Header badge, HomeMisc, Résultats, Replays…)
   - Contrôles UI : Toggle, Slider, Dropdown, InputField, EventSystem
-  - Dialogs : CommonDialog 12 variantes, SystemDialog, ActionSheet, DuelDialogs
-- Partiellement couverts (PARTIAL) : ~18
-  - DuelResultViewController (résumé OK, ISV récompenses manquant)
+  - Dialogs : CommonDialog 12 variantes, SystemDialog, ActionSheet, DuelDialogs, MessageDialog, EffectTaskRunDialog
+- Partiellement couverts (PARTIAL) : ~12
   - ShopViewController (onglets OK, produits ISV manquant)
   - DeckBrowserViewController (ouverture OK, ISV manquant)
   - FriendViewController (ouverture OK, ISV liste amis manquant)
-  - PresentBoxPatch (ouverture + items OK)
-  - HeaderPatch (gemmes OK, CP manquant)
-  - NotificationPatch (ouverture OK, corps HTML manquant)
-- À faire (TODO) : ~95
-- Non pertinents (SKIP) : ~20
+  - NotificationPatch (ouverture + navigation ISV OK, corps HTML non lu)
+  - DuelistCupResultViewController (DP OK, classement global non lu)
+  - ColosseumDuelResultViewController_Rate (résultat OK, delta rating non lu)
+- À faire (TODO) : ~81  (-14 soldés en DONE, -20 comptés dans DONE ci-dessus)
+- Non pertinents (SKIP) : ~22  (DuelSettingDialogViewController + CP header ajoutés)
 
 ---
 
@@ -908,7 +893,7 @@ Statut global : TODO
 1. ~~SystemDialog~~ — DONE (SystemDialogPatch : erreurs réseau, maintenance)
 2. ~~LoginBonusViewController~~ — DONE (LoginBonusPatch : Jour N sur M + récompense + statut)
 3. ~~PresentBoxViewController~~ — DONE (PresentBoxPatch : comptage + items ISV)
-4. ~~HeaderViewController~~ — DONE (HeaderPatch : raccourci H = gemmes)
+4. ~~HeaderViewController~~ — DONE (HeaderPatch : raccourci H = gemmes + badge notifications + cadeaux)
 5. ~~DuelResultViewController~~ — DONE (DuelResultPatch : résumé + boutons)
 6. ~~DownloadViewController~~ — DONE (DownloadViewControllerPatch : progression téléchargement)
 7. ~~LotteryPortalViewController~~ — DONE (LotteryPortalPatch : nom du pack)
@@ -937,6 +922,12 @@ Statut global : TODO
 26. DuelLiveViewController — mode spectateur
 27. AutoDuelViewController — auto-duel
 28. NotificationPatch contenu détaillé — lecture corps HTML complet
+29. ~~DuelStartViewController~~ — DONE (DuelStartPatch)
+30. ~~MessageDialog / EffectTaskRunDialog~~ — DONE (DialogStatePatch)
+31. ~~DuelResultViewController_Solo / DuelistCup / Colosseum~~ — DONE (DuelResultMiscPatch)
+32. ~~ProfileReplayViewController / RoomReplayViewController / DuelLiveReplayDialogViewController~~ — DONE (ReplayPatch)
+33. ~~HomeActionViewController / HomeAnnounceViewController / HomeSubMenuViewController / PreHomeViewController~~ — DONE (HomeMiscPatch)
+34. ~~GemRestoreOnLoginViewController~~ — DONE (RegistrationPatch)
 
 ### Priorité 4 — Événements saisonniers
 29. ColosseumViewController + tous écrans associés (~15 VCs)

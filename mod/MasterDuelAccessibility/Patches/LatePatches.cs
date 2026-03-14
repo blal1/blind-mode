@@ -52,6 +52,11 @@ namespace MasterDuelAccessibility.Patches
         {
             Plugin.Instance?.LogMsg("[LatePatches] Application des patches de scène duel...");
 
+            // Patch DuelStartViewController / DuelStartViewController_Team / DuelStartOverlayViewController_Team
+            // Annonce l'écran d'introduction du duel (section 3.2)
+            DuelStartPatch.Reset();
+            DuelStartPatch.Apply(_harmonyLate!);
+
             // Patch DuelView.OnDiceResult — annonce le résultat du lancer de dés
             // (détermine qui commence — information critique pour l'accessibilité)
             TryPatchPostfix(
@@ -193,6 +198,16 @@ namespace MasterDuelAccessibility.Patches
             DuelResultPatch.Reset();
             DuelResultPatch.Apply(_harmonyLate!);
 
+            // Patch DuelResultViewController_Solo, DuelistCupResultViewController,
+            // ColosseumDuelResultViewController_Rate (section 5.2)
+            DuelResultMiscPatch.Reset();
+            DuelResultMiscPatch.Apply(_harmonyLate!);
+
+            // Patch ProfileReplayViewController, RoomReplayViewController,
+            // DuelLiveReplayDialogViewController (section 5.3)
+            ReplayPatch.Reset();
+            ReplayPatch.Apply(_harmonyLate!);
+
             // Patch PresentBoxViewController — boîte cadeaux avec ISV navigation
             PresentBoxPatch.Reset();
             PresentBoxPatch.Apply(_harmonyLate!);
@@ -228,6 +243,11 @@ namespace MasterDuelAccessibility.Patches
             // Patch DownloadViewController — téléchargement initial
             DownloadViewControllerPatch.Reset();
             DownloadViewControllerPatch.Apply(_harmonyLate!);
+
+            // Patch HomeAnnounceViewController, HomeActionViewController,
+            // HomeSubMenuViewController, PreHomeViewController — sections 2.4 / 2.5
+            HomeMiscPatch.Reset();
+            HomeMiscPatch.Apply(_harmonyLate!);
 
             // Patch ViewController.NotificationStackEntry/Remove — détecte l'ouverture
             // des panneaux secondaires (Settings, LoginBonus, PresentBox, FriendSearch, etc.)
@@ -370,7 +390,7 @@ namespace MasterDuelAccessibility.Patches
             {
                 // __0 = joueur (0=moi, 1=adversaire), __1 = valeur du dé
                 string playerKey = __0 == 0 ? "dice_you" : "dice_opponent";
-                tts.Speak(Loc.Get("dice_result", Loc.Get(playerKey), __1), interrupt: true);
+                tts.Speak(Loc.Get("dice_result", Loc.Get(playerKey), __1), interrupt: false);
             }
             catch { }
         }
@@ -385,7 +405,7 @@ namespace MasterDuelAccessibility.Patches
             {
                 string playerKey = __0 == 0 ? "dice_you" : "dice_opponent";
                 string sideKey   = __1 == 0 ? "coin_heads" : "coin_tails";
-                tts.Speak(Loc.Get("coin_result", Loc.Get(playerKey), Loc.Get(sideKey)), interrupt: true);
+                tts.Speak(Loc.Get("coin_result", Loc.Get(playerKey), Loc.Get(sideKey)), interrupt: false);
             }
             catch { }
         }
@@ -398,7 +418,7 @@ namespace MasterDuelAccessibility.Patches
             if (tts == null) return;
             try
             {
-                tts.Speak(Loc.Get("mulligan_open", __0), interrupt: true);
+                tts.Speak(Loc.Get("mulligan_open", __0), interrupt: false);
             }
             catch { }
         }
@@ -417,7 +437,7 @@ namespace MasterDuelAccessibility.Patches
                     1 => "duel_lose",
                     _ => "duel_draw"
                 };
-                tts.Speak(Loc.Get(key), interrupt: true);
+                tts.Speak(Loc.Get(key), interrupt: false);
             }
             catch { }
         }
@@ -432,7 +452,7 @@ namespace MasterDuelAccessibility.Patches
             try
             {
                 string key = __1 == 0 ? "first_player_you" : "first_player_opp";
-                tts.Speak(Loc.Get(key), interrupt: true);
+                tts.Speak(Loc.Get(key), interrupt: false);
             }
             catch { }
         }
@@ -447,7 +467,7 @@ namespace MasterDuelAccessibility.Patches
             try
             {
                 if (!string.IsNullOrWhiteSpace(__0))
-                    tts.Speak(__0, interrupt: true);
+                    tts.Speak(__0, interrupt: false);
             }
             catch { }
         }
@@ -553,7 +573,7 @@ namespace MasterDuelAccessibility.Patches
                     ? Loc.Get("card_command_ex_nocard", string.Join(", ", positions))
                     : Loc.Get("card_command_ex", cardName!, string.Join(", ", positions));
 
-                tts.Speak(msg, interrupt: true);
+                tts.Speak(msg, interrupt: false);
             }
             catch { }
         }
@@ -583,7 +603,7 @@ namespace MasterDuelAccessibility.Patches
             try
             {
                 if (!string.IsNullOrWhiteSpace(__0))
-                    tts.Speak(__0, interrupt: true);
+                    tts.Speak(__0, interrupt: false);
             }
             catch { }
         }
@@ -630,7 +650,7 @@ namespace MasterDuelAccessibility.Patches
                     ? Loc.Get("pulldown_open", prompt, __2, string.Join(", ", options))
                     : Loc.Get("pulldown_open_nolist", prompt, __2);
 
-                tts.Speak(announcement, interrupt: true);
+                tts.Speak(announcement, interrupt: false);
             }
             catch { }
         }

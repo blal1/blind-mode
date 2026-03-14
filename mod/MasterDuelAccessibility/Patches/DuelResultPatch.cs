@@ -159,6 +159,9 @@ namespace MasterDuelAccessibility.Patches
 
         /// <summary>
         /// Reads the GetScoreReward widget for total score points.
+        /// Dump-confirmed fields (DuelResultViewController.GetScoreReward):
+        ///   m_TotalScore (int 0x58) — total XP / score for this duel
+        ///   m_NeedScore  (int 0x5C) — score needed for next rank
         /// </summary>
         private static string? ReadScoreReward(object instance)
         {
@@ -169,24 +172,31 @@ namespace MasterDuelAccessibility.Patches
                 var widget = field?.GetValue(instance);
                 if (widget == null) return null;
 
-                // Try to read the total point from the widget
-                // ResultInfoScores has SetTotalPoint(int) — the value is stored internally
-                // We try to find a text element showing the total
-                var textFields = new[] { "m_TotalPointText", "m_totalPoint", "totalPointText" };
-                foreach (var tf in textFields)
+                // Try dump-confirmed int field first
+                var scoreField = widget.GetType().GetField("m_TotalScore",
+                    BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+                if (scoreField != null)
                 {
-                    var txtField = widget.GetType().GetField(tf,
-                        BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
-                    if (txtField == null) continue;
+                    int score = Convert.ToInt32(scoreField.GetValue(widget));
+                    if (score > 0) return Loc.Get("result_score", score);
+                }
 
-                    var txtObj = txtField.GetValue(widget);
+                // Fallback: walk all TMP_Text children for a numeric text
+                var tmpType = AccessToolsHelper.FindType("TMPro.TMP_Text");
+                if (tmpType == null) return null;
+
+                foreach (var f in widget.GetType().GetFields(
+                    BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance))
+                {
+                    if (!tmpType.IsAssignableFrom(f.FieldType)) continue;
+                    var txtObj = f.GetValue(widget);
                     if (txtObj == null) continue;
-
                     var textProp = txtObj.GetType().GetProperty("text",
                         BindingFlags.Public | BindingFlags.Instance);
-                    var text = textProp?.GetValue(txtObj)?.ToString();
-                    if (!string.IsNullOrWhiteSpace(text))
-                        return Loc.Get("result_score", text!);
+                    var text = textProp?.GetValue(txtObj)?.ToString()?.Trim();
+                    if (!string.IsNullOrWhiteSpace(text)
+                        && int.TryParse(text, out int n) && n > 0)
+                        return Loc.Get("result_score", n);
                 }
 
                 return null;

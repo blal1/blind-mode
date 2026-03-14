@@ -126,16 +126,16 @@ namespace MasterDuelAccessibility
         /// Inspiré de MTGA AccessibleArena — IAnnouncementService.Announce(message, priority).
         ///
         ///   Low / Normal  → interrupt: false  (mise en queue)
-        ///   High / Immediate → interrupt: true  (interruption)
+        ///   High / Immediate → interrupt: false  (interruption)
         /// </summary>
         public void Speak(string text, AnnouncementPriority priority, bool addToHistory = true)
-            => Speak(text, interrupt: priority >= AnnouncementPriority.High, addToHistory);
+            => Speak(text, interrupt: false, addToHistory);
 
         /// <summary>Relit le dernier texte prononcé (sans l'ajouter à l'historique).</summary>
         public void Repeat()
         {
             if (!string.IsNullOrEmpty(LastSpoken))
-                Speak(LastSpoken, interrupt: true, addToHistory: false);
+                Speak(LastSpoken, interrupt: false, addToHistory: false);
         }
 
         /// <summary>

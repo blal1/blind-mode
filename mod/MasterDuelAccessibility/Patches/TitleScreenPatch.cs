@@ -395,7 +395,7 @@ namespace MasterDuelAccessibility.Patches
             try
             {
                 Plugin.Instance?.LogMsg("[TitleScreenPatch] Écran titre affiché");
-                tts.Speak(Loc.Get("title_screen_ready"), interrupt: true);
+                tts.Speak(Loc.Get("title_screen_ready"), interrupt: false);
             }
             catch { }
         }
@@ -410,7 +410,7 @@ namespace MasterDuelAccessibility.Patches
             if (tts == null) return;
             try
             {
-                tts.Speak(Loc.Get("title_starting"), interrupt: true, addToHistory: false);
+                tts.Speak(Loc.Get("title_starting"), interrupt: false, addToHistory: false);
             }
             catch { }
         }
@@ -421,7 +421,7 @@ namespace MasterDuelAccessibility.Patches
         {
             var tts = Plugin.Instance?.Tts;
             if (tts == null) return;
-            try { tts.Speak(Loc.Get("logo_konami"), interrupt: true); }
+            try { tts.Speak(Loc.Get("logo_konami"), interrupt: false); }
             catch { }
         }
 
@@ -429,7 +429,7 @@ namespace MasterDuelAccessibility.Patches
         {
             var tts = Plugin.Instance?.Tts;
             if (tts == null) return;
-            try { tts.Speak(Loc.Get("logo_unity"), interrupt: true); }
+            try { tts.Speak(Loc.Get("logo_unity"), interrupt: false); }
             catch { }
         }
 
@@ -437,7 +437,7 @@ namespace MasterDuelAccessibility.Patches
         {
             var tts = Plugin.Instance?.Tts;
             if (tts == null) return;
-            try { tts.Speak(Loc.Get("logo_on_demand"), interrupt: true); }
+            try { tts.Speak(Loc.Get("logo_on_demand"), interrupt: false); }
             catch { }
         }
 
@@ -445,7 +445,7 @@ namespace MasterDuelAccessibility.Patches
         {
             var tts = Plugin.Instance?.Tts;
             if (tts == null) return;
-            try { tts.Speak(Loc.Get("logo_pre_title"), interrupt: true); }
+            try { tts.Speak(Loc.Get("logo_pre_title"), interrupt: false); }
             catch { }
         }
 
@@ -463,9 +463,9 @@ namespace MasterDuelAccessibility.Patches
             {
                 string? scenarioName = TryReadStringField(__instance, ref _fScenarioNameDemo, "m_scenarioName");
                 if (!string.IsNullOrWhiteSpace(scenarioName))
-                    tts.Speak(Loc.Get("title_demo_named", scenarioName!), interrupt: true);
+                    tts.Speak(Loc.Get("title_demo_named", scenarioName!), interrupt: false);
                 else
-                    tts.Speak(Loc.Get("title_demo"), interrupt: true);
+                    tts.Speak(Loc.Get("title_demo"), interrupt: false);
             }
             catch { }
         }
@@ -474,7 +474,7 @@ namespace MasterDuelAccessibility.Patches
         {
             var tts = Plugin.Instance?.Tts;
             if (tts == null) return;
-            try { tts.Speak(Loc.Get("title_settings"), interrupt: true); }
+            try { tts.Speak(Loc.Get("title_settings"), interrupt: false); }
             catch { }
         }
 
@@ -490,9 +490,9 @@ namespace MasterDuelAccessibility.Patches
             {
                 string? mainText = TryReadTmpFieldByName(__instance, ref _fMainText, "MainText");
                 if (!string.IsNullOrWhiteSpace(mainText))
-                    tts.Speak(Loc.Get("title_data_link_text", mainText!), interrupt: true);
+                    tts.Speak(Loc.Get("title_data_link_text", mainText!), interrupt: false);
                 else
-                    tts.Speak(Loc.Get("title_data_link"), interrupt: true);
+                    tts.Speak(Loc.Get("title_data_link"), interrupt: false);
             }
             catch { }
         }

@@ -186,7 +186,7 @@ namespace MasterDuelAccessibility.Patches
 
                 Plugin.Instance?.LogMsg($"[CardSelectionListPatch] SetList type={__0} title={__2} count={count}");
 
-                tts.Speak(msg, interrupt: true);
+                tts.Speak(msg, interrupt: false);
             }
             catch { }
         }
@@ -229,7 +229,7 @@ namespace MasterDuelAccessibility.Patches
                 _lastCursorCard = cardName!;
 
                 string msg = Loc.Get("card_sel_cursor", cardName!, __0 + 1, total);
-                tts.Speak(msg, interrupt: true, addToHistory: false);
+                tts.Speak(msg, interrupt: false, addToHistory: false);
             }
             catch { }
         }

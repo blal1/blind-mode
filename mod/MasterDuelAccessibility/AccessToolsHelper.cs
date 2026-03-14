@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Reflection;
+using System.Text;
 using HarmonyLib;
 
 namespace MasterDuelAccessibility
@@ -14,6 +16,37 @@ namespace MasterDuelAccessibility
             BindingFlags.Public | BindingFlags.Instance;
         private static readonly BindingFlags PubStat =
             BindingFlags.Public | BindingFlags.Static;
+
+        // ── Container-name exclusion list ─────────────────────────────────────
+        // Generic UI container GO names that carry no semantic meaning as context
+        // labels. Inspired by Monster Train's GetContextLabelFromHierarchy()
+        // exclusion list. Used when walking the transform hierarchy to find a
+        // meaningful label for a button (e.g. icon buttons, short text labels).
+        // Add entries here when a parent name leaks into announcements.
+        private static readonly HashSet<string> _containerKeywords =
+            new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        {
+            "container", "panel",     "holder",     "group",   "content",
+            "root",      "wrapper",   "area",        "layout",  "scroll",
+            "viewport",  "mask",      "bg",          "background", "frame",
+            "canvas",    "overlay",   "scrollview",  "scrollrect",
+            "options",   "input",     "section",     "buttons",
+            "items",     "list",      "entries",     "view",
+        };
+
+        /// <summary>
+        /// Returns <c>true</c> if <paramref name="name"/> is a generic UI container
+        /// name that should be skipped when walking the hierarchy for a context label.
+        /// Matches any name that contains one of the container keywords (case-insensitive).
+        /// </summary>
+        public static bool IsContainerName(string? name)
+        {
+            if (string.IsNullOrEmpty(name)) return true;
+            foreach (var keyword in _containerKeywords)
+                if (name!.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0)
+                    return true;
+            return false;
+        }
         /// <summary>
         /// Cherche un type par son nom court (ex. "CardInfo") ou son nom complet
         /// (ex. "YgomGame.Duel.CardInfo") dans tous les assemblies chargés.
@@ -143,6 +176,125 @@ namespace MasterDuelAccessibility
                 return null;
             }
             catch { return null; }
+        }
+
+        // ── Contextual label helper ───────────────────────────────────────────
+
+        /// <summary>
+        /// Returns a contextual label for a button whose visible text is short or absent.
+        /// Inspired by Monster Train's GetTextWithContext() pattern.
+        ///
+        /// Algorithm:
+        ///   1. rawText with ≥3 chars → returned unchanged (already meaningful).
+        ///   2. rawText is empty or ≤2 chars (icon/abbreviation) → enrich from hierarchy:
+        ///      a. Clean the button's own GO name (strip Unity suffixes, split CamelCase).
+        ///         Skip if the name is a container/generic name.
+        ///      b. Walk up ancestors (≤5 levels), skipping container names, using IsContainerName.
+        ///      c. Return cleaned name alone (rawText empty) or "Name: rawText" (icon label).
+        ///   3. Falls back to rawText if nothing meaningful found.
+        ///
+        /// Call site in SelectionButtonPatch:
+        ///   if (string.IsNullOrWhiteSpace(text) || text.Length &lt;= 2)
+        ///       text = AccessToolsHelper.GetContextualLabel(GetTransform(__instance), text) ?? text;
+        /// </summary>
+        public static string? GetContextualLabel(object? xform, string? rawText)
+        {
+            if (!string.IsNullOrWhiteSpace(rawText) && rawText.Length > 2)
+                return rawText;
+
+            if (xform == null) return rawText;
+
+            try
+            {
+                // 1. Own GO name (the button's own object name, e.g. "RetryButton" → "Retry")
+                string? ownName = CleanGoName(NameOf(GoOf(xform)));
+                if (!string.IsNullOrEmpty(ownName))
+                    return string.IsNullOrWhiteSpace(rawText)
+                        ? ownName
+                        : $"{ownName}: {rawText}";
+
+                // 2. Walk up ancestors, skip containers, take first meaningful name
+                var walker = ParentOf(xform);
+                for (int depth = 0; depth < 5 && walker != null; depth++, walker = ParentOf(walker))
+                {
+                    string? pName = CleanGoName(NameOf(GoOf(walker)));
+                    if (!string.IsNullOrEmpty(pName))
+                        return string.IsNullOrWhiteSpace(rawText)
+                            ? pName
+                            : $"{pName}: {rawText}";
+                }
+            }
+            catch { }
+
+            return rawText;
+        }
+
+        // ── Private helpers for contextual-label hierarchy walking ────────────
+
+        // Reflection shortcuts — keep allocations low by inlining.
+        private static object? GoOf(object? xform) =>
+            xform?.GetType().GetProperty("gameObject", PubInst)?.GetValue(xform);
+
+        private static string? NameOf(object? go) =>
+            go?.GetType().GetProperty("name", PubInst)?.GetValue(go)?.ToString();
+
+        private static object? ParentOf(object? xform) =>
+            xform?.GetType().GetProperty("parent", PubInst)?.GetValue(xform);
+
+        // Generic single-word names that carry no information as labels.
+        private static readonly HashSet<string> _genericGoNames =
+            new HashSet<string>(StringComparer.OrdinalIgnoreCase)
+        {
+            "button", "text", "image", "icon", "gameobject", "sprite",
+            "label", "toggle", "slider", "arrow",
+        };
+
+        /// <summary>
+        /// Cleans a Unity GameObject name for use as a human-readable label:
+        ///   - Strips "(Clone)" and trailing numbers after underscores.
+        ///   - Returns null for container names (IsContainerName) and generic single-word names.
+        ///   - Splits CamelCase into words ("RetryButton" → "Retry Button").
+        ///   - Replaces underscores with spaces.
+        /// </summary>
+        internal static string? CleanGoName(string? raw)
+        {
+            if (string.IsNullOrEmpty(raw)) return null;
+
+            // Strip "(Clone)" suffix (case-insensitive)
+            int cloneIdx = raw!.IndexOf("(Clone)", StringComparison.OrdinalIgnoreCase);
+            if (cloneIdx >= 0) raw = raw.Substring(0, cloneIdx).Trim();
+
+            // Strip trailing _N or _NNN index suffixes (e.g. "Button_0", "Item_12")
+            int uIdx = raw.LastIndexOf('_');
+            if (uIdx > 0 && uIdx == raw.Length - 2 && char.IsDigit(raw[raw.Length - 1]))
+                raw = raw.Substring(0, uIdx).Trim();
+
+            if (string.IsNullOrEmpty(raw)) return null;
+            if (IsContainerName(raw)) return null;
+            if (_genericGoNames.Contains(raw)) return null;
+
+            // Split CamelCase: "RetryButton" → "Retry Button"
+            var sb = new StringBuilder(raw.Length + 4);
+            for (int i = 0; i < raw.Length; i++)
+            {
+                char c = raw[i];
+                if (c == '_')
+                {
+                    sb.Append(' ');
+                    continue;
+                }
+                if (i > 0 && char.IsUpper(c))
+                {
+                    bool prevLower  = char.IsLower(raw[i - 1]);
+                    bool nextLower  = i + 1 < raw.Length && char.IsLower(raw[i + 1]);
+                    if (prevLower || nextLower)
+                        sb.Append(' ');
+                }
+                sb.Append(c);
+            }
+
+            string result = sb.ToString().Trim();
+            return string.IsNullOrEmpty(result) ? null : result;
         }
     }
 }

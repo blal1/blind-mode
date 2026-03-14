@@ -36,7 +36,7 @@ namespace MasterDuelAccessibility.Patches
                 };
 
                 if (!string.IsNullOrEmpty(key))
-                    tts.Speak(Loc.Get(key), interrupt: true);
+                    tts.Speak(Loc.Get(key), interrupt: false);
             }
             catch { /* réflexion silencieuse */ }
         }

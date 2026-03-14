@@ -42,6 +42,11 @@ namespace MasterDuelAccessibility.Patches
     /// 10. PrivacyPolicyViewController (YgomGame.Menu)
     ///    → "Politique de confidentialité. Lisez et acceptez pour continuer."
     ///
+    /// 11. GemRestoreOnLoginViewController (global namespace — cas rare)
+    ///    → "Restauration de gemmes en cours."
+    ///    Pas de champs TMP_Text accessibles (seul _pdAnalyzer / coroutines réseau).
+    ///    Annonce générique suffisante — l'écran disparaît rapidement.
+    ///
     /// ## Application
     /// Appliqué via Plugin.ApplyPatches() (avant la scène Menu).
     /// </summary>
@@ -66,6 +71,7 @@ namespace MasterDuelAccessibility.Patches
             PatchFirstLanguageSelect(harmony);
             PatchTermOfService(harmony);
             PatchPrivacyPolicy(harmony);
+            PatchGemRestoreOnLogin(harmony);
         }
 
         // ── 1) GameEntrySequenceViewController + V2 ───────────────────────────
@@ -198,7 +204,7 @@ namespace MasterDuelAccessibility.Patches
         {
             var tts = Plugin.Instance?.Tts;
             if (tts == null) return;
-            try { tts.Speak(Loc.Get("reg_account_create"), interrupt: true); }
+            try { tts.Speak(Loc.Get("reg_account_create"), interrupt: false); }
             catch { }
         }
 
@@ -209,7 +215,7 @@ namespace MasterDuelAccessibility.Patches
         {
             var tts = Plugin.Instance?.Tts;
             if (tts == null) return;
-            try { tts.Speak(Loc.Get("reg_approval"), interrupt: true); }
+            try { tts.Speak(Loc.Get("reg_approval"), interrupt: false); }
             catch { }
         }
 
@@ -222,7 +228,7 @@ namespace MasterDuelAccessibility.Patches
         {
             var tts = Plugin.Instance?.Tts;
             if (tts == null) return;
-            try { tts.Speak(Loc.Get("reg_age_gate"), interrupt: true); }
+            try { tts.Speak(Loc.Get("reg_age_gate"), interrupt: false); }
             catch { }
         }
 
@@ -241,9 +247,9 @@ namespace MasterDuelAccessibility.Patches
                 int max     = TryReadIntField(__instance, ref _fAgeMax,     "m_ageMax");
 
                 if (min != 0 || max != 0)
-                    tts.Speak(Loc.Get("reg_age_select_range", current, min, max), interrupt: true);
+                    tts.Speak(Loc.Get("reg_age_select_range", current, min, max), interrupt: false);
                 else
-                    tts.Speak(Loc.Get("reg_age_select", current), interrupt: true);
+                    tts.Speak(Loc.Get("reg_age_select", current), interrupt: false);
             }
             catch { }
         }
@@ -256,7 +262,7 @@ namespace MasterDuelAccessibility.Patches
         {
             var tts = Plugin.Instance?.Tts;
             if (tts == null) return;
-            try { tts.Speak(Loc.Get("reg_birthdate"), interrupt: true); }
+            try { tts.Speak(Loc.Get("reg_birthdate"), interrupt: false); }
             catch { }
         }
 
@@ -271,9 +277,9 @@ namespace MasterDuelAccessibility.Patches
             {
                 string? name = TryReadTmpText(__instance, ref _fCountryNameText, "m_currentNameText");
                 if (!string.IsNullOrWhiteSpace(name))
-                    tts.Speak(Loc.Get("reg_country_selected", name!), interrupt: true);
+                    tts.Speak(Loc.Get("reg_country_selected", name!), interrupt: false);
                 else
-                    tts.Speak(Loc.Get("reg_country"), interrupt: true);
+                    tts.Speak(Loc.Get("reg_country"), interrupt: false);
             }
             catch { }
         }
@@ -289,9 +295,9 @@ namespace MasterDuelAccessibility.Patches
             {
                 string? name = TryReadTmpText(__instance, ref _fStateNameText, "m_currentNameText");
                 if (!string.IsNullOrWhiteSpace(name))
-                    tts.Speak(Loc.Get("reg_state_selected", name!), interrupt: true);
+                    tts.Speak(Loc.Get("reg_state_selected", name!), interrupt: false);
                 else
-                    tts.Speak(Loc.Get("reg_state"), interrupt: true);
+                    tts.Speak(Loc.Get("reg_state"), interrupt: false);
             }
             catch { }
         }
@@ -303,7 +309,7 @@ namespace MasterDuelAccessibility.Patches
         {
             var tts = Plugin.Instance?.Tts;
             if (tts == null) return;
-            try { tts.Speak(Loc.Get("reg_language_select"), interrupt: true); }
+            try { tts.Speak(Loc.Get("reg_language_select"), interrupt: false); }
             catch { }
         }
 
@@ -314,7 +320,7 @@ namespace MasterDuelAccessibility.Patches
         {
             var tts = Plugin.Instance?.Tts;
             if (tts == null) return;
-            try { tts.Speak(Loc.Get("reg_tos"), interrupt: true); }
+            try { tts.Speak(Loc.Get("reg_tos"), interrupt: false); }
             catch { }
         }
 
@@ -325,7 +331,23 @@ namespace MasterDuelAccessibility.Patches
         {
             var tts = Plugin.Instance?.Tts;
             if (tts == null) return;
-            try { tts.Speak(Loc.Get("reg_privacy"), interrupt: true); }
+            try { tts.Speak(Loc.Get("reg_privacy"), interrupt: false); }
+            catch { }
+        }
+
+        // ── 11) GemRestoreOnLoginViewController ──────────────────────────────
+
+        private static void PatchGemRestoreOnLogin(HarmonyLib.Harmony harmony)
+            => PatchStackEntry(harmony,
+                "GemRestoreOnLoginViewController",   // global namespace (no namespace prefix)
+                nameof(GemRestore_Postfix),
+                "GemRestoreOnLoginViewController");
+
+        private static void GemRestore_Postfix()
+        {
+            var tts = Plugin.Instance?.Tts;
+            if (tts == null) return;
+            try { tts.Speak(Loc.Get("gem_restore_login"), interrupt: false); }
             catch { }
         }
 

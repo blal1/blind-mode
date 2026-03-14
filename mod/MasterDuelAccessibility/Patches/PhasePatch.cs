@@ -67,7 +67,7 @@ namespace MasterDuelAccessibility.Patches
             tts.Speak(team == 0
                 ? Loc.Get("duel_turn_yours_n", GameState.CurrentTurn)
                 : Loc.Get("duel_turn_opp_n",   GameState.CurrentTurn),
-                interrupt: true);
+                interrupt: false);
         }
 
         /// <summary>

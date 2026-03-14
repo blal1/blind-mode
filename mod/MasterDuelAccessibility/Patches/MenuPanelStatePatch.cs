@@ -34,19 +34,15 @@ namespace MasterDuelAccessibility.Patches
 
             Plugin.Instance?.LogMsg("[MenuPanelStatePatch] Initialisation...");
 
-            // ── Base : ViewController.NotificationStackEntry / Remove ─────────
-            PatchMethod(harmony,
-                "YgomSystem.UI.ViewController", "NotificationStackEntry",
-                nameof(VC_StackEntry_Postfix));
-
-            PatchMethod(harmony,
-                "YgomSystem.UI.ViewController", "NotificationStackRemove",
-                nameof(VC_StackRemove_Postfix));
+            // ── Base class patches intentionally REMOVED ──────────────────────
+            // Patching virtual methods on YgomSystem.UI.ViewController (base class)
+            // causes HarmonyX IL2CPP vtable recursion → stack overflow crash.
+            // Rule: NEVER patch virtual methods on ViewController base directly.
+            // Only patch on concrete subclasses (see specialized handlers below).
 
             // ── Panneaux spécifiques (PanelType fourni explicitement) ─────────
-            PatchMethod(harmony,
-                "YgomGame.Settings.SettingsViewController", "NotificationStackEntry",
-                nameof(Settings_StackEntry_Postfix));
+            // Note: YgomGame.Settings.SettingsViewController n'existe pas dans cette
+            // version du jeu (confirmé via decompiled/) — patch omis volontairement.
 
             PatchMethod(harmony,
                 "YgomGame.Menu.LoginBonusViewController", "NotificationStackEntry",
@@ -69,7 +65,7 @@ namespace MasterDuelAccessibility.Patches
                 nameof(SeasonResult_StackEntry_Postfix));
 
             PatchMethod(harmony,
-                "YgomGame.ActionSheet.ActionSheetViewController", "NotificationStackEntry",
+                "YgomGame.Menu.ActionSheetViewController", "NotificationStackEntry",
                 nameof(ActionSheet_StackEntry_Postfix));
 
             // SortDialogs

@@ -47,7 +47,7 @@ namespace MasterDuelAccessibility.Patches
                     : Loc.Get("duel_attack_direct",       aName);
             }
 
-            tts.Speak(msg, interrupt: true);
+            tts.Speak(msg, interrupt: false);
         }
     }
 }
