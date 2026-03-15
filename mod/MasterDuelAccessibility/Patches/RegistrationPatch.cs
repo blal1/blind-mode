@@ -2,6 +2,8 @@ using HarmonyLib;
 
 using System;
 using System.Reflection;
+using UnityEngine;
+using UnityEngine.EventSystems;
 
 namespace MasterDuelAccessibility.Patches
 {
@@ -282,6 +284,7 @@ namespace MasterDuelAccessibility.Patches
                     tts.Speak(Loc.Get("reg_country"), interrupt: false);
             }
             catch { }
+            TryFocusDecisionButton(__instance);
         }
 
         /// <summary>
@@ -305,12 +308,13 @@ namespace MasterDuelAccessibility.Patches
         /// <summary>
         /// FirstLanguageSelectViewController — sélection de langue initiale.
         /// </summary>
-        private static void FirstLanguageSelect_Postfix()
+        private static void FirstLanguageSelect_Postfix(object __instance)
         {
             var tts = Plugin.Instance?.Tts;
             if (tts == null) return;
             try { tts.Speak(Loc.Get("reg_language_select"), interrupt: false); }
             catch { }
+            TryFocusDecisionButton(__instance);
         }
 
         /// <summary>
@@ -348,6 +352,46 @@ namespace MasterDuelAccessibility.Patches
             var tts = Plugin.Instance?.Tts;
             if (tts == null) return;
             try { tts.Speak(Loc.Get("gem_restore_login"), interrupt: false); }
+            catch { }
+        }
+
+        // ── Initial focus helper (pattern BlindMode QueueFocusedItem) ─────────
+
+        /// <summary>
+        /// Set EventSystem focus to the decision button (ButtonNext) so the user
+        /// can interact via keyboard immediately when a registration screen appears.
+        /// CommonScreenViewController.m_decisionButton is a SelectionButton — focus
+        /// it so arrow keys and Enter work without needing a mouse click first.
+        /// </summary>
+        private static void TryFocusDecisionButton(object instance)
+        {
+            try
+            {
+                // Walk type hierarchy to find m_decisionButton
+                FieldInfo? field = null;
+                var t = instance.GetType();
+                while (t != null && t != typeof(object))
+                {
+                    field = t.GetField("m_decisionButton",
+                        BindingFlags.Public | BindingFlags.NonPublic |
+                        BindingFlags.Instance | BindingFlags.DeclaredOnly);
+                    if (field != null) break;
+                    t = t.BaseType;
+                }
+                if (field == null) return;
+
+                object? btn = field.GetValue(instance);
+                if (btn == null) return;
+
+                // Get the gameObject property (MonoBehaviour)
+                var goProp = btn.GetType().GetProperty("gameObject",
+                    BindingFlags.Public | BindingFlags.Instance);
+                GameObject? go = goProp?.GetValue(btn) as GameObject;
+                if (go == null) return;
+
+                if (EventSystem.current != null)
+                    EventSystem.current.SetSelectedGameObject(go);
+            }
             catch { }
         }
 

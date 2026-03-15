@@ -61,7 +61,8 @@ namespace MasterDuelAccessibility.Patches
             { "LotteryPortal",        "screen_lottery"       },
             { "LotteryResult",        "screen_lottery_result"},
             { "LotteryHistory",       "screen_lottery_history"},
-            { "LotteryCardSelect",    "screen_lottery_card_select"},
+            { "LotteryCardSelect",           "screen_lottery_card_select"},
+            { "LotteryCardSelectViewController", "screen_lottery_card_select"},
             { "LotteryRewardView",    "screen_lottery_reward"},
             // ── Récompenses / Boîte cadeaux ───────────────────────────────────
             { "PresentBox",           "screen_present_box"   },
@@ -85,13 +86,79 @@ namespace MasterDuelAccessibility.Patches
             // ── Échange d'objets ─────────────────────────────────────────────
             { "ItemExchange",         "screen_item_exchange" },
             // ── Colosseum ────────────────────────────────────────────────────
-            { "ColosseumDuelResult",  "screen_colosseum_result" },
-            { "WCSFinal_Colosseum",   "screen_colosseum"     },
+            { "Colosseum",                       "screen_colosseum"        },
+            { "ColosseumDuelResult",             "screen_colosseum_result" },
+            { "WCSFinal_Colosseum",              "screen_colosseum"        },
+            // ── Auto-Duel ─────────────────────────────────────────────────────
+            { "AutoDuelLauncher",                "screen_autoduel"         },
+            { "AutoDuel",                        "screen_autoduel"         },
+            // ── Duel Live ─────────────────────────────────────────────────────
+            { "DuelLive",                        "screen_duel_live"        },
+            // ── Solo mode ─────────────────────────────────────────────────────
+            { "SoloMode",                        "screen_solo_mode"        },
+            // ── Enquête / Aide / Market / ConsoleDataLink ─────────────────────
+            { "Enquete",                         "screen_enquete"          },
+            { "Help",                            "screen_help"             },
+            { "MarketPool",                      "screen_market"           },
+            { "TurnOverPrize",                   "screen_turn_over"        },
+            { "TurnOverPrizeViewer",             "screen_turn_over"        },
+            { "ConsoleDataLink",                 "screen_console_link"     },
+            // ── Inquiry / Credits ─────────────────────────────────────────────
+            { "Inquiry",                         "screen_inquiry"          },
+            { "Credit",                          "screen_credits"          },
+            // ── Dice Rally (section 18) ───────────────────────────────────────
+            { "DiceRallyMapEditor",              "screen_dice_rally_map"   },
+            { "DiceRallyEffectDialog",           "screen_dice_rally_effect"},
+            { "DiceResult",                      "screen_dice_result"      },
+            { "DiceRallySubMenu",                "screen_dice_rally"       },
+            // ── WCS prédictions (section 20) ─────────────────────────────────
+            { "WCSTeamTable",                         "screen_wcs_team_table"   },
+            { "WCSTeamTableViewControllerBase",       "screen_wcs_team_table"   },
+            { "WCSTeamTableViewControllerVer2",       "screen_wcs_team_table"   },
+            { "WinPrediction",                        "screen_wcs_prediction"   },
+            { "WinPredictionPlayers",                 "screen_wcs_prediction"   },
+            { "WinPredictionTogglePage",              "screen_wcs_prediction"   },
+            { "WinPredictionReward",                  "screen_wcs_prediction_reward" },
+            // ── Colosseum divers ──────────────────────────────────────────────
+            { "ColosseumConfirmGroup",                "screen_colosseum"               },
+            { "ColosseumConfirmAgreement",            "screen_colosseum_confirm"       },
+            { "ColosseumInfoEditScene",               "screen_colosseum"               },
+            { "ColosseumRankingEditScene",            "screen_colosseum_ranking"       },
+            { "ColosseumResultEditScene",             "screen_colosseum_result"        },
+            { "ColosseumResultViewController_Wcs",   "screen_colosseum_result"        },
+            { "ColosseumResultVersus",                "screen_colosseum_result_versus" },
+            { "ColosseumRankingDuelistCup",           "screen_colosseum_ranking_cup"  },
+            { "ColosseumRankEventReward",             "screen_colosseum_reward"        },
+            { "ColosseumRewardDuelistCup",            "screen_colosseum_reward"        },
+            { "ColosseumRewardTournament",            "screen_colosseum_reward"        },
+            // ── TDY / Tag Duel supplémentaires (section 21) ───────────────────
+            { "TdyDuelTransition",                    "screen_tdy_duel"              },
+            { "TdyChainCutIn",                        "screen_tdy_chain"             },
+            { "TdyCompleteKizunaCutIn",               "screen_tdy_kizuna_complete"   },
+            { "TdyGetKizunaCutIn",                    "screen_tdy_kizuna_get"        },
+            // ── Duel Live supplémentaires (section 22) ────────────────────────
+            { "DuelLiveWCSFilter",                    "screen_duel_live_wcs_filter"  },
+            // ── Aide / Enquête / Contacts (sections 29-30) ───────────────────
+            { "WebHelp",                              "screen_web_help"   },
+            { "EnqueteCardSelect",                    "screen_enquete_card" },
+            // ── TurnOverPrize supplémentaires (section 27) ───────────────────
+            { "TurnOverPrizeItemViewer",              "screen_turn_over"  },
+            // ── ConsoleDataLink supplémentaires (section 30) ──────────────────
+            { "ConsoleDataLinkInherit",               "screen_console_link" },
+            { "ConsoleDataLinkRegist",                "screen_console_link" },
+            // ── Team supplémentaires (section 19) ────────────────────────────
+            { "TeamRoomEditScene",                    "screen_team_room"    },
+            // ── Card File divers ──────────────────────────────────────────────
+            { "CardListBrowserRegulationFilter", "screen_regulation_filter"},
             // ── Tri / Filtres ─────────────────────────────────────────────────
             { "SortDialog_Card",      "screen_sort_card"     },
             { "SortDialog_CardFile",  "screen_sort_cardfile" },
             { "SortDialog_Solo",      "screen_sort_solo"     },
             { "FilterSelect",         "screen_filter_select" },
+            // ── Collection et codes promo ─────────────────────────────────────
+            { "CardFile",             "screen_card_file"     },
+            { "CardFileTable",        "screen_card_file"     },
+            { "PromoCodes",           "screen_promo_codes"   },
             // ── Divers ────────────────────────────────────────────────────────
             { "PasswordDialog",       "screen_password"      },
         };
@@ -205,10 +272,27 @@ namespace MasterDuelAccessibility.Patches
 
                 if (GameState.MenuNames.TryGetValue(vcName, out var menu))
                 {
+                    // Top-level menu: announce + set context
                     GameState.CurrentMenu = menu;
                     string label = ResolveName(vcName);
                     if (!string.IsNullOrEmpty(label))
                         Plugin.Instance?.Tts?.Speak(label, interrupt: false);
+                }
+                else if (GameState.VcKeepContextNames.Contains(vcName!))
+                {
+                    // Overlay/dialog: preserve current menu context, do nothing
+                }
+                else if (GameState.VcMenuContextMap.TryGetValue(vcName!, out var contextMenu))
+                {
+                    // Known sub-screen: inherit parent menu context (no announcement —
+                    // Show_Postfix already handles that)
+                    GameState.CurrentMenu = contextMenu;
+                }
+                else
+                {
+                    // Unknown screen: reset to prevent stale context dispatch
+                    // (e.g. Profile, Friends, SeasonRanking after leaving Solo/Deck)
+                    GameState.CurrentMenu = GameState.Menu.None;
                 }
             }
             catch { /* réflexion silencieuse */ }

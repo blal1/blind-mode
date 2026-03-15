@@ -35,6 +35,30 @@ namespace MasterDuelAccessibility.Patches
         // Cache de réflexion
         private static FieldInfo? _fContentType;
 
+        /// <summary>
+        /// Dernière instance MissionViewController ouverte dans cette session.
+        /// Mise en cache pour que GetCurrentAnnouncement() puisse lire les données
+        /// sans que l'écran soit ouvert (raccourci P hors duel).
+        /// </summary>
+        internal static object? ActiveInstance;
+
+        /// <summary>
+        /// Retourne l'annonce de missions pour le raccourci P hors duel.
+        /// Null si aucune donnée de missions n'a encore été lue.
+        /// </summary>
+        internal static string? GetCurrentAnnouncement()
+        {
+            if (ActiveInstance == null) return null;
+            try
+            {
+                string tab = GetTabLabel(ActiveInstance);
+                return !string.IsNullOrWhiteSpace(tab)
+                    ? Loc.Get("mission_screen_with_tab", tab)
+                    : Loc.Get("screen_missions");
+            }
+            catch { return null; }
+        }
+
         internal static void Apply(HarmonyLib.Harmony harmony)
         {
             if (_applied) return;
@@ -79,14 +103,17 @@ namespace MasterDuelAccessibility.Patches
 
         internal static void Reset()
         {
-            _applied      = false;
-            _fContentType = null;
+            _applied       = false;
+            _fContentType  = null;
+            ActiveInstance = null;
         }
 
         // ── Postfix : NotificationStackEntry ────────────────────────────────
 
         public static void StackEntry_Postfix(object __instance)
         {
+            ActiveInstance = __instance;
+
             var tts = Plugin.Instance?.Tts;
             if (tts == null) return;
             try

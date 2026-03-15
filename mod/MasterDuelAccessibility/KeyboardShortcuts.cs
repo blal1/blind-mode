@@ -3,6 +3,7 @@ using System.Reflection;
 using Il2CppInterop.Runtime.InteropTypes;
 using MasterDuelAccessibility.Models;
 using MasterDuelAccessibility.Patches;
+using MasterDuelAccessibility.Services;
 using UnityEngine;
 
 namespace MasterDuelAccessibility
@@ -65,6 +66,12 @@ namespace MasterDuelAccessibility
         // Scheduled delayed card read (set by SelectionButtonPatch.OnPointerClick)
         internal static DateTime PendingCardReadAt = DateTime.MinValue;
 
+        // ── Navigateurs overlay (aide + paramètres) ────────────────────────────
+        // Inspirés de MTGA AccessibleArena HelpNavigator / ModSettingsNavigator.
+        // Statiques car KeyboardShortcuts est un MonoBehaviour IL2CPP unique.
+        internal static readonly HelpMenuNavigator HelpNav   = new();
+        internal static readonly ModSettingsNavigator SettingsNav = new();
+
         // Position de navigation dans l'historique des annonces (-1 = début / non actif)
         private static int _historyPos = -1;
 
@@ -102,10 +109,18 @@ namespace MasterDuelAccessibility
                 (KeyCode)308, null, "shortcut_alt",
                 () => WithTts(ReadCurrentCard)));
 
-            // F1 — Aide (texte dynamique depuis le registre)
+            // Ctrl+F1 — Paramètres du mod (navigable, AVANT F1 pour priorité modificateur)
+            // Inspiré de MTGA ModSettingsNavigator (F2 chez eux, Ctrl+F1 ici).
+            r.Register(new ShortcutDefinition(
+                (KeyCode)282, KeyCode.LeftControl, "shortcut_ctrl_f1",
+                () => { }));  // géré stateful dans Update()
+
+            // F1 — Aide navigable (liste paginée)
+            // Remplace l'annonce monolithique : F1 ouvre un menu navigable (Haut/Bas).
+            // Inspiré de MTGA HelpNavigator.Toggle().
             r.Register(new ShortcutDefinition(
                 (KeyCode)282, null, "shortcut_f1",
-                () => WithTts(t => t.Speak(HelpText, interrupt: false))));
+                () => { }));  // géré stateful dans Update()
 
             // F2 — Répéter
             r.Register(new ShortcutDefinition(
@@ -240,6 +255,20 @@ namespace MasterDuelAccessibility
             r.Register(new ShortcutDefinition(
                 KeyCode.H, null, "shortcut_h",
                 () => WithTts(ReadHeaderInfo),
+                () => !IsInDuel));
+
+            // ── N hors duel — nombre de notifications non lues ────────────────
+            r.Register(new ShortcutDefinition(
+                KeyCode.N, null, "shortcut_n",
+                () => WithTts(ReadNotificationCount),
+                () => !IsInDuel));
+
+            // ── P hors duel — progression Duel Pass (palier actuel / suivant) ──
+            // En duel, P = phase courante (déjà enregistré avec IsInDuel).
+            // Hors duel, P = état du Duel Pass — inspiré du raccourci "progression" d'MTGA.
+            r.Register(new ShortcutDefinition(
+                KeyCode.P, null, "shortcut_p_menu",
+                () => WithTts(ReadDuelPassProgression),
                 () => !IsInDuel));
 
             // ── RACCOURCIS LETTRÉS — navigation zones duel (modèle MTGA) ─────
@@ -449,6 +478,22 @@ namespace MasterDuelAccessibility
             bool shift = Input.GetKey((KeyCode)304) || Input.GetKey((KeyCode)303);
             bool ctrl  = Input.GetKey(KeyCode.LeftControl) || Input.GetKey(KeyCode.RightControl);
             bool alt   = Input.GetKey(KeyCode.LeftAlt) || Input.GetKey(KeyCode.RightAlt);
+
+            // ── Navigateurs overlay (aide / paramètres) — PRIORITÉ ABSOLUE ─────────
+            // Inspiré de MTGA InputManager.OnUpdate() → navigators interceptent AVANT tout.
+            // Si un navigateur est actif, on bloque tout le reste et on retourne.
+            if (HelpNav.HandleInput()) return;
+            if (SettingsNav.HandleInput()) return;
+
+            // ── F1 / Ctrl+F1 — stateful (comme F12), AVANT anyKeyDown reset ────
+            if (Input.GetKeyDown((KeyCode)282))
+            {
+                if (ctrl)
+                    SettingsNav.Toggle();
+                else
+                    HelpNav.Toggle();
+                return;
+            }
 
             // ── Raccourcis AVEC ÉTAT — traités AVANT anyKeyDown pour préserver la position ──
             // Inspiré du pattern MTGA : les actions stateful retournent tôt avant la remise
@@ -691,6 +736,48 @@ namespace MasterDuelAccessibility
                 return;
             }
             tts.Speak(info!, interrupt: false);
+        }
+
+        // ── N : Notifications non lues ───────────────────────────────────────
+
+        /// <summary>
+        /// Annonce le nombre de notifications non lues.
+        /// Implémente le TODO FULL_COVERAGE_PLAN section 31.3.
+        /// Utilise NotificationPatch.CountUnread() déjà exposé.
+        /// </summary>
+        private static void ReadNotificationCount(TtsService tts)
+        {
+            int unread = NotificationPatch.CountUnread();
+            string msg = unread > 0
+                ? Loc.Get("notif_count_unread", unread)
+                : Loc.Get("notif_count_none");
+            tts.Speak(msg, interrupt: false);
+        }
+
+        // ── P hors duel : progression (Duel Pass + Saison + Missions) ────────
+
+        /// <summary>
+        /// Annonce la progression complète hors duel :
+        /// 1. Duel Pass — palier actuel / prochain  (toujours disponible)
+        /// 2. Points de saison / rang               (si l'écran a été ouvert)
+        /// 3. Missions — onglet actif               (si l'écran a été ouvert)
+        /// Chaque message est envoyé en interrupt:false pour file d'attente TTS.
+        /// </summary>
+        private static void ReadDuelPassProgression(TtsService tts)
+        {
+            // 1. Duel Pass — toujours répondu
+            string dpMsg = Patches.DuelPassViewControllerPatch.GetCurrentAnnouncement();
+            tts.Speak(dpMsg, interrupt: false);
+
+            // 2. Saison — si données en cache
+            string? seasonMsg = Patches.SeasonPointPatch.GetCurrentAnnouncement();
+            if (!string.IsNullOrWhiteSpace(seasonMsg))
+                tts.Speak(seasonMsg!, interrupt: false);
+
+            // 3. Missions — si données en cache
+            string? missionMsg = Patches.MissionViewControllerPatch.GetCurrentAnnouncement();
+            if (!string.IsNullOrWhiteSpace(missionMsg))
+                tts.Speak(missionMsg!, interrupt: false);
         }
 
         // ── Touches numériques : carte en main par index ──────────────────────

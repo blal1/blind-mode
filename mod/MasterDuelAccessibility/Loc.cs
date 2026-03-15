@@ -22,9 +22,10 @@ namespace MasterDuelAccessibility
         private static bool _initialized = false;
         private static string _currentLang = "en"; // default until detected
 
-        private static readonly Dictionary<string, string> _french  = new();
-        private static readonly Dictionary<string, string> _english = new();
-        private static readonly Dictionary<string, string> _german  = new();
+        private static readonly Dictionary<string, string> _french   = new();
+        private static readonly Dictionary<string, string> _english  = new();
+        private static readonly Dictionary<string, string> _german   = new();
+        private static readonly Dictionary<string, string> _japanese = new();
 
         #endregion
 
@@ -35,6 +36,7 @@ namespace MasterDuelAccessibility
         {
             InitializeStrings();
             InitializeGermanStrings();
+            InitializeJapaneseStrings();
             AddTitleKeys();
             _initialized = true;
             RefreshLanguage(); // detect game language after strings are loaded
@@ -59,6 +61,7 @@ namespace MasterDuelAccessibility
                 {
                     if      (result!.StartsWith("fr")) _currentLang = "fr";
                     else if (result.StartsWith("de"))  _currentLang = "de";
+                    else if (result.StartsWith("ja"))  _currentLang = "ja";
                     else                               _currentLang = "en";
                 }
             }
@@ -91,6 +94,7 @@ namespace MasterDuelAccessibility
         {
             "fr" => _french,
             "de" => _german,
+            "ja" => _japanese,
             _    => _english,
         };
 
@@ -1095,6 +1099,175 @@ namespace MasterDuelAccessibility
             Add("secret_pack_obtained",       "Pack secret débloqué",          "Secret pack unlocked");
             Add("secret_pack_obtained_name",  "Pack secret débloqué : {0}",    "Secret pack unlocked: {0}");
 
+            // ===== DIALOGS SECONDAIRES (MiscViewsPatch — section 17.2) =====
+            Add("placeholder_dialog",
+                "Chargement en cours.",
+                "Loading, please wait.");
+            Add("texture_image_dialog",
+                "Aperçu d'image.",
+                "Image preview.");
+            Add("password_dialog",
+                "Saisie du mot de passe.",
+                "Enter password.");
+            Add("password_dialog_label",
+                "Saisie : {0}.",
+                "Enter: {0}.");
+            Add("save_dialog",
+                "Enregistrement en cours.",
+                "Saving.");
+
+            // ===== ÉCRANS — COLLECTION ET CODES PROMO =====
+            Add("screen_card_file",
+                "Collection de cartes.",
+                "Card Collection.");
+            Add("screen_promo_codes",
+                "Codes promo.",
+                "Promo Codes.");
+            Add("promo_invite_send",
+                "Codes promo — envoi d'invitation.",
+                "Promo Codes — Send invitation.");
+            Add("promo_invite_receive",
+                "Codes promo — réception d'invitation.",
+                "Promo Codes — Receive invitation.");
+
+            // ===== COLOSSEUM (section 18) =====
+            Add("colosseum_start",            "Colosseum — début.",              "Colosseum start.");
+            Add("colosseum_start_tournament", "Colosseum Tournoi — début.",      "Colosseum Tournament start.");
+            Add("colosseum_start_wcs",        "Colosseum WCS — début.",          "Colosseum WCS start.");
+            Add("colosseum_info",             "Informations Colosseum.",          "Colosseum information.");
+            Add("colosseum_history",          "Historique Colosseum.",            "Colosseum history.");
+            Add("colosseum_ranking",          "Classement Colosseum.",            "Colosseum rankings.");
+            Add("colosseum_reward",           "Récompenses Colosseum.",           "Colosseum rewards.");
+            Add("colosseum_versus",           "Sélection d'adversaire.",          "Opponent selection.");
+
+            // ===== TDY / TAG DUEL (section 21) =====
+            Add("tdy_map",          "Carte Tag Duel.",                   "Tag Duel map.");
+            Add("tdy_result",       "Résultat Tag Duel.",                "Tag Duel result.");
+            Add("tdy_result_kizuna","Résultat Tag Duel — Kizuna complète !", "Tag Duel result — Bond complete!");
+
+            // ===== PANEL MISSIONS (section 12.3) =====
+            Add("panel_mission",      "Mission événement.",                "Event mission.");
+            Add("panel_mission_item", "{0}. {1}.",                         "{0}. {1}.");
+
+            // ===== ÉCRANS SANS NSE (ViewControllerPatch.ScreenTitles) =====
+            Add("screen_colosseum",  "Colosseum.",   "Colosseum.");
+            Add("screen_autoduel",   "Auto-Duel.",   "Auto-Duel.");
+            Add("screen_duel_live",  "Duel en direct.", "Duel Live.");
+
+            // ===== TEAM (section 19) =====
+            Add("team_create",           "Création d'équipe.",              "Team creation.");
+            Add("team_designation",      "Attribution des rôles.",          "Role assignment.");
+            Add("team_info",             "Informations d'équipe.",           "Team information.");
+            Add("team_name_select",      "Sélection du nom d'équipe.",       "Team name selection.");
+            Add("team_regulation",       "Sélection des règles.",            "Rule selection.");
+            Add("team_members",          "Membres de l'équipe.",             "Team members.");
+            Add("team_invite",           "Invitation à l'équipe.",           "Team invitation.");
+            Add("team_leader_matching",  "Recherche d'adversaire (chef).",   "Opponent search (leader).");
+            Add("team_member_matching",  "En attente du match.",             "Waiting for match.");
+            Add("team_member_matched",   "Match trouvé !",                   "Match found!");
+            Add("team_waiting",          "En attente...",                    "Waiting...");
+            Add("team_result",           "Résultat d'équipe.",               "Team result.");
+            Add("team_room",             "Salon d'équipe.",                  "Team room.");
+
+            // ===== DICE RALLY (section 18) =====
+            Add("screen_dice_rally",       "Dice Rally.",              "Dice Rally.");
+            Add("screen_dice_rally_map",   "Carte Dice Rally.",        "Dice Rally map.");
+            Add("screen_dice_rally_effect","Effet Dice Rally.",        "Dice Rally effect.");
+            Add("screen_dice_result",      "Résultat du dé.",          "Dice result.");
+
+            // ===== WCS PRÉDICTIONS (section 20) =====
+            Add("screen_wcs_team_table",       "Tableau d'équipes WCS.",   "WCS team table.");
+            Add("screen_wcs_prediction",       "Prédictions WCS.",         "WCS predictions.");
+            Add("screen_wcs_prediction_reward","Récompenses de prédiction.","Prediction rewards.");
+
+            // ===== COLOSSEUM SUPPLÉMENTAIRES (sections 18.4-18.5) =====
+            Add("screen_colosseum_ranking",        "Classement Colosseum.",       "Colosseum Ranking.");
+            Add("screen_colosseum_reward",         "Récompenses Colosseum.",      "Colosseum Rewards.");
+            Add("screen_colosseum_confirm",        "Colosseum — Confirmation.",   "Colosseum — Confirmation.");
+            Add("screen_colosseum_ranking_cup",    "Classement Duelist Cup.",     "Duelist Cup Rankings.");
+            Add("screen_colosseum_result_versus",  "Résultat Versus.",            "Versus Result.");
+
+            // ===== TDY SUPPLÉMENTAIRES (section 21) =====
+            Add("screen_tdy_duel",            "Tag Duel — Lancement.",        "Tag Duel — Starting.");
+            Add("screen_tdy_chain",           "Tag Duel — Chaîne.",           "Tag Duel — Chain.");
+            Add("screen_tdy_kizuna_complete", "Tag Duel — Lien complété !",   "Tag Duel — Bond complete!");
+            Add("screen_tdy_kizuna_get",      "Tag Duel — Nouveau lien.",     "Tag Duel — New bond.");
+            Add("screen_team_room",           "Salon d'équipe.",              "Team room.");
+
+            // ===== DUEL LIVE WCS FILTRE (section 22) =====
+            Add("screen_duel_live_wcs_filter","Duel Live — Filtre WCS.",      "Duel Live — WCS filter.");
+
+            // ===== AIDE / ENQUÊTE SUPPLÉMENTAIRES (sections 29-30) =====
+            Add("screen_web_help",       "Aide en ligne.",             "Online help.");
+            Add("screen_enquete_card",   "Sondage — Sélection de carte.", "Survey — Card selection.");
+
+            // ===== DIVERS (sections 25-30) =====
+            Add("screen_inquiry",          "Formulaire de contact.",   "Support inquiry.");
+            Add("screen_credits",          "Crédits.",                 "Credits.");
+            Add("screen_regulation_filter","Filtre par liste de ban.", "Regulation filter.");
+
+            // ===== SOLO MODE (section 9.1) =====
+            Add("solo_mode",  "Mode Solo — carte du monde.",  "Solo mode — world map.");
+
+            // ===== WCS (section 20) =====
+            Add("wcs_menu",       "Menu WCS.",                        "WCS menu.");
+            Add("wcs_watch",      "Spectateur WCS.",                  "WCS spectator.");
+            Add("wcs_battle_info","Informations de combat WCS.",      "WCS battle information.");
+            Add("wcs_team_room",  "Salon d'équipe WCS.",              "WCS team room.");
+
+            // ===== WCS FINALE (section 20.2) =====
+            Add("wcs_final_arena",       "Arène WCS.",              "WCS arena.");
+            Add("wcs_final_timer",       "Minuterie WCS.",           "WCS timer.");
+            Add("wcs_final_timer_value", "Minuterie WCS : {0}h {1:D2}m {2:D2}s.", "WCS timer: {0}h {1:D2}m {2:D2}s.");
+
+            // ===== TURN OVER PRIZE (section 27) =====
+            Add("turn_over_prize_open",   "Ouverture du lot.",                      "Prize opening.");
+            Add("turn_over_prize_collab", "Tour des prix — Édition collaboration.", "Turn Over Prize — Collaboration edit.");
+            Add("screen_turn_over",       "Plateau de prix.",                       "Prize board.");
+
+            // ===== DICE RALLY (section 18.3) =====
+            Add("dice_rally_map_editor",     "Éditeur de carte Dice Rally.",    "Dice Rally map editor.");
+            Add("dice_rally_submenu",        "Dice Rally.",                     "Dice Rally.");
+            Add("colosseum_ranking_rate",    "Classement Colosseum — Rating.",  "Colosseum Ranking — Rating.");
+            Add("colosseum_reward_dice_rally","Récompenses Colosseum — Dice Rally.", "Colosseum Rewards — Dice Rally.");
+
+            // ===== WCS FINALE (section 20.3) =====
+            Add("wcs_final_timer_setting",   "Paramètres du timer WCS Finale.", "WCS Finals timer settings.");
+
+            // ===== DUEL LIVE (section 22) =====
+            Add("duel_live_select_card",     "Duel Live — Sélection de carte.", "Duel Live — Select card.");
+
+            // ===== CARD FILE (section 25) =====
+            Add("card_file_open",            "Collection : {0} / {1} cartes ({2}%).",      "Collection: {0} / {1} cards ({2}%).");
+            Add("card_file_card_get",        "Nouvelle carte obtenue !",                              "New card obtained!");
+            Add("card_file_card_get_detail", "Nouvelle carte. Avant : {0}, après : {1}. Complétées : {2}.", "New card. Before: {0}, after: {1}. Completed: {2}.");
+            Add("card_file_table_open",       "Fichiers de cartes.",                     "Card Files.");
+            Add("card_file_table_open_count", "Fichiers de cartes. {0} fichier(s).",     "Card Files. {0} file(s).");
+            Add("card_file_table_item",       "{0}. {1}.",                               "{0}. {1}.");
+            Add("network_disconnect",         "Connexion perdue.",                        "Connection lost.");
+
+            // ===== ÉCRANS SANS NSE (ViewControllerPatch.ScreenTitles) =====
+            Add("screen_solo_mode",   "Mode Solo.",             "Solo mode.");
+            Add("screen_enquete",     "Sondage.",               "Survey.");
+            Add("screen_help",        "Aide.",                  "Help.");
+            Add("screen_market",           "Marché.",          "Market.");
+            Add("market_pool_open_name",   "Marché : {0}.",    "Market: {0}.");
+            Add("screen_console_link","Liaison de données.",    "Data link.");
+
+            // ===== COLOSSEUM RÉSULTATS (section 18.2) =====
+            Add("colosseum_result", "Résultat Colosseum.",            "Colosseum result.");
+
+            // ===== CERTIFICATION (section 24) =====
+            Add("certification_confirm",      "Certification — confirmation.",          "Certification confirmation.");
+            Add("certification_detail",       "Certification — détails.",               "Certification details.");
+            Add("certification_explanation",  "Certification — explication.",           "Certification explanation.");
+            Add("certification_duel_field",   "Certification — terrain de duel.",       "Certification duel field.");
+            Add("certification_writing",      "Certification — questions.",             "Certification questions.");
+            Add("certification_result",       "Certification — résultat.",              "Certification result.");
+            Add("certification_result_pass",  "Réussi",                                 "Passed");
+            Add("certification_result_fail",  "Échoué",                                 "Failed");
+            Add("certification_result_score", "Certification : {0}. {1} bonne(s) réponse(s).", "Certification: {0}. {1} correct answer(s).");
+
             // ===== MODE SOLO — ÉCRANS SECONDAIRES (MiscViewsPatch) =====
             Add("solo_portal",           "Portail Solo",                  "Solo portal");
             Add("solo_start_production", "Début de duel Solo",            "Solo duel start");
@@ -1583,7 +1756,11 @@ namespace MasterDuelAccessibility
             _german["screen_lottery"]            = "Packs öffnen";
             _german["screen_lottery_result"]     = "Ergebnis — Packs geöffnet";
             _german["screen_lottery_history"]    = "Pack-Verlauf";
-            _german["screen_lottery_card_select"]= "Kartenauswahl";
+            _german["screen_lottery_card_select"]        = "Kartenauswahl";
+            _german["lottery_card_select_collection"]    = "Sammlung";
+            _german["lottery_card_select_deck"]          = "Deck";
+            _german["lottery_card_select_open_view"]     = "Kartenauswahl. Ansicht: {0}.";
+            _german["lottery_card_select_open_count"]    = "Kartenauswahl. Ansicht: {0}. {1} Karte(n) im Pool.";
             _german["screen_lottery_reward"]     = "Pack-Belohnung";
             _german["lottery_reward_open"]       = "Pack geöffnet: {0}";
             _german["lottery_item_generic"]      = "Objekt";
@@ -2277,6 +2454,41 @@ namespace MasterDuelAccessibility
             _german["download_in_progress"]      = "Download läuft.";
             _german["download_open_text"]        = "Download. {0}.";
             _german["download_open_state"]       = "Download. {0}. {1}.";
+
+            // P HORS DUEL — PROGRESSION DUEL PASS
+            _german["shortcut_p_menu"]           = "Fortschritt: Duel Pass + Saison + Missionen";
+
+            // DECK BROWSER ISV
+            _german["deck_card_focus"]           = "{0}";
+
+            // SOLO-TOR ISV
+            _german["solo_gate_isv_item"]        = "Tor: {0}, {1} von {2}.";
+
+            // FREUNDE ISV
+            _german["friend_isv_player"]         = "{0}. {1}.";
+            _german["friend_online"]             = "Online";
+            _german["friend_offline"]            = "Offline";
+
+            // RAUM — MITGLIEDER ISV
+            _german["room_member_item"]          = "{0}. S{1} N{2} U{3}.";
+
+            // NOTIFICATIONS
+            _german["notifications_open"]        = "Benachrichtigungen.";
+            _german["notifications_open_unread"] = "Benachrichtigungen — {0} ungelesen.";
+            _german["notif_tab_news"]            = "Neuigkeiten";
+            _german["notif_tab_maintenance"]     = "Wartung";
+            _german["notif_tab_bugs"]            = "Fehler";
+            _german["notif_tab_changed"]         = "{0} — {1} Element(e).";
+            _german["notif_tab_changed_unread"]  = "{0} — {1} Element(e), {2} ungelesen.";
+            _german["notif_unread_marker"]       = "ungelesen";
+            _german["notif_item"]                = "{0}. {1}. {2}.";
+
+            // PROMO CODES
+            _german["promo_invite_send"]         = "Promoaktionen — Einladung senden.";
+            _german["promo_invite_receive"]      = "Promoaktionen — Einladung erhalten.";
+
+            // MARKET POOL
+            _german["market_pool_open_name"]     = "Markt: {0}.";
         }
 
         // ── WithVerbose helper (pattern Strings.cs WithDetail) ─────────────────
@@ -2503,6 +2715,9 @@ namespace MasterDuelAccessibility
             Add("notif_tab_changed",
                 "{0} — {1} élément(s).",
                 "{0} — {1} item(s).");
+            Add("notif_tab_changed_unread",
+                "{0} — {1} élément(s), {2} non lue(s).",
+                "{0} — {1} item(s), {2} unread.");
             Add("notif_unread_marker",
                 "non lue",
                 "unread");
@@ -2695,6 +2910,18 @@ namespace MasterDuelAccessibility
             Add("lottery_card_select_pack",
                 "Sélection de carte garantie — {0}.",
                 "Guaranteed card selection — {0}.");
+            Add("lottery_card_select_collection",
+                "Collection",
+                "Collection");
+            Add("lottery_card_select_deck",
+                "Deck",
+                "Deck");
+            Add("lottery_card_select_open_view",
+                "Sélection de carte. Vue : {0}.",
+                "Card selection. View: {0}.");
+            Add("lottery_card_select_open_count",
+                "Sélection de carte. Vue : {0}. {1} carte(s) dans le pool.",
+                "Card selection. View: {0}. {1} card(s) in pool.");
 
             // ── DuelpassResultViewPatch ───────────────────────────────────────────
             Add("duelpass_grade_up",
@@ -2830,6 +3057,15 @@ namespace MasterDuelAccessibility
             Add("friend_open_count",
                 "Amis — {0} suivi(s).",
                 "Friends — {0} following.");
+            Add("friend_isv_player",
+                "{0}. {1}.",
+                "{0}. {1}.");
+            Add("friend_online",
+                "En ligne",
+                "Online");
+            Add("friend_offline",
+                "Hors ligne",
+                "Offline");
 
             // ── RoomViewControllerPatch ───────────────────────────────────────────
             Add("room_open",
@@ -2841,6 +3077,9 @@ namespace MasterDuelAccessibility
             Add("room_open_name_members",
                 "Salon : {0}. {1} sur {2} joueur(s).",
                 "Room: {0}. {1} of {2} players.");
+            Add("room_member_item",
+                "{0}. V{1} D{2} N{3}.",
+                "{0}. W{1} L{2} D{3}.");
 
             // ── SearchBoxDialogPatch ──────────────────────────────────────────────
             Add("search_box_open",
@@ -2866,13 +3105,18 @@ namespace MasterDuelAccessibility
                 "Produit : {0}.",
                 "Product: {0}.");
 
+            // ── InformDialogFallbackPatch — annonce générique ────────────────────
+            Add("inform_dialog_generic",
+                "Dialog : {0}.",
+                "Dialog: {0}.");
+
             // ── Shop buy widgets (ShopBuyWidgetPatch) ────────────────────────────
             Add("shop_confirm_product",
                 "Confirmation : {0}. {1}. {2}.",
                 "Confirmation: {0}. {1}. {2}.");
             Add("shop_buy_widget_product",
-                "Acheter : {0}.",
-                "Buy: {0}.");
+                "Acheter : {0}. {1}. {2}.",
+                "Buy: {0}. {1}. {2}.");
 
             // ── Deck ISV navigation (DeckSelectPatch.OnItemSetData) ──────────────
             Add("deck_isv_item",
@@ -2958,6 +3202,221 @@ namespace MasterDuelAccessibility
             Add("download_open_state",
                 "Téléchargement. {0}. {1}.",
                 "Download. {0}. {1}.");
+            Add("download_percent",
+                "{0} pourcent.",
+                "{0} percent.");
+            Add("download_complete",
+                "Téléchargement terminé.",
+                "Download complete.");
+
+            // ── Menu d'aide navigable (HelpMenuNavigator) ─────────────────────
+            // Inspiré de AccessibleArena HelpNavigator — liste paginée au lieu d'une
+            // annonce monolithique. F1 ouvre, flèches navigent, F1/Escape ferme.
+            Add("help_menu_open",
+                "Menu d'aide. {0} raccourcis. Flèches Haut/Bas pour naviguer. F1 ou Échap pour fermer.",
+                "Help menu. {0} shortcuts. Arrow keys to navigate. F1 or Escape to close.");
+            Add("help_menu_closed",
+                "Aide fermée.",
+                "Help closed.");
+            Add("help_menu_empty",
+                "Aucun raccourci actif pour le moment.",
+                "No active shortcuts right now.");
+            Add("help_menu_item",
+                "{2}. Élément {0} sur {1}.",
+                "{2}. Item {0} of {1}.");
+
+            // ── Navigation de liste générique (HelpMenuNavigator + ModSettingsNavigator) ──
+            Add("list_end",
+                "Fin de la liste.",
+                "End of list.");
+            Add("list_begin",
+                "Début de la liste.",
+                "Beginning of list.");
+
+            // ── Menu paramètres du mod (ModSettingsNavigator) ─────────────────
+            // Inspiré de AccessibleArena ModSettingsNavigator — modal navigable en jeu.
+            // Ctrl+F1 ouvre, flèches navigent, Entrée bascule, Ctrl+F1/Escape ferme.
+            Add("settings_menu_open",
+                "Paramètres du mod. {0} options. Flèches pour naviguer, Entrée pour basculer, Ctrl+F1 ou Échap pour fermer.",
+                "Mod settings. {0} options. Arrow keys to navigate, Enter to toggle, Ctrl+F1 or Escape to close.");
+            Add("settings_menu_closed",
+                "Paramètres fermés.",
+                "Settings closed.");
+            Add("setting_tts_enabled",
+                "Synthèse vocale",
+                "Text to speech");
+            Add("setting_verbose",
+                "Descriptions de cartes",
+                "Card descriptions");
+            Add("setting_hints",
+                "Indices de raccourcis",
+                "Keyboard hints");
+            Add("setting_on",
+                "Activé",
+                "On");
+            Add("setting_off",
+                "Désactivé",
+                "Off");
+            Add("setting_changed",
+                "{0} : {1}.",
+                "{0}: {1}.");
+            Add("setting_item",
+                "{2} : {3}. Option {0} sur {1}.",
+                "{2}: {3}. Option {0} of {1}.");
+
+            // ── Raccourcis clavier (nouvelles clés) ────────────────────────────
+            Add("shortcut_ctrl_f1",
+                "Ouvrir les paramètres du mod",
+                "Open mod settings");
+            Add("shortcut_n",
+                "Nombre de notifications non lues",
+                "Unread notification count");
+
+            // ── Notifications — raccourci N ────────────────────────────────────
+            Add("notif_count_unread",
+                "{0} notification(s) non lue(s).",
+                "{0} unread notification(s).");
+            Add("notif_count_none",
+                "Aucune notification non lue.",
+                "No unread notifications.");
+
+            // ── P hors duel — progression Duel Pass (KeyboardShortcuts) ──────────
+            Add("shortcut_p_menu",
+                "Progression : Duel Pass + saison + missions",
+                "Progression: Duel Pass + season + missions");
+
+            // ── DeckBrowserPatch — carte focalisée dans le browser de deck ────────
+            Add("deck_card_focus",
+                "{0}",
+                "{0}");
+        }
+
+        /// <summary>
+        /// Chaînes japonaises (ja-JP). Couvre les écrans et raccourcis essentiels.
+        /// Les clés non définies ici tombent sur _english.
+        /// </summary>
+        private static void InitializeJapaneseStrings()
+        {
+            // ── Menus principaux ───────────────────────────────────────────────
+            _japanese["screen_title"]          = "タイトル画面";
+            _japanese["screen_home"]           = "ホーム";
+            _japanese["screen_duel"]           = "デュエル";
+            _japanese["screen_deck"]           = "デッキ";
+            _japanese["screen_shop"]           = "ショップ";
+            _japanese["screen_missions"]       = "ミッション";
+            _japanese["screen_notifications"]  = "通知";
+            _japanese["screen_settings"]       = "設定";
+            _japanese["screen_profile"]        = "プロフィール";
+            _japanese["screen_friends"]        = "フレンド";
+            _japanese["screen_solo"]           = "ソロ";
+            _japanese["screen_duel_pass"]      = "デュエルパス";
+            _japanese["screen_season_point"]   = "シーズンポイント";
+            _japanese["screen_present_box"]    = "プレゼントボックス";
+            _japanese["screen_market"]         = "マーケット";
+            _japanese["screen_lottery"]        = "パック開封";
+            _japanese["screen_card_browser"]   = "カード検索";
+            _japanese["screen_deck_edit"]      = "デッキ編集";
+            _japanese["screen_colosseum"]      = "コロシアム";
+            _japanese["screen_autoduel"]       = "オートデュエル";
+            _japanese["screen_duel_live"]      = "デュエルライブ";
+            _japanese["screen_replay"]         = "リプレイ";
+            _japanese["screen_room"]           = "ルーム";
+            _japanese["screen_card_file"]      = "カードファイル";
+            _japanese["screen_promo_codes"]    = "プロモコード";
+
+            // ── Duel — PV et phases ────────────────────────────────────────────
+            _japanese["duel_lp_change"]        = "{0} LP → {1} LP ({2:+#;-#;0})";
+            _japanese["duel_phase_draw"]       = "ドローフェイズ";
+            _japanese["duel_phase_standby"]    = "スタンバイフェイズ";
+            _japanese["duel_phase_main1"]      = "メインフェイズ１";
+            _japanese["duel_phase_battle"]     = "バトルフェイズ";
+            _japanese["duel_phase_main2"]      = "メインフェイズ２";
+            _japanese["duel_phase_end"]        = "エンドフェイズ";
+            _japanese["duel_turn"]             = "ターン {0}";
+            _japanese["duel_your_turn"]        = "あなたのターン";
+            _japanese["duel_opp_turn"]         = "相手のターン";
+            _japanese["duel_start"]            = "デュエル開始！";
+            _japanese["duel_end_win"]          = "あなたの勝利！";
+            _japanese["duel_end_lose"]         = "あなたの敗北";
+            _japanese["duel_end_draw"]         = "引き分け";
+            _japanese["duel_end_timeout"]      = "時間切れ";
+
+            // ── Duel — événements cartes ───────────────────────────────────────
+            _japanese["duel_summon"]           = "{0} 召喚！";
+            _japanese["duel_sp_summon"]        = "{0} 特殊召喚！";
+            _japanese["duel_sp_summon_ritual"] = "{0} 儀式召喚！";
+            _japanese["duel_sp_summon_fusion"] = "{0} 融合召喚！";
+            _japanese["duel_sp_summon_synchro"]= "{0} シンクロ召喚！";
+            _japanese["duel_sp_summon_xyz"]    = "{0} エクシーズ召喚！";
+            _japanese["duel_sp_summon_pendulum"]= "{0} ペンデュラム召喚！";
+            _japanese["duel_sp_summon_link"]   = "{0} リンク召喚！";
+            _japanese["duel_sp_summon_maximum"]= "{0} マキシマム召喚！";
+            _japanese["duel_attack"]           = "{0} (ATK {1}) が {2} (ATK {3}) に攻撃！";
+            _japanese["duel_attack_direct"]    = "{0} (ATK {1}) がダイレクトアタック！";
+            _japanese["duel_destroy"]          = "{0} 破壊！";
+            _japanese["duel_search"]           = "{0} サーチ！";
+            _japanese["duel_graveyard"]        = "{0} 墓地へ送られた";
+            _japanese["duel_banished"]         = "{0} 除外！";
+            _japanese["duel_draw"]             = "ドロー！";
+            _japanese["duel_activate"]         = "カード発動！";
+            _japanese["duel_negate"]           = "効果無効！";
+            _japanese["duel_equip"]            = "装備魔法発動！";
+
+            // ── Duel — état complet ────────────────────────────────────────────
+            _japanese["duel_state_full"]       = "ターン {0}。{1}。自分 {2} LP、相手 {3} LP";
+            _japanese["duel_my_lp"]            = "自分 {0} LP";
+            _japanese["duel_opp_overview"]     = "相手：手札 {0} 枚、デッキ {1} 枚、墓地 {2} 枚、除外 {3} 枚";
+            _japanese["duel_field_monster"]    = "自分 モンスターゾーン：{0}";
+            _japanese["duel_field_monster_opp"]= "相手 モンスターゾーン：{0}";
+            _japanese["duel_hand"]             = "手札：{0}";
+            _japanese["duel_hand_count_opp"]   = "相手の手札：{0} 枚";
+            _japanese["duel_grave"]            = "自分の墓地：{0}";
+            _japanese["duel_grave_opp"]        = "相手の墓地：{0}";
+            _japanese["duel_banish"]           = "自分の除外：{0}";
+            _japanese["duel_banish_opp"]       = "相手の除外：{0}";
+            _japanese["duel_deck_sizes"]       = "自分デッキ {0} 枚、相手デッキ {1} 枚";
+            _japanese["duel_extra_deck"]       = "自分エクストラデッキ {0} 枚";
+            _japanese["duel_extra_deck_opp"]   = "相手エクストラデッキ {0} 枚";
+
+            // ── Raccourcis ─────────────────────────────────────────────────────
+            _japanese["shortcut_f1"]           = "ヘルプ";
+            _japanese["shortcut_f2"]           = "最後の読み上げを繰り返す";
+            _japanese["shortcut_f3_duel"]      = "手札を読み上げる";
+            _japanese["shortcut_f3_menu"]      = "現在の画面を読み上げる";
+            _japanese["shortcut_f5"]           = "音声停止";
+            _japanese["shortcut_f12"]          = "読み上げ履歴";
+            _japanese["shortcut_space"]        = "自分の LP";
+            _japanese["shortcut_c"]            = "手札を読み上げる";
+            _japanese["shortcut_m"]            = "自分のフィールドを読み上げる";
+            _japanese["shortcut_g"]            = "自分の墓地を読み上げる";
+            _japanese["shortcut_x"]            = "自分の除外を読み上げる";
+            _japanese["shortcut_d"]            = "デッキ枚数を読み上げる";
+            _japanese["shortcut_e"]            = "エクストラデッキを読み上げる";
+            _japanese["shortcut_t"]            = "デュエル状態を読み上げる";
+            _japanese["shortcut_l"]            = "LP を読み上げる";
+            _japanese["shortcut_p_menu"]       = "進行状況：デュエルパス、シーズン、ミッション";
+            _japanese["shortcut_h"]            = "ジェム残高を読み上げる";
+            _japanese["shortcut_n"]            = "未読通知数を読み上げる";
+
+            // ── Dialogues ──────────────────────────────────────────────────────
+            _japanese["dialog_title_message"]  = "{0}。{1}";
+            _japanese["network_disconnect"]    = "接続が切断されました。";
+            _japanese["system_error"]          = "エラーが発生しました。";
+            _japanese["system_maintenance"]    = "メンテナンス中です。";
+
+            // ── CardFile ───────────────────────────────────────────────────────
+            _japanese["card_file_table_open"]       = "カードファイル。";
+            _japanese["card_file_table_open_count"] = "カードファイル。{0} 件。";
+            _japanese["card_file_table_item"]       = "{0}。{1}。";
+
+            // ── Divers ─────────────────────────────────────────────────────────
+            _japanese["loading_screen"]        = "読み込み中…";
+            _japanese["screen_unknown"]        = "不明な画面";
+            _japanese["screen_current"]        = "現在の画面：{0}";
+            _japanese["list_position"]         = "{1} 件中 {0} 件目";
+            _japanese["duelpass_grade_info"]   = "デュエルパス。現在：{0}。次：{1}。";
+            _japanese["season_point_open"]     = "シーズンポイント。";
+            _japanese["season_point_open_rank"]= "シーズンポイント。{0}。";
         }
 
         #endregion

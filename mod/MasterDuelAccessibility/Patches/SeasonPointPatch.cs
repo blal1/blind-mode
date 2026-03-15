@@ -30,7 +30,35 @@ namespace MasterDuelAccessibility.Patches
 
         private static FieldInfo? _fMyGroup;
 
-        internal static void Reset() => _applied = false;
+        /// <summary>
+        /// Dernière instance SeasonPointViewController ouverte dans cette session.
+        /// Mise en cache pour que GetCurrentAnnouncement() puisse lire les données
+        /// sans que l'écran soit ouvert (raccourci P hors duel).
+        /// </summary>
+        internal static object? ActiveInstance;
+
+        internal static void Reset()
+        {
+            _applied = false;
+            ActiveInstance = null;
+        }
+
+        /// <summary>
+        /// Retourne l'annonce de saison pour le raccourci P hors duel.
+        /// Null si aucune donnée de saison n'a encore été lue.
+        /// </summary>
+        internal static string? GetCurrentAnnouncement()
+        {
+            if (ActiveInstance == null) return null;
+            try
+            {
+                string? rank = TryReadRankText(ActiveInstance);
+                return !string.IsNullOrWhiteSpace(rank)
+                    ? Loc.Get("season_point_open_rank", rank!)
+                    : Loc.Get("season_point_open");
+            }
+            catch { return null; }
+        }
 
         internal static void Apply(HarmonyLib.Harmony harmony)
         {
@@ -62,6 +90,8 @@ namespace MasterDuelAccessibility.Patches
 
         public static void StackEntry_Postfix(object __instance)
         {
+            ActiveInstance = __instance;
+
             var tts = Plugin.Instance?.Tts;
             if (tts == null) return;
             try

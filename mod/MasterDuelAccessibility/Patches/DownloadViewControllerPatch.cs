@@ -33,7 +33,18 @@ namespace MasterDuelAccessibility.Patches
         private static FieldInfo? _fDownloadingStateText;
         private static FieldInfo? _fIsDownloading;
 
-        internal static void Reset() => _applied = false;
+        // ── Progress tracking (BlindMode pattern) ────────────────────────────
+        private static object?      _activeInstance   = null;
+        private static int          _lastPercent      = -1;
+        private static FieldInfo?   _fDownloadCtrl    = null;
+        private static PropertyInfo? _pTotalProgress  = null;
+
+        internal static void Reset()
+        {
+            _applied = false;
+            _activeInstance = null;
+            _lastPercent = -1;
+        }
 
         internal static void Apply(HarmonyLib.Harmony harmony)
         {
@@ -83,7 +94,74 @@ namespace MasterDuelAccessibility.Patches
             => Announce(__instance, interrupt: false);
 
         public static void OnCreatedView_Postfix(object __instance)
-            => Announce(__instance, interrupt: false);
+        {
+            _activeInstance = __instance;
+            _lastPercent = -1;
+            Announce(__instance, interrupt: false);
+        }
+
+        // ── Progress polling (called from PluginBehaviour.Update each frame) ─
+
+        internal static void CheckProgress()
+        {
+            if (_activeInstance == null) return;
+            var tts = Plugin.Instance?.Tts;
+            if (tts == null) return;
+            try
+            {
+                // Cache downloadController field
+                if (_fDownloadCtrl == null)
+                {
+                    var t = _activeInstance.GetType();
+                    while (t != null && t != typeof(object))
+                    {
+                        var f = t.GetField("downloadController",
+                            BindingFlags.Public | BindingFlags.NonPublic |
+                            BindingFlags.Instance | BindingFlags.DeclaredOnly);
+                        if (f != null) { _fDownloadCtrl = f; break; }
+                        t = t.BaseType;
+                    }
+                    if (_fDownloadCtrl == null) { _activeInstance = null; return; }
+                }
+
+                object? ctrl = _fDownloadCtrl.GetValue(_activeInstance);
+                if (ctrl == null) return;
+
+                // Cache TotalProgress property
+                if (_pTotalProgress == null)
+                    _pTotalProgress = ctrl.GetType().GetProperty("TotalProgress",
+                        BindingFlags.Public | BindingFlags.Instance);
+
+                if (_pTotalProgress == null) { _activeInstance = null; return; }
+
+                float progress = (float)(_pTotalProgress.GetValue(ctrl) ?? 0f);
+                int percent = (int)(progress * 100f);
+
+                if (percent == _lastPercent) return;
+                _lastPercent = percent;
+
+                if (percent >= 100)
+                {
+                    // Read completion text from DownloadingStateText or DownloadingText
+                    string? completeText = TryReadTmpText(_activeInstance, ref _fDownloadingStateText, "DownloadingStateText")
+                                       ?? TryReadTmpText(_activeInstance, ref _fDownloadingText, "DownloadingText");
+                    tts.Speak(!string.IsNullOrWhiteSpace(completeText)
+                        ? completeText!
+                        : Loc.Get("download_complete"),
+                        interrupt: false);
+                    _activeInstance = null;
+                }
+                else
+                {
+                    tts.Speak(Loc.Get("download_percent", percent), interrupt: false);
+                }
+            }
+            catch (Exception ex)
+            {
+                Plugin.Instance?.LogWarn($"[DownloadViewControllerPatch.CheckProgress] {ex.Message}");
+                _activeInstance = null;
+            }
+        }
 
         // ── Shared ───────────────────────────────────────────────────────────
 

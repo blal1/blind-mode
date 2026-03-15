@@ -25,6 +25,9 @@ namespace MasterDuelAccessibility.Patches
     {
         private static bool _applied = false;
 
+        // Instance active — utilisée par KeyboardShortcuts.ReadDuelPassProgression()
+        internal static object? ActiveInstance;
+
         // Caches de réflexion
         private static FieldInfo? _fProgressBar;
         private static FieldInfo? _fCurrentGradeText;
@@ -59,15 +62,23 @@ namespace MasterDuelAccessibility.Patches
         internal static void Reset()
         {
             _applied           = false;
+            ActiveInstance     = null;
             _fProgressBar      = null;
             _fCurrentGradeText = null;
             _fNextGradeText    = null;
         }
 
+        /// <summary>
+        /// Retourne l'annonce de progression actuelle (utilisé par raccourci P hors duel).
+        /// </summary>
+        internal static string GetCurrentAnnouncement() =>
+            ActiveInstance != null ? BuildAnnouncement(ActiveInstance) : Loc.Get("screen_duel_pass");
+
         // ── Postfix ───────────────────────────────────────────────────────────
 
         public static void NotificationStackEntry_Postfix(object __instance)
         {
+            ActiveInstance = __instance;
             var tts = Plugin.Instance?.Tts;
             if (tts == null) return;
             try

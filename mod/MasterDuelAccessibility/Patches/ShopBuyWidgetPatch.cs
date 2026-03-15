@@ -22,10 +22,16 @@ namespace MasterDuelAccessibility.Patches
     {
         private static bool _applied = false;
 
+        // ConfirmRegDialogProductWidget fields
         private static FieldInfo?    _fHeaderText;
         private static FieldInfo?    _fHasText;
         private static FieldInfo?    _fNumText;
+
+        // BuyButtonGroupWidget fields
         private static PropertyInfo? _pProductName;
+        private static FieldInfo?    _fButtonCtx;
+        private static FieldInfo?    _fBtnNumText;
+        private static FieldInfo?    _fBtnPriceText;
 
         internal static void Reset() => _applied = false;
 
@@ -55,8 +61,8 @@ namespace MasterDuelAccessibility.Patches
                 Plugin.Instance?.LogWarn("[ShopBuyWidgetPatch] ConfirmRegDialogProductWidget introuvable.");
             }
 
-            // BuyButtonGroupWidget.Binding
-            var buyType = AccessToolsHelper.FindType("YgomGame.Shop.BuyButtonGroupWidget");
+            // BuyButtonGroupWidget.Binding (global namespace — no YgomGame.Shop prefix)
+            var buyType = AccessToolsHelper.FindType("BuyButtonGroupWidget");
             if (buyType != null)
             {
                 var mBind = buyType.GetMethod("Binding",
@@ -113,8 +119,8 @@ namespace MasterDuelAccessibility.Patches
         }
 
         // ── BuyButtonGroupWidget.Binding ──────────────────────────────────────
-        // Param __0 = ProductContext productData
-        // Property productName (virtual, Slot 9)
+        // Param __0 = ProductContext productData (productName property)
+        // __instance.m_ButtonCtx (ButtonContext) has numText + priceText after binding
 
         public static void BuyWidget_Postfix(object __instance, object __0)
         {
@@ -122,14 +128,34 @@ namespace MasterDuelAccessibility.Patches
             if (tts == null || __0 == null) return;
             try
             {
+                // product name from ProductContext param
                 if (_pProductName == null)
                     _pProductName = __0.GetType().GetProperty("productName",
                         BindingFlags.Public | BindingFlags.Instance);
-
                 string? name = _pProductName?.GetValue(__0) as string;
                 if (string.IsNullOrWhiteSpace(name)) return;
 
-                tts.Speak(Loc.Get("shop_buy_widget_product", name!), interrupt: false);
+                // price & quantity from m_ButtonCtx (private field on BuyButtonGroupWidget)
+                var instType = __instance.GetType();
+                if (_fButtonCtx == null)
+                    _fButtonCtx = FindField(instType, "m_ButtonCtx");
+
+                string? numText   = null;
+                string? priceText = null;
+                var ctx = _fButtonCtx?.GetValue(__instance);
+                if (ctx != null)
+                {
+                    var ctxType = ctx.GetType();
+                    if (_fBtnNumText   == null) _fBtnNumText   = FindField(ctxType, "numText");
+                    if (_fBtnPriceText == null) _fBtnPriceText = FindField(ctxType, "priceText");
+                    numText   = _fBtnNumText?.GetValue(ctx)   as string;
+                    priceText = _fBtnPriceText?.GetValue(ctx) as string;
+                }
+
+                tts.Speak(Loc.Get("shop_buy_widget_product", name!,
+                    string.IsNullOrWhiteSpace(numText)   ? string.Empty : numText!,
+                    string.IsNullOrWhiteSpace(priceText) ? string.Empty : priceText!),
+                    interrupt: false);
             }
             catch (Exception ex)
             {

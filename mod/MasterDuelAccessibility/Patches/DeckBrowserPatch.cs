@@ -1,5 +1,6 @@
 using HarmonyLib;
 using System;
+using System.Linq;
 using System.Reflection;
 
 namespace MasterDuelAccessibility.Patches
@@ -25,7 +26,16 @@ namespace MasterDuelAccessibility.Patches
         private static FieldInfo? _fNumExtra;
         private static FieldInfo? _fBrowserType;
 
-        internal static void Reset() => _applied = false;
+        // ISV navigation — déduplication par mrk + cooldown
+        private static int            _lastFocusedMrk    = -1;
+        private static DateTime       _lastFocusedAt     = DateTime.MinValue;
+        private static readonly TimeSpan _focusCooldown  = TimeSpan.FromMilliseconds(200);
+
+        internal static void Reset()
+        {
+            _applied          = false;
+            _lastFocusedMrk   = -1;
+        }
 
         internal static void Apply(HarmonyLib.Harmony harmony)
         {
@@ -61,6 +71,18 @@ namespace MasterDuelAccessibility.Patches
                         typeof(DeckBrowserPatch), nameof(TrialDraw_Entry_Postfix)));
                     Plugin.Instance?.LogMsg("[DeckBrowserPatch] ✓ TrialDrawViewController.NotificationStackEntry");
                 }
+            }
+
+            // SetDetailViewCard(int mrk, int premiumId, bool isRental) — carte focalisée dans le browser
+            var mDetail = vcType.GetMethods(BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance)
+                .FirstOrDefault(m => m.Name == "SetDetailViewCard"
+                    && m.GetParameters().Length == 3
+                    && m.GetParameters()[0].ParameterType == typeof(int));
+            if (mDetail != null)
+            {
+                harmony.Patch(mDetail, postfix: new HarmonyMethod(
+                    typeof(DeckBrowserPatch), nameof(SetDetailViewCard_Postfix)));
+                Plugin.Instance?.LogMsg("[DeckBrowserPatch] ✓ DeckBrowserViewController.SetDetailViewCard(int,int,bool)");
             }
 
             _applied = true;
@@ -121,6 +143,36 @@ namespace MasterDuelAccessibility.Patches
                 };
             }
             catch { return Loc.Get("deck_browser_title"); }
+        }
+
+        // ── SetDetailViewCard — ISV : carte focalisée dans le browser ─────────
+
+        /// <summary>
+        /// Appelé quand l'utilisateur navigue vers une carte dans le browser de deck.
+        /// Annonce le nom de la carte (+ déduplication 200 ms).
+        /// </summary>
+        public static void SetDetailViewCard_Postfix(object __instance, int mrk, int premiumId, bool isRental)
+        {
+            if (mrk <= 0) return;
+
+            // Déduplication : même carte + cooldown
+            var now = DateTime.Now;
+            if (mrk == _lastFocusedMrk && (now - _lastFocusedAt) < _focusCooldown)
+                return;
+            _lastFocusedMrk = mrk;
+            _lastFocusedAt  = now;
+
+            var tts = Plugin.Instance?.Tts;
+            if (tts == null) return;
+            try
+            {
+                string name = AccessToolsHelper.GetCardName(mrk) ?? mrk.ToString();
+                tts.Speak(Loc.Get("deck_card_focus", name), interrupt: false);
+            }
+            catch (Exception ex)
+            {
+                Plugin.Instance?.LogWarn($"[DeckBrowserPatch] SetDetailViewCard: {ex.Message}");
+            }
         }
 
         // ── TrialDrawViewController.NotificationStackEntry ────────────────────

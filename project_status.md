@@ -648,10 +648,254 @@ Logos, titre, chargement, téléchargement, inscription, tutoriel — tout couve
 - Tester Fix 51 : résolution d'effet en duel → vérifier annonce message EffectTaskRunDialog
 - Tester Fix 53 : jouer en Duelist Cup → vérifier annonce DP avant/après
 
-## Priorité 3 — Fonctionnalités secondaires (à démarrer)
-- BatchDismantleDialog — démantèlement en lot
-- AutoBuildDialog — construction auto de deck
-- SetAccessoryDialog — cosmétiques (protège-cartes, terrain, mate)
-- TrialDrawViewController — tirage d'essai
-- StructureDeckSelectViewController — selection deck de structure
-- CardFileViewController — collection complète
+
+## Travaux récents (session 2026-03-15)
+
+### Fix 55 — FindSiblingText (SelectionButtonPatch.cs)
+- Fallback ajouté AVANT ProcessContext : si ReadText retourne vide ou ≤2 chars, cherche un TMP_Text sibling
+- Walk jusqu'à 3 niveaux parents, itère les frères, retourne le premier texte >2 chars
+- Comparaison IL2CPP-safe via GetInstanceID() (pas de ReferenceEquals)
+- Couvre les boutons toggle/radio où le label est un GO frère, pas enfant
+
+### Fix 56 — VcMenuContextMap + auto-reset (GameState.cs + ViewControllerPatch.cs)
+- GameState.VcMenuContextMap : mappe les sous-écrans → contexte de menu parent
+  - SoloGate / SoloSelectChapter → Menu.Solo
+  - DeckEdit / DeckBrowser / DeckSelect → Menu.Deck
+  - CardBrowser → Menu.CardBrowser
+  - ShopBuy / LotteryPortal → Menu.Shop
+  - PvpMenuMatching* → Menu.Duel
+- GameState.VcKeepContextNames : overlays qui préservent le contexte (FilterSelect, SortDialog, etc.)
+- ViewControllerPatch.OnFocusChanged_Postfix : 4 branches :
+  1. VC in MenuNames → announce + set context (existant)
+  2. VC in VcKeepContextNames → préserve le contexte sans rien faire
+  3. VC in VcMenuContextMap → set context silencieusement (Show_Postfix gère l'annonce)
+  4. VC inconnu → reset à Menu.None (évite les contextes incorrects sur Profile, Amis, etc.)
+
+### Fix 57 — Dialogs secondaires section 17.2 (MiscViewsPatch.cs)
+- PlaceHolderDialogViewController.NSE → "Chargement en cours." (générique)
+- TextureImageDialogViewController.NSE → lit le champ `caption` → "Aperçu d'image." ou texte du caption
+- PasswordDialogViewController.NSE → lit `INPUT_LABEL` → "Saisie : [label]." ou générique
+- SaveDialogViewController.NSE → "Enregistrement en cours."
+- SaveDialogViewController.Open (8 params) → lit __0=title, __1=message → "[title]. [message]."
+
+### Fix 58 — Écrans Collection et Codes promo (ViewControllerPatch.cs)
+- ScreenTitles : CardFile → "screen_card_file" → "Collection de cartes."
+- ScreenTitles : CardFileTable → "screen_card_file"
+- ScreenTitles : PromoCodes → "screen_promo_codes" → "Codes promo."
+
+### Fix 59 — Colosseum + TDY + PanelMission (MiscViewsPatch.cs + GameState.cs + ViewControllerPatch.cs)
+- ColosseumStartViewController.NSE → lit prefabType (STANDARD/TOURNAMENT/WCS) → Loc key
+- ColosseumInfoViewController.NSE → "Informations Colosseum."
+- ColosseumHistoryViewController.NSE → "Historique Colosseum."
+- ColosseumRankingViewController.NSE → "Classement Colosseum."
+- ColosseumRewardViewController.NSE → "Récompenses Colosseum."
+- ColosseumSelectVersusViewController.NSE → "Sélection d'adversaire."
+- TDYMapViewController.NSE → "Carte Tag Duel."
+- TdyResultViewController.NSE → lit m_IsCompleteKizuna → "Résultat Tag Duel [— Kizuna complète !]."
+- PanelMissionContent.NSE → "Mission événement."
+- ScreenTitles : Colosseum, AutoDuelLauncher, AutoDuel, DuelLive → screen_colosseum/screen_autoduel/screen_duel_live
+- VcMenuContextMap : 6 Colosseum + 2 TDY sub-screens → Menu.Duel
+
+### Fix 60 — Team + WCS + ColosseumResult (MiscViewsPatch.cs)
+- 14 Team VCs (YgomGame.Team) : NSE → Loc keys (create/designation/info/name/regulation/member/invite/leader-matching/member-matching/matched/waiting/result/result-effect/room)
+- 4 WCS VCs (YgomGame.WCS) : NSE → wcs_menu/wcs_watch/wcs_battle_info/wcs_team_room
+- ColosseumResultViewController.NSE → "Résultat Colosseum."
+- Certification (Fix 60b) : 6 VCs patchés
+  - CertificationWritingReslutViewController : lit isSuccess + correctAnswerNum → "Certification : [Réussi/Échoué]. N bonne(s) réponse(s)."
+- LotteryCardSelectViewController : ScreenTitles entry "screen_lottery_card_select"
+- Build : 0 erreurs
+
+### Loc.cs ajouts (session 2026-03-15)
+- placeholder_dialog, texture_image_dialog, password_dialog, password_dialog_label, save_dialog
+- screen_card_file, screen_promo_codes
+- colosseum_start/tournament/wcs, colosseum_info/history/ranking/reward/versus
+- tdy_map, tdy_result, tdy_result_kizuna
+- panel_mission
+- screen_colosseum, screen_autoduel, screen_duel_live
+(fr/en pour toutes)
+
+## Travaux récents (session 2026-03-15 suite)
+
+### Fix 61 — 7 nouveaux patches NSE (MiscViewsPatch.cs + Loc.cs)
+- DiceRallyMapEditorViewController → "Éditeur de carte Dice Rally."
+- DiceRallySubMenuViewController → "Dice Rally."
+- ColosseumRankingViewController_Rate → "Classement Colosseum — Rating."
+- ColosseumRewardDiceRallyViewController → "Récompenses Colosseum — Dice Rally." (bypass stub)
+- TurnOverPrizeCollabEditViewController → "Tour des prix — Édition collaboration." (bypass stub)
+- WCSFinal_TimerSettingViewController → "Paramètres du timer WCS Finale." (bypass stub)
+- DuelLiveSelectCardDialogViewController → "Duel Live — Sélection de carte."
+Loc : 7 nouvelles clés (fr/en)
+
+### Fix 62 — Crash PresentBox corrigé (MenuPanelStatePatch.cs)
+- Root cause : PresentBoxViewController.NSE = RVA 0x3E4080 (shared empty stub) → récursion infinie
+- Fix : NseEmptyStubSkip_Prefix() ajouté comme Harmony prefix sur PresentBox NSE
+- Helper bypassOriginal ajouté aux deux surcharges PatchMethod()
+- RÈGLE : toute classe avec NSE = RVA 0x3E4080 doit utiliser bypassOriginal: true
+- Build : 0 erreurs
+
+### Fix 63 — Menus mod navigables + raccourci N
+- HelpMenuNavigator.cs : menu d'aide navigable, ouvert par F1
+  - Flèche bas/haut : parcourir les raccourcis actifs ; Home/End : premier/dernier ; F1/Escape : fermer
+  - InputBlockPatch.ModMenuActive = true bloque les touches de navigation du jeu
+- ModSettingsNavigator.cs : menu paramètres navigable, ouvert par Ctrl+F1
+  - 3 paramètres : TTS activé, descriptions verbeuses, indices de raccourcis
+  - Flèche bas/haut : naviguer ; Entrée/Espace : basculer ; Ctrl+F1/Escape : fermer
+  - BepInEx ConfigEntry<bool> : sauvegarde automatique
+- ShortcutRegistry.cs : ajout de GetHelpItems()
+- KeyboardShortcuts.cs : HelpNav + SettingsNav ; raccourci N → ReadNotificationCount()
+- InputBlockPatch.cs : ModMenuActive bloque flèches/Home/End/Entrée/Espace/Escape/Backspace
+- Loc.cs : 18 nouvelles clés (help_menu_*, settings_menu_*, setting_*, shortcut_ctrl_f1, shortcut_n)
+
+### Fix 64 — 28 nouveaux écrans via ScreenTitles (ViewControllerPatch.cs + Loc.cs)
+- Colosseum (9), TDY (4), WCS (4), DuelLive (1), WebHelp/EnqueteCardSelect (2),
+  TurnOverPrizeItemViewer (1), ConsoleDataLinkInherit/Regist (2)
+- Loc.cs : 12 nouvelles clés (screen_colosseum_ranking, screen_colosseum_reward, etc.)
+- FULL_COVERAGE_PLAN : sections 18, 20, 21, 22, 27, 29, 30 → quasi-DONE
+
+### Fix 65 — CardFileViewController + TeamRoomEditScene (MiscViewsPatch + ViewControllerPatch)
+- CardFileViewController : NSE patch → lit cfManager.cfi.possessingCardNum + totalCardNum → "Collection : N / M cartes (X%)"
+- TeamRoomEditSceneViewController : ScreenTitles "TeamRoomEditScene" → "screen_team_room"
+- FULL_COVERAGE_PLAN : sections 25, 19 → DONE
+
+## Travaux récents (session 2026-03-15 suite 2)
+
+### Fix 66 — ShopBuyWidgetPatch : fix namespace + prix/quantité (Patches/ShopBuyWidgetPatch.cs)
+- Bug corrigé : FindType("YgomGame.Shop.BuyButtonGroupWidget") → FindType("BuyButtonGroupWidget") (namespace global)
+- Enhancement : lit m_ButtonCtx → extrait numText (quantité) + priceText (prix)
+- Loc : shop_buy_widget_product mis à jour → "Acheter : {0}. {1}. {2}."
+
+### Fix 67 — InformDialogFallbackPatch (Patches/InformDialogFallbackPatch.cs)
+- Découverte dynamique de toutes les sous-classes de InformDialogViewControllerBase non couvertes
+- AppDomain.CurrentDomain.GetAssemblies() → filtre types concrets → vérifie héritage
+- KnownHandled : 16 noms déjà patchés individuellement → ignorés
+- bypassOriginal = true (sécurité contre stubs vides RVA 0x3E4080)
+- Generic_Postfix : supprime suffixes numériques + "ViewController2/ViewController/Dialog/Widget"
+- Appliqué dans LatePatches.ApplyMenuScenePatches() après MiscViewsPatch.Apply()
+- Loc : inform_dialog_generic → "Dialog : {0}." (fr/en)
+
+### Docs (session 2026-03-15 suite 2)
+- docs/FULL_COVERAGE_PLAN.md mis à jour : ~175 DONE, ~8 PARTIAL, ~18 TODO
+- README.md réécrit : style SRWYAccess, raccourcis complets, FAQ 8 Q&R, Quick Reference
+
+## Travaux récents (session 2026-03-15 suite 3)
+
+### Fix 68 — NotificationPatch : corps de notification + badge non lue par onglet (NotificationPatch.cs)
+- Ajout _bodyField → cache le champ body (string 0x40) de NotificationViewController.Data
+- UpdateEntity_Postfix : stocke head/category/date/body/isRead dans _itemData
+- BuildItemAnnouncement : appende le corps après les métadonnées (stripped via StripMarkup)
+- StripMarkup(string) : regex <[^>]+> → supprime balises Unity rich-text
+- UpdateNotification_Postfix : annonce "notif_tab_changed_unread" si non-lus sur l'onglet
+- Nouveau helper CountTabUnread(object, int) + refactoring GetTabList()
+- Loc : notif_tab_changed_unread (fr/en/de)
+
+### Fix 69 — SoloGatePatch : German Loc string (Loc.cs)
+- _german["solo_gate_isv_item"] = "Tor: {0}, {1} von {2}." ajouté
+
+### Fix 70 — FriendViewControllerPatch : ISV navigation (FriendViewControllerPatch.cs)
+- FriendListWidget.OnSelectedEntityWidget patché
+- Lit playerName + isOnline depuis m_DisplayFriendContexts
+- 300ms cooldown + dédup par pcode
+- Loc : friend_isv_player, friend_online, friend_offline (fr/en/de)
+
+### Fix 71 — RoomViewControllerPatch : ISV membres (RoomViewControllerPatch.cs)
+- RoomMemberViewController.UpdateEntity(GameObject, int) patché
+- Lit dataList[index] → name + win/lose/draw
+- 300ms cooldown + dédup par index
+- Loc : room_member_item (fr/en/de)
+
+### Fix 72 — PromoCodesViewController (MiscViewsPatch.cs)
+- NSE réel (RVA 0x8ED800) patché via PatchNSE
+- Lit m_Behaviour.type (IPromoCodeBehaviour.Type : SerialCode=0, InviteSend=1, InviteReceive=2)
+- Annonce mode : "Codes promo." / "Codes promo — envoi d'invitation." / "Codes promo — réception d'invitation."
+- Loc : promo_invite_send, promo_invite_receive (fr/en/de)
+
+### Fix 73 — MarketPoolViewController (MiscViewsPatch.cs)
+- NSE stub vide (RVA 0x3E4080) → bypassOriginal: true ; postfix vide
+- OnCreatedView (RVA 0x976690) patché directement via harmony.Patch
+- Lit TMP_Text du child "Label" via transform.Find("Label")
+- Annonce "Marché : {nom}." si texte disponible, sinon "Marché."
+- Loc : market_pool_open_name (fr/en/de)
+
+### Fix 74 — Raccourci P étendu : DuelPass + Saison + Missions
+- SeasonPointPatch.ActiveInstance + GetCurrentAnnouncement() ajoutés
+- MissionViewControllerPatch.ActiveInstance + GetCurrentAnnouncement() ajoutés
+- KeyboardShortcuts.ReadDuelPassProgression() : annonce DuelPass → Saison → Missions séquentiellement
+- Loc.shortcut_p_menu mis à jour : "Progression : Duel Pass + saison + missions" (fr/en/de)
+- Build : 0 erreurs, 0 warnings
+
+## Priorité 3 — Fonctionnalités secondaires (à compléter)
+- CardFileTableViewController — pas de NSE, couvert par ScreenTitles "CardFileTable" → "screen_card_file"
+
+## TODO généraux
+- ISV généralisation : pattern OnUpdateEntity + FocusCallback pour tous les écrans listes scrollables
+  (Missions, Replays, Historique, DuelLive — namespace YgomSystem.UI.InfinityScroll)
+- Support japonais (ja) — Loc.cs _japanese dict (langue natale du jeu)
+- Annonce déconnexion réseau automatique (sans dialog) — hook sur NetworkManager ou équivalent
+
+## Notes pour la prochaine session
+- Tester Fix 70 : naviguer dans la liste amis → "{nom}. En ligne/Hors ligne."
+- Tester Fix 71 : ouvrir l'écran membres du salon → noms + W/L/D annoncés lors de la navigation
+- Tester Fix 72 : ouvrir PromoCodesViewController → mode annoncé (code série / invitation)
+- Tester Fix 73 : ouvrir MarketPoolViewController → nom du marché annoncé si lisible
+- Tester Fix 74 : presser P hors duel après avoir visité DuelPass + SeasonPoint + Missions
+  → vérifie les 3 annonces séquentielles
+
+## Travaux récents (session 2026-03-15 suite 4)
+
+### Fix 75 — DuelLiveViewController NSE (MiscViewsPatch.cs)
+- YgomGame.DuelLive.DuelLiveViewController.NotificationStackEntry (RVA 0xA0D640, réel)
+- Annonce : "Duel en direct." (screen_duel_live déjà existant)
+- Section 22 PARTIAL → DONE
+- Build : 0 erreurs
+
+### Fix 76 — LotteryCardSelectViewController NSE (MiscViewsPatch.cs)
+- LotteryCardSelectViewController.NotificationStackEntry (RVA 0xD9C590, réel)
+- Lit currentView (protected ViewType 0x21C) : None=0, CardCollection=1, Deck=2
+- Lit <m_CardPool>k__BackingField (List<CardBaseData> 0x198) pour la taille du pool
+- Annonce : "Sélection de carte. Vue : Collection/Deck. N carte(s) dans le pool."
+- Loc : lottery_card_select_collection/deck/open_view/open_count (fr/en/de)
+- Section 8 PARTIAL → DONE
+- Build : 0 erreurs
+
+### AutoDuelLauncherViewController & AutoDuelViewController — SKIP
+- Les deux VCs n'ont que le constructeur partagé RVA 0x3E3340 (stub vide)
+- Aucun champ, aucune méthode propre — ScreenTitles = couverture maximale possible
+- Section 22 AutoDuel → marqué DONE (max coverage)
+
+### Fix 77 — CardFileTableViewController NSE + ISV (MiscViewsPatch.cs)
+- NSE : annonce "Fichiers de cartes. N fichier(s)." ou "Fichiers de cartes." si count illisible
+- ISV OnEntityUpdate : lit les TMP_Text de l'entité GO → nom (>2 chars) + progression ("12/25")
+  → "Nom. 12/25." ou juste "Nom."
+- Dedup par index + texte pour éviter doubles
+
+### Fix 78 — network disconnect (MiscViewsPatch.cs)
+- UINetworkHandler.networkDisconnectErrorDialog() prefix → "Connexion perdue." (interrupt: true)
+
+### Fix 79 — Support japonais (Loc.cs)
+- Ajout dictionnaire _japanese (~70 clés couvrant écrans, duel, raccourcis, dialogues)
+- Détection : YgomSystem.Utility.Locale.GetLanguage() starts with "ja" → _currentLang = "ja"
+- Fallback sur la clé anglaise si une clé manque dans _japanese (comportement existant)
+
+## Notes pour la prochaine session
+- Tester Fix 75 : ouvrir l'écran Duel Live → "Duel en direct." annoncé
+- Tester Fix 76 : entrer dans LotteryCardSelectViewController → vue + nombre de cartes annoncés
+  (si pool vide au moment de NSE, fallback "Sélection de carte" attendu)
+- Tester Fix 77 : naviguer dans la liste des fichiers de cartes → nom + progression annoncés
+- Tester Fix 78 : provoquer une déconnexion → "Connexion perdue." annoncé immédiatement
+- Tester Fix 79 : lancer le jeu en japonais → vérifier les annonces en japonais
+
+### Fix 80 — PanelMissionContent.OnSelectedPanel (MiscViewsPatch.cs)
+- Patch `OnSelectedPanel(PanelWidget)` postfix dans PanelMissionContent
+- Lit `titleText.text` et `progressText.text` (si `existsProgressText`) via reflection sur PanelWidget
+- Annonce : "{titre}. {progression}." ou juste "{titre}."
+- Nouveau Loc key : `panel_mission_item` ("{0}. {1}.")
+
+### Fix 81 — ISV Replays (ReplayPatch.cs)
+- `ProfileReplayViewController.OnItemSetData(GameObject, int)` — ISV replay personnel
+- `RoomReplayViewController.UpdateEntity(GameObject, int)` — ISV replays salon
+- Les deux collectent les TMP_Text non vides du GO de l'entité (max 4) → joint par ". "
+- Dédup par (dataindex, texte) pour éviter répétition lors du scroll
+
+## Notes pour la prochaine session
+- Fix 75-81 à tester en jeu
+- Couverture plan complète — plus de TODO techniques restants

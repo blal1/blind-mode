@@ -497,6 +497,9 @@ namespace MasterDuelAccessibility
         {
             InputBlockPatch.ResetFrameState();
 
+            // Suivi de la progression du téléchargement (pattern BlindMode)
+            DownloadViewControllerPatch.CheckProgress();
+
             // Valider la stack des panneaux toutes les 30 frames
             // (filet de sécurité si NotificationStackRemove a été raté)
             if (++_validateCounter >= 30)

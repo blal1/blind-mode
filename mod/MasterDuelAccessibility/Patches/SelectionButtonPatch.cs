@@ -91,6 +91,16 @@ namespace MasterDuelAccessibility.Patches
                 if (!string.IsNullOrWhiteSpace(text))
                     text = Regex.Replace(text, "<[^>]+>", "").Trim();
 
+                // FindSiblingText fallback (BlindMode pattern): for icon/toggle/radio
+                // buttons where the visible label is a sibling GO, not a child.
+                // Walk up to 3 parent levels looking for a sibling TMP_Text.
+                if (string.IsNullOrWhiteSpace(text) || text!.Length <= 2)
+                {
+                    string? sibText = FindSiblingText(GetTransform(__instance));
+                    if (!string.IsNullOrWhiteSpace(sibText))
+                        text = sibText;
+                }
+
                 string? contextText = ProcessContext(__instance, text);
                 if (contextText != null)
                     text = contextText;
@@ -750,6 +760,52 @@ namespace MasterDuelAccessibility.Patches
                 3 => Loc.Get("rarity_ultra"),
                 _ => last.ToString(),
             };
+        }
+
+        // ── FindSiblingText — sibling label fallback (BlindMode pattern) ──────
+
+        /// <summary>
+        /// Walks up to 3 parent levels looking for a sibling with readable text.
+        /// Covers toggle/radio/icon buttons where the visible label is a sibling GO
+        /// rather than a child of the button itself.
+        /// Returns the first sibling text longer than 2 characters, or null.
+        /// </summary>
+        private static string? FindSiblingText(object? start)
+        {
+            if (start == null) return null;
+            int? startId = GetInstanceId(start);
+            var current = start;
+            for (int level = 0; level < 3; level++)
+            {
+                var parent = GetParent(current);
+                if (parent == null) break;
+                int childCount = (int)(parent.GetType()
+                    .GetProperty("childCount", Pub)?.GetValue(parent) ?? 0);
+                for (int i = 0; i < childCount; i++)
+                {
+                    var sibling = ChildAt(parent, i);
+                    if (sibling == null) continue;
+                    // Skip the current node itself (IL2CPP-safe comparison via InstanceID)
+                    if (startId.HasValue && GetInstanceId(sibling) == startId) continue;
+                    string? sibText = ReadText(GetGO(sibling));
+                    if (!string.IsNullOrWhiteSpace(sibText) && sibText!.Length > 2)
+                        return sibText;
+                }
+                current = parent;
+            }
+            return null;
+        }
+
+        private static int? GetInstanceId(object? obj)
+        {
+            if (obj == null) return null;
+            try
+            {
+                return (int?)obj.GetType()
+                    .GetMethod("GetInstanceID", BindingFlags.Public | BindingFlags.Instance)
+                    ?.Invoke(obj, null);
+            }
+            catch { return null; }
         }
     }
 }

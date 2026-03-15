@@ -35,14 +35,11 @@ namespace MasterDuelAccessibility.Patches
         private static MethodInfo?   _mGetCategoryData;
         private static PropertyInfo? _pLabelText;
 
-        // OnFocusProductLine — ISV product navigation
-        private static FieldInfo?    _fProductContextMap;
-        private static PropertyInfo? _pCategoryId;
-        private static PropertyInfo? _pSubCategoryId;
-        private static PropertyInfo? _pSectionId;
-        private static PropertyInfo? _pProductName;
-        private static long _lastProductFocusTick = 0L;
-        private const  long ProductFocusCooldownTicks = 2_000_000L; // 200 ms
+        // OnFocusProductLine — m_SectionDatas lookup
+        private static FieldInfo?    _fSectionDatas;
+        private static string?       _lastFocusedSectionLabel;
+        private static long          _lastProductFocusTick = 0L;
+        private const  long          ProductFocusCooldownTicks = 2_000_000L; // 200 ms
 
         internal static void Reset() => _applied = false;
 
@@ -134,9 +131,8 @@ namespace MasterDuelAccessibility.Patches
 
         /// <summary>
         /// Postfix pour ShopViewController.OnFocusProductLine(int categoryId, int subCategoryId, int sectionId).
-        /// ISV callback — fires when a product line enters focus during scroll.
-        /// Finds the first ProductContext matching the given IDs in m_ShowcaseData.m_ProductContextMap
-        /// and announces its productName.
+        /// Lit le labelText de la section via ShowcaseData.m_SectionDatas[catId][subId][secId].
+        /// Stratégie : ShowcaseData.m_SectionDatas est un Dictionary à 3 niveaux imbriqués.
         /// </summary>
         public static void OnFocusProductLine_Postfix(object __instance, int __0, int __1, int __2)
         {
@@ -149,7 +145,7 @@ namespace MasterDuelAccessibility.Patches
 
             try
             {
-                // Resolve m_ShowcaseData
+                // 1. ShowcaseData
                 if (_fShowcaseData == null)
                 {
                     var vt = __instance.GetType();
@@ -167,53 +163,67 @@ namespace MasterDuelAccessibility.Patches
                 object? showcase = _fShowcaseData.GetValue(__instance);
                 if (showcase == null) return;
 
-                // m_ProductContextMap : Dictionary<int, ProductContext>
-                if (_fProductContextMap == null)
-                    _fProductContextMap = showcase.GetType().GetField("m_ProductContextMap",
+                // 2. m_SectionDatas : Dictionary<int, Dictionary<int, Dictionary<int, IShopProductGruopData>>>
+                if (_fSectionDatas == null)
+                    _fSectionDatas = showcase.GetType().GetField("m_SectionDatas",
                         BindingFlags.Public | BindingFlags.NonPublic | BindingFlags.Instance);
-                if (_fProductContextMap == null) return;
+                if (_fSectionDatas == null) return;
 
-                var mapObj = _fProductContextMap.GetValue(showcase);
-                if (mapObj == null) return;
+                var secDatas = _fSectionDatas.GetValue(showcase);
+                if (secDatas == null) return;
 
-                var valuesObj = mapObj.GetType()
-                    .GetProperty("Values", BindingFlags.Public | BindingFlags.Instance)
-                    ?.GetValue(mapObj) as System.Collections.IEnumerable;
-                if (valuesObj == null) return;
+                // 3. Navigate secDatas[__0][__1][__2]
+                object? sectionData = DictNavigate(secDatas, __0, __1, __2);
+                if (sectionData == null) return;
 
-                foreach (object? product in valuesObj)
+                // 4. labelText : IShopProductGruopData.labelText (public property)
+                if (_pLabelText == null)
+                    _pLabelText = sectionData.GetType().GetProperty("labelText",
+                        BindingFlags.Public | BindingFlags.Instance);
+                string? label = _pLabelText?.GetValue(sectionData)?.ToString();
+
+                if (!string.IsNullOrWhiteSpace(label) && label != _lastFocusedSectionLabel)
                 {
-                    if (product == null) continue;
-                    var pt = product.GetType();
-
-                    if (_pCategoryId == null)
-                        _pCategoryId = pt.GetProperty("categoryId", BindingFlags.Public | BindingFlags.Instance);
-                    if (_pSubCategoryId == null)
-                        _pSubCategoryId = pt.GetProperty("subCategoryId", BindingFlags.Public | BindingFlags.Instance);
-                    if (_pSectionId == null)
-                        _pSectionId = pt.GetProperty("sectionId", BindingFlags.Public | BindingFlags.Instance);
-
-                    int catId = Convert.ToInt32(_pCategoryId?.GetValue(product) ?? -1);
-                    if (catId != __0) continue;
-                    int subId = Convert.ToInt32(_pSubCategoryId?.GetValue(product) ?? -1);
-                    if (subId != __1) continue;
-                    int secId = Convert.ToInt32(_pSectionId?.GetValue(product) ?? -1);
-                    if (secId != __2) continue;
-
-                    if (_pProductName == null)
-                        _pProductName = pt.GetProperty("productName", BindingFlags.Public | BindingFlags.Instance);
-                    string? name = _pProductName?.GetValue(product) as string;
-                    if (!string.IsNullOrWhiteSpace(name))
-                    {
-                        tts.Speak(Loc.Get("shop_product_focus", name), interrupt: true);
-                        return;
-                    }
+                    _lastFocusedSectionLabel = label;
+                    tts.Speak(Loc.Get("shop_product_focus", label!), interrupt: false);
                 }
             }
             catch (Exception ex)
             {
                 Plugin.Instance?.LogWarn($"[ShopViewControllerPatch] OnFocusProductLine {ex.Message}");
             }
+        }
+
+        // ── Helper : navigue dans un dict 3 niveaux via réflexion ─────────────
+
+        private static object? DictNavigate(object dict3, int key1, int key2, int key3)
+        {
+            // Level 1 : dict3[key1] → dict2
+            object? dict2 = DictGetValue(dict3, key1);
+            if (dict2 == null) return null;
+            // Level 2 : dict2[key2] → dict1
+            object? dict1 = DictGetValue(dict2, key2);
+            if (dict1 == null) return null;
+            // Level 3 : dict1[key3] → value
+            return DictGetValue(dict1, key3);
+        }
+
+        private static object? DictGetValue(object dict, int key)
+        {
+            try
+            {
+                var tryGetMethod = dict.GetType().GetMethod("TryGetValue",
+                    BindingFlags.Public | BindingFlags.Instance);
+                if (tryGetMethod == null) return null;
+                var parms = tryGetMethod.GetParameters();
+                if (parms.Length != 2) return null;
+
+                // Créer un tableau pour le ref out param
+                object?[] args = { key, null };
+                bool found = (bool)(tryGetMethod.Invoke(dict, args) ?? false);
+                return found ? args[1] : null;
+            }
+            catch { return null; }
         }
 
         private static string? TryGetCurrentCategoryName(object vcInstance)

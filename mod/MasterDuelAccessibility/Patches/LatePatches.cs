@@ -280,6 +280,11 @@ namespace MasterDuelAccessibility.Patches
             MiscViewsPatch.Reset();
             MiscViewsPatch.Apply(_harmonyLate!);
 
+            // Patch de secours InformDialogViewControllerBase — couvre les sous-classes
+            // non encore patched individuellement (découverte dynamique par reflection)
+            InformDialogFallbackPatch.Reset();
+            InformDialogFallbackPatch.Apply(_harmonyLate!);
+
             // Patch DownloadViewController — téléchargement initial
             DownloadViewControllerPatch.Reset();
             DownloadViewControllerPatch.Apply(_harmonyLate!);

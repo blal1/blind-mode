@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Text;
 using MasterDuelAccessibility.Models;
 using UnityEngine;
+using System.Collections;
 
 namespace MasterDuelAccessibility
 {
@@ -124,6 +125,20 @@ namespace MasterDuelAccessibility
             if (first) return Loc.Get("no_shortcuts_active");
             sb.Append('.');
             return sb.ToString();
+        }
+
+        /// <summary>
+        /// Retourne les items d'aide ACTIFS sous forme de tuples (keyString, description).
+        /// Utilisé par HelpMenuNavigator pour construire la liste navigable.
+        /// Inspiré de HelpNavigator.BuildHelpItems() dans AccessibleArena MTGA.
+        /// </summary>
+        public IEnumerable<(string keyString, string description)> GetHelpItems()
+        {
+            foreach (var s in _shortcuts)
+            {
+                if (s.ActiveCondition != null && !s.ActiveCondition()) continue;
+                yield return (s.GetKeyString(), Loc.Get(s.DescriptionLocKey));
+            }
         }
 
         /// <summary>

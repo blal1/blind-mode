@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Reflection;
+using System.Text.RegularExpressions;
 
 namespace MasterDuelAccessibility.Patches
 {
@@ -50,7 +51,11 @@ namespace MasterDuelAccessibility.Patches
         private static FieldInfo? _headField;
         private static FieldInfo? _categoryField;
         private static FieldInfo? _dateField;
+        private static FieldInfo? _bodyField;
         private static FieldInfo? _isReadField;
+
+        // Regex to strip Unity rich text / MDMarkup tags: <color=#…>, <b>, </b>, <size=…>, etc.
+        private static readonly Regex _tagRegex = new Regex("<[^>]+>", RegexOptions.Compiled);
 
         // ── Runtime state ─────────────────────────────────────────────────────
 
@@ -101,6 +106,7 @@ namespace MasterDuelAccessibility.Patches
                 _headField     = nested.GetField("head",          BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
                 _categoryField = nested.GetField("category",      BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
                 _dateField     = nested.GetField("date",          BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
+                _bodyField     = nested.GetField("body",          BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
                 _isReadField   = nested.GetField("isAlreadyRead", BindingFlags.NonPublic | BindingFlags.Public | BindingFlags.Instance);
                 break;
             }
@@ -210,9 +216,12 @@ namespace MasterDuelAccessibility.Patches
                     2 => Loc.Get("notif_tab_bugs"),
                     _ => Loc.Get("notif_tab_news"),
                 };
-                int count = CountTabItems(__instance, __0);
-                tts.Speak(Loc.Get("notif_tab_changed", tabLabel, count),
-                    interrupt: false, addToHistory: false);
+                int count   = CountTabItems(__instance, __0);
+                int unread  = CountTabUnread(__instance, __0);
+                string msg  = unread > 0
+                    ? Loc.Get("notif_tab_changed_unread", tabLabel, count, unread)
+                    : Loc.Get("notif_tab_changed",        tabLabel, count);
+                tts.Speak(msg, interrupt: false, addToHistory: false);
             }
             catch { }
         }
@@ -240,9 +249,10 @@ namespace MasterDuelAccessibility.Patches
                         var head     = _headField?.GetValue(item)?.ToString() ?? "";
                         var category = _categoryField?.GetValue(item)?.ToString() ?? "";
                         var date     = _dateField?.GetValue(item)?.ToString() ?? "";
+                        var bodyRaw  = _bodyField?.GetValue(item)?.ToString() ?? "";
                         bool isRead  = (bool?)_isReadField?.GetValue(item) ?? true;
 
-                        _itemData[__1] = new NotifItem(head, category, date, isRead);
+                        _itemData[__1] = new NotifItem(head, category, date, bodyRaw, isRead);
                         return;
                     }
                     i++;
@@ -330,10 +340,46 @@ namespace MasterDuelAccessibility.Patches
             if (!item.IsRead)
                 parts.Add(Loc.Get("notif_unread_marker"));
 
+            // Append body, stripping HTML / MDMarkup rich-text tags
+            if (!string.IsNullOrWhiteSpace(item.Body))
+            {
+                string stripped = StripMarkup(item.Body).Trim();
+                if (!string.IsNullOrWhiteSpace(stripped))
+                    parts.Add(stripped);
+            }
+
             return parts.Count > 0 ? string.Join(". ", parts) + "." : string.Empty;
         }
 
+        /// <summary>
+        /// Strips HTML and Unity rich-text tags (e.g. &lt;color=#FF0000&gt;, &lt;b&gt;, &lt;/b&gt;,
+        /// &lt;size=12&gt;) from a string. Does not decode HTML entities.
+        /// </summary>
+        private static string StripMarkup(string input) => _tagRegex.Replace(input, string.Empty);
+
         private static int CountTabItems(object instance, int tabType)
+        {
+            var list = GetTabList(instance, tabType);
+            if (list == null) return 0;
+            int count = 0;
+            foreach (var _ in list) count++;
+            return count;
+        }
+
+        private static int CountTabUnread(object instance, int tabType)
+        {
+            var list = GetTabList(instance, tabType);
+            if (list == null) return 0;
+            int unread = 0;
+            foreach (var item in list)
+            {
+                bool isRead = (bool?)_isReadField?.GetValue(item) ?? true;
+                if (!isRead) unread++;
+            }
+            return unread;
+        }
+
+        private static IEnumerable? GetTabList(object instance, int tabType)
         {
             string listName = tabType switch {
                 0 => "notificationDatas",
@@ -341,23 +387,11 @@ namespace MasterDuelAccessibility.Patches
                 2 => "bugDatas",
                 _ => "notificationDatas",
             };
-            var list = ReadListField(instance, listName);
-            if (list == null) return 0;
-            int count = 0;
-            foreach (var _ in list) count++;
-            return count;
+            return ReadListField(instance, listName);
         }
 
         private static IEnumerable? GetCurrentTabList(object instance)
-        {
-            string listName = _currentTabType switch {
-                0 => "notificationDatas",
-                1 => "maintenanceDatas",
-                2 => "bugDatas",
-                _ => "notificationDatas",
-            };
-            return ReadListField(instance, listName);
-        }
+            => GetTabList(instance, _currentTabType);
 
         private static IEnumerable? ReadListField(object instance, string fieldName)
         {
@@ -373,13 +407,15 @@ namespace MasterDuelAccessibility.Patches
             internal readonly string Head;
             internal readonly string Category;
             internal readonly string Date;
+            internal readonly string Body;
             internal readonly bool IsRead;
 
-            internal NotifItem(string head, string category, string date, bool isRead)
+            internal NotifItem(string head, string category, string date, string body, bool isRead)
             {
                 Head = head;
                 Category = category;
                 Date = date;
+                Body = body;
                 IsRead = isRead;
             }
         }

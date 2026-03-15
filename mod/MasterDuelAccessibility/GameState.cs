@@ -43,8 +43,9 @@ namespace MasterDuelAccessibility
         internal static int CurrentPlayer = 0;
 
         /// <summary>
-        /// ViewController names that identify each menu.
-        /// Key = GameObject name of the ViewController.
+        /// ViewController names that identify each top-level menu.
+        /// Matching VCs trigger an announcement AND set the menu context.
+        /// Key = logical VC name (suffix stripped by SafeGetName).
         /// </summary>
         internal static readonly System.Collections.Generic.Dictionary<string, Menu> MenuNames =
             new System.Collections.Generic.Dictionary<string, Menu>
@@ -57,6 +58,55 @@ namespace MasterDuelAccessibility
             { "Notifications", Menu.Notifications },
             { "Game Settings", Menu.Settings      },
             { "Duel Pass",     Menu.DuelPass      },
+        };
+
+        /// <summary>
+        /// Sub-screen ViewController names that inherit a menu context without triggering
+        /// a new announcement (announcement is handled by ViewControllerPatch.Show_Postfix).
+        /// </summary>
+        internal static readonly System.Collections.Generic.Dictionary<string, Menu> VcMenuContextMap =
+            new System.Collections.Generic.Dictionary<string, Menu>
+        {
+            { "SoloMode",             Menu.Solo        },
+            { "SoloGate",             Menu.Solo        },
+            { "SoloSelectChapter",    Menu.Solo        },
+            { "DeckEdit",             Menu.Deck        },
+            { "DeckBrowser",          Menu.Deck        },
+            { "DeckSelect",           Menu.Deck        },
+            { "CardBrowser",          Menu.CardBrowser },
+            { "ShopBuy",              Menu.Shop        },
+            { "LotteryPortal",        Menu.Shop        },
+            { "PvpMenuMatching",      Menu.Duel        },
+            { "PvpMenuMatching_Room", Menu.Duel        },
+            { "PvpMenuMatching_Team", Menu.Duel        },
+            // Colosseum sub-screens inherit Duel context
+            { "ColosseumStart",          Menu.Duel },
+            { "ColosseumInfo",           Menu.Duel },
+            { "ColosseumHistory",        Menu.Duel },
+            { "ColosseumRanking",        Menu.Duel },
+            { "ColosseumReward",         Menu.Duel },
+            { "ColosseumSelectVersus",   Menu.Duel },
+            // TDY sub-screens inherit Duel context
+            { "TDYMap",                  Menu.Duel },
+            { "TdyResult",               Menu.Duel },
+            // Certification sub-screens (no top-level menu key; treat as None-derived)
+            { "CertificationConfirm",         Menu.None },
+            { "CertificationDetail",          Menu.None },
+            { "CertificationExplanation",     Menu.None },
+            { "CertificationDuelFieldDialog", Menu.None },
+            { "CertificationWriting",         Menu.None },
+            { "CertificationWritingReslut",   Menu.None },
+        };
+
+        /// <summary>
+        /// ViewController names for overlays/dialogs that should preserve the current
+        /// menu context when focused (they sit on top of the active screen).
+        /// </summary>
+        internal static readonly System.Collections.Generic.HashSet<string> VcKeepContextNames =
+            new System.Collections.Generic.HashSet<string>(System.StringComparer.OrdinalIgnoreCase)
+        {
+            "FilterSelect", "SortDialog_Card", "SortDialog_CardFile", "SortDialog_Solo",
+            "PasswordDialog", "SystemDialog", "CommonDialog", "ActionSheet",
         };
 
         internal static string MenuLabel(Menu m) => m switch

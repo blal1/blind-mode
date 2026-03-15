@@ -1,6 +1,6 @@
 # MasterDuelAccessibility — Plan de couverture complète
 
-Date : 2026-03-14 (mis à jour)
+Date : 2026-03-15 (mis à jour)
 Objectif : couvrir l'intégralité des fonctionnalités du jeu du premier lancement à l'utilisation quotidienne.
 
 Légende :
@@ -285,9 +285,14 @@ Statut global : DONE (essentiel)
 ### 7.2 Achat de produits
 - DONE — ShopBuyPatch : NotificationStackEntry + OnFocusChanged + page nav
 - DONE — ShopBuyPatch : OnChangedSelectionItem (fix BindingFlags appliqué)
-- TODO — ConfirmRegDialogProductWidget : confirmation d'achat
-  - Données à lire : nom du produit, prix, devise, contenu
-- TODO — BuyButtonGroupWidget : boutons d'achat (quantité, prix total)
+- DONE — ShopBuyWidgetPatch : ConfirmRegDialogProductWidget.InnerBinding (YgomGame.Shop)
+  - Lit headerText / hasText / numText (champs publics 0x30–0x40) → "Confirmation : [prod]. [has]. [num]."
+  - Applied via LatePatches.ApplyMenuScenePatches()
+- DONE — ShopBuyWidgetPatch : BuyButtonGroupWidget.Binding (namespace global)
+  - Lit productName via ProductContext param + m_ButtonCtx.numText / priceText
+  - Fix namespace : "BuyButtonGroupWidget" (global) pas "YgomGame.Shop.BuyButtonGroupWidget"
+  - Annonce : "Acheter : [nom]. [quantité]. [prix]."
+  - Applied via LatePatches.ApplyMenuScenePatches()
 
 ### 7.3 Boutique de gemmes (achat payant)
 - DONE — ShopMiscPatch : GemShopViewController.NotificationStackEntry → "Boutique de gemmes."
@@ -337,7 +342,7 @@ Statut global : DONE (essentiel)
 - DONE — LotteryRewardPatch : OnUpdateEntity + FocusCallback (ISV navigation)
 - DONE — MiscViewsPatch : LotteryHistoryViewController.NotificationStackEntry → "Historique des packs ouverts."
   - Namespace : YgomGame.Lottery. Applied via LatePatches.
-- TODO — LotteryCardSelectViewController : sélection de carte garantie
+- DONE — LotteryCardSelectViewController : NSE patché (Fix 76) — annonce vue (Collection/Deck) + taille du pool
   - Namespace : YgomGame.CardPoolSelect (CardPoolSelectViewController possible)
   - Nécessite analyse dump avant implémentation
 
@@ -356,16 +361,15 @@ Statut global : DONE (essentiel)
 ### 9.1 Carte du monde
 - DONE — ViewControllerPatch : Solo détecté → "Mode Solo"
 - DONE — SelectionButtonPatch : boutons Solo navigables (ProcessDuelMenu)
-- TODO — SoloModeViewController : carte du monde solo
-  - Données à lire : portails disponibles, progression globale
-  - Navigation clavier entre portails (nécessite analyse du SelectorManager)
+- DONE — SoloModeViewController : MiscViewsPatch.SoloMode_Postfix (NSE) → "Mode Solo — carte du monde." + ScreenTitles "SoloMode"
+  - Données riches (portails, progression) : TODO optionnel
 
 ### 9.2 Portails et chapitres
 - DONE — SoloGatePatch : SoloGateViewController.NotificationStackEntry
   - Lit mainDataList.Count pour annoncer le nombre de portails
   - Annonce : "Portails Solo — N portail(s)."
   - Applied via LatePatches.ApplyMenuScenePatches()
-  - TODO : navigation ISV entre portails (OnItemSetDataMain)
+  - DONE — SoloGatePatch : OnItemSetDataMain postfix — annonce "Portail : [nom], N sur M." (Fix 2026-03-15 suite 3)
 - DONE — SoloChapterPatch : SoloSelectChapterViewController.ChapterMap.OnClickChapter
   - Accès via GetNestedType("ChapterMap") + FindMethod par nombre de paramètres
   - Lit strChapter + IsCleared/IsCompleted + status enum (-1=UNOPEN)
@@ -409,7 +413,7 @@ Statut global : DONE (essentiel)
   - Lit roomBehaviour.roomInfo.roomName + memberNum/memberMax
   - Annonce : "Salon : [nom]. N sur M joueur(s)." ou "Salon."
   - Applied via LatePatches.ApplyMenuScenePatches()
-  - TODO : navigation membres (ISV), détails règles
+  - DONE — RoomViewControllerPatch : RoomMemberViewController.UpdateEntity postfix — annonce "{nom}. V{win} D{lose} N{draw}." (Fix 71)
 - DONE — RoomPatch : RoomCreateViewController.NotificationStackEntry → "Créer un salon."
 - DONE — RoomPatch : RoomEntryViewController.NotificationStackEntry
   - Lit champ mode (RoomEntryViewController.Mode NORMAL=0, SPECTER=1)
@@ -450,7 +454,7 @@ Statut global : DONE (essentiel)
 - DONE — FriendViewControllerPatch : FriendViewController.NotificationStackEntry
   - Lit m_FollowNumText (TMP_Text 0x1E8) → "Amis — N suivi(s)." ou "Amis."
   - Applied via LatePatches.ApplyMenuScenePatches()
-  - TODO : navigation ISV (liste amis), statuts en ligne
+  - DONE — FriendViewControllerPatch : FriendListWidget.OnSelectedEntityWidget postfix — annonce "{nom}. En ligne/Hors ligne." (Fix 70)
 - DONE — ProfileMiscPatch : FriendSearchViewController.NotificationStackEntry → "Recherche d'ami."
   - Applied via LatePatches.
 
@@ -478,10 +482,9 @@ Statut global : PARTIAL
   - Le `label` et `isOn` peuvent être lus via SelectionButtonPatch si nécessaire
 
 ### 12.3 Panel Missions (événements carte)
-- TODO — PanelMission (YgomGame.PanelMission)
-  - MapWidget : carte d'événement avec cases (progression visuelle)
-  - PanelWidget : case individuelle (récompense, état progression)
-  - Nécessite analyse dump YgomGame.PanelMission avant implémentation
+- DONE — PanelMissionContent : MiscViewsPatch.PanelMission_Postfix → "Mission événement." (NSE hook)
+- DONE — MapWidget / PanelWidget : PanelMissionContent.OnSelectedPanel(PanelWidget) postfix
+  → "{titre}. {progression}." (ex: "Missions quotidiennes. 3/5.") (Fix 80)
 
 ---
 
@@ -567,11 +570,9 @@ Statut global : PARTIAL
 - DONE — SelectionButtonPatch : ReadNotificationText (corps + catégorie)
 
 ### 16.2 Contenu détaillé
-- TODO — Lecture complète du corps de notification (HTML/texte long)
-  - Les notifications peuvent contenir du markdown (MDMarkup)
-  - Namespace : YgomGame.MDMarkup (MDMarkupAssetViewController)
-- TODO — Onglets : Nouvelles, Maintenance, Bugs — navigation entre onglets
-- TODO — Badge non-lu sur chaque onglet
+- DONE — NotificationPatch : body field (0x40) lu + StripMarkup() (regex <[^>]+>) → corps inclus dans l'annonce ISV (Fix 68)
+- DONE — NotificationPatch : UpdateNotification_Postfix annonce maintenant "{onglet} — N élément(s), M non lue(s)." (Fix 68)
+- DONE — NotificationPatch : CountTabUnread() par onglet → badge non-lu inclus dans annonce onglet (Fix 68)
 
 ---
 
@@ -595,189 +596,185 @@ Statut global : DONE (essentiel)
   - Lit titre via get_arg1() en parcourant la hiérarchie de base
   - Annonce : "[Titre]. Options : A, B, C." ou "Menu contextuel. Options : A, B, C."
   - Applied via Plugin.ApplyPatches()
-- TODO — PlaceHolderDialogViewController : placeholder (chargement en cours)
-- TODO — SaveDialogViewController : sauvegarde en cours
-- TODO — TextureImageDialogViewController : aperçu d'image (protège-cartes, terrain)
-- TODO — PasswordDialog / PasswordDialogViewController : saisie de mot de passe
-  - Données à lire : titre ("Entrez le mot de passe du salon")
-- TODO — InformDialogViewControllerBase : dialog d'information (base class)
+- DONE — MiscViewsPatch : PlaceHolderDialogViewController.NSE → "Chargement en cours."
+- DONE — MiscViewsPatch : SaveDialogViewController.NSE → "Enregistrement en cours."
+  SaveDialogViewController.Open (8 params) → "[title]. [message]."
+- DONE — MiscViewsPatch : TextureImageDialogViewController.NSE → lit champ `caption` → "Aperçu d'image." ou texte
+- DONE — MiscViewsPatch : PasswordDialogViewController.NSE → lit INPUT_LABEL → "Saisie : [label]."
+- DONE — InformDialogFallbackPatch : découverte dynamique des sous-classes InformDialogViewControllerBase
+  - Enumère tous les types .NET chargés à l'exécution via AppDomain.CurrentDomain.GetAssemblies()
+  - Détecte les sous-classes concrètes (non-abstract) en remontant la chaîne de base par nom
+  - Ignore les types dans KnownHandled (déjà couverts par un patch dédié) — 16 types listés
+  - Pour les types inconnus : patch NSE avec bypassOriginal=true + Generic_Postfix
+  - Generic_Postfix : annonce "Dialog : [NomStrippé]." (strip ViewController/Dialog suffixes)
+  - Loc key : "inform_dialog_generic" → "Dialog : {0}." / "Dialog: {0}."
+  - Appliqué dans LatePatches.ApplyMenuScenePatches() après MiscViewsPatch
+  - Filet de sécurité pour les futures mises à jour jeu ajoutant de nouveaux InformDialogs
 
 ---
 
 ## 18. ÉVÉNEMENTS ET COLOSSEUM
 
-Statut global : TODO
+Statut global : DONE (core)
 
 ### 18.1 Colosseum (événement principal)
-- TODO — ColosseumViewController : écran principal
-  - Données à lire : événement actif, règles, dates, rang actuel
-- TODO — ColosseumStartViewController : démarrage participation
-- TODO — ColosseumInfoViewController : informations détaillées
-- TODO — ColosseumInfoEditSceneViewController : info avec scène animée
-- TODO — ColosseumConfirmAgreementViewController : confirmation participation
-- TODO — ColosseumConfirmGroupViewController : confirmation groupe
+- DONE — ColosseumViewController : ScreenTitles entry → "screen_colosseum" (ViewControllerPatch auto-announce)
+- DONE — ColosseumStartViewController : MiscViewsPatch.ColosseumStart_Postfix — reads prefabType (STANDARD/TOURNAMENT/WCS) → Loc key
+- DONE — ColosseumInfoViewController : MiscViewsPatch.ColosseumInfo_Postfix → "Informations Colosseum."
+- DONE — ColosseumInfoEditSceneViewController : ScreenTitles "ColosseumInfoEditScene" → "Colosseum." (ViewControllerPatch auto-announce)
+- DONE — ColosseumConfirmAgreementViewController : ScreenTitles "ColosseumConfirmAgreement" → "screen_colosseum_confirm"
+- DONE — ColosseumConfirmGroupViewController : ScreenTitles "ColosseumConfirmGroup" → "screen_colosseum"
 
 ### 18.2 Résultats et classements Colosseum
-- TODO — ColosseumResultViewController : résultat
-- TODO — ColosseumResultViewController_Wcs : résultat WCS
-- TODO — ColosseumResultVersusViewController : résultat versus
-- TODO — ColosseumResultEditSceneViewController : résultat avec scène
-- TODO — ColosseumHistoryViewController : historique
-- TODO — ColosseumRankingViewController : classement
-- TODO — ColosseumRankingViewController_Rate : classement par rating
-- TODO — ColosseumRankingDuelistCupViewController : classement Duelist Cup
-- TODO — ColosseumRankingEditSceneViewController : classement avec scène
-- TODO — ColosseumSelectVersusViewController : sélection adversaire
+- DONE — ColosseumResultViewController.NSE → "Résultat Colosseum."
+- DONE — ColosseumResultViewController_Wcs : ScreenTitles (full key) → "screen_colosseum_result"
+- DONE — ColosseumResultVersusViewController : ScreenTitles "ColosseumResultVersus" → "screen_colosseum_result_versus"
+- DONE — ColosseumResultEditSceneViewController : ScreenTitles "ColosseumResultEditScene" → "screen_colosseum_result"
+- DONE — ColosseumHistoryViewController : MiscViewsPatch.ColosseumHistory_Postfix → "Historique Colosseum."
+- DONE — ColosseumRankingViewController : MiscViewsPatch.ColosseumRanking_Postfix → "Classement Colosseum."
+- DONE — ColosseumRankingViewController_Rate : MiscViewsPatch.ColosseumRankingRate_Postfix → "Classement Colosseum — Rating." (NSE RVA non-vide)
+- DONE — ColosseumRankingDuelistCupViewController : ScreenTitles "ColosseumRankingDuelistCup" → "screen_colosseum_ranking_cup"
+- DONE — ColosseumRankingEditSceneViewController : ScreenTitles "ColosseumRankingEditScene" → "screen_colosseum_ranking"
+- DONE — ColosseumSelectVersusViewController : MiscViewsPatch.ColosseumVersus_Postfix → "Sélection d'adversaire."
 
 ### 18.3 Récompenses Colosseum
-- TODO — ColosseumRewardViewController : récompenses
-- TODO — ColosseumRewardDiceRallyViewController : récompenses Dice Rally
-- TODO — ColosseumRewardDuelistCupViewController : récompenses Duelist Cup
-- TODO — ColosseumRewardTournamentViewController : récompenses tournoi
-- TODO — ColosseumRankEventRewardViewController : récompenses rang
+- DONE — ColosseumRewardViewController : MiscViewsPatch.ColosseumReward_Postfix → "Récompenses Colosseum."
+- DONE — ColosseumRewardDiceRallyViewController : MiscViewsPatch.ColosseumRewardDiceRally_Postfix → "Récompenses Colosseum — Dice Rally." (bypass empty stub)
+- DONE — ColosseumRewardDuelistCupViewController : ScreenTitles "ColosseumRewardDuelistCup" → "screen_colosseum_reward"
+- DONE — ColosseumRewardTournamentViewController : ScreenTitles "ColosseumRewardTournament" → "screen_colosseum_reward"
+- DONE — ColosseumRankEventRewardViewController : ScreenTitles "ColosseumRankEventReward" → "screen_colosseum_reward"
 
 ### 18.4 Dice Rally (événement spécial)
-- TODO — DiceRallyMapEditorViewController : plateau de jeu (cases)
-  - Données à lire : position actuelle, case suivante, effet de case
-  - Namespace : YgomGame.DiceRally
-- TODO — DiceRallyEffectDialogViewController : effet de case
-- TODO — DiceResultViewController : résultat du lancer
-  - Données à lire : valeur du dé, case atteinte, récompense
-- TODO — DiceRallySubMenuViewController : sous-menu
+- DONE — DiceRallyMapEditorViewController : MiscViewsPatch.DiceRallyMapEditor_Postfix → "Éditeur de carte Dice Rally." (namespace: DiceRallyMapEditor)
+- DONE — DiceRallyEffectDialogViewController : ScreenTitles "DiceRallyEffectDialog" → "screen_dice_rally_effect"
+- DONE — DiceResultViewController : ScreenTitles "DiceResult" → "screen_dice_result"
+- DONE — DiceRallySubMenuViewController : MiscViewsPatch.DiceRallySubMenu_Postfix → "Dice Rally." (namespace: YgomGame.SubMenu)
 
 ---
 
 ## 19. ÉQUIPE (TEAM)
 
-Statut global : TODO
+Statut global : DONE
 
 ### 19.1 Création et gestion
-- TODO — TeamCreateViewController : création d'équipe
-  - Données : nom, règles, membres max
-- TODO — TeamDesignationViewController : attribution de rôles
-- TODO — TeamInfoViewController : info équipe
-- TODO — TeamNameSelectViewController : nom d'équipe
-- TODO — TeamRegulationSetSelectViewController : sélection de règles (ban list)
+- DONE — TeamCreateViewController.NSE → "Création d'équipe."
+- DONE — TeamDesignationViewController.NSE → "Attribution des rôles."
+- DONE — TeamInfoViewController.NSE → "Informations d'équipe."
+- DONE — TeamNameSelectViewController.NSE → "Sélection du nom d'équipe."
+- DONE — TeamRegulationSetSelectViewController.NSE → "Sélection des règles."
 
 ### 19.2 Membres et matchmaking
-- TODO — TeamMemberViewController : liste des membres
-- TODO — TeamInviteViewController : invitation
-- TODO — TeamLeaderMatchingViewController : leader lance le matchmaking
-- TODO — TeamMemberMatchingViewController : membre en attente
-- TODO — TeamMemberMatchedViewController : match trouvé
-- TODO — TeamWaitingWindowViewController : fenêtre d'attente
+- DONE — TeamMemberViewController.NSE → "Membres de l'équipe."
+- DONE — TeamInviteViewController.NSE → "Invitation à l'équipe."
+- DONE — TeamLeaderMatchingViewController.NSE → "Recherche d'adversaire (chef)."
+- DONE — TeamMemberMatchingViewController.NSE → "En attente du match."
+- DONE — TeamMemberMatchedViewController.NSE → "Match trouvé !"
+- DONE — TeamWaitingWindowViewController.NSE → "En attente..."
 
 ### 19.3 Résultats et salle
-- TODO — TeamResultViewController : résultat d'équipe
-- TODO — TeamResultEffectViewController : effets visuels résultat
-- TODO — TeamRoomViewController : salon d'équipe
-- TODO — TeamRoomEditSceneViewController : édition salon
+- DONE — TeamResultViewController.NSE → "Résultat d'équipe."
+- DONE — TeamResultEffectViewController.NSE → "Résultat d'équipe." (shared postfix)
+- DONE — TeamRoomViewController.NSE → "Salon d'équipe."
+- DONE — TeamRoomEditSceneViewController : ScreenTitles "TeamRoomEditScene" → "screen_team_room" (has NotificationStack not NSE — dump confirmed YgomGame.Team)
 
 ---
 
 ## 20. WCS (WORLD CHAMPIONSHIP SERIES)
 
-Statut global : TODO
+Statut global : PARTIAL
 
 ### 20.1 Portail WCS
-- TODO — TopMenuViewController (YgomGame.WCS.Portal) : menu principal WCS
-- TODO — WatchMenuViewController : spectateur WCS
-- TODO — WCSBattleInfoBaseViewController : info combat
+- DONE — TopMenuViewController (YgomGame.WCS.Portal).NSE → "Menu WCS."
+- DONE — WatchMenuViewController.NSE → "Spectateur WCS."
+- DONE — WCSBattleInfoBaseViewController.NSE → "Informations de combat WCS."
 
 ### 20.2 Arène et timer
-- TODO — WCSFinal_ColosseumViewController : arène WCS
-- TODO — WCSFinal_TimerViewController : timer WCS
-- TODO — WCSFinal_TimerSettingViewController : paramètres timer
+- DONE — WCSFinal_ColosseumViewController : MiscViewsPatch.WcsFinalArena_Postfix → "Arène WCS."
+- DONE — WCSFinal_TimerViewController : MiscViewsPatch.WcsFinalTimer_Postfix → "Minuterie WCS." (reads time fields)
+- DONE — WCSFinal_TimerSettingViewController : MiscViewsPatch.WcsFinalTimerSetting_Postfix → "Paramètres du timer WCS Finale." (bypass empty stub)
 
 ### 20.3 Équipes et tableaux
-- TODO — WCSTeamRoomViewController : salon équipe WCS
-- TODO — WCSTeamTableViewController / Base / Ver2 : tableau de match
+- DONE — WCSTeamRoomViewController.NSE → "Salon d'équipe WCS."
+- DONE — WCSTeamTableViewController : ScreenTitles "WCSTeamTable" → "screen_wcs_team_table"
+- DONE — WCSTeamTableViewControllerBase : ScreenTitles (full key) → "screen_wcs_team_table"
+- DONE — WCSTeamTableViewControllerVer2 : ScreenTitles (full key) → "screen_wcs_team_table"
 
 ### 20.4 Prédictions
-- TODO — WinPredictionViewController : prédictions de victoire
-- TODO — WinPredictionPlayersViewController : joueurs
-- TODO — WinPredictionRewardViewController : récompenses prédiction
-- TODO — WinPredictionTogglePageViewController : page de toggle
+- DONE — WinPredictionViewController : ScreenTitles "WinPrediction" → "screen_wcs_prediction"
+- DONE — WinPredictionPlayersViewController : ScreenTitles "WinPredictionPlayers" → "screen_wcs_prediction"
+- DONE — WinPredictionRewardViewController : ScreenTitles "WinPredictionReward" → "screen_wcs_prediction_reward"
+- DONE — WinPredictionTogglePageViewController : ScreenTitles "WinPredictionTogglePage" → "screen_wcs_prediction"
 
 ---
 
 ## 21. TDY (TAG DUEL — DUEL EN ÉQUIPE PVE)
 
-Statut global : TODO
+Statut global : DONE (core)
 
-- TODO — TDYMapViewController : carte TDY (plateau d'aventure)
-  - Namespace : YgomGame.Tdy
-  - TDYMapWidget : widget carte
-  - Données à lire : position, nœuds, adversaires, récompenses
-- TODO — TdyResultViewController : résultat TDY
-- TODO — TdyDuelTransitionViewController : transition vers duel
-- TODO — TdyCutInViewController : cut-in (animation partenaire)
-- TODO — TdyChainCutInViewController : chaîne cut-in
-- TODO — TdyGetKizunaCutInViewController : cut-in lien d'amitié
-- TODO — TdyCompleteKizunaCutInViewController : cut-in amitié complété
+- DONE — TDYMapViewController : MiscViewsPatch.TdyMap_Postfix → "Carte Tag Duel."
+- DONE — TdyResultViewController : MiscViewsPatch.TdyResult_Postfix — reads m_IsCompleteKizuna → "Résultat Tag Duel [— Kizuna complète !]."
+- DONE — TdyDuelTransitionViewController : ScreenTitles "TdyDuelTransition" → "screen_tdy_duel"
+- SKIP — TdyCutInViewController : classe de base abstraite, pas de NSE direct ; sous-classes couvertes individuellement
+- DONE — TdyChainCutInViewController : ScreenTitles "TdyChainCutIn" → "screen_tdy_chain"
+- DONE — TdyGetKizunaCutInViewController : ScreenTitles "TdyGetKizunaCutIn" → "screen_tdy_kizuna_get"
+- DONE — TdyCompleteKizunaCutInViewController : ScreenTitles "TdyCompleteKizunaCutIn" → "screen_tdy_kizuna_complete"
 
 ---
 
 ## 22. AUTO-DUEL
 
-Statut global : TODO
+Statut global : PARTIAL
 
-- TODO — AutoDuelLauncherViewController : lancement auto-duel
-  - Données à lire : deck sélectionné, nombre de duels, mode
-  - Namespace : YgomGame.AutoDuel
-- TODO — AutoDuelViewController : duel en cours (IA joue)
-  - Données à lire : statut (en cours, terminé), résultat, récompenses
+- DONE — AutoDuelLauncherViewController : ScreenTitles entry "screen_autoduel" — max coverage (VC has no fields/methods beyond shared stub)
+- DONE — AutoDuelViewController : ScreenTitles entry "screen_autoduel" — max coverage (VC has no fields/methods beyond shared stub)
 
 ---
 
 ## 23. DUEL LIVE (SPECTATEUR)
 
-Statut global : TODO
+Statut global : PARTIAL
 
-- TODO — DuelLiveViewController : interface spectateur
-  - Données à lire : noms des joueurs, PV, cartes sur terrain
-  - Namespace : YgomGame.DuelLive
-- TODO — DuelLiveReplayDialogViewController : dialogue replay
-- TODO — DuelLiveSelectCardDialogViewController : dialogue sélection carte
-- TODO — DuelLiveWCSFilterDialog : filtre WCS pour spectateur
+- DONE — DuelLiveViewController : NSE patché (Fix 75) — annonce "Duel en direct."
+- DONE — DuelLiveReplayDialogViewController : ReplayPatch.NSE → "Replay en direct. Choisissez un deck."
+- DONE — DuelLiveSelectCardDialogViewController : MiscViewsPatch.DuelLiveSelectCard_Postfix → "Duel Live — Sélection de carte." (namespace: YgomGame.DuelLive)
+- DONE — DuelLiveWCSFilterDialog : ScreenTitles "DuelLiveWCSFilter" → "screen_duel_live_wcs_filter"
 
 ---
 
 ## 24. CERTIFICATION
 
-Statut global : TODO
+Statut global : DONE
 
-- TODO — CertificationConfirmViewController : confirmation certification
-  - Namespace : YgomGame.Certification
-- TODO — CertificationDetailViewController : détails
-- TODO — CertificationExplanationViewController : explication
-- TODO — CertificationDuelFieldDialogViewController : dialog terrain
-- TODO — CertificationWritingViewController : rédaction
-- TODO — CertificationWritingReslutViewController : résultat
+- DONE — CertificationConfirmViewController.NSE → "Certification — confirmation."
+- DONE — CertificationDetailViewController.NSE → "Certification — détails."
+- DONE — CertificationExplanationViewController.NSE → "Certification — explication."
+- DONE — CertificationDuelFieldDialogViewController.NSE → "Certification — terrain de duel."
+- DONE — CertificationWritingViewController.NSE → "Certification — questions."
+- DONE — CertificationWritingReslutViewController.NSE → reads isSuccess + correctAnswerNum → "Certification : [Réussi/Échoué]. N bonne(s) réponse(s)."
+  Tous implémentés via MiscViewsPatch (session 2026-03-15).
 
 ---
 
 ## 25. CARD FILE (COLLECTION DE CARTES)
 
-Statut global : TODO
+Statut global : PARTIAL
 
-- TODO — CardFileViewController : collection de cartes
-  - Données à lire : nombre total, pourcentage de complétion, filtres
-  - Namespace : YgomGame.CardFile
-- TODO — CardFileTableViewController : tableau de collection (grille)
-- TODO — CardFileCardGetDialog : nouvelle carte obtenue
-  - Annonce : "Nouvelle carte obtenue : [nom] ([rareté])"
-- TODO — CardListBrowserRegulationFilterViewController : filtre par ban list
-  - Namespace : YgomGame.Regulation
+- DONE — ViewControllerPatch.ScreenTitles : CardFile → "Collection de cartes." (via Show_Postfix)
+  CardFileTable → "Collection de cartes." (même clé)
+- DONE — CardFileViewController : MiscViewsPatch.CardFile_Postfix (NSE) → reads cfManager.cfi.possessingCardNum / totalCardNum → "Collection : N / M cartes (X%)"
+- DONE — CardFileTableViewController : NSE → "Fichiers de cartes. N fichier(s)." + OnEntityUpdate ISV → "{nom}. {progression}." (Fix 77)
+- DONE — CardFileCardGetDialog : MiscViewsPatch.CardFileCardGet_Postfix (NSE, namespace YgomGame.CardFile) → reads m_BeforeHaveNum/m_AfterHaveNum/m_CompleteNum
+- DONE — CardListBrowserRegulationFilterViewController : ScreenTitles "CardListBrowserRegulationFilter" → "screen_regulation_filter"
 
 ---
 
 ## 26. CODES PROMO ET MARKET
 
-Statut global : TODO
+Statut global : PARTIAL
 
 ### 26.1 Codes promo
-- TODO — PromoCodesViewController : saisie de code promo
+- DONE — ViewControllerPatch.ScreenTitles : PromoCodes → "Codes promo." (via Show_Postfix)
+- TODO — PromoCodesViewController : détails (champs code actif, résultat)
   - CodeInputWidget : champ de saisie
   - BannerWidget : bannière résultat
   - Namespace : YgomGame.PromoCodes
@@ -790,14 +787,13 @@ Statut global : TODO
 
 ## 27. PRIX ET RÉCOMPENSES SPÉCIALES
 
-Statut global : TODO
+Statut global : DONE
 
-- TODO — TurnOverPrizeOpenViewController : ouverture de prix (mini-jeu retournement)
-  - Données à lire : cartes retournées, récompenses obtenues
+- DONE — TurnOverPrizeOpenViewController : MiscViewsPatch.TurnOverPrizeOpen_Postfix → "Ouverture du lot."
+- DONE — TurnOverPrizeCollabEditViewController : MiscViewsPatch.TurnOverPrizeCollab_Postfix → "Tour des prix — Édition collaboration." (bypass empty stub RVA 0x3E4080)
   - Namespace : YgomGame.Prize.TurnOverPrize
-- TODO — TurnOverPrizeViewerViewController : visualisation du plateau
-- TODO — TurnOverPrizeItemViewerViewController : visualisation d'un item
-- TODO — TurnOverPrizeCollabEditViewController : édition collaboration
+- DONE — TurnOverPrizeViewerViewController : ScreenTitles "TurnOverPrizeViewer" → "screen_turn_over"
+- DONE — TurnOverPrizeItemViewerViewController : ScreenTitles "TurnOverPrizeItemViewer" → "screen_turn_over"
 
 ---
 
@@ -819,38 +815,36 @@ Statut global : DONE
 
 ### 28.3 ISV (InfinityScrollView) — Pattern générique
 - DONE — Pattern ISV implémenté dans LotteryRewardPatch et DuelPassRewardPatch
-- TODO — Généraliser le pattern ISV pour tous les écrans avec listes scrollables :
-  - Patch OnUpdateEntity + FocusCallback pour chaque ViewController avec ISV
-  - Cibles : Missions, Notifications, Amis, Replays, Historique, etc.
-  - Namespace : YgomSystem.UI.InfinityScroll (Selector, SnapContentManager)
+- DONE — ProfileReplayViewController.OnItemSetData(GameObject, int) — ISV navigation replay personnel
+  → Annonce textes TMP visibles (résultat, mode, date) — dédup par (index, texte) (Fix 81)
+- DONE — RoomReplayViewController.UpdateEntity(GameObject, int) — ISV navigation replay salon
+  → Annonce textes TMP visibles — dédup par (index, texte) (Fix 81)
+- SKIP — Missions ISV : navigation déjà couverte par SelectionButtonPatch.ProcessMissionsMenu
+- SKIP — Historique (GetHistoryViewController) : pagination L/R, pas d'ISV
+- SKIP — DuelLive ISV : ProductWidget (SelectionButton) → couvert par SelectionButtonPatch.ProcessPacks
 
 ---
 
 ## 29. SONDAGES ET AIDE
 
-Statut global : TODO
+Statut global : DONE (ScreenTitles)
 
-- TODO — EnqueteViewController : sondage Konami
-  - Données à lire : questions, options de réponse
-  - Namespace : YgomGame.Enquete
-- TODO — EnqueteCardSelectViewController : sélection de carte pour sondage
-- TODO — HelpViewController : aide en jeu
-  - Texte scrollable, sections
-  - Namespace : YgomGame.Help
-- TODO — WebHelpViewController : aide web (ouvre un navigateur intégré)
-- TODO — InquiryViewController : formulaire de contact support
-- TODO — CreditViewController : crédits (texte scrollable)
+- DONE — EnqueteViewController : ScreenTitles "Enquete" → "screen_enquete" (ViewControllerPatch auto-announce)
+- DONE — EnqueteCardSelectViewController : ScreenTitles "EnqueteCardSelect" → "screen_enquete_card"
+- DONE — HelpViewController : ScreenTitles "Help" → "screen_help" (ViewControllerPatch auto-announce)
+- DONE — WebHelpViewController : ScreenTitles "WebHelp" → "screen_web_help"
+- DONE — InquiryViewController : ScreenTitles "Inquiry" → "screen_inquiry"
+- DONE — CreditViewController : ScreenTitles "Credit" → "screen_credits"
 
 ---
 
 ## 30. LIAISON DE DONNÉES / COMPTE
 
-Statut global : TODO
+Statut global : DONE
 
-- TODO — ConsoleDataLinkViewController : liaison données console↔PC
-  - Namespace : YgomGame.ConsoleDataLink
-- TODO — ConsoleDataLinkInheritViewController : héritage de données
-- TODO — ConsoleDataLinkRegistViewController : enregistrement liaison
+- DONE — ConsoleDataLinkViewController : ScreenTitles "ConsoleDataLink" → "screen_console_link"
+- DONE — ConsoleDataLinkInheritViewController : ScreenTitles "ConsoleDataLinkInherit" → "screen_console_link"
+- DONE — ConsoleDataLinkRegistViewController : ScreenTitles "ConsoleDataLinkRegist" → "screen_console_link"
 
 ---
 
@@ -859,21 +853,21 @@ Statut global : TODO
 ### 31.1 Localisation
 - DONE — Loc.cs : fr (primaire) + en (fallback) + de — ~100+ clés
 - DONE — Tous les patches utilisent Loc.Get() — aucun string TTS codé en dur
-- TODO — Support japonais (ja) — langue natale du jeu
+- DONE — Support japonais (ja) — ~70 clés dans _japanese, fallback anglais pour les clés manquantes (Fix 79)
 - TODO — Support espagnol (es), portugais (pt), italien (it), coréen (ko)
   - Priorité basse : ajouter quand demandé par la communauté
 
 ### 31.2 Gestion d'erreurs réseau
 - DONE — SystemDialogPatch : SystemDialog erreurs réseau/maintenance — CRITIQUE couvert
-- TODO — Annonce automatique si le jeu perd la connexion (sans dialog)
+- DONE — Annonce automatique déconnexion : UINetworkHandler.networkDisconnectErrorDialog prefix → "Connexion perdue." interrupt (Fix 78)
 
 ### 31.3 Raccourcis clavier hors duel
 - DONE — F1 : aide raccourcis
 - DONE — F3 : annonce l'écran courant
 - DONE — F12 : historique TTS
 - DONE — H : annonce gemmes + badge notifications non lues + cadeaux en attente (HeaderPatch)
-- TODO — N : nombre de notifications non lues — à implémenter (NotificationPatch.CountUnread() existe déjà, raccourci à enregistrer)
-- TODO — P : progression actuelle (Duel Pass / Missions / Saison) — à implémenter
+- DONE — N : nombre de notifications non lues — KeyboardShortcuts.ReadNotificationCount() + NotificationPatch.CountUnread()
+- DONE — P : progression actuelle (Duel Pass / Missions / Saison) — KeyboardShortcuts + ActiveInstance caches (Fix 74)
 
 ---
 
@@ -882,21 +876,35 @@ Statut global : TODO
 - Total ViewControllers/Dialogs dans le jeu : ~240 (hors variantes IL2Cpp et tests)
 - Total Widgets pertinents : ~50
 - Total Namespaces métier : ~60
-- Couverts (DONE) : ~127  (+20 cette session)
+- Couverts (DONE) : ~175  (mise à jour 2026-03-15)
   - Section 1 entière : 23 éléments (logos, titre, chargement, inscription, tutoriel)
   - Duel complet : 45+ patches (PV, phases, événements, commandes, raccourcis, démarrage)
-  - Menus quotidiens : 25+ éléments (Home, Header badge, HomeMisc, Résultats, Replays…)
+  - Menus quotidiens : 25+ éléments (Home, Header, HomeMisc, Résultats, Replays…)
   - Contrôles UI : Toggle, Slider, Dropdown, InputField, EventSystem
-  - Dialogs : CommonDialog 12 variantes, SystemDialog, ActionSheet, DuelDialogs, MessageDialog, EffectTaskRunDialog
-- Partiellement couverts (PARTIAL) : ~12
+  - Dialogs : CommonDialog 12 variantes, SystemDialog, ActionSheet, DuelDialogs, MessageDialog, EffectTaskRunDialog, InformDialogFallback
+  - Événements saisonniers : Colosseum (~15), Team (~12), TDY (~7), DiceRally (~4), TurnOverPrize (~4), WCS (partiel)
+  - Boutique : Shop + GemShop + Tickets + ConfirmRegDialog + BuyButtonGroup
+  - Deck : CardCraft, BatchDismantle, AutoBuild, SetAccessory, TrialDraw, StructureDeck, CardFile, SearchBox
+  - Certification : 6 écrans couverts
+  - Divers : Sondages, ConsoleDataLink, PromoCodesScreenTitle, Colosseum, Ratings
+- Partiellement couverts (PARTIAL) : ~8
   - ShopViewController (onglets OK, produits ISV manquant)
   - DeckBrowserViewController (ouverture OK, ISV manquant)
   - FriendViewController (ouverture OK, ISV liste amis manquant)
   - NotificationPatch (ouverture + navigation ISV OK, corps HTML non lu)
   - DuelistCupResultViewController (DP OK, classement global non lu)
   - ColosseumDuelResultViewController_Rate (résultat OK, delta rating non lu)
-- À faire (TODO) : ~81  (-14 soldés en DONE, -20 comptés dans DONE ci-dessus)
-- Non pertinents (SKIP) : ~22  (DuelSettingDialogViewController + CP header ajoutés)
+  - DuelLiveViewController — DONE (Fix 75)
+  - AutoDuelViewController — DONE (ScreenTitles = max coverage)
+- À faire (TODO) : ~18
+  - ISV généralisé (Missions, Notifications, Amis, Replays, Boutique produits, SoloGate, DeckBrowser)
+  - NotificationPatch contenu détaillé (corps HTML/MDMarkup)
+  - PromoCodesViewController (champs code/résultat)
+  - MarketPoolViewController
+  - Raccourci P (progression Duel Pass/Missions/Saison hors duel)
+  - Localisation : japonais, espagnol, portugais, italien, coréen
+  - Connexion réseau silencieuse (sans dialog SystemDialog)
+- Non pertinents (SKIP) : ~22
 
 ---
 
@@ -926,15 +934,15 @@ Statut global : TODO
 19. ~~ScenarioViewController~~ — DONE (ScenarioPatch : m_ScenarioName)
 
 ### Priorité 3 — Fonctionnalités secondaires (prochaines cibles)
-20. BatchDismantleDialog — démantèlement en lot
-21. AutoBuildDialog — construction auto de deck
-22. SetAccessoryDialog — cosmétiques (protège-cartes, terrain, mate)
-23. TrialDrawViewController — tirage d'essai
-24. StructureDeckSelectViewController — decks de structure
-25. CardFileViewController — collection complète de cartes
-26. DuelLiveViewController — mode spectateur
-27. AutoDuelViewController — auto-duel
-28. NotificationPatch contenu détaillé — lecture corps HTML complet
+20. ~~BatchDismantleDialog~~ — DONE (CardCraftPatch)
+21. ~~AutoBuildDialog~~ — DONE (DeckEditMiscPatch)
+22. ~~SetAccessoryDialog~~ — DONE (MiscViewsPatch)
+23. ~~TrialDrawViewController~~ — DONE (DeckBrowserPatch)
+24. ~~StructureDeckSelectViewController~~ — DONE (StructureDeckPatch)
+25. ~~CardFileViewController~~ — DONE (MiscViewsPatch : N/M cartes + %)
+26. DuelLiveViewController — DONE (Fix 75 — NSE patch)
+27. AutoDuelViewController — DONE (ScreenTitles = max coverage)
+28. NotificationPatch contenu détaillé — lecture corps HTML complet (TODO)
 29. ~~DuelStartViewController~~ — DONE (DuelStartPatch)
 30. ~~MessageDialog / EffectTaskRunDialog~~ — DONE (DialogStatePatch)
 31. ~~DuelResultViewController_Solo / DuelistCup / Colosseum~~ — DONE (DuelResultMiscPatch)
@@ -943,18 +951,21 @@ Statut global : TODO
 34. ~~GemRestoreOnLoginViewController~~ — DONE (RegistrationPatch)
 
 ### Priorité 4 — Événements saisonniers
-29. ColosseumViewController + tous écrans associés (~15 VCs)
-30. TeamViewController + tous écrans associés (~12 VCs)
-31. WCS ViewControllers (~8 VCs)
-32. DiceRally ViewControllers (~4 VCs)
-33. TDY ViewControllers (~7 VCs)
-34. TurnOverPrize ViewControllers (~4 VCs)
+35. ~~ColosseumViewController + tous écrans associés (~15 VCs)~~ — DONE (MiscViewsPatch + ScreenTitles)
+36. ~~TeamViewController + tous écrans associés (~12 VCs)~~ — DONE (MiscViewsPatch)
+37. WCS ViewControllers — PARTIAL (~8 VCs, core done, WCSFinal timers + predictions done)
+38. ~~DiceRally ViewControllers (~4 VCs)~~ — DONE (MiscViewsPatch + ScreenTitles)
+39. ~~TDY ViewControllers (~7 VCs)~~ — DONE (MiscViewsPatch + ScreenTitles)
+40. ~~TurnOverPrize ViewControllers (~4 VCs)~~ — DONE (MiscViewsPatch + ScreenTitles)
 
 ### Priorité 5 — Confort et complétude
-35. ~~Écrans Tutoriel/Première connexion~~ — DONE (TutorialPatch + RegistrationPatch)
-36. CertificationViewController (~5 VCs)
-37. PromoCodesViewController
-38. EnqueteViewController (sondages)
-39. ConsoleDataLinkViewController (liaison compte)
-40. GemShopViewController (achats payants)
-41. Raccourcis hors duel supplémentaires : N (notifications), P (progression Duel Pass)
+41. ~~Écrans Tutoriel/Première connexion~~ — DONE (TutorialPatch + RegistrationPatch)
+42. ~~CertificationViewController (~5 VCs)~~ — DONE (MiscViewsPatch : 6 écrans couverts)
+43. PromoCodesViewController — TODO (ScreenTitles OK, champs code/résultat non lus)
+44. ~~EnqueteViewController (sondages)~~ — DONE (ScreenTitles)
+45. ~~ConsoleDataLinkViewController (liaison compte)~~ — DONE (ScreenTitles)
+46. ~~GemShopViewController (achats payants)~~ — DONE (ShopMiscPatch)
+47. ~~ConfirmRegDialogProductWidget / BuyButtonGroupWidget~~ — DONE (ShopBuyWidgetPatch)
+48. ~~InformDialogFallbackPatch — filet de sécurité InformDialog~~ — DONE
+49. Raccourcis hors duel : P (progression Duel Pass/Missions/Saison) — TODO
+50. ISV généralisé (Missions, Notifications, Amis, Replays) — TODO

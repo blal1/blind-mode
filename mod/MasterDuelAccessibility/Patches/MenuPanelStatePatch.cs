@@ -48,9 +48,12 @@ namespace MasterDuelAccessibility.Patches
                 "YgomGame.Menu.LoginBonusViewController", "NotificationStackEntry",
                 nameof(LoginBonus_StackEntry_Postfix));
 
+            // PresentBoxViewController.NotificationStackEntry = RVA 0x3E4080 (empty stub).
+            // Without bypassOriginal, Harmony's il2cpp_runtime_invoke hits the vtable →
+            // routes back to the DMD → infinite recursion → stack overflow (confirmed crash).
             PatchMethod(harmony,
                 "YgomGame.Menu.PresentBoxViewController", "NotificationStackEntry",
-                nameof(PresentBox_StackEntry_Postfix));
+                nameof(PresentBox_StackEntry_Postfix), bypassOriginal: true);
 
             PatchMethod(harmony,
                 "YgomGame.Menu.FriendSearchViewController", "NotificationStackEntry",
@@ -84,12 +87,21 @@ namespace MasterDuelAccessibility.Patches
 
         // ── Helpers d'application ─────────────────────────────────────────────
 
+        /// <summary>
+        /// Prefix universel pour les stubs NSE vides (RVA 0x3E4080).
+        /// Retourne false → empêche l'appel de l'original via il2cpp_runtime_invoke,
+        /// ce qui évite la récursion de vtable IL2CPP → stack overflow.
+        /// Les postfix s'exécutent quand même (comportement Harmony standard).
+        /// </summary>
+        private static bool NseEmptyStubSkip_Prefix() => false;
+
         /// <summary>Version 3 args : type + méthode + postfix explicitement nommé.</summary>
         private static void PatchMethod(
             HarmonyLib.Harmony harmony,
             string typeName,
             string methodName,
-            string postfixName)
+            string postfixName,
+            bool bypassOriginal = false)
         {
             try
             {
@@ -113,8 +125,14 @@ namespace MasterDuelAccessibility.Patches
                     Plugin.Instance?.LogWarn($"[MenuPanelStatePatch] Postfix '{postfixName}' introuvable.");
                     return;
                 }
-                harmony.Patch(method, postfix: new HarmonyMethod(patchMeth));
-                Plugin.Instance?.LogMsg($"[MenuPanelStatePatch] ✓ {typeName}.{methodName}");
+
+                HarmonyMethod? prefix = bypassOriginal
+                    ? new HarmonyMethod(typeof(MenuPanelStatePatch)
+                        .GetMethod(nameof(NseEmptyStubSkip_Prefix), BindingFlags.Static | BindingFlags.NonPublic)!)
+                    : null;
+
+                harmony.Patch(method, prefix: prefix, postfix: new HarmonyMethod(patchMeth));
+                Plugin.Instance?.LogMsg($"[MenuPanelStatePatch] ✓ {typeName}.{methodName}{(bypassOriginal ? " [bypass]" : "")}");
             }
             catch (Exception ex)
             {
@@ -126,8 +144,9 @@ namespace MasterDuelAccessibility.Patches
         private static void PatchMethod(
             HarmonyLib.Harmony harmony,
             string typeName,
-            string postfixName)
-            => PatchMethod(harmony, typeName, "NotificationStackEntry", postfixName);
+            string postfixName,
+            bool bypassOriginal = false)
+            => PatchMethod(harmony, typeName, "NotificationStackEntry", postfixName, bypassOriginal);
 
         // ── Helpers partagés ──────────────────────────────────────────────────
 

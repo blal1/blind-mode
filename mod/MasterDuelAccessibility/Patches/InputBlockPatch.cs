@@ -53,6 +53,15 @@ namespace MasterDuelAccessibility.Patches
         /// </summary>
         public static bool BlockEscape { get; set; }
 
+        /// <summary>
+        /// Quand true, un menu overlay du mod est actif (aide ou paramètres).
+        /// Toutes les touches de navigation (flèches, Home, End, Entrée, Espace, Escape)
+        /// sont bloquées pour que le jeu ne reçoive pas ces pressions.
+        /// Inspiré de InputManager.ModMenuActive dans AccessibleArena MTGA.
+        /// Mis à jour par HelpMenuNavigator et ModSettingsNavigator.
+        /// </summary>
+        public static bool ModMenuActive { get; set; }
+
         internal static void ResetFrameState()
         {
             BlockedThisFrame = false;
@@ -77,6 +86,19 @@ namespace MasterDuelAccessibility.Patches
         // ────────────────────────────────────────────────────────────────────────
         private static bool ShouldBlock(KeyCode key)
         {
+            // Quand un menu overlay du mod est actif (aide ou paramètres) :
+            // bloquer les touches de navigation pour que le jeu ne réagisse pas.
+            // Inspiré de InputManager.ModMenuActive dans AccessibleArena MTGA.
+            if (ModMenuActive)
+            {
+                if (key == KeyCode.UpArrow    || key == KeyCode.DownArrow  ||
+                    key == KeyCode.LeftArrow  || key == KeyCode.RightArrow ||
+                    key == KeyCode.Home       || key == KeyCode.End        ||
+                    key == KeyCode.Return     || key == KeyCode.Space      ||
+                    key == KeyCode.Escape     || key == KeyCode.Backspace)
+                    return true;
+            }
+
             // Escape : bloqué seulement quand le mod a une modale active
             // (prévu pour de futurs overlays d'aide ou de paramétrage du mod).
             if (key == KeyCode.Escape && BlockEscape)
